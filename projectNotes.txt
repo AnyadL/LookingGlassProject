@@ -1,0 +1,48 @@
+Setting: 
+    Outdoors 
+    Very Colourful /Oversaturated 
+    Alice in Wonderland/ Lovecraft 
+    Hedge Maze (The shining/Sleeping beauty brambly) 
+
+Enemies: 
+    You can only really see them out of the corner of your eye 
+    Instant death if they are in the same room as you 
+    Enemies are shown on the cellphone as black chess pieces 
+    There will be a ding on the phone before you die. 
+
+    Enemy Types: 
+        Knight: Aggressive, Since he can’t move in straight line if you see him your
+              fine. He will be shadowed so you can’t clearly see him. 
+        Bishop: Moves in Diagonals so its hard to see him coming 
+        Rook: Moves in straight lines, if you see him coming you are fucked 
+            Its like the “maze” itself is attacking you 
+        King: Following you slowly so its more of a coming threat. Acts as a timer so 
+            the player has to finish the puzzles in a timely fashion. 
+
+Cellphone: 
+    Contains a chessboard “app” so you can see the chess pieces coming. 
+
+Puzzles:
+“Inspiration Looking-glass chess”
+ 
+    You are introduced to each piece within their puzzle. The pieces then follow you 
+    into the next puzzle. 
+    
+    Pawn Puzzle: 
+        Mostly a tutorial 
+
+    Knight Puzzle: 
+        You are given a sword. 
+        Attacking people with your sword is kinda pointless and causes your death
+        You give the knight the sword, he smiles and leaves to hunt you later. 
+
+    Rook Puzzle: 
+        You have to use the rooks movements to manipulate the piece into 
+        completing the puzzle for you. 
+    
+    Bishop Puzzle: 
+        Needs to be discussed 
+    
+    End Game: 
+        You meet the queen, the maze and other pieces disappear. She is alone, 
+        its a little uncomfortable. 
