@@ -1,21 +1,226 @@
+<!--Saved by Quest 5.5.5328.26617-->
 <asl version="550">
-
-  <include ref="English.aslx"/>
-  <include ref="Core.aslx"/>
-
+  <include ref="English.aslx" />
+  <include ref="Core.aslx" />
   <game name="LookingGlass">
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
     <firstpublished>2014</firstpublished>
+    <author>Dayna Lacoursiere. Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, David Supina</author>
+    <enablehyperlinks type="boolean">false</enablehyperlinks>
+    <gridmap />
+    <showpanes type="boolean">false</showpanes>
+    <mapscale type="int">20</mapscale>
+    <autodescription type="boolean">false</autodescription>
+    <autodisplayverbs type="boolean">false</autodisplayverbs>
+    <showdescriptiononenter type="boolean">false</showdescriptiononenter>
+    <category>Puzzle</category>
+    <description><![CDATA[A puzzle game inspired by the literal and metaphorical representations of Chess. <br/>Features exploring an overworld and delving into pocket rooms to solve isolated puzzles. <br/>All the while you are avoiding the denizens of this universe. ]]></description>
   </game>
-
-  <object name="room">
+  <object name="Knight Puzzle">
     <inherit name="editor_room" />
-
     <object name="player">
       <inherit name="editor_object" />
       <inherit name="editor_player" />
+      <inherit name="female" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
     </object>
   </object>
-
+  <verb>
+    <property>look</property>
+    <pattern>look</pattern>
+    <defaultexpression>"You can't look " + object.article + "."</defaultexpression>
+  </verb>
+  <object name="A1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="A8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="B8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="C8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="D8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="E8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="F8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="G8">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H1">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H2">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H3">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H4">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H5">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H6">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H7">
+    <inherit name="editor_room" />
+  </object>
+  <object name="H8">
+    <inherit name="editor_room" />
+  </object>
 </asl>
