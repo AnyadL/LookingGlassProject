@@ -6,7 +6,7 @@
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
     <firstpublished>2014</firstpublished>
-    <author>Dayna Lacoursiere. Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, David Supina</author>
+    <author>Dayna Lacoursiere. Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, and David Supina</author>
     <enablehyperlinks type="boolean">false</enablehyperlinks>
     <gridmap />
     <showpanes type="boolean">false</showpanes>
@@ -16,11 +16,13 @@
     <showdescriptiononenter type="boolean">false</showdescriptiononenter>
     <category>Puzzle</category>
     <description><![CDATA[A puzzle game inspired by the literal and metaphorical representations of Chess. <br/>Features exploring an overworld and delving into pocket rooms to solve isolated puzzles. <br/>All the while you are avoiding the denizens of this universe. ]]></description>
+    <setcustomwidth type="boolean">false</setcustomwidth>
+    <setcustompadding type="boolean">false</setcustompadding>
     <pov type="object">player</pov>
+    <start type="script">
+      showMap
+    </start>
   </game>
-  <object name="Knight Puzzle">
-    <inherit name="editor_room" />
-  </object>
   <verb>
     <property>look</property>
     <pattern>look</pattern>
@@ -28,7 +30,7 @@
   </verb>
   <object name="A1">
     <inherit name="editor_room" />
-    <attr name="grid_label">a1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="east" to="B1">
       <inherit name="eastdirection" />
     </exit>
@@ -47,7 +49,7 @@
   </object>
   <object name="A2">
     <inherit name="editor_room" />
-    <attr name="grid_label">a2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="A1">
       <inherit name="southdirection" />
     </exit>
@@ -66,7 +68,7 @@
   </object>
   <object name="A3">
     <inherit name="editor_room" />
-    <attr name="grid_label">a3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="B2">
       <inherit name="southeastdirection" />
     </exit>
@@ -85,7 +87,7 @@
   </object>
   <object name="A4">
     <inherit name="editor_room" />
-    <attr name="grid_label">a4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="A3">
       <inherit name="southdirection" />
     </exit>
@@ -104,7 +106,7 @@
   </object>
   <object name="A5">
     <inherit name="editor_room" />
-    <attr name="grid_label">a5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="B4">
       <inherit name="southeastdirection" />
     </exit>
@@ -123,7 +125,7 @@
   </object>
   <object name="A6">
     <inherit name="editor_room" />
-    <attr name="grid_label">a6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="A5">
       <inherit name="southdirection" />
     </exit>
@@ -142,7 +144,7 @@
   </object>
   <object name="A7">
     <inherit name="editor_room" />
-    <attr name="grid_label">a7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="B6">
       <inherit name="southeastdirection" />
     </exit>
@@ -161,7 +163,7 @@
   </object>
   <object name="A8">
     <inherit name="editor_room" />
-    <attr name="grid_label">a8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="A7">
       <inherit name="southdirection" />
     </exit>
@@ -174,7 +176,7 @@
   </object>
   <object name="B1">
     <inherit name="editor_room" />
-    <attr name="grid_label">b1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="A1">
       <inherit name="westdirection" />
     </exit>
@@ -193,7 +195,7 @@
   </object>
   <object name="B2">
     <inherit name="editor_room" />
-    <attr name="grid_label">b2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="A1">
       <inherit name="southwestdirection" />
     </exit>
@@ -221,7 +223,7 @@
   </object>
   <object name="B3">
     <inherit name="editor_room" />
-    <attr name="grid_label">b3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="C2">
       <inherit name="southeastdirection" />
     </exit>
@@ -249,7 +251,7 @@
   </object>
   <object name="B4">
     <inherit name="editor_room" />
-    <attr name="grid_label">b4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="A3">
       <inherit name="southwestdirection" />
     </exit>
@@ -277,7 +279,7 @@
   </object>
   <object name="B5">
     <inherit name="editor_room" />
-    <attr name="grid_label">b5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="C4">
       <inherit name="southeastdirection" />
     </exit>
@@ -305,7 +307,7 @@
   </object>
   <object name="B6">
     <inherit name="editor_room" />
-    <attr name="grid_label">b6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="A5">
       <inherit name="southwestdirection" />
     </exit>
@@ -333,7 +335,7 @@
   </object>
   <object name="B7">
     <inherit name="editor_room" />
-    <attr name="grid_label">b7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="C6">
       <inherit name="southeastdirection" />
     </exit>
@@ -361,7 +363,7 @@
   </object>
   <object name="B8">
     <inherit name="editor_room" />
-    <attr name="grid_label">b8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="A7">
       <inherit name="southwestdirection" />
     </exit>
@@ -380,7 +382,7 @@
   </object>
   <object name="C1">
     <inherit name="editor_room" />
-    <attr name="grid_label">c1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="B1">
       <inherit name="westdirection" />
     </exit>
@@ -399,7 +401,7 @@
   </object>
   <object name="C2">
     <inherit name="editor_room" />
-    <attr name="grid_label">c2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="B1">
       <inherit name="southwestdirection" />
     </exit>
@@ -427,7 +429,7 @@
   </object>
   <object name="C3">
     <inherit name="editor_room" />
-    <attr name="grid_label">c3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="D2">
       <inherit name="southeastdirection" />
     </exit>
@@ -455,7 +457,7 @@
   </object>
   <object name="C4">
     <inherit name="editor_room" />
-    <attr name="grid_label">c4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="B3">
       <inherit name="southwestdirection" />
     </exit>
@@ -483,7 +485,7 @@
   </object>
   <object name="C5">
     <inherit name="editor_room" />
-    <attr name="grid_label">c5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="D4">
       <inherit name="southeastdirection" />
     </exit>
@@ -511,7 +513,7 @@
   </object>
   <object name="C6">
     <inherit name="editor_room" />
-    <attr name="grid_label">c6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="B5">
       <inherit name="southwestdirection" />
     </exit>
@@ -539,7 +541,7 @@
   </object>
   <object name="C7">
     <inherit name="editor_room" />
-    <attr name="grid_label">c7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="D6">
       <inherit name="southeastdirection" />
     </exit>
@@ -567,7 +569,7 @@
   </object>
   <object name="C8">
     <inherit name="editor_room" />
-    <attr name="grid_label">c8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="B7">
       <inherit name="southwestdirection" />
     </exit>
@@ -586,7 +588,7 @@
   </object>
   <object name="D1">
     <inherit name="editor_room" />
-    <attr name="grid_label">d1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="C1">
       <inherit name="westdirection" />
     </exit>
@@ -605,7 +607,7 @@
   </object>
   <object name="D2">
     <inherit name="editor_room" />
-    <attr name="grid_label">d2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="C1">
       <inherit name="southwestdirection" />
     </exit>
@@ -633,7 +635,7 @@
   </object>
   <object name="D3">
     <inherit name="editor_room" />
-    <attr name="grid_label">d3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="E2">
       <inherit name="southeastdirection" />
     </exit>
@@ -661,7 +663,7 @@
   </object>
   <object name="D4">
     <inherit name="editor_room" />
-    <attr name="grid_label">d4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="C3">
       <inherit name="southwestdirection" />
     </exit>
@@ -689,7 +691,7 @@
   </object>
   <object name="D5">
     <inherit name="editor_room" />
-    <attr name="grid_label">d5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="E4">
       <inherit name="southeastdirection" />
     </exit>
@@ -717,7 +719,7 @@
   </object>
   <object name="D6">
     <inherit name="editor_room" />
-    <attr name="grid_label">d6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="C5">
       <inherit name="southwestdirection" />
     </exit>
@@ -745,7 +747,7 @@
   </object>
   <object name="D7">
     <inherit name="editor_room" />
-    <attr name="grid_label">d7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="E6">
       <inherit name="southeastdirection" />
     </exit>
@@ -773,7 +775,7 @@
   </object>
   <object name="D8">
     <inherit name="editor_room" />
-    <attr name="grid_label">d8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="C7">
       <inherit name="southwestdirection" />
     </exit>
@@ -792,7 +794,7 @@
   </object>
   <object name="E1">
     <inherit name="editor_room" />
-    <attr name="grid_label">e1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="D1">
       <inherit name="westdirection" />
     </exit>
@@ -811,7 +813,7 @@
   </object>
   <object name="E2">
     <inherit name="editor_room" />
-    <attr name="grid_label">e2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="D1">
       <inherit name="southwestdirection" />
     </exit>
@@ -839,7 +841,7 @@
   </object>
   <object name="E3">
     <inherit name="editor_room" />
-    <attr name="grid_label">e3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="F2">
       <inherit name="southeastdirection" />
     </exit>
@@ -867,7 +869,7 @@
   </object>
   <object name="E4">
     <inherit name="editor_room" />
-    <attr name="grid_label">e4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="D3">
       <inherit name="southwestdirection" />
     </exit>
@@ -895,7 +897,7 @@
   </object>
   <object name="E5">
     <inherit name="editor_room" />
-    <attr name="grid_label">e5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="F4">
       <inherit name="southeastdirection" />
     </exit>
@@ -923,7 +925,7 @@
   </object>
   <object name="E6">
     <inherit name="editor_room" />
-    <attr name="grid_label">e6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="D5">
       <inherit name="southwestdirection" />
     </exit>
@@ -951,7 +953,7 @@
   </object>
   <object name="E7">
     <inherit name="editor_room" />
-    <attr name="grid_label">e7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="F6">
       <inherit name="southeastdirection" />
     </exit>
@@ -979,7 +981,7 @@
   </object>
   <object name="E8">
     <inherit name="editor_room" />
-    <attr name="grid_label">e8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="D7">
       <inherit name="southwestdirection" />
     </exit>
@@ -998,7 +1000,7 @@
   </object>
   <object name="F1">
     <inherit name="editor_room" />
-    <attr name="grid_label">f1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="E1">
       <inherit name="westdirection" />
     </exit>
@@ -1017,7 +1019,7 @@
   </object>
   <object name="F2">
     <inherit name="editor_room" />
-    <attr name="grid_label">f2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="E1">
       <inherit name="southwestdirection" />
     </exit>
@@ -1045,7 +1047,7 @@
   </object>
   <object name="F3">
     <inherit name="editor_room" />
-    <attr name="grid_label">f3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="G2">
       <inherit name="southeastdirection" />
     </exit>
@@ -1073,7 +1075,7 @@
   </object>
   <object name="F4">
     <inherit name="editor_room" />
-    <attr name="grid_label">f4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="E3">
       <inherit name="southwestdirection" />
     </exit>
@@ -1101,7 +1103,7 @@
   </object>
   <object name="F5">
     <inherit name="editor_room" />
-    <attr name="grid_label">f5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="G4">
       <inherit name="southeastdirection" />
     </exit>
@@ -1129,7 +1131,7 @@
   </object>
   <object name="F6">
     <inherit name="editor_room" />
-    <attr name="grid_label">f6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="E5">
       <inherit name="southwestdirection" />
     </exit>
@@ -1157,7 +1159,7 @@
   </object>
   <object name="F7">
     <inherit name="editor_room" />
-    <attr name="grid_label">f7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="G6">
       <inherit name="southeastdirection" />
     </exit>
@@ -1185,7 +1187,7 @@
   </object>
   <object name="F8">
     <inherit name="editor_room" />
-    <attr name="grid_label">f8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="E7">
       <inherit name="southwestdirection" />
     </exit>
@@ -1204,7 +1206,7 @@
   </object>
   <object name="G1">
     <inherit name="editor_room" />
-    <attr name="grid_label">g1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="F1">
       <inherit name="westdirection" />
     </exit>
@@ -1223,7 +1225,7 @@
   </object>
   <object name="G2">
     <inherit name="editor_room" />
-    <attr name="grid_label">g2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="F1">
       <inherit name="southwestdirection" />
     </exit>
@@ -1251,7 +1253,7 @@
   </object>
   <object name="G3">
     <inherit name="editor_room" />
-    <attr name="grid_label">g3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="H2">
       <inherit name="southeastdirection" />
     </exit>
@@ -1279,7 +1281,7 @@
   </object>
   <object name="G4">
     <inherit name="editor_room" />
-    <attr name="grid_label">g4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="F3">
       <inherit name="southwestdirection" />
     </exit>
@@ -1307,7 +1309,7 @@
   </object>
   <object name="G5">
     <inherit name="editor_room" />
-    <attr name="grid_label">g5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="H4">
       <inherit name="southeastdirection" />
     </exit>
@@ -1335,7 +1337,7 @@
   </object>
   <object name="G6">
     <inherit name="editor_room" />
-    <attr name="grid_label">g6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="F5">
       <inherit name="southwestdirection" />
     </exit>
@@ -1363,7 +1365,7 @@
   </object>
   <object name="G7">
     <inherit name="editor_room" />
-    <attr name="grid_label">g7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southeast" to="H6">
       <inherit name="southeastdirection" />
     </exit>
@@ -1391,7 +1393,7 @@
   </object>
   <object name="G8">
     <inherit name="editor_room" />
-    <attr name="grid_label">g8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="F7">
       <inherit name="southwestdirection" />
     </exit>
@@ -1410,7 +1412,7 @@
   </object>
   <object name="H1">
     <inherit name="editor_room" />
-    <attr name="grid_label">h1</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="west" to="G1">
       <inherit name="westdirection" />
     </exit>
@@ -1423,7 +1425,7 @@
   </object>
   <object name="H2">
     <inherit name="editor_room" />
-    <attr name="grid_label">h2</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="G1">
       <inherit name="southwestdirection" />
     </exit>
@@ -1442,7 +1444,7 @@
   </object>
   <object name="H3">
     <inherit name="editor_room" />
-    <attr name="grid_label">h3</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="H2">
       <inherit name="southdirection" />
     </exit>
@@ -1461,7 +1463,7 @@
   </object>
   <object name="H4">
     <inherit name="editor_room" />
-    <attr name="grid_label">h4</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="G3">
       <inherit name="southwestdirection" />
     </exit>
@@ -1480,7 +1482,7 @@
   </object>
   <object name="H5">
     <inherit name="editor_room" />
-    <attr name="grid_label">h5</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="H4">
       <inherit name="southdirection" />
     </exit>
@@ -1499,7 +1501,7 @@
   </object>
   <object name="H6">
     <inherit name="editor_room" />
-    <attr name="grid_label">h6</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="G5">
       <inherit name="southwestdirection" />
     </exit>
@@ -1518,7 +1520,7 @@
   </object>
   <object name="H7">
     <inherit name="editor_room" />
-    <attr name="grid_label">h7</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="south" to="H6">
       <inherit name="southdirection" />
     </exit>
@@ -1537,7 +1539,7 @@
   </object>
   <object name="H8">
     <inherit name="editor_room" />
-    <attr name="grid_label">h8</attr>
+    <attr name="grid_label" type="string"></attr>
     <exit alias="southwest" to="G7">
       <inherit name="southwestdirection" />
     </exit>
@@ -1548,4 +1550,78 @@
       <inherit name="westdirection" />
     </exit>
   </object>
+  <object name="room3">
+    <inherit name="editor_room" />
+    <object name="player2">
+      <inherit name="editor_object" />
+      <inherit name="editor_player" />
+      <feature_player />
+    </object>
+  </object>
+  <function name="showMap">
+    MoveObject (player, A2)
+    MoveObject (player, A3)
+    MoveObject (player, A4)
+    MoveObject (player, A5)
+    MoveObject (player, A6)
+    MoveObject (player, A7)
+    MoveObject (player, A8)
+    MoveObject (player, B8)
+    MoveObject (player, B7)
+    MoveObject (player, B6)
+    MoveObject (player, B5)
+    MoveObject (player, B4)
+    MoveObject (player, B3)
+    MoveObject (player, B2)
+    MoveObject (player, B1)
+    MoveObject (player, C1)
+    MoveObject (player, C2)
+    MoveObject (player, C3)
+    MoveObject (player, C4)
+    MoveObject (player, C5)
+    MoveObject (player, C6)
+    MoveObject (player, C7)
+    MoveObject (player, C8)
+    MoveObject (player, D8)
+    MoveObject (player, D7)
+    MoveObject (player, D6)
+    MoveObject (player, D5)
+    MoveObject (player, D4)
+    MoveObject (player, D3)
+    MoveObject (player, D2)
+    MoveObject (player, D1)
+    MoveObject (player, E1)
+    MoveObject (player, E2)
+    MoveObject (player, E3)
+    MoveObject (player, E4)
+    MoveObject (player, E5)
+    MoveObject (player, E6)
+    MoveObject (player, E7)
+    MoveObject (player, E8)
+    MoveObject (player, F8)
+    MoveObject (player, F7)
+    MoveObject (player, F6)
+    MoveObject (player, F5)
+    MoveObject (player, F4)
+    MoveObject (player, F3)
+    MoveObject (player, F2)
+    MoveObject (player, F1)
+    MoveObject (player, G1)
+    MoveObject (player, G2)
+    MoveObject (player, G3)
+    MoveObject (player, G4)
+    MoveObject (player, G5)
+    MoveObject (player, G6)
+    MoveObject (player, G7)
+    MoveObject (player, G8)
+    MoveObject (player, H8)
+    MoveObject (player, H7)
+    MoveObject (player, H6)
+    MoveObject (player, H5)
+    MoveObject (player, H4)
+    MoveObject (player, H3)
+    MoveObject (player, H2)
+    MoveObject (player, H1)
+    MoveObject (player, A1)
+  </function>
 </asl>
