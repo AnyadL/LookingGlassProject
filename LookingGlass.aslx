@@ -21,6 +21,8 @@
     <pov type="object">player</pov>
     <start type="script">
       showMap
+      ChangePOV (player2)
+      ChangePOV (player)
     </start>
   </game>
   <verb>
