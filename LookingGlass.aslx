@@ -6,7 +6,7 @@
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
     <firstpublished>2014</firstpublished>
-    <author>Dayna Lacoursiere. Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, and David Supina</author>
+    <author>Dayna Lacoursiere, Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, and David Supina</author>
     <enablehyperlinks type="boolean">false</enablehyperlinks>
     <gridmap />
     <showpanes type="boolean">false</showpanes>
@@ -21,9 +21,15 @@
     <pov type="object">player</pov>
     <start type="script">
       showMap
-      ChangePOV (player2)
-      ChangePOV (player)
+      msg ("Knight: \"Let's play tag!!! If you can see me, you win!!!\"")
+      msg ("Get in the same room as the knight and type \"look at Knight\".  If he is in the room, you win!!!")
+      msg ("But be warned - the Knight moves everytime you complete a turn")
     </start>
+    <showcommandbar />
+    <roomenter type="script">
+    </roomenter>
+    <mapsize type="int">300</mapsize>
+    <attr name="changeroom_newline" type="boolean">false</attr>
   </game>
   <verb>
     <property>look</property>
@@ -33,14 +39,20 @@
   <object name="A1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="east" to="B1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <object name="player">
       <inherit name="editor_object" />
@@ -52,1504 +64,2047 @@
   <object name="A2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="A1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="B1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
+    <object name="Knight">
+      <inherit name="editor_object" />
+      <inherit name="male" />
+      <look type="script">
+        msg ("You found the Knight!!!")
+        finish
+      </look>
+      <position>A2</position>
+    </object>
   </object>
   <object name="A3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Blackite</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="B2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="A2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="A4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="A3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="B3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="A5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="B4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="A4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="A6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="A5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="B5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="A7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="B6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="A6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="B8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="A8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="A8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="A7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="B7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="B8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="A1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A2">
       <inherit name="northwestdirection" />
-    </exit>
-    <exit alias="north" to="B2">
-      <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
+    </exit>
+    <exit alias="north" to="B2">
+      <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="A1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="C1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="C2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="A2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="A3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="C3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="C4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="A4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="A5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="C5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="C6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="A6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="A8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="B8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="C8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="B8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="A7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="B7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="C7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="C8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="A8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="B1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="B1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="D1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="D2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="B2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="B3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="D3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="D4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="B4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="B5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="D5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="D6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="B6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="B8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="C8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="D8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="C8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="B7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="C7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="D7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="D8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="B8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="C1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="C1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="E1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="E2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="C2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="C3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="E3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="E4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="C4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="C5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="E5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="E6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="C6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="C8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="D8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="E8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="D8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="C7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="D7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="E7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="E8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="C8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="D1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="D1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="F1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="F2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="D2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="D3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="F3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="F4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="D4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="D5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="F5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="F6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="D6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="D8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="E8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="F8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="E8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="D7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="E7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="F7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="F8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="D8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="E1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="E1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="G1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="G2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="E2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="E3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="G3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="G4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="E4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="E5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="G5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="G6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="E6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="E8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="F8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="G8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="F8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="E7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="F7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="G7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="G8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="E8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="F1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H2">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H1">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="F1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="H1">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H2">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H3">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="H2">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="F2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H4">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H3">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="F3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="H3">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H4">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H5">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="H4">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="F4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H6">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H5">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="F5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="H5">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H6">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H7">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southeast" to="H6">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="F6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="F8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="G8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northeast" to="H8">
       <inherit name="northeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H7">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="G8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="F7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="G7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southeast" to="H7">
       <inherit name="southeastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="east" to="H8">
       <inherit name="eastdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="F8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="west" to="G1">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G2">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H2">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H2">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="G1">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="H1">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H3">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G3">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G2">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H3">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="H2">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="G2">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G3">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G4">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H4">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H4">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="G3">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="H3">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G4">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G5">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H5">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H5">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="H4">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="G4">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G5">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G6">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H6">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H6">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="G5">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="H5">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H7">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G7">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G6">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H7">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_borderwidth" type="int">1</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="south" to="H6">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="southwest" to="G6">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G7">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="northwest" to="G8">
       <inherit name="northwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="north" to="H8">
       <inherit name="northdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="H8">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
+    <attr name="grid_fill">Black</attr>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <exit alias="southwest" to="G7">
       <inherit name="southwestdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="south" to="H7">
       <inherit name="southdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
     <exit alias="west" to="G8">
       <inherit name="westdirection" />
+      <attr name="grid_length" type="int">0</attr>
     </exit>
   </object>
   <object name="room3">
@@ -1560,6 +2115,12 @@
       <feature_player />
     </object>
   </object>
+  <turnscript name="KnightOnTurn">
+    <enabled />
+    <script>
+      moveKnight
+    </script>
+  </turnscript>
   <function name="showMap">
     MoveObject (player, A2)
     MoveObject (player, A3)
@@ -1625,5 +2186,61 @@
     MoveObject (player, H2)
     MoveObject (player, H1)
     MoveObject (player, A1)
+  </function>
+  <function name="moveKnight">
+    if (Knight.position = "A2") {
+      MoveObject (Knight, C3)
+      msg ("Knight to C3")
+      Knight.position = "C3"
+    }
+    else if (Knight.position = "C3") {
+      MoveObject (Knight, B1)
+      msg ("Knight to B1")
+      Knight.position = "B1"
+    }
+    else if (Knight.position = "B1") {
+      MoveObject (Knight, A3)
+      msg ("Knight to A3")
+      Knight.position = "A3"
+    }
+    else if (Knight.position = "A3") {
+      MoveObject (Knight, B5)
+      msg ("Knight to B5")
+      Knight.position = "B5"
+    }
+    else if (Knight.position = "B5") {
+      MoveObject (Knight, E4)
+      msg ("Knight to E4")
+      Knight.position = "E4"
+    }
+    else if (Knight.position = "E4") {
+      MoveObject (Knight, F2)
+      msg ("Knight to F2")
+      Knight.position = "F2"
+    }
+    else if (Knight.position = "F2") {
+      MoveObject (Knight, D1)
+      msg ("Knight to D1")
+      Knight.position = "D1"
+    }
+    else if (Knight.position = "D1") {
+      MoveObject (Knight, B2)
+      msg ("Knight to B2")
+      Knight.position = "B2"
+    }
+    else if (Knight.position = "B2") {
+      MoveObject (Knight, A4)
+      msg ("Knight to A4")
+      Knight.position = "A4"
+    }
+    else if (Knight.position = "A4") {
+      MoveObject (Knight, C3)
+      msg ("Knight to C3")
+      Knight.position = "C3"
+    }
+    else {
+      msg ("ERROR")
+      finish
+    }
   </function>
 </asl>
