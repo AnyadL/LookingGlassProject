@@ -18,6 +18,9 @@
     <description><![CDATA[A puzzle game inspired by the literal and metaphorical representations of Chess. <br/>Features exploring an overworld and delving into pocket rooms to solve isolated puzzles. <br/>All the while you are avoiding the denizens of this universe. ]]></description>
     <setcustomwidth type="boolean">false</setcustomwidth>
     <setcustompadding type="boolean">false</setcustompadding>
+    <showcommandbar />
+    <mapsize type="int">300</mapsize>
+    <attr name="changeroom_newline" type="boolean">false</attr>
     <pov type="object">player</pov>
     <start type="script">
       showMap
@@ -25,11 +28,8 @@
       msg ("Get in the same room as the knight and type \"look at Knight\".  If he is in the room, you win!!!")
       msg ("But be warned - the Knight moves everytime you complete a turn")
     </start>
-    <showcommandbar />
     <roomenter type="script">
     </roomenter>
-    <mapsize type="int">300</mapsize>
-    <attr name="changeroom_newline" type="boolean">false</attr>
   </game>
   <verb>
     <property>look</property>
@@ -88,11 +88,11 @@
     <object name="Knight">
       <inherit name="editor_object" />
       <inherit name="male" />
+      <position>A2</position>
       <look type="script">
         msg ("You found the Knight!!!")
         finish
       </look>
-      <position>A2</position>
     </object>
   </object>
   <object name="A3">
@@ -1993,10 +1993,10 @@
     <exit alias="southwest" to="G3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
-    </exit>
-    <exit alias="south" to="H3">
-      <inherit name="southdirection" />
-      <attr name="grid_length" type="int">0</attr>
+      <exit alias="south" to="H3">
+        <inherit name="southdirection" />
+        <attr name="grid_length" type="int">0</attr>
+      </exit>
     </exit>
     <exit alias="west" to="G4">
       <inherit name="westdirection" />
@@ -2094,6 +2094,10 @@
     <attr name="grid_label" type="string"></attr>
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
+    <description>There is  a closed door to the north</description>
+    <enter type="script">
+      msg ("You see a door to the north, a cold light shines under a crack in the door.")
+    </enter>
     <exit alias="southwest" to="G7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2106,19 +2110,178 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <object name="Door">
+      <inherit name="editor_object" />
+      <inherit name="openable" />
+      <feature_container />
+      <openscript type="script">
+        bishopPuzzleEnter
+      </openscript>
+    </object>
   </object>
   <object name="room3">
     <inherit name="editor_room" />
+  </object>
+  <turnscript name="KnightOnTurn">
+    <enabled />
+    <script>
+      moveKnight
+    </script>
+  </turnscript>
+  <object name="Bishop Entrance">
+    <inherit name="editor_room" />
+    <firstenter type="script">
+      msg ("You enter a different part of the maze, it feels a little colder here. You hear a slight squeal to your west and you turn to see an unassuming young girl with a cold bright light behind her. You reach out to ask for help, directions, anything. Only to see the light consume her, leaving only ashes.")
+      msg ("Illuminated by the light you see a switch flicked off. ")
+      DisableTurnScript (KnightOnTurn)
+      EnableTurnScript (BishopInPuzzleTurn)
+    </firstenter>
+    <enter type="script">
+    </enter>
+    <exit alias="west" to="Bishop1">
+      <inherit name="westdirection" />
+    </exit>
+    <exit alias="north" to="Bishop2">
+      <inherit name="northdirection" />
+    </exit>
     <object name="player2">
       <inherit name="editor_object" />
       <inherit name="editor_player" />
       <feature_player />
     </object>
   </object>
-  <turnscript name="KnightOnTurn">
-    <enabled />
+  <object name="Bishop1">
+    <inherit name="editor_room" />
+    <firstenter type="script">
+    </firstenter>
+    <exit alias="east" to="Bishop Entrance">
+      <inherit name="eastdirection" />
+    </exit>
+    <exit alias="north" to="Bishop3">
+      <inherit name="northdirection" />
+    </exit>
+    <exit alias="west" to="Bishop4">
+      <inherit name="westdirection" />
+    </exit>
+  </object>
+  <object name="Bishop2">
+    <inherit name="editor_room" />
+    <exit alias="west" to="Bishop3">
+      <inherit name="westdirection" />
+      <exit alias="south" to="Bishop Entrance">
+        <inherit name="southdirection" />
+      </exit>
+    </exit>
+    <exit alias="north" to="Bishop6">
+      <inherit name="northdirection" />
+    </exit>
+  </object>
+  <object name="Bishop4">
+    <inherit name="editor_room" />
+    <firstenter type="script">
+    </firstenter>
+    <beforeenter type="script">
+      MoveObjectHere (Bishop Light)
+    </beforeenter>
+    <enter type="script">
+      msg ("There is a big red button on the far end of the room")
+    </enter>
+    <exit alias="east" to="Bishop1">
+      <inherit name="eastdirection" />
+      <lookonly type="boolean">false</lookonly>
+      <look>"YOU LOOKED HERE"</look>
+    </exit>
+    <exit alias="north" to="Bishop5">
+      <inherit name="northdirection" />
+    </exit>
+    <object name="Bishop3">
+      <inherit name="editor_room" />
+      <exit alias="east" to="Bishop2">
+        <inherit name="eastdirection" />
+      </exit>
+      <exit alias="south" to="Bishop1">
+        <inherit name="southdirection" />
+      </exit>
+      <exit alias="west" to="Bishop5">
+        <inherit name="westdirection" />
+      </exit>
+      <exit alias="north" to="Bishop7">
+        <inherit name="northdirection" />
+      </exit>
+    </object>
+    <object name="Button">
+      <inherit name="editor_object" />
+      <inherit name="switchable" />
+      <feature_switchable />
+      <onswitchon type="script">
+        msg ("You Win!!")
+      </onswitchon>
+      <press>You have pressed the button. The light is now illuminating the entrance </press>
+      <push>You have pushed the button. The light is now illuminating the entrance.</push>
+      <switchonmsg>You have switched the button on. The light now illuminates the entrance you came in.</switchonmsg>
+      <switchoffmsg>The light is still there, you will probbly die</switchoffmsg>
+    </object>
+  </object>
+  <object name="Bishop5">
+    <inherit name="editor_room" />
+    <exit alias="east" to="Bishop3">
+      <inherit name="eastdirection" />
+    </exit>
+    <exit alias="south" to="Bishop4">
+      <inherit name="southdirection" />
+    </exit>
+    <exit alias="north" to="Bishop8">
+      <inherit name="northdirection" />
+    </exit>
+  </object>
+  <object name="Bishop Light">
+    <inherit name="editor_object" />
+    <inherit name="namedmale" />
+    <prefix type="string"></prefix>
+    <usedefaultprefix />
+    <look>You see beautiful light, a cool chill runs down your spine. </look>
+    <kill>You can't kill a light</kill>
+    <hit>You can't hit a light</hit>
+    <position>bishop4</position>
+  </object>
+  <object name="Bishop6">
+    <inherit name="editor_room" />
+    <exit alias="west" to="Bishop7">
+      <inherit name="westdirection" />
+    </exit>
+    <exit alias="south" to="Bishop2">
+      <inherit name="southdirection" />
+    </exit>
+  </object>
+  <object name="Bishop7">
+    <inherit name="editor_room" />
+    <exit alias="west" to="Bishop8">
+      <inherit name="westdirection" />
+    </exit>
+    <exit alias="east" to="Bishop6">
+      <inherit name="eastdirection" />
+    </exit>
+    <exit alias="south" to="Bishop3">
+      <inherit name="southdirection" />
+    </exit>
+  </object>
+  <object name="Bishop8">
+    <inherit name="editor_room" />
+    <exit alias="south" to="Bishop5">
+      <inherit name="southdirection" />
+    </exit>
+    <exit alias="east" to="Bishop7">
+      <inherit name="eastdirection" />
+    </exit>
+  </object>
+  <verb>
+    <property>press</property>
+    <pattern>press</pattern>
+    <defaultexpression>"You can't press " + object.article + "."</defaultexpression>
+  </verb>
+  <turnscript name="BishopInPuzzleTurn">
     <script>
-      moveKnight
+      moveBishopInPuzzle
     </script>
   </turnscript>
   <function name="showMap">
@@ -2188,10 +2351,8 @@
     MoveObject (player, A1)
   </function>
   <function name="moveKnight">
-    if (Knight.position = "A2") {
-      MoveObject (Knight, C3)
-      msg ("Knight to C3")
-      Knight.position = "C3"
+    if (game.pov.parent = Bishop Entrance) {
+      RemoveObject (Knight)
     }
     else if (Knight.position = "C3") {
       MoveObject (Knight, B1)
@@ -2238,9 +2399,32 @@
       msg ("Knight to C3")
       Knight.position = "C3"
     }
+    else if (Knight.position = "A2") {
+      MoveObject (Knight, C3)
+      msg ("Knight to C3")
+      Knight.position = "C3"
+    }
     else {
       msg ("ERROR")
       finish
+    }
+  </function>
+  <function name="bishopPuzzleEnter">
+    ChangePOV (player2)
+  </function>
+  <function name="moveBishopInPuzzle">
+    if (Bishop Light.position = "bishop4") {
+      if (game.pov.parent = Bishop4) {
+        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
+        msg ("Just what happened?")
+      }
+      Bishop Light.position = "bishop1"
+    }
+    else if (Bishop Light.position = "bishop1") {
+      if (game.pov.parent = Bishop1) {
+        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
+        msg ("Just what happened?")
+      }
     }
   </function>
 </asl>
