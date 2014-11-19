@@ -3000,7 +3000,7 @@
   </function>
   <function name="showASCIImap">
     player.parent.inRoom = "P"
-    Knight.parent.inRoom = "K"
+    Knight.parent.inRoom = "♘"
     PrintCentered ("____________________")
     PrintCentered ("|  "+A8.inRoom+"  |  "+B8.inRoom+"  |  "+C8.inRoom+"  |  "+D8.inRoom+"  |  "+E8.inRoom+"  |  "+F8.inRoom+"  |  "+G8.inRoom+"  |  "+H8.inRoom+"  |")
     PrintCentered ("____________________")
@@ -3023,105 +3023,134 @@
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    top = 8
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
         if (room.x = playerX) {
-          if (room.y > playerY) {
-            if (HasAttribute(room, "southWall")) {
-              return (-1)
-            }
-            else {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+          if (room.y >= playerY) {
+            list add (visList, room)
+            if (HasAttribute(room, "northWall")) {
+              if (room.y < top) {
+                top = room.y
               }
             }
           }
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y <= top) {
+        if (Contains (visRoom,Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookSouth"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    bottom = 0
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
         if (room.x = playerX) {
-          if (room.y < playerY) {
-            if (HasAttribute(room, "northWall")) {
-              return (-1)
-            }
-            else {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+          if (room.y <= playerY) {
+            list add (visList, room)
+            if (HasAttribute(room, "southWall")) {
+              if (room.y > bottom) {
+                bottom = room.y
               }
             }
           }
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y >= bottom) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookEast"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = newObjectList()
+    eastmost = 8
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x > playerX) {
+        if (room.x >= playerX) {
           if (room.y = playerY) {
-            if (HasAttribute(room, "westWall")) {
-              return (-1)
-            }
-            else {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+            list add (visList, room)
+            if (HasAttribute(room,"eastWall")) {
+              if (room.x < eastmost) {
+                eastmost = room.x
               }
             }
           }
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.x <= eastmost) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookWest"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    westmost = 0
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x < playerX) {
+        if (room.x <= playerX) {
           if (room.y = playerY) {
-            if (HasAttribute(room, "eastWall")) {
-              return (-1)
-            }
-            else {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+            list add (visList, room)
+            if (HasAttribute(room, "westWall")) {
+              if (room.x > westmost) {
+                westmost = room.x
               }
             }
           }
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.x >= westmost) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookNorthEast"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    far = 8
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x > playerX) {
-          if (room.y > playerY) {
+        if (room.x >= playerX) {
+          if (room.y >= playerY) {
             if ((room.y-playerY)=(room.x-playerX)) {
-              if (HasAttribute(room, "westWall") and HasAttribute(room, "southWall")) {
-                return (-1)
+              list add (visList, room)
+              if (HasAttribute(room, "northWall") and HasAttribute(room, "eastWall")) {
+                if (room.y < far) {
+                  far = room.y
+                }
               }
-              else {
-                if (Contains (room,Knight)) {
-                  msg ("You see the Knight!")
+              else if (HasAttribute(room, "westWall") and HasAttribute(room, "southWall")) {
+                if ((room.y-1) < far) {
+                  far = room.y-1
                 }
               }
             }
@@ -3129,23 +3158,34 @@
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y <= far) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookNorthWest"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    far = 8
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x < playerX) {
-          if (room.y > playerY) {
+        if (room.x <= playerX) {
+          if (room.y >= playerY) {
             if ((room.y-playerY)=(playerX-room.x)) {
-              if (HasAttribute(room, "eastWall") and HasAttribute(room, "southWall")) {
-                return (-1)
+              list add (visList, room)
+              if (HasAttribute(room, "northWall") and HasAttribute(room, "westWall")) {
+                if (room.y < far) {
+                  far = room.y
+                }
               }
-              else {
-                if (Contains (room,Knight)) {
-                  msg ("You see the Knight!")
+              else if (HasAttribute(room,"southWall") and HasAttribute(room,"eastWall")) {
+                if ((room.y-1) < far) {
+                  far = room.y-1
                 }
               }
             }
@@ -3153,23 +3193,34 @@
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y <= far) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookSouthEast"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    far = 0
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x > playerX) {
-          if (room.y < playerY) {
+        if (room.x >= playerX) {
+          if (room.y <= playerY) {
             if ((playerY-room.y)=(room.x-playerX)) {
-              if (HasAttribute(room, "westWall") and HasAttribute(room, "northWall")) {
-                return (-1)
+              list add (visList, room)
+              if (HasAttribute(room, "southWall") and HasAttribute(room, "eastWall")) {
+                if (room.y > far) {
+                  far = room.y
+                }
               }
-              else {
-                if (Contains (room,Knight)) {
-                  msg ("You see the Knight!")
+              else if (HasAttribute(room, "northWall") and HasAttribute(room, "westWall")) {
+                if ((room.y+1)>far) {
+                  far = room.y+1
                 }
               }
             }
@@ -3177,23 +3228,34 @@
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y >= far) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="lookSouthWest"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
+    visList = NewObjectList()
+    far = 0
     foreach (room, AllObjects()) {
       if (HasAttribute(room, "x")) {
-        if (room.x < playerX) {
-          if (room.y < playerY) {
+        if (room.x <= playerX) {
+          if (room.y <= playerY) {
             if ((playerY-room.y)=(playerX-room.x)) {
-              if (HasAttribute(room, "northWall") and HasAttribute(room, "westWall")) {
-                return (-1)
+              list add (visList, room)
+              if (HasAttribute(room, "southWall") and HasAttribute(room, "westWall")) {
+                if (room.y > far) {
+                  far = room.y
+                }
               }
-              else {
-                if (Contains (room,Knight)) {
-                  msg ("You see the Knight!")
+              else if (HasAttribute(room, "northWall") and HasAttribute(room, "eastWall")) {
+                if (room.y+1 > far) {
+                  far = room.y+1
                 }
               }
             }
@@ -3201,7 +3263,13 @@
         }
       }
     }
-    return (1)
+    foreach (visRoom, visList) {
+      if (visRoom.y >= far) {
+        if (Contains (visRoom, Knight)) {
+          msg ("You see the Knight!")
+        }
+      }
+    }
   ]]></function>
   <function name="deathByKnight">
     player.playerDeath = "You feel a cold steel stab through your entrails. You look down at your stomach only to see a familiar blade sticking out as red oozes down your stomach. Your fall to my knees as a thick darkness swarms around you…"
