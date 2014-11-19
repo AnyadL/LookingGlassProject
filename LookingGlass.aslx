@@ -32,12 +32,8 @@
     </start>
     <roomenter type="script">
     </roomenter>
+    <positionList type="stringlist" />
   </game>
-  <verb>
-    <property>look</property>
-    <pattern>look</pattern>
-    <defaultexpression>"You can't look " + object.article + "."</defaultexpression>
-  </verb>
   <object name="A1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
@@ -50,23 +46,35 @@
     <onexit type="script">
       A1.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">0</y>
     <exit alias="east" to="B1">
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
+      <look type="script">
+        if (Contains (B1,Trial)) {
+          msg ("saw trial")
+        }
+      </look>
     </exit>
     <exit alias="north" to="A2">
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
+      <look type="script">
+        lookNorth
+      </look>
     </exit>
     <exit alias="northeast" to="B2">
       <inherit name="northeastdirection" />
       <attr name="grid_length" type="int">0</attr>
+      <look>looked B2</look>
     </exit>
     <object name="player">
       <inherit name="editor_object" />
       <inherit name="editor_player" />
       <inherit name="female" />
       <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <playerDeath>null</playerDeath>
     </object>
   </object>
   <object name="A2">
@@ -79,6 +87,8 @@
     <onexit type="script">
       A2.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">1</y>
     <exit alias="south" to="A1">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -120,6 +130,8 @@
     <onexit type="script">
       A3.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="B2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -151,6 +163,8 @@
     <onexit type="script">
       A4.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">3</y>
     <exit alias="south" to="A3">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -183,6 +197,8 @@
     <onexit type="script">
       A5.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="B4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -214,6 +230,8 @@
     <onexit type="script">
       A6.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">5</y>
     <exit alias="south" to="A5">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -246,6 +264,8 @@
     <onexit type="script">
       A7.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="B6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -277,6 +297,8 @@
     <onexit type="script">
       A8.inRoom = "#"
     </onexit>
+    <x type="int">0</x>
+    <y type="int">7</y>
     <exit alias="south" to="A7">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -301,6 +323,8 @@
     <onexit type="script">
       B1.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">0</y>
     <exit alias="west" to="A1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -333,6 +357,8 @@
     <onexit type="script">
       B2.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="A1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -377,6 +403,8 @@
     <onexit type="script">
       B3.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="C2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -421,6 +449,8 @@
     <onexit type="script">
       B4.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="A3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -465,6 +495,8 @@
     <onexit type="script">
       B5.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="C4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -509,6 +541,8 @@
     <onexit type="script">
       B6.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="A5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -553,6 +587,8 @@
     <onexit type="script">
       B7.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="C6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -597,6 +633,8 @@
     <onexit type="script">
       B8.inRoom = "#"
     </onexit>
+    <x type="int">1</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="A7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -629,6 +667,8 @@
     <onexit type="script">
       C1.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">0</y>
     <exit alias="west" to="B1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -661,6 +701,8 @@
     <onexit type="script">
       C2.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="B1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -705,6 +747,8 @@
     <onexit type="script">
       C3.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="D2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -749,6 +793,8 @@
     <onexit type="script">
       C4.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="B3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -793,6 +839,8 @@
     <onexit type="script">
       C5.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="D4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -837,6 +885,8 @@
     <onexit type="script">
       C6.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="B5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -881,6 +931,8 @@
     <onexit type="script">
       C7.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="D6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -924,6 +976,8 @@
     <onexit type="script">
       C8.inRoom = "#"
     </onexit>
+    <x type="int">2</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="B7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -955,6 +1009,8 @@
     <onexit type="script">
       D1.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">0</y>
     <exit alias="west" to="C1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -987,6 +1043,8 @@
     <onexit type="script">
       D2.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="C1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1031,6 +1089,8 @@
     <onexit type="script">
       D3.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="E2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1075,6 +1135,8 @@
     <onexit type="script">
       D4.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="C3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1119,6 +1181,8 @@
     <onexit type="script">
       D5.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="E4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1163,6 +1227,8 @@
     <onexit type="script">
       D6.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="C5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1207,6 +1273,8 @@
     <onexit type="script">
       D7.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="E6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1251,6 +1319,8 @@
     <onexit type="script">
       D8.inRoom = "#"
     </onexit>
+    <x type="int">3</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="C7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1283,6 +1353,8 @@
     <onexit type="script">
       E1.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">0</y>
     <exit alias="west" to="D1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1315,6 +1387,8 @@
     <onexit type="script">
       E2.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="D1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1359,6 +1433,8 @@
     <onexit type="script">
       E3.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="F2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1403,6 +1479,8 @@
     <onexit type="script">
       E4.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="D3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1447,6 +1525,8 @@
     <onexit type="script">
       E5.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="F4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1491,6 +1571,8 @@
     <onexit type="script">
       E6.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="D5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1535,6 +1617,8 @@
     <onexit type="script">
       E7.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="F6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1578,6 +1662,8 @@
     <onexit type="script">
       E8.inRoom = "#"
     </onexit>
+    <x type="int">4</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="D7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1609,6 +1695,8 @@
     <onexit type="script">
       F1.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">0</y>
     <exit alias="west" to="E1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1641,6 +1729,8 @@
     <onexit type="script">
       F2.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="E1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1685,6 +1775,8 @@
     <onexit type="script">
       F3.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="G2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1729,6 +1821,8 @@
     <onexit type="script">
       F4.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="E3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1773,6 +1867,8 @@
     <onexit type="script">
       F5.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="G4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1817,6 +1913,8 @@
     <onexit type="script">
       F6.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="E5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1861,6 +1959,8 @@
     <onexit type="script">
       F7.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="G6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1905,6 +2005,8 @@
     <onexit type="script">
       F8.inRoom = "#"
     </onexit>
+    <x type="int">5</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="E7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1937,6 +2039,8 @@
     <onexit type="script">
       G1.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">0</y>
     <exit alias="west" to="F1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1969,6 +2073,8 @@
     <onexit type="script">
       G2.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="F1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2001,6 +2107,9 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <object name="Trial">
+      <inherit name="editor_object" />
+    </object>
   </object>
   <object name="G3">
     <inherit name="editor_room" />
@@ -2013,6 +2122,8 @@
     <onexit type="script">
       G3.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">2</y>
     <exit alias="southeast" to="H2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2057,6 +2168,8 @@
     <onexit type="script">
       G4.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="F3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2101,6 +2214,8 @@
     <onexit type="script">
       G5.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">4</y>
     <exit alias="southeast" to="H4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2145,6 +2260,8 @@
     <onexit type="script">
       G6.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="F5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2189,6 +2306,8 @@
     <onexit type="script">
       G7.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">6</y>
     <exit alias="southeast" to="H6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2232,6 +2351,8 @@
     <onexit type="script">
       G8.inRoom = "#"
     </onexit>
+    <x type="int">6</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="F7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2263,6 +2384,8 @@
     <onexit type="script">
       H1.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">0</y>
     <exit alias="west" to="G1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2287,6 +2410,8 @@
     <onexit type="script">
       H2.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">1</y>
     <exit alias="southwest" to="G1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2319,6 +2444,8 @@
     <onexit type="script">
       H3.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">2</y>
     <exit alias="south" to="H2">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2352,6 +2479,8 @@
     <onexit type="script">
       H4.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">3</y>
     <exit alias="southwest" to="G3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2384,6 +2513,8 @@
     <onexit type="script">
       H5.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">4</y>
     <exit alias="south" to="H4">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2416,6 +2547,8 @@
     <onexit type="script">
       H6.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">5</y>
     <exit alias="southwest" to="G5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2448,6 +2581,8 @@
     <onexit type="script">
       H7.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">6</y>
     <exit alias="south" to="H6">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2482,6 +2617,8 @@
     <onexit type="script">
       H8.inRoom = "#"
     </onexit>
+    <x type="int">7</x>
+    <y type="int">7</y>
     <exit alias="southwest" to="G7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2674,6 +2811,55 @@
       moveBishopInPuzzle
     </script>
   </turnscript>
+  <command>
+    <pattern>look #text#</pattern>
+    <script>
+      direction = text
+      if (direction = "north" or direction = "North" or direction = "NORTH" or direction = "n") {
+        lookNorth
+      }
+      else if (direction = "south" or direction = "South" or direction = "SOUTH" or direction = "s") {
+        lookSouth
+      }
+      else if (direction = "east" or direction = "East" or direction = "EAST" or direction = "e") {
+        lookEast
+      }
+      else if (direction = "west" or direction = "West" or direction = "WEST" or direction = "w") {
+        lookWest
+      }
+      else if (direction = "northeast" or direction = "Northeast" or direction = "NORTHEAST" or direction = "NorthEast" or direction = "ne") {
+        lookNorthEast
+      }
+      else if (direction = "northwest" or direction = "Northwest" or direction = "NORTHWEST" or direction = "NorthWest" or direction = "nw") {
+        lookNorthWest
+      }
+      else if (direction = "southeast" or direction = "Southeast" or direction = "SOUTHEAST" or direction = "SouthEast" or direction = "se") {
+        lookSouthEast
+      }
+      else if (direction = "southwest" or direction = "Southwest" or direction = "SOUTHWEST" or direction = "SouthWest" or direction = "sw") {
+        lookSouthWest
+      }
+      else {
+        msg ("not supported")
+      }
+    </script>
+  </command>
+  <turnscript name="ifDead">
+    <enabled />
+    <script>
+      if ((player.playerDeath = null) or (player.playerDeath = "null")) {
+      }
+      else {
+        msg (" ")
+        msg (" ")
+        msg (player.playerDeath)
+        msg (" ")
+        msg (" ")
+        msg (" ")
+        finish
+      }
+    </script>
+  </turnscript>
   <function name="showMap">
     MoveObject (player, A2)
     MoveObject (player, A3)
@@ -2746,67 +2932,60 @@
     }
     else if (Knight.position = "C3") {
       MoveObject (Knight, B1)
-      msg ("Knight to B1")
       Knight.position = "B1"
       C3.inRoom = "#"
     }
     else if (Knight.position = "B1") {
       MoveObject (Knight, A3)
-      msg ("Knight to A3")
       Knight.position = "A3"
       B1.inRoom = "#"
     }
     else if (Knight.position = "A3") {
       MoveObject (Knight, B5)
-      msg ("Knight to B5")
       Knight.position = "B5"
       A3.inRoom = "#"
     }
     else if (Knight.position = "B5") {
       MoveObject (Knight, E4)
-      msg ("Knight to E4")
       Knight.position = "E4"
       B5.inRoom = "#"
     }
     else if (Knight.position = "E4") {
       MoveObject (Knight, F2)
-      msg ("Knight to F2")
       Knight.position = "F2"
       E4.inRoom = "#"
     }
     else if (Knight.position = "F2") {
       MoveObject (Knight, D1)
-      msg ("Knight to D1")
       Knight.position = "D1"
       F2.inRoom = "#"
     }
     else if (Knight.position = "D1") {
       MoveObject (Knight, B2)
-      msg ("Knight to B2")
       Knight.position = "B2"
       D1.inRoom = "#"
     }
     else if (Knight.position = "B2") {
       MoveObject (Knight, A4)
-      msg ("Knight to A4")
       Knight.position = "A4"
       B2.inRoom = "#"
     }
     else if (Knight.position = "A4") {
       MoveObject (Knight, C3)
-      msg ("Knight to C3")
       Knight.position = "C3"
       A4.inRoom = "#"
     }
     else if (Knight.position = "A2") {
       MoveObject (Knight, C3)
-      msg ("Knight to C3")
       Knight.position = "C3"
       A2.inRoom = "#"
     }
     else {
       msg ("ERROR")
       finish
+    }
+    if (player.parent = Knight.parent) {
+      deathByKnight
     }
   </function>
   <function name="bishopPuzzleEnter">
@@ -2847,5 +3026,144 @@
     PrintCentered ("____________________")
     PrintCentered ("| "+A1.inRoom+" | "+B1.inRoom+" | "+C1.inRoom+" | "+D1.inRoom+" | "+E1.inRoom+" | "+F1.inRoom+" | "+G1.inRoom+" | "+H1.inRoom+" |")
     PrintCentered ("____________________")
+  </function>
+  <function name="lookNorth"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x = playerX) {
+          if (room.y > playerY) {
+            if (Contains (room,Knight)) {
+              msg ("You see the Knight!")
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookSouth"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x = playerX) {
+          if (room.y < playerY) {
+            if (Contains (room,Knight)) {
+              msg ("You see the Knight!")
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookEast"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x > playerX) {
+          if (room.y = playerY) {
+            if (Contains (room,Knight)) {
+              msg ("You see the Knight!")
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookWest"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x < playerX) {
+          if (room.y = playerY) {
+            if (Contains (room,Knight)) {
+              msg ("You see the Knight!")
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookNorthEast"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x > playerX) {
+          if (room.y > playerY) {
+            if ((room.y-playerY)=(room.x-playerX)) {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookNorthWest"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x < playerX) {
+          if (room.y > playerY) {
+            if ((room.y-playerY)=(playerX-room.x)) {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookSouthEast"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x > playerX) {
+          if (room.y < playerY) {
+            if ((playerY-room.y)=(room.x-playerX)) {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="lookSouthWest"><![CDATA[
+    playerRoom = player.parent
+    playerX = playerRoom.x
+    playerY = playerRoom.y
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        if (room.x < playerX) {
+          if (room.y < playerY) {
+            if ((playerY-room.y)=(playerX-room.x)) {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
+            }
+          }
+        }
+      }
+    }
+  ]]></function>
+  <function name="deathByKnight">
+    player.playerDeath = "You feel a cold steel stab through your entrails. You look down at your stomach only to see a familiar blade sticking out as red oozes down your stomach. Your fall to my knees as a thick darkness swarms around you…"
   </function>
 </asl>
