@@ -21,18 +21,14 @@
     <showcommandbar />
     <mapsize type="int">300</mapsize>
     <attr name="changeroom_newline" type="boolean">false</attr>
+    <positionList type="stringlist" />
     <pov type="object">player</pov>
     <start type="script">
-      A1.inRoom = "P"
-      A2.inRoom = "K"
       showASCIImap
-      msg ("Knight: \"Let's play tag!!! If you can see me, you win!!!\"")
-      msg ("Get in the same room as the knight and type \"look at Knight\".  If he is in the room, you win!!!")
-      msg ("But be warned - the Knight moves everytime you complete a turn")
+      msg ("Be warned - the knight will kill you if he lands on you.")
     </start>
     <roomenter type="script">
     </roomenter>
-    <positionList type="stringlist" />
   </game>
   <object name="A1">
     <inherit name="editor_room" />
@@ -41,13 +37,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A1.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">0</y>
     <exit alias="east" to="B1">
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -82,13 +78,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A2.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">1</y>
     <exit alias="south" to="A1">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -113,10 +109,6 @@
       <inherit name="editor_object" />
       <inherit name="male" />
       <position>A2</position>
-      <look type="script">
-        msg ("You found the Knight!!!")
-        finish
-      </look>
     </object>
   </object>
   <object name="A3">
@@ -125,13 +117,13 @@
     <attr name="grid_fill">Blackite</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A3.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="B2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -158,13 +150,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A4.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">3</y>
     <exit alias="south" to="A3">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -192,13 +184,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A5.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="B4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -225,13 +217,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A6.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">5</y>
     <exit alias="south" to="A5">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -259,13 +251,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A7.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="B6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -292,13 +284,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">0</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       A8.inRoom = "#"
     </onexit>
-    <x type="int">0</x>
-    <y type="int">7</y>
     <exit alias="south" to="A7">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -318,13 +310,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B1.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">0</y>
     <exit alias="west" to="A1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -352,13 +344,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B2.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="A1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -398,13 +390,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B3.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="C2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -444,13 +436,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B4.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="A3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -490,13 +482,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B5.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="C4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -536,13 +528,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B6.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="A5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -582,13 +574,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B7.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="C6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -628,13 +620,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">1</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       B8.inRoom = "#"
     </onexit>
-    <x type="int">1</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="A7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -662,13 +654,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C1.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">0</y>
     <exit alias="west" to="B1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -696,13 +688,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C2.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="B1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -742,13 +734,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C3.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="D2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -788,13 +780,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C4.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="B3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -834,13 +826,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C5.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="D4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -880,13 +872,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C6.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="B5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -926,13 +918,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C7.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="D6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -971,13 +963,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">2</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       C8.inRoom = "#"
     </onexit>
-    <x type="int">2</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="B7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1004,13 +996,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D1.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">0</y>
     <exit alias="west" to="C1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1038,13 +1030,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D2.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="C1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1084,13 +1076,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D3.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="E2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1130,13 +1122,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D4.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="C3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1176,13 +1168,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D5.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="E4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1222,13 +1214,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D6.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="C5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1268,13 +1260,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D7.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="E6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1314,13 +1306,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">3</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       D8.inRoom = "#"
     </onexit>
-    <x type="int">3</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="C7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1348,13 +1340,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E1.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">0</y>
     <exit alias="west" to="D1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1382,13 +1374,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E2.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="D1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1428,13 +1420,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E3.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="F2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1474,13 +1466,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E4.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="D3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1520,13 +1512,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E5.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="F4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1566,13 +1558,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E6.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="D5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1612,13 +1604,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E7.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="F6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1657,13 +1649,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">4</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       E8.inRoom = "#"
     </onexit>
-    <x type="int">4</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="D7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1690,13 +1682,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F1.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">0</y>
     <exit alias="west" to="E1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1724,13 +1716,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F2.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="E1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1770,13 +1762,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F3.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="G2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1816,13 +1808,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F4.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="E3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1862,13 +1854,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F5.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="G4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1908,13 +1900,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F6.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="E5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1954,13 +1946,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F7.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="G6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2000,13 +1992,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">5</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       F8.inRoom = "#"
     </onexit>
-    <x type="int">5</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="E7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2034,13 +2026,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G1.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">0</y>
     <exit alias="west" to="F1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2068,13 +2060,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G2.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="F1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2117,13 +2109,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G3.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">2</y>
     <exit alias="southeast" to="H2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2163,13 +2155,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G4.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="F3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2209,13 +2201,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G5.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">4</y>
     <exit alias="southeast" to="H4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2255,13 +2247,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G6.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="F5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2301,13 +2293,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G7.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">6</y>
     <exit alias="southeast" to="H6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2346,13 +2338,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">6</x>
+    <y type="int">7</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       G8.inRoom = "#"
     </onexit>
-    <x type="int">6</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="F7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2379,13 +2371,13 @@
     <attr name="grid_label" type="string"></attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">0</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H1.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">0</y>
     <exit alias="west" to="G1">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2405,13 +2397,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">1</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H2.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">1</y>
     <exit alias="southwest" to="G1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2439,13 +2431,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">2</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H3.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">2</y>
     <exit alias="south" to="H2">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2474,13 +2466,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">3</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H4.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">3</y>
     <exit alias="southwest" to="G3">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2508,13 +2500,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">4</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H5.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">4</y>
     <exit alias="south" to="H4">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2542,13 +2534,13 @@
     <attr name="grid_fill">Black</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">5</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H6.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">5</y>
     <exit alias="southwest" to="G5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2576,13 +2568,13 @@
     <attr name="grid_borderwidth" type="int">1</attr>
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">6</y>
     <enter type="script">
     </enter>
     <onexit type="script">
       H7.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">6</y>
     <exit alias="south" to="H6">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2611,14 +2603,14 @@
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <description>There is  a closed door to the north</description>
     <inRoom>#</inRoom>
+    <x type="int">7</x>
+    <y type="int">7</y>
     <enter type="script">
       msg ("You see a door to the north, a cold light shines under a crack in the door.")
     </enter>
     <onexit type="script">
       H8.inRoom = "#"
     </onexit>
-    <x type="int">7</x>
-    <y type="int">7</y>
     <exit alias="southwest" to="G7">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -3027,7 +3019,7 @@
     PrintCentered ("| "+A1.inRoom+" | "+B1.inRoom+" | "+C1.inRoom+" | "+D1.inRoom+" | "+E1.inRoom+" | "+F1.inRoom+" | "+G1.inRoom+" | "+H1.inRoom+" |")
     PrintCentered ("____________________")
   </function>
-  <function name="lookNorth"><![CDATA[
+  <function name="lookNorth" type="int"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
     playerY = playerRoom.y
@@ -3035,13 +3027,19 @@
       if (HasAttribute(room, "x")) {
         if (room.x = playerX) {
           if (room.y > playerY) {
-            if (Contains (room,Knight)) {
-              msg ("You see the Knight!")
+            if (HasAttribute(room, "southWall")) {
+              return (-1)
+            }
+            else {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookSouth"><![CDATA[
     playerRoom = player.parent
@@ -3051,13 +3049,19 @@
       if (HasAttribute(room, "x")) {
         if (room.x = playerX) {
           if (room.y < playerY) {
-            if (Contains (room,Knight)) {
-              msg ("You see the Knight!")
+            if (HasAttribute(room, "northWall")) {
+              return (-1)
+            }
+            else {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookEast"><![CDATA[
     playerRoom = player.parent
@@ -3067,13 +3071,19 @@
       if (HasAttribute(room, "x")) {
         if (room.x > playerX) {
           if (room.y = playerY) {
-            if (Contains (room,Knight)) {
-              msg ("You see the Knight!")
+            if (HasAttribute(room, "westWall")) {
+              return (-1)
+            }
+            else {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookWest"><![CDATA[
     playerRoom = player.parent
@@ -3083,13 +3093,19 @@
       if (HasAttribute(room, "x")) {
         if (room.x < playerX) {
           if (room.y = playerY) {
-            if (Contains (room,Knight)) {
-              msg ("You see the Knight!")
+            if (HasAttribute(room, "eastWall")) {
+              return (-1)
+            }
+            else {
+              if (Contains (room,Knight)) {
+                msg ("You see the Knight!")
+              }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookNorthEast"><![CDATA[
     playerRoom = player.parent
@@ -3100,14 +3116,20 @@
         if (room.x > playerX) {
           if (room.y > playerY) {
             if ((room.y-playerY)=(room.x-playerX)) {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+              if (HasAttribute(room, "westWall") and HasAttribute(room, "southWall")) {
+                return (-1)
+              }
+              else {
+                if (Contains (room,Knight)) {
+                  msg ("You see the Knight!")
+                }
               }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookNorthWest"><![CDATA[
     playerRoom = player.parent
@@ -3118,14 +3140,20 @@
         if (room.x < playerX) {
           if (room.y > playerY) {
             if ((room.y-playerY)=(playerX-room.x)) {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+              if (HasAttribute(room, "eastWall") and HasAttribute(room, "southWall")) {
+                return (-1)
+              }
+              else {
+                if (Contains (room,Knight)) {
+                  msg ("You see the Knight!")
+                }
               }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookSouthEast"><![CDATA[
     playerRoom = player.parent
@@ -3136,14 +3164,20 @@
         if (room.x > playerX) {
           if (room.y < playerY) {
             if ((playerY-room.y)=(room.x-playerX)) {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+              if (HasAttribute(room, "westWall") and HasAttribute(room, "northWall")) {
+                return (-1)
+              }
+              else {
+                if (Contains (room,Knight)) {
+                  msg ("You see the Knight!")
+                }
               }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="lookSouthWest"><![CDATA[
     playerRoom = player.parent
@@ -3154,14 +3188,20 @@
         if (room.x < playerX) {
           if (room.y < playerY) {
             if ((playerY-room.y)=(playerX-room.x)) {
-              if (Contains (room,Knight)) {
-                msg ("You see the Knight!")
+              if (HasAttribute(room, "northWall") and HasAttribute(room, "westWall")) {
+                return (-1)
+              }
+              else {
+                if (Contains (room,Knight)) {
+                  msg ("You see the Knight!")
+                }
               }
             }
           }
         }
       }
     }
+    return (1)
   ]]></function>
   <function name="deathByKnight">
     player.playerDeath = "You feel a cold steel stab through your entrails. You look down at your stomach only to see a familiar blade sticking out as red oozes down your stomach. Your fall to my knees as a thick darkness swarms around you…"
