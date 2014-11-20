@@ -22,15 +22,26 @@
     <mapsize type="int">300</mapsize>
     <attr name="changeroom_newline" type="boolean">false</attr>
     <positionList type="stringlist" />
-    <level>Pawn</level>
+    <level>RabbitHole</level>
+    <showlocation />
     <pov type="object">player</pov>
     <start type="script">
-      DisableTurnScript (displayASCII)
-      setupPawn
+      msg ("TESTING: Pick a level: (RabbitHole, Pawn, PreBishop, Bishop, PreRook, Rook, PreKnight, Knight, Queen)")
+      msg ("Type level [level]")
+      msg ("Example: level RabbitHole")
+      // setupRabbitHole
+      // Move(player, E8)
     </start>
     <roomenter type="script">
+      foreach (exit, AllExits()) {
+        if ((exit.locked) and (exit.parent = player.parent)) {
+          if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+            msg ("There is a wall to the "+exit.alias)
+          }
+        }
+      }
     </roomenter>
-    <showlocation />
+    <showtitle />
   </game>
   <object name="A1">
     <inherit name="editor_room" />
@@ -616,11 +627,10 @@
       <take />
       <dropmsg>You dropped the Chessboard... probably not a good idea</dropmsg>
       <ontake type="script">
-        EnableTurnScript (displayASCII)
       </ontake>
       <ondrop type="script">
-        DisableTurnScript (displayASCII)
       </ondrop>
+      <position>B7</position>
     </object>
   </object>
   <object name="B8">
@@ -842,6 +852,8 @@
     <onexit type="script">
       C5.inRoom = "#"
     </onexit>
+    <description type="script">
+    </description>
     <exit name="C5southeast" alias="southeast" to="D4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -888,6 +900,8 @@
     <onexit type="script">
       C6.inRoom = "#"
     </onexit>
+    <firstenter type="script">
+    </firstenter>
     <exit name="C6southwest" alias="southwest" to="B5">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1620,6 +1634,9 @@
     <onexit type="script">
       E7.inRoom = "#"
     </onexit>
+    <description type="string"></description>
+    <firstenter type="script">
+    </firstenter>
     <exit name="E7southeast" alias="southeast" to="F6">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2628,7 +2645,7 @@
     <y type="int">7</y>
     <enter type="script">
       if (game.level = "PreBishop") {
-        msg ("You see a door to the north, a cold light shines under a crack in the door.")
+        msg ("You see a glimmering mirror")
       }
     </enter>
     <onexit type="script">
@@ -2656,6 +2673,16 @@
     </object>
     <object name="Goal">
       <inherit name="editor_object" />
+      <alias>Mirror</alias>
+      <enter type="script">
+        mirrorEntered
+      </enter>
+      <approach type="script">
+        mirrorEntered
+      </approach>
+      <lookin type="script">
+        mirrorEntered
+      </lookin>
     </object>
   </object>
   <turnscript name="KnightOnTurn">
@@ -2836,14 +2863,8 @@
       if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player)) {
         msg ("You see a chessboard")
       }
-      if (game.level="Pawn") {
-        if (Contains (player.parent,Goal)) {
-          game.level = "PreBishop"
-          MoveObject (player, A1)
-          setUpPreBishop
-          MoveObject (King, STORAGE)
-          DisableTurnScript (KingOnTurn)
-        }
+      if (Contains (player.parent,Goal)) {
+        msg ("You see a glimmering mirror")
       }
     ]]></script>
   </turnscript>
@@ -2851,38 +2872,39 @@
     <pattern>look #text#</pattern>
     <script>
       direction = text
-      if (direction = "north" or direction = "North" or direction = "NORTH" or direction = "n") {
-        lookNorth
-      }
-      else if (direction = "south" or direction = "South" or direction = "SOUTH" or direction = "s") {
-        lookSouth
-      }
-      else if (direction = "east" or direction = "East" or direction = "EAST" or direction = "e") {
-        lookEast
-      }
-      else if (direction = "west" or direction = "West" or direction = "WEST" or direction = "w") {
-        lookWest
-      }
-      else if (direction = "northeast" or direction = "Northeast" or direction = "NORTHEAST" or direction = "NorthEast" or direction = "ne") {
-        lookNorthEast
-      }
-      else if (direction = "northwest" or direction = "Northwest" or direction = "NORTHWEST" or direction = "NorthWest" or direction = "nw") {
-        lookNorthWest
-      }
-      else if (direction = "southeast" or direction = "Southeast" or direction = "SOUTHEAST" or direction = "SouthEast" or direction = "se") {
-        lookSouthEast
-      }
-      else if (direction = "southwest" or direction = "Southwest" or direction = "SOUTHWEST" or direction = "SouthWest" or direction = "sw") {
-        lookSouthWest
-      }
-      else if (direction = "around") {
-        if (Chessboard.parent = player.parent) {
-          msg ("You see a chessboard on the floor")
+      // if (direction = "north" or direction = "North" or direction = "NORTH" or direction = "n") {
+        // lookNorth
+        // }
+      // else if (direction = "south" or direction = "South" or direction = "SOUTH" or direction = "s") {
+        // lookSouth
+        // }
+      // else if (direction = "east" or direction = "East" or direction = "EAST" or direction = "e") {
+        // lookEast
+        // }
+      // else if (direction = "west" or direction = "West" or direction = "WEST" or direction = "w") {
+        // lookWest
+        // }
+      // else if (direction = "northeast" or direction = "Northeast" or direction = "NORTHEAST" or direction = "NorthEast" or direction = "ne") {
+        // lookNorthEast
+        // }
+      // else if (direction = "northwest" or direction = "Northwest" or direction = "NORTHWEST" or direction = "NorthWest" or direction = "nw") {
+        // lookNorthWest
+        // }
+      // else if (direction = "southeast" or direction = "Southeast" or direction = "SOUTHEAST" or direction = "SouthEast" or direction = "se") {
+        // lookSouthEast
+        // }
+      // else if (direction = "southwest" or direction = "Southwest" or direction = "SOUTHWEST" or direction = "SouthWest" or direction = "sw") {
+        // lookSouthWest
+        // }
+      // else if (direction = "around") {
+        if (direction = "around") {
+          if (Chessboard.parent = player.parent) {
+            msg ("You see a chessboard on the floor")
+          }
         }
-      }
-      else {
-        msg ("not supported")
-      }
+        else {
+          msg ("not supported")
+        }
     </script>
   </command>
   <turnscript name="displayASCII">
@@ -2900,12 +2922,15 @@
     </object>
     <object name="Rook">
       <inherit name="editor_object" />
+      <position>STORAGE</position>
     </object>
     <object name="Bishop">
       <inherit name="editor_object" />
+      <position>STORAGE</position>
     </object>
     <object name="Queen">
       <inherit name="editor_object" />
+      <position>STORAGE</position>
     </object>
   </object>
   <turnscript name="BishopInPuzzleTurn">
@@ -2959,6 +2984,81 @@
       <inherit name="southdirection" />
     </exit>
   </object>
+  <verb>
+    <property>enter</property>
+    <pattern>enter</pattern>
+    <defaultexpression>"You can't enter " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>approach</property>
+    <pattern>approach</pattern>
+    <defaultexpression>"You can't approach " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>lookin</property>
+    <pattern>look in</pattern>
+    <defaultexpression>"You can't look in " + object.article + "."</defaultexpression>
+  </verb>
+  <command>
+    <script>
+      level = text
+      if (level = "RabbitHole") {
+        game.level = "RabbitHole"
+        setupRabbitHole
+      }
+      else if (level = "Pawn") {
+        game.level = "Pawn"
+        takedownMap
+        setupPawn
+      }
+      else if (level = "PreBishop") {
+        AddToInventory (Chessboard)
+        game.level = "PreBishop"
+        takedownMap
+        setupPreBishop
+      }
+      else if (level = "Bishop") {
+        AddToInventory (Chessboard)
+        game.level = "Bishop"
+        takedownMap
+        setupBishop
+      }
+      else if (level = "PreRook") {
+        AddToInventory (Chessboard)
+        game.level = "PreRook"
+        takedownMap
+        setupPreRook
+      }
+      else if (level = "Rook") {
+        AddToInventory (Chessboard)
+        game.level = "Rook"
+        takedownMap
+        setupRook
+      }
+      else if (level = "PreKnight") {
+        AddToInventory (Chessboard)
+        game.level = "PreKnight"
+        takedownMap
+        setupPreKnight
+      }
+      else if (level = "Knight") {
+        AddToInventory (Chessboard)
+        game.level = "Knight"
+        takedownMap
+        setupKnight
+      }
+      else if (level = "Queen") {
+        AddToInventory (Chessboard)
+        game.level = "Queen"
+        takedownMap
+        setupQueen
+      }
+      else {
+        msg ("... did you even read that?")
+      }
+    </script>
+    <pattern>level #text#</pattern>
+  </command>
   <function name="showMap">
     MoveObject (player, A2)
     MoveObject (player, A3)
@@ -3025,7 +3125,7 @@
     MoveObject (player, H1)
     MoveObject (player, A1)
   </function>
-  <function name="moveKnight">
+  <function name="moveKnight"><![CDATA[
     if (Knight.position = "C3") {
       MoveObject (Knight, B1)
       Knight.position = "B1"
@@ -3076,10 +3176,10 @@
       Knight.position = "C3"
       A2.inRoom = "#"
     }
-    if (player.parent = Knight.parent) {
+    if ((player.parent = Knight.parent) and (player.parent <> STORAGE)) {
       deathByKnight
     }
-  </function>
+  ]]></function>
   <function name="bishopPuzzleEnter">
     ChangePOV (player2)
   </function>
@@ -3113,7 +3213,8 @@
       Bishop Light.position = "BP2"
     }
   </function>
-  <function name="showASCIImap">
+  <function name="showASCIImap"><![CDATA[
+    // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
     player.parent.inRoom = "♙"
     if (HasAttribute(King.parent, "inRoom")) {
       King.parent.inRoom = "♚"
@@ -3121,27 +3222,41 @@
     if (HasAttribute(Pawn.parent, "inRoom")) {
       Pawn.parent.inRoom = "♙"
     }
-    if (HasAttribute(Knight.parent, "inRoom")) {
-      Knight.parent.inRoom = "♘"
+    if (HasAttribute(Rook.parent, "inRoom")) {
+      Rook.parent.inRoom = "♜"
     }
-    PrintCentered ("____________________")
-    PrintCentered ("|  "+A8.inRoom+"  |  "+B8.inRoom+"  |  "+C8.inRoom+"  |  "+D8.inRoom+"  |  "+E8.inRoom+"  |  "+F8.inRoom+"  |  "+G8.inRoom+"  |  "+H8.inRoom+"  |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A7.inRoom+" | "+B7.inRoom+" | "+C7.inRoom+" | "+D7.inRoom+" | "+E7.inRoom+" | "+F7.inRoom+" | "+G7.inRoom+" | "+H7.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A6.inRoom+" | "+B6.inRoom+" | "+C6.inRoom+" | "+D6.inRoom+" | "+E6.inRoom+" | "+F6.inRoom+" | "+G6.inRoom+" | "+H6.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A5.inRoom+" | "+B5.inRoom+" | "+C5.inRoom+" | "+D5.inRoom+" | "+E5.inRoom+" | "+F5.inRoom+" | "+G5.inRoom+" | "+H5.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A4.inRoom+" | "+B4.inRoom+" | "+C4.inRoom+" | "+D4.inRoom+" | "+E4.inRoom+" | "+F4.inRoom+" | "+G4.inRoom+" | "+H4.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A3.inRoom+" | "+B3.inRoom+" | "+C3.inRoom+" | "+D3.inRoom+" | "+E3.inRoom+" | "+F3.inRoom+" | "+G3.inRoom+" | "+H3.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A2.inRoom+" | "+B2.inRoom+" | "+C2.inRoom+" | "+D2.inRoom+" | "+E2.inRoom+" | "+F2.inRoom+" | "+G2.inRoom+" | "+H2.inRoom+" |")
-    PrintCentered ("____________________")
-    PrintCentered ("| "+A1.inRoom+" | "+B1.inRoom+" | "+C1.inRoom+" | "+D1.inRoom+" | "+E1.inRoom+" | "+F1.inRoom+" | "+G1.inRoom+" | "+H1.inRoom+" |")
-    PrintCentered ("____________________")
-  </function>
+    if (HasAttribute(Knight.parent, "inRoom")) {
+      Knight.parent.inRoom = "♞"
+    }
+    if (HasAttribute(Bishop.parent, "inRoom")) {
+      Bishop.parent.inRoom = "♝"
+    }
+    if (HasAttribute(Queen.parent, "inRoom")) {
+      Queen.parent.inRoom = "♛"
+    }
+    if (HasAttribute(Goal.parent, "inRoom")) {
+      Goal.parent.inRoom = "O"
+    }
+    if (Chessboard.parent = player) {
+      PrintCentered ("____________________")
+      PrintCentered ("|  "+A8.inRoom+"  |  "+B8.inRoom+"  |  "+C8.inRoom+"  |  "+D8.inRoom+"  |  "+E8.inRoom+"  |  "+F8.inRoom+"  |  "+G8.inRoom+"  |  "+H8.inRoom+"  |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A7.inRoom+" | "+B7.inRoom+" | "+C7.inRoom+" | "+D7.inRoom+" | "+E7.inRoom+" | "+F7.inRoom+" | "+G7.inRoom+" | "+H7.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A6.inRoom+" | "+B6.inRoom+" | "+C6.inRoom+" | "+D6.inRoom+" | "+E6.inRoom+" | "+F6.inRoom+" | "+G6.inRoom+" | "+H6.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A5.inRoom+" | "+B5.inRoom+" | "+C5.inRoom+" | "+D5.inRoom+" | "+E5.inRoom+" | "+F5.inRoom+" | "+G5.inRoom+" | "+H5.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A4.inRoom+" | "+B4.inRoom+" | "+C4.inRoom+" | "+D4.inRoom+" | "+E4.inRoom+" | "+F4.inRoom+" | "+G4.inRoom+" | "+H4.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A3.inRoom+" | "+B3.inRoom+" | "+C3.inRoom+" | "+D3.inRoom+" | "+E3.inRoom+" | "+F3.inRoom+" | "+G3.inRoom+" | "+H3.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A2.inRoom+" | "+B2.inRoom+" | "+C2.inRoom+" | "+D2.inRoom+" | "+E2.inRoom+" | "+F2.inRoom+" | "+G2.inRoom+" | "+H2.inRoom+" |")
+      PrintCentered ("____________________")
+      PrintCentered ("| "+A1.inRoom+" | "+B1.inRoom+" | "+C1.inRoom+" | "+D1.inRoom+" | "+E1.inRoom+" | "+F1.inRoom+" | "+G1.inRoom+" | "+H1.inRoom+" |")
+      PrintCentered ("____________________")
+    }
+  ]]></function>
   <function name="lookNorth" type="int"><![CDATA[
     playerRoom = player.parent
     playerX = playerRoom.x
@@ -3603,6 +3718,11 @@
     set (G7, "southWall", 1)
     set (G7, "northWall", 1)
     set (H8, "westWall", 1)
+    MoveObject (player, A7)
+    MoveObject (King, F6)
+    MoveObject (Pawn, G6)
+    MoveObject (Chessboard, B7)
+    MoveObject (Goal, H8)
   </function>
   <function name="moveKing">
     if (player.parent = King.parent) {
@@ -3669,66 +3789,224 @@
     MoveObject (player, STORAGE)
     player.playerDeath = "You watch, paralyzed with fear, as the statue moves. The thing which had previously been motionless has instead been following you all along. You barely have time to ponder this before you feel the rough stony hands wrap around your eyes and mouth…"
   </function>
-  <function name="setUpPreBishop">
-    UnlockExit (A7south)
-    UnlockExit (A7north)
-    UnlockExit (A7northeast)
-    UnlockExit (A7southeast)
-    UnlockExit (B7south)
-    UnlockExit (B7north)
-    UnlockExit (B7northwest)
-    UnlockExit (B7northeast)
-    UnlockExit (B7southwest)
-    UnlockExit (B7southeast)
-    UnlockExit (C7south)
-    UnlockExit (C7north)
-    UnlockExit (C7northwest)
-    UnlockExit (C7northeast)
-    UnlockExit (C7southwest)
-    UnlockExit (C7southeast)
-    UnlockExit (D7south)
-    UnlockExit (D7north)
-    UnlockExit (D7northwest)
-    UnlockExit (D7northeast)
-    UnlockExit (D7southwest)
-    UnlockExit (D7southeast)
-    UnlockExit (E7south)
-    UnlockExit (E7north)
-    UnlockExit (E7northwest)
-    UnlockExit (E7northeast)
-    UnlockExit (E7southwest)
-    UnlockExit (E7southeast)
-    UnlockExit (F7south)
-    UnlockExit (F7north)
-    UnlockExit (F7northwest)
-    UnlockExit (F7northeast)
-    UnlockExit (F7southwest)
-    UnlockExit (F7southeast)
-    UnlockExit (G7south)
-    UnlockExit (G7north)
-    UnlockExit (G7northwest)
-    UnlockExit (G7northeast)
-    UnlockExit (G7southwest)
-    UnlockExit (G7southeast)
-    UnlockExit (H6northwest)
-    UnlockExit (H7northwest)
-    UnlockExit (H7southwest)
-    UnlockExit (H8west)
-    UnlockExit (H8southwest)
-    set (A7, "southWall", 0)
-    set (A7, "northWall", 0)
-    set (B7, "southWall", 0)
-    set (B7, "northWall", 0)
-    set (C7, "southWall", 0)
-    set (C7, "northWall", 0)
-    set (D7, "southWall", 0)
-    set (D7, "northWall", 0)
-    set (E7, "southWall", 0)
-    set (E7, "northWall", 0)
-    set (F7, "southWall", 0)
-    set (F7, "northWall", 0)
-    set (G7, "southWall", 0)
-    set (G7, "northWall", 0)
-    set (H8, "westWall", 0)
+  <function name="setupPreBishop">
+    msg ("setupPreBishop to be implemented")
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
+  </function>
+  <function name="mirrorEntered"><![CDATA[
+    msg ("mirror entered")
+    // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
+    if (game.level = "RabbitHole") {
+      game.level = "Pawn"
+      takedownMap
+      setupPawn
+    }
+    else if (game.level = "Pawn") {
+      game.level = "PreRook"
+      takedownMap
+      setupPreRook
+    }
+    else if (game.level = "PreRook") {
+      game.level = "Rook"
+      takedownMap
+      setupRook
+    }
+    else if (game.level = "Rook") {
+      game.level = "PreKnight"
+      takedownMap
+      setupPreKnight
+    }
+    else if (game.level = "PreKnight") {
+      game.level = "Knight"
+      takedownMap
+      setupKnight
+    }
+    else if (game.level = "Knight") {
+      game.level = "PreBishop"
+      takedownMap
+      setupPreBishop
+    }
+    else if (game.level = "PreBishop") {
+      game.level = "Bishop"
+      takedownMap
+      setupBishop
+    }
+    else if (game.level = "Bishop") {
+      game.level = "Queen"
+      takedownMap
+      setupQueen
+    }
+    else if (game.level = "Queen") {
+      finish
+    }
+  ]]></function>
+  <function name="setupBishop">
+    LockExit (C3west)
+    LockExit (C4west)
+    LockExit (C5west)
+    LockExit (C6west)
+    LockExit (C6north)
+    LockExit (D6north)
+    LockExit (E6north)
+    LockExit (E6east)
+    LockExit (E5east)
+    LockExit (E4east)
+    LockExit (E3east)
+    LockExit (E3south)
+    LockExit (D3south)
+    LockExit (C3south)
+    LockExit (C3southwest)
+    LockExit (C3southeast)
+    LockExit (C3northwest)
+    LockExit (C4southwest)
+    LockExit (C4northwest)
+    LockExit (C5southwest)
+    LockExit (C5northwest)
+    LockExit (C6southwest)
+    LockExit (C6northwest)
+    LockExit (C6northeast)
+    LockExit (D6northwest)
+    LockExit (D6northeast)
+    LockExit (E6northwest)
+    LockExit (E6northeast)
+    LockExit (E6southeast)
+    LockExit (E5northeast)
+    LockExit (E5southeast)
+    LockExit (E4northeast)
+    LockExit (E4southeast)
+    LockExit (E3southwest)
+    LockExit (E3southeast)
+    LockExit (E3northeast)
+    LockExit (D3southwest)
+    LockExit (D3southeast)
+    MoveObject (player, E3)
+    MoveObject (Bishop, D3)
+    MoveObject (Goal, C3)
+  </function>
+  <function name="takedownMap">
+    foreach (room, AllObjects()) {
+      if (HasAttribute(room, "x")) {
+        room.inRoom = "#"
+      }
+    }
+    foreach (exit, AllExits()) {
+      UnlockExit (exit)
+    }
+    if (HasAttribute(King.parent, "inRoom")) {
+      King.parent.inRoom = "#"
+      MoveObject (King, STORAGE)
+      King.position = "STORAGE"
+    }
+    if (HasAttribute(Pawn.parent, "inRoom")) {
+      Pawn.parent.inRoom = "#"
+      MoveObject (Pawn, STORAGE)
+      Pawn.position = "STORAGE"
+    }
+    if (HasAttribute(Knight.parent, "inRoom")) {
+      Knight.parent.inRoom = "#"
+      MoveObject (Knight, STORAGE)
+      Knight.position = "STORAGE"
+    }
+    if (HasAttribute(Bishop.parent, "inRoom")) {
+      Bishop.parent.inRoom = "#"
+      MoveObject (Bishop, STORAGE)
+      Bishop.position = "STORAGE"
+    }
+    if (HasAttribute(Queen.parent, "inRoom")) {
+      Queen.parent.inRoom = "#"
+      MoveObject (Queen, STORAGE)
+      Queen.position = "STORAGE"
+    }
+    if (HasAttribute(Rook.parent, "inRoom")) {
+      Rook.parent.inRoom = "#"
+      MoveObject (Rook, STORAGE)
+      Rook.position = "STORAGE"
+    }
+    if (HasAttribute(Goal.parent, "inRoom")) {
+      Goal.parent.inRoom = "#"
+      MoveObject (Goal, STORAGE)
+      Goal.position = "STORAGE"
+    }
+    if (HasAttribute(player.parent, "inRoom")) {
+      player.parent.inRoom = "#"
+      MoveObject (player, STORAGE)
+    }
+  </function>
+  <function name="setupRabbitHole">
+    LockExit (E8west)
+    LockExit (E8east)
+    LockExit (E8southeast)
+    LockExit (E8southwest)
+    LockExit (E7west)
+    LockExit (E7east)
+    LockExit (E7southeast)
+    LockExit (E7southwest)
+    LockExit (E7northeast)
+    LockExit (E7northwest)
+    LockExit (E6west)
+    LockExit (E6east)
+    LockExit (E6southeast)
+    LockExit (E6southwest)
+    LockExit (E6northeast)
+    LockExit (E6northwest)
+    LockExit (E5west)
+    LockExit (E5east)
+    LockExit (E5southeast)
+    LockExit (E5southwest)
+    LockExit (E5northeast)
+    LockExit (E5northwest)
+    LockExit (E4west)
+    LockExit (E4east)
+    LockExit (E4southeast)
+    LockExit (E4southwest)
+    LockExit (E4northeast)
+    LockExit (E4northwest)
+    LockExit (E3west)
+    LockExit (E3east)
+    LockExit (E3southeast)
+    LockExit (E3southwest)
+    LockExit (E3northeast)
+    LockExit (E3northwest)
+    LockExit (E2west)
+    LockExit (E2east)
+    LockExit (E2southeast)
+    LockExit (E2southwest)
+    LockExit (E2northeast)
+    LockExit (E2northwest)
+    LockExit (E1east)
+    LockExit (E1northeast)
+    LockExit (E1northwest)
+    LockExit (D1west)
+    LockExit (D1north)
+    LockExit (D1northwest)
+    LockExit (D1northeast)
+    MoveObject (player, E8)
+    MoveObject (Goal, D1)
+  </function>
+  <function name="setupRook">
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
+    msg ("setupRook to be implemented")
+  </function>
+  <function name="setupPreRook">
+    msg ("setupPreRook to be implemented")
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
+  </function>
+  <function name="setupKnight">
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
+    msg ("setupKnight to be implemented")
+  </function>
+  <function name="setupPreKnight">
+    msg ("setupPreKnight to be implemented")
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
+  </function>
+  <function name="setupQueen">
+    msg ("setupQueen to be implemented")
+    MoveObject (player, A1)
+    MoveObject (Goal, A2)
   </function>
 </asl>
