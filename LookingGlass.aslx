@@ -22,6 +22,7 @@
     <mapsize type="int">300</mapsize>
     <attr name="changeroom_newline" type="boolean">false</attr>
     <positionList type="stringlist" />
+    <level>Pawn</level>
     <pov type="object">player</pov>
     <start type="script">
       DisableTurnScript (displayASCII)
@@ -29,7 +30,7 @@
     </start>
     <roomenter type="script">
     </roomenter>
-    <level>Pawn</level>
+    <showlocation />
   </game>
   <object name="A1">
     <inherit name="editor_room" />
@@ -2663,7 +2664,7 @@
       moveKnight
     </script>
   </turnscript>
-  <object name="Bishop Entrance">
+  <object name="BP1">
     <inherit name="editor_room" />
     <firstenter type="script">
       msg ("You enter a different part of the maze, it feels a little colder here. You hear a slight squeal to your west and you turn to see an unassuming young girl with a cold bright light behind her. You reach out to ask for help, directions, anything. Only to see the light consume her, leaving only ashes.")
@@ -2673,10 +2674,10 @@
     </firstenter>
     <enter type="script">
     </enter>
-    <exit alias="west" to="Bishop1">
+    <exit alias="west" to="BP2">
       <inherit name="westdirection" />
     </exit>
-    <exit alias="north" to="Bishop2">
+    <exit alias="north" to="BP4">
       <inherit name="northdirection" />
     </exit>
     <object name="player2">
@@ -2685,33 +2686,33 @@
       <feature_player />
     </object>
   </object>
-  <object name="Bishop1">
+  <object name="BP2">
     <inherit name="editor_room" />
     <firstenter type="script">
     </firstenter>
-    <exit alias="east" to="Bishop Entrance">
+    <exit alias="east" to="BP1">
       <inherit name="eastdirection" />
     </exit>
-    <exit alias="north" to="Bishop3">
+    <exit alias="north" to="BP5">
       <inherit name="northdirection" />
     </exit>
-    <exit alias="west" to="Bishop4">
+    <exit alias="west" to="BP3">
       <inherit name="westdirection" />
     </exit>
   </object>
-  <object name="Bishop2">
+  <object name="BP4">
     <inherit name="editor_room" />
     <exit alias="west" to="Bishop3">
       <inherit name="westdirection" />
-      <exit alias="south" to="Bishop Entrance">
+      <exit alias="south" to="BP1">
         <inherit name="southdirection" />
       </exit>
     </exit>
-    <exit alias="north" to="Bishop6">
+    <exit alias="north" to="BP6">
       <inherit name="northdirection" />
     </exit>
   </object>
-  <object name="Bishop4">
+  <object name="BP3">
     <inherit name="editor_room" />
     <firstenter type="script">
     </firstenter>
@@ -2721,12 +2722,12 @@
     <enter type="script">
       msg ("There is a big red button on the far end of the room")
     </enter>
-    <exit alias="east" to="Bishop1">
+    <exit alias="east" to="BP2">
       <inherit name="eastdirection" />
       <lookonly type="boolean">false</lookonly>
       <look>"YOU LOOKED HERE"</look>
     </exit>
-    <exit alias="north" to="Bishop5">
+    <exit alias="north" to="BP5">
       <inherit name="northdirection" />
     </exit>
     <object name="Button">
@@ -2742,15 +2743,15 @@
       </onswitchon>
     </object>
   </object>
-  <object name="Bishop5">
+  <object name="BP5">
     <inherit name="editor_room" />
     <exit alias="east" to="Bishop3">
       <inherit name="eastdirection" />
     </exit>
-    <exit alias="south" to="Bishop4">
+    <exit alias="south" to="BP3">
       <inherit name="southdirection" />
     </exit>
-    <exit alias="north" to="Bishop8">
+    <exit alias="north" to="BP8">
       <inherit name="northdirection" />
     </exit>
   </object>
@@ -2762,51 +2763,60 @@
     <look>You see beautiful light, a cool chill runs down your spine. </look>
     <kill>You can't kill a light</kill>
     <hit>You can't hit a light</hit>
-    <position>bishop4</position>
+    <position>BP3</position>
   </object>
-  <object name="Bishop6">
+  <object name="BP6">
     <inherit name="editor_room" />
-    <exit alias="west" to="Bishop7">
+    <exit alias="west" to="BP7">
       <inherit name="westdirection" />
     </exit>
-    <exit alias="south" to="Bishop2">
+    <exit alias="south" to="BP4">
       <inherit name="southdirection" />
     </exit>
+    <exit alias="north" to="BP9">
+      <inherit name="northdirection" />
+    </exit>
   </object>
-  <object name="Bishop7">
+  <object name="BP7">
     <inherit name="editor_room" />
-    <exit alias="west" to="Bishop8">
+    <exit alias="west" to="BP8">
       <inherit name="westdirection" />
     </exit>
-    <exit alias="east" to="Bishop6">
+    <exit alias="east" to="BP6">
       <inherit name="eastdirection" />
     </exit>
     <exit alias="south" to="Bishop3">
       <inherit name="southdirection" />
       <object name="Bishop3">
         <inherit name="editor_room" />
-        <exit name="Bishop2east" alias="east" to="Bishop2">
+        <exit name="Bishop2east" alias="east" to="BP4">
           <inherit name="eastdirection" />
         </exit>
-        <exit alias="south" to="Bishop1">
+        <exit alias="south" to="BP2">
           <inherit name="southdirection" />
         </exit>
-        <exit alias="west" to="Bishop5">
+        <exit alias="west" to="BP5">
           <inherit name="westdirection" />
         </exit>
-        <exit alias="north" to="Bishop7">
+        <exit alias="north" to="BP7">
           <inherit name="northdirection" />
         </exit>
       </object>
     </exit>
+    <exit alias="north" to="BP10">
+      <inherit name="northdirection" />
+    </exit>
   </object>
-  <object name="Bishop8">
+  <object name="BP8">
     <inherit name="editor_room" />
-    <exit alias="south" to="Bishop5">
+    <exit alias="south" to="BP5">
       <inherit name="southdirection" />
     </exit>
-    <exit alias="east" to="Bishop7">
+    <exit alias="east" to="BP7">
       <inherit name="eastdirection" />
+    </exit>
+    <exit alias="north" to="BP11">
+      <inherit name="northdirection" />
     </exit>
   </object>
   <verb>
@@ -2826,12 +2836,14 @@
       if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player)) {
         msg ("You see a chessboard")
       }
-      if (Contains (player.parent,Goal)) {
-        game.level = "PreBishop"
-        MoveObject (player, A1)
-        setUpPreBishop
-        MoveObject (King, STORAGE)
-        DisableTurnScript (KingOnTurn)
+      if (game.level="Pawn") {
+        if (Contains (player.parent,Goal)) {
+          game.level = "PreBishop"
+          MoveObject (player, A1)
+          setUpPreBishop
+          MoveObject (King, STORAGE)
+          DisableTurnScript (KingOnTurn)
+        }
       }
     ]]></script>
   </turnscript>
@@ -2917,6 +2929,36 @@
       }
     </script>
   </turnscript>
+  <object name="BP9">
+    <inherit name="editor_room" />
+    <exit alias="south" to="BP6">
+      <inherit name="southdirection" />
+    </exit>
+    <exit alias="west" to="BP10">
+      <inherit name="westdirection" />
+    </exit>
+  </object>
+  <object name="BP10">
+    <inherit name="editor_room" />
+    <exit alias="east" to="BP9">
+      <inherit name="eastdirection" />
+    </exit>
+    <exit alias="south" to="BP7">
+      <inherit name="southdirection" />
+    </exit>
+    <exit alias="west" to="BP11">
+      <inherit name="westdirection" />
+    </exit>
+  </object>
+  <object name="BP11">
+    <inherit name="editor_room" />
+    <exit alias="east" to="BP10">
+      <inherit name="eastdirection" />
+    </exit>
+    <exit alias="south" to="BP8">
+      <inherit name="southdirection" />
+    </exit>
+  </object>
   <function name="showMap">
     MoveObject (player, A2)
     MoveObject (player, A3)
@@ -3042,18 +3084,33 @@
     ChangePOV (player2)
   </function>
   <function name="moveBishopInPuzzle">
-    if (Bishop Light.position = "bishop4") {
-      if (game.pov.parent = Bishop4) {
+    if (Bishop Light.position = "BP3") {
+      if (game.pov.parent = BP3) {
         msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
         msg ("Just what happened?")
       }
-      Bishop Light.position = "bishop1"
+      Bishop Light.position = "BP2"
     }
-    else if (Bishop Light.position = "bishop1") {
-      if (game.pov.parent = Bishop1) {
+    else if (Bishop Light.position = "BP2") {
+      if (game.pov.parent = BP2) {
         msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
         msg ("Just what happened?")
       }
+      Bishop Light.position = "BP5"
+    }
+    else if (Bishop Light.position = "BP5") {
+      if (game.pov.parent = BP5) {
+        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
+        msg ("Just what happened?")
+      }
+      Bishop Light.position = "BP1"
+    }
+    else if (Bishop Light.position = "BP1") {
+      if (game.pov.parent = BP1) {
+        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
+        msg ("Just what happened?")
+      }
+      Bishop Light.position = "BP2"
     }
   </function>
   <function name="showASCIImap">
