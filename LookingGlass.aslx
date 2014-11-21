@@ -26,19 +26,44 @@
     <showlocation />
     <showtitle />
     <pov type="object">player</pov>
-    <start type="script">
+    <start type="script"><![CDATA[
       takedownMap
-      msg ("TESTING: Pick a level: (RabbitHole, Pawn, PreBishop, Bishop, PreRook, Rook, PreKnight, Knight, Queen, Lexie)")
-      msg ("Type level [level]")
+      msg ("You find yourself walking through a wooded glade, maybe because you lost something, maybe because you were looking for someone. The more you walk, the more unclear it becomes. Have you always been walking? Was there some sort of purpose once?")
+      msg ("Suddenly you round a corner, you turn a few too many times in the darkness of the wood, and you find yourself standing in the center of a bright field.")
+      msg ("You blink and wipe your eyes in disbelief. The forest is no more. Inexplicably all there is is an endless set of green hills.")
+      msg ("The sound of cracking and twisting like a thousand bones rattling together punctuates the air jolting you from your thoughts. Dark shapes materialize and thrust themselves from the ground, twisting around themselves, connecting and coalescing, These tendrils pulse and grow together forming walls impossibly high, walls extending far into the sky.")
+      msg ("These walls – these walls of thorns – enclose around you forming an uncertain path.")
+      msg (" ")
+      // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
+      msg ("FOR TESTING: Pick a level: (RabbitHole, Pawn, PreRook, Rook, PreKnight, Knight, PreBishop, Bishop, Queen)")
+      msg ("Type: level [level]")
       msg ("Example: level RabbitHole")
+      msg ("The actual order of the puzzles is as shown above")
+      msg ("To go between levels, solve the puzzles and 'enter' the mirrors")
       // setupRabbitHole
       // Move(player, E8)
-    </start>
+    ]]></start>
     <roomenter type="script">
       foreach (exit, AllExits()) {
         if ((exit.locked) and (exit.parent = player.parent)) {
           if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
             msg ("There is a wall to the "+exit.alias)
+          }
+        }
+      }
+      foreach (room, AllObjects()) {
+        if (HasAttribute(room, "x") and (room = player.parent)) {
+          if (room.x = 0) {
+            msg ("There is a wall to the west")
+          }
+          if (room.x = 7) {
+            msg ("There is a wall to the east")
+          }
+          if (room.y = 0) {
+            msg ("There is a wall to the south")
+          }
+          if (room.y = 7) {
+            msg ("There is a wall to the north")
           }
         }
       }
@@ -280,13 +305,6 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <object name="player">
-      <inherit name="editor_object" />
-      <inherit name="editor_player" />
-      <inherit name="female" />
-      <usedefaultprefix type="boolean">false</usedefaultprefix>
-      <playerDeath>null</playerDeath>
-    </object>
   </object>
   <object name="A8">
     <inherit name="editor_room" />
@@ -622,17 +640,6 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <object name="Chessboard">
-      <inherit name="editor_object" />
-      <look>There are pieces... They seem to move whenever I do.... Magical</look>
-      <take />
-      <dropmsg>You dropped the Chessboard... probably not a good idea</dropmsg>
-      <position>B7</position>
-      <ontake type="script">
-      </ontake>
-      <ondrop type="script">
-      </ondrop>
-    </object>
   </object>
   <object name="B8">
     <inherit name="editor_room" />
@@ -1966,10 +1973,6 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <object name="King">
-      <inherit name="editor_object" />
-      <position>F6</position>
-    </object>
   </object>
   <object name="F7">
     <inherit name="editor_room" />
@@ -2318,10 +2321,6 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <object name="Pawn">
-      <inherit name="editor_object" />
-      <position>G6</position>
-    </object>
   </object>
   <object name="G7">
     <inherit name="editor_room" />
@@ -2661,14 +2660,6 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <object name="Door">
-      <inherit name="editor_object" />
-      <inherit name="openable" />
-      <feature_container />
-      <openscript type="script">
-        bishopPuzzleEnter
-      </openscript>
-    </object>
     <object name="Goal">
       <inherit name="editor_object" />
       <alias>Mirror</alias>
@@ -2689,161 +2680,6 @@
       moveKnight
     </script>
   </turnscript>
-  <object name="BP1">
-    <inherit name="editor_room" />
-    <firstenter type="script">
-      msg ("You enter a different part of the maze, it feels a little colder here. You hear a slight squeal to your west and you turn to see an unassuming young girl with a cold bright light behind her. You reach out to ask for help, directions, anything. Only to see the light consume her, leaving only ashes.")
-      msg ("Illuminated by the light you see a switch flicked off. ")
-      DisableTurnScript (KnightOnTurn)
-      EnableTurnScript (BishopInPuzzleTurn)
-    </firstenter>
-    <enter type="script">
-    </enter>
-    <exit alias="west" to="BP2">
-      <inherit name="westdirection" />
-    </exit>
-    <exit alias="north" to="BP4">
-      <inherit name="northdirection" />
-    </exit>
-    <object name="player2">
-      <inherit name="editor_object" />
-      <inherit name="editor_player" />
-      <feature_player />
-    </object>
-  </object>
-  <object name="BP2">
-    <inherit name="editor_room" />
-    <firstenter type="script">
-    </firstenter>
-    <exit alias="east" to="BP1">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="north" to="BP5">
-      <inherit name="northdirection" />
-    </exit>
-    <exit alias="west" to="BP3">
-      <inherit name="westdirection" />
-    </exit>
-  </object>
-  <object name="BP4">
-    <inherit name="editor_room" />
-    <exit alias="west" to="Bishop3">
-      <inherit name="westdirection" />
-      <exit alias="south" to="BP1">
-        <inherit name="southdirection" />
-      </exit>
-    </exit>
-    <exit alias="north" to="BP6">
-      <inherit name="northdirection" />
-    </exit>
-  </object>
-  <object name="BP3">
-    <inherit name="editor_room" />
-    <firstenter type="script">
-    </firstenter>
-    <beforeenter type="script">
-      MoveObjectHere (Bishop Light)
-    </beforeenter>
-    <enter type="script">
-      msg ("There is a big red button on the far end of the room")
-    </enter>
-    <exit alias="east" to="BP2">
-      <inherit name="eastdirection" />
-      <lookonly type="boolean">false</lookonly>
-      <look>"YOU LOOKED HERE"</look>
-    </exit>
-    <exit alias="north" to="BP5">
-      <inherit name="northdirection" />
-    </exit>
-    <object name="Button">
-      <inherit name="editor_object" />
-      <inherit name="switchable" />
-      <feature_switchable />
-      <press>You have pressed the button. The light is now illuminating the entrance </press>
-      <push>You have pushed the button. The light is now illuminating the entrance.</push>
-      <switchonmsg>You have switched the button on. The light now illuminates the entrance you came in.</switchonmsg>
-      <switchoffmsg>The light is still there, you will probbly die</switchoffmsg>
-      <onswitchon type="script">
-        msg ("You Win!!")
-      </onswitchon>
-    </object>
-  </object>
-  <object name="BP5">
-    <inherit name="editor_room" />
-    <exit alias="east" to="Bishop3">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="south" to="BP3">
-      <inherit name="southdirection" />
-    </exit>
-    <exit alias="north" to="BP8">
-      <inherit name="northdirection" />
-    </exit>
-  </object>
-  <object name="Bishop Light">
-    <inherit name="editor_object" />
-    <inherit name="namedmale" />
-    <prefix type="string"></prefix>
-    <usedefaultprefix />
-    <look>You see beautiful light, a cool chill runs down your spine. </look>
-    <kill>You can't kill a light</kill>
-    <hit>You can't hit a light</hit>
-    <position>BP3</position>
-  </object>
-  <object name="BP6">
-    <inherit name="editor_room" />
-    <exit alias="west" to="BP7">
-      <inherit name="westdirection" />
-    </exit>
-    <exit alias="south" to="BP4">
-      <inherit name="southdirection" />
-    </exit>
-    <exit alias="north" to="BP9">
-      <inherit name="northdirection" />
-    </exit>
-  </object>
-  <object name="BP7">
-    <inherit name="editor_room" />
-    <exit alias="west" to="BP8">
-      <inherit name="westdirection" />
-    </exit>
-    <exit alias="east" to="BP6">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="south" to="Bishop3">
-      <inherit name="southdirection" />
-      <object name="Bishop3">
-        <inherit name="editor_room" />
-        <exit name="Bishop2east" alias="east" to="BP4">
-          <inherit name="eastdirection" />
-        </exit>
-        <exit alias="south" to="BP2">
-          <inherit name="southdirection" />
-        </exit>
-        <exit alias="west" to="BP5">
-          <inherit name="westdirection" />
-        </exit>
-        <exit alias="north" to="BP7">
-          <inherit name="northdirection" />
-        </exit>
-      </object>
-    </exit>
-    <exit alias="north" to="BP10">
-      <inherit name="northdirection" />
-    </exit>
-  </object>
-  <object name="BP8">
-    <inherit name="editor_room" />
-    <exit alias="south" to="BP5">
-      <inherit name="southdirection" />
-    </exit>
-    <exit alias="east" to="BP7">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="north" to="BP11">
-      <inherit name="northdirection" />
-    </exit>
-  </object>
   <verb>
     <property>press</property>
     <pattern>press</pattern>
@@ -2855,16 +2691,10 @@
       moveKing
     </script>
   </turnscript>
-  <turnscript name="checkOnPosition">
-    <enabled />
-    <script><![CDATA[
-      if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player)) {
-        msg ("You see a chessboard")
-      }
-      if (Contains (player.parent,Goal)) {
-        msg ("You see a glimmering mirror")
-      }
-    ]]></script>
+  <turnscript name="BishopOnTurn">
+    <script>
+      moveBishop
+    </script>
   </turnscript>
   <command>
     <pattern>look #text#</pattern>
@@ -2919,53 +2749,55 @@
     <object name="Bishop">
       <inherit name="editor_object" />
       <position>STORAGE</position>
+      <kill>You can't kill a light</kill>
+      <hit>You can't hit a light</hit>
+      <look>You see beautiful light, a cool chill runs down your spine. </look>
     </object>
     <object name="Queen">
       <inherit name="editor_object" />
       <position>STORAGE</position>
     </object>
+    <object name="Button">
+      <inherit name="editor_object" />
+      <inherit name="switchable" />
+      <feature_switchable />
+      <press>You have pressed the button. The light is now illuminating the entrance </press>
+      <push>You have pushed the button. The light is now illuminating the entrance.</push>
+      <switchonmsg>You have switched the button on. The light now illuminates the entrance you came in.</switchonmsg>
+      <switchoffmsg>The light is still there, you will probbly die</switchoffmsg>
+      <onswitchon type="script">
+        msg ("You Win!!")
+      </onswitchon>
+    </object>
+    <object name="player">
+      <inherit name="editor_object" />
+      <inherit name="editor_player" />
+      <inherit name="female" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <playerDeath>null</playerDeath>
+    </object>
+    <object name="Chessboard">
+      <inherit name="editor_object" />
+      <look>There are pieces... They seem to move whenever I do.... Magical</look>
+      <take />
+      <dropmsg>You dropped the Chessboard... probably not a good idea</dropmsg>
+      <position>STORAGE</position>
+      <ontake type="script">
+      </ontake>
+      <ondrop type="script">
+      </ondrop>
+    </object>
+    <object name="King">
+      <inherit name="editor_object" />
+      <position>STORAGE</position>
+    </object>
+    <object name="Pawn">
+      <inherit name="editor_object" />
+      <position>STORAGE</position>
+    </object>
   </object>
-  <turnscript name="displayASCII">
-    <enabled />
-    <script>
-      showASCIImap
-    </script>
-  </turnscript>
-  <turnscript name="BishopInPuzzleTurn">
-    <script>
-      moveBishopInPuzzle
-    </script>
-  </turnscript>
-  <object name="BP9">
-    <inherit name="editor_room" />
-    <exit alias="south" to="BP6">
-      <inherit name="southdirection" />
-    </exit>
-    <exit alias="west" to="BP10">
-      <inherit name="westdirection" />
-    </exit>
-  </object>
-  <object name="BP10">
-    <inherit name="editor_room" />
-    <exit alias="east" to="BP9">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="south" to="BP7">
-      <inherit name="southdirection" />
-    </exit>
-    <exit alias="west" to="BP11">
-      <inherit name="westdirection" />
-    </exit>
-  </object>
-  <object name="BP11">
-    <inherit name="editor_room" />
-    <exit alias="east" to="BP10">
-      <inherit name="eastdirection" />
-    </exit>
-    <exit alias="south" to="BP8">
-      <inherit name="southdirection" />
-    </exit>
-  </object>
+  <turnscript name="QueenOnTurn" />
+  <turnscript name="RookOnTurn" />
   <verb>
     <property>enter</property>
     <pattern>enter</pattern>
@@ -3044,6 +2876,26 @@
       }
     </script>
   </command>
+  <turnscript name="checkOnPosition">
+    <enabled />
+    <script><![CDATA[
+      if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player)) {
+        msg ("You see a chessboard")
+      }
+      if (Contains (player.parent,Goal)) {
+        msg ("You see a glimmering mirror")
+      }
+      if (player.parent = F7) {
+        EnableTurnScript (KingOnTurn)
+      }
+    ]]></script>
+  </turnscript>
+  <turnscript name="displayASCII">
+    <enabled />
+    <script>
+      showASCIImap
+    </script>
+  </turnscript>
   <turnscript name="ifDead">
     <enabled />
     <script>
@@ -3055,77 +2907,53 @@
         msg (player.playerDeath)
         msg (" ")
         msg (" ")
-        msg (" ")
-        finish
+        msg ("Restart the level")
+        wait {
+          ClearScreen
+        }
+        if (game.level = "Pawn") {
+          takedownMap
+          setupPawn
+          player.playerDeath = "null"
+        }
+        else if (game.level = "PreRook") {
+          takedownMap
+          setupPreRook
+          player.playerDeath = "null"
+        }
+        else if (game.level = "Rook") {
+          takedownMap
+          setupRook
+          player.playerDeath = "null"
+        }
+        else if (game.level = "PreBishop") {
+          takedownMap
+          setupPreBishop
+          player.playerDeath = "null"
+        }
+        else if (game.level = "Bishop") {
+          takedownMap
+          setupBishop
+          player.playerDeath = "null"
+        }
+        else if (game.level = "PreKnight") {
+          takedownMap
+          setupPreKnight
+          player.playerDeath = "null"
+        }
+        else if (game.level = "Knight") {
+          takedownMap
+          setupKnight
+          player.playerDeath = "null"
+        }
+        else if (game.level = "Queen") {
+          takedownMap
+          setupQueen
+          player.playerDeath = "null"
+        }
       }
     </script>
   </turnscript>
-  <function name="showMap">
-    MoveObject (player, A2)
-    MoveObject (player, A3)
-    MoveObject (player, A4)
-    MoveObject (player, A5)
-    MoveObject (player, A6)
-    MoveObject (player, A7)
-    MoveObject (player, A8)
-    MoveObject (player, B8)
-    MoveObject (player, B7)
-    MoveObject (player, B6)
-    MoveObject (player, B5)
-    MoveObject (player, B4)
-    MoveObject (player, B3)
-    MoveObject (player, B2)
-    MoveObject (player, B1)
-    MoveObject (player, C1)
-    MoveObject (player, C2)
-    MoveObject (player, C3)
-    MoveObject (player, C4)
-    MoveObject (player, C5)
-    MoveObject (player, C6)
-    MoveObject (player, C7)
-    MoveObject (player, C8)
-    MoveObject (player, D8)
-    MoveObject (player, D7)
-    MoveObject (player, D6)
-    MoveObject (player, D5)
-    MoveObject (player, D4)
-    MoveObject (player, D3)
-    MoveObject (player, D2)
-    MoveObject (player, D1)
-    MoveObject (player, E1)
-    MoveObject (player, E2)
-    MoveObject (player, E3)
-    MoveObject (player, E4)
-    MoveObject (player, E5)
-    MoveObject (player, E6)
-    MoveObject (player, E7)
-    MoveObject (player, E8)
-    MoveObject (player, F8)
-    MoveObject (player, F7)
-    MoveObject (player, F6)
-    MoveObject (player, F5)
-    MoveObject (player, F4)
-    MoveObject (player, F3)
-    MoveObject (player, F2)
-    MoveObject (player, F1)
-    MoveObject (player, G1)
-    MoveObject (player, G2)
-    MoveObject (player, G3)
-    MoveObject (player, G4)
-    MoveObject (player, G5)
-    MoveObject (player, G6)
-    MoveObject (player, G7)
-    MoveObject (player, G8)
-    MoveObject (player, H8)
-    MoveObject (player, H7)
-    MoveObject (player, H6)
-    MoveObject (player, H5)
-    MoveObject (player, H4)
-    MoveObject (player, H3)
-    MoveObject (player, H2)
-    MoveObject (player, H1)
-    MoveObject (player, A1)
-  </function>
   <function name="moveKnight"><![CDATA[
     if (Knight.position = "C3") {
       MoveObject (Knight, B1)
@@ -3181,39 +3009,44 @@
       deathByKnight
     }
   ]]></function>
-  <function name="bishopPuzzleEnter">
-    ChangePOV (player2)
-  </function>
-  <function name="moveBishopInPuzzle">
-    if (Bishop Light.position = "BP3") {
-      if (game.pov.parent = BP3) {
-        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
-        msg ("Just what happened?")
-      }
-      Bishop Light.position = "BP2"
+  <function name="moveBishop"><![CDATA[
+    if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
+      deathByBishop
     }
-    else if (Bishop Light.position = "BP2") {
-      if (game.pov.parent = BP2) {
-        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
-        msg ("Just what happened?")
-      }
-      Bishop Light.position = "BP5"
+    if (Bishop.parent = D3) {
+      Bishop.position = "C4"
+      MoveObject (Bishop, C4)
+      D3.inRoom = " "
     }
-    else if (Bishop Light.position = "BP5") {
-      if (game.pov.parent = BP5) {
-        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
-        msg ("Just what happened?")
-      }
-      Bishop Light.position = "BP1"
+    else if (Bishop.parent = C4) {
+      Bishop.position = "D5"
+      MoveObject (Bishop, D5)
+      C4.inRoom = " "
     }
-    else if (Bishop Light.position = "BP1") {
-      if (game.pov.parent = BP1) {
-        msg ("A blink of an eye. And suddenly you're lying on the ground, an open wound at your throat.")
-        msg ("Just what happened?")
-      }
-      Bishop Light.position = "BP2"
+    else if (Bishop.parent = D5) {
+      Bishop.position = "C6"
+      MoveObject (Bishop, C6)
+      D5.inRoom = " "
     }
-  </function>
+    else if (Bishop.parent = C6) {
+      Bishop.position = "E4"
+      MoveObject (Bishop, E4)
+      C6.inRoom = " "
+    }
+    else if (Bishop.parent = E4) {
+      Bishop.position = "D3"
+      MoveObject (Bishop, D3)
+      E4.inRoom = " "
+    }
+    else {
+      Bishop.parent.inRoom = " "
+      Bishop.position = "D3"
+      MoveObject (Bishop, D3)
+    }
+    if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
+      deathByBishop
+    }
+  ]]></function>
   <function name="showASCIImap"><![CDATA[
     // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
     player.parent.inRoom = "♙"
@@ -3721,71 +3554,82 @@
     set (H8, "westWall", 1)
     MoveObject (player, A7)
     MoveObject (King, F6)
+    King.position = "F6"
     MoveObject (Pawn, G6)
+    Pawn.position = "G6"
     MoveObject (Chessboard, B7)
     MoveObject (Goal, H8)
+    DisableTurnScript (KingOnTurn)
   </function>
-  <function name="moveKing">
-    if (player.parent = King.parent) {
+  <function name="moveKing"><![CDATA[
+    if ((player.parent = King.parent) and (player.parent <> STORAGE)) {
       deathByKing
     }
-    if (King.position = "F6") {
-      MoveObject (King, G6)
-      King.position = "G6"
-      F6.inRoom = " "
-    }
-    else if (King.position = "G6") {
-      MoveObject (King, H6)
-      King.position = "H6"
-      G6.inRoom = " "
-    }
-    else if (King.position = "H6") {
-      MoveObject (King, H7)
-      King.position = "H7"
-      H6.inRoom = " "
-    }
-    else if (King.position = "H7") {
-      MoveObject (King, G7)
-      King.position = "G7"
+    if ((player.parent = H8) and (King.parent = H7)) {
+      MoveObject (King, H8)
+      King.position = "H8"
       H7.inRoom = " "
     }
-    else if (King.position = "G7") {
-      MoveObject (King, F7)
-      King.position = "F7"
-      G7.inRoom = " "
-    }
-    else if (King.position = "F7") {
-      MoveObject (King, E7)
-      King.position = "E7"
-      F7.inRoom = " "
-    }
-    else if (King.position = "E7") {
-      MoveObject (King, D7)
-      King.position = "D7"
-      E7.inRoom = " "
-    }
-    else if (King.position = "D7") {
-      MoveObject (King, C7)
-      King.position = "C7"
-      D7.inRoom = " "
-    }
-    else if (King.position = "C7") {
-      MoveObject (King, B7)
-      King.position = "B7"
-      C7.inRoom = " "
-    }
-    else if (King.position = "B7") {
-      MoveObject (King, A7)
-      King.position = "A7"
-      B7.inRoom = " "
+    else {
+      if (King.position = "F6") {
+        MoveObject (King, G6)
+        King.position = "G6"
+        F6.inRoom = " "
+      }
+      else if (King.position = "G6") {
+        MoveObject (King, H6)
+        King.position = "H6"
+        G6.inRoom = " "
+      }
+      else if (King.position = "H6") {
+        MoveObject (King, H7)
+        King.position = "H7"
+        H6.inRoom = " "
+      }
+      else if (King.position = "H7") {
+        MoveObject (King, G7)
+        King.position = "G7"
+        H7.inRoom = " "
+      }
+      else if (King.position = "G7") {
+        MoveObject (King, F7)
+        King.position = "F7"
+        G7.inRoom = " "
+      }
+      else if (King.position = "F7") {
+        MoveObject (King, E7)
+        King.position = "E7"
+        F7.inRoom = " "
+      }
+      else if (King.position = "E7") {
+        MoveObject (King, D7)
+        King.position = "D7"
+        E7.inRoom = " "
+      }
+      else if (King.position = "D7") {
+        MoveObject (King, C7)
+        King.position = "C7"
+        D7.inRoom = " "
+      }
+      else if (King.position = "C7") {
+        MoveObject (King, B7)
+        King.position = "B7"
+        C7.inRoom = " "
+      }
+      else if (King.position = "B7") {
+        MoveObject (King, A7)
+        King.position = "A7"
+        B7.inRoom = " "
+      }
     }
     if (Pawn.parent = King.parent) {
       MoveObject (Pawn, STORAGE)
+      Pawn.position = "STORAGE"
     }
-    if (player.parent = King.parent) {
+    if ((player.parent = King.parent) and (player.parent <> STORAGE)) {
       deathByKing
     }
-  </function>
+  ]]></function>
   <function name="deathByKing">
     MoveObject (player, STORAGE)
     player.playerDeath = "You watch, paralyzed with fear, as the statue moves. The thing which had previously been motionless has instead been following you all along. You barely have time to ponder this before you feel the rough stony hands wrap around your eyes and mouth…"
@@ -3884,7 +3728,9 @@
     LockExit (D3southeast)
     MoveObject (player, E3)
     MoveObject (Bishop, D3)
+    Bishop.position = "D3"
     MoveObject (Goal, E6)
+    EnableTurnScript (BishopOnTurn)
   </function>
   <function name="takedownMap">
     foreach (room, AllObjects()) {
@@ -3899,6 +3745,7 @@
       King.parent.inRoom = " "
       MoveObject (King, STORAGE)
       King.position = "STORAGE"
+      DisableTurnScript (KingOnTurn)
     }
     if (HasAttribute(Pawn.parent, "inRoom")) {
       Pawn.parent.inRoom = " "
@@ -3909,21 +3756,25 @@
       Knight.parent.inRoom = " "
       MoveObject (Knight, STORAGE)
       Knight.position = "STORAGE"
+      DisableTurnScript (KnightOnTurn)
     }
     if (HasAttribute(Bishop.parent, "inRoom")) {
       Bishop.parent.inRoom = " "
       MoveObject (Bishop, STORAGE)
       Bishop.position = "STORAGE"
+      DisableTurnScript (BishopOnTurn)
     }
     if (HasAttribute(Queen.parent, "inRoom")) {
       Queen.parent.inRoom = " "
       MoveObject (Queen, STORAGE)
       Queen.position = "STORAGE"
+      DisableTurnScript (QueenOnTurn)
     }
     if (HasAttribute(Rook.parent, "inRoom")) {
       Rook.parent.inRoom = " "
       MoveObject (Rook, STORAGE)
       Rook.position = "STORAGE"
+      DisableTurnScript (RookOnTurn)
     }
     if (HasAttribute(Goal.parent, "inRoom")) {
       Goal.parent.inRoom = " "
@@ -4020,4 +3871,12 @@
       }
     }
   ]]></function>
+  <function name="deathByBishop">
+    MoveObject (player, STORAGE)
+    player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?”"
+  </function>
+  <function name="deathByRook">
+    MoveObject (player, STORAGE)
+    player.playerDeath = “The brambles of the maze dart out from the corner of your eyes wrapping around you in a deathly grip. It’s only a matter of time. A large wall slides down the hall at a breakneck speed, you close your eyes as you are shattered in millions of pieces against another wall.”
+  </function>
 </asl>
