@@ -25,6 +25,7 @@
     <level>RabbitHole</level>
     <showlocation />
     <showtitle />
+    <cover type="string"></cover>
     <pov type="object">player</pov>
     <start type="script"><![CDATA[
       takedownMap
@@ -46,7 +47,6 @@
     <roomenter type="script">
       descWalls
     </roomenter>
-    <cover type="string"></cover>
   </game>
   <object name="A1">
     <inherit name="editor_room" />
@@ -2741,6 +2741,7 @@
       <inherit name="female" />
       <usedefaultprefix type="boolean">false</usedefaultprefix>
       <playerDeath>null</playerDeath>
+      <turn type="int">0</turn>
     </object>
     <object name="Chessboard">
       <inherit name="editor_object" />
@@ -2933,6 +2934,21 @@
           setupQueen
           player.playerDeath = "null"
         }
+      }
+    </script>
+  </turnscript>
+  <turnscript name="playerTurn">
+    <script>
+      // for PreQueen (One wall comes down on player's 6th turn in the level.)
+      player.turn = player.turn + 1
+      if (player.turn = 7) {
+        UnlockExit (C5northeast)
+        UnlockExit (C6southeast)
+        UnlockExit (C6east)
+        UnlockExit (D6west)
+        UnlockExit (D6southwest)
+        UnlockExit (D5northwest)
+        DisableTurnScript (playerTurn)
       }
     </script>
   </turnscript>
@@ -4742,6 +4758,7 @@
         }
       }
     }
+    EnableTurnScript (playerTurn)
   </function>
   <function name="descWalls">
     foreach (exit, AllExits()) {
