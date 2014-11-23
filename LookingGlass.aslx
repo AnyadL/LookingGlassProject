@@ -2723,17 +2723,24 @@
       <inherit name="editor_object" />
       <position>STORAGE</position>
     </object>
-    <object name="Button">
+    <object name="Lever">
       <inherit name="editor_object" />
       <inherit name="switchable" />
       <feature_switchable />
-      <press>You have pressed the button. The light is now illuminating the entrance </press>
-      <push>You have pushed the button. The light is now illuminating the entrance.</push>
+      <press type="script">
+        moveLever
+      </press>
+      <push type="script">
+        moveLever
+      </push>
       <switchonmsg>You have switched the button on. The light now illuminates the entrance you came in.</switchonmsg>
       <switchoffmsg>The light is still there, you will probbly die</switchoffmsg>
       <onswitchon type="script">
         msg ("You Win!!")
       </onswitchon>
+      <pull type="script">
+        moveLever
+      </pull>
     </object>
     <object name="player">
       <inherit name="editor_object" />
@@ -2774,6 +2781,9 @@
       <lookin type="script">
         mirrorEntered
       </lookin>
+    </object>
+    <object name="BishopFinish">
+      <inherit name="editor_object" />
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -3011,6 +3021,9 @@
     if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
       deathByBishop
     }
+    if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
+      msg ("You see a lever in the wall")
+    }
     if (Bishop.parent = D3) {
       Bishop.position = "C4"
       MoveObject (Bishop, C4)
@@ -3027,14 +3040,29 @@
       D5.inRoom = " "
     }
     else if (Bishop.parent = C6) {
-      Bishop.position = "E4"
-      MoveObject (Bishop, E4)
+      Bishop.position = "D6"
+      MoveObject (Bishop, D6)
       C6.inRoom = " "
     }
-    else if (Bishop.parent = E4) {
+    else if (Bishop.parent = D6) {
+      Bishop.position = "E5"
+      MoveObject (Bishop, E5)
+      D6.inRoom = " "
+    }
+    else if (Bishop.parent = E5) {
+      Bishop.position = "D4"
+      MoveObject (Bishop, D4)
+      E5.inRoom = " "
+    }
+    else if (Bishop.parent = D4) {
+      Bishop.position = "C3"
+      MoveObject (Bishop, C3)
+      D4.inRoom = " "
+    }
+    else if (Bishop.parent = C3) {
       Bishop.position = "D3"
       MoveObject (Bishop, D3)
-      E4.inRoom = " "
+      C3.inRoom = " "
     }
     else {
       Bishop.parent.inRoom = " "
@@ -3960,9 +3988,14 @@
       setupBishop
     }
     else if (game.level = "Bishop") {
-      game.level = "PreQueen"
-      takedownMap
-      setupPreQueen
+      if ((Goal.parent = BishopFinish.parent) and (player.parent <> STORAGE)) {
+        msg ("Nothing happens, you can't seem to get in yet. ")
+      }
+      else {
+        game.level = "PreQueen"
+        takedownMap
+        setupPreQueen
+      }
     }
     else if (game.level = "PreQueen") {
       game.level = "Queen"
@@ -4017,6 +4050,8 @@
     Bishop.position = "D3"
     MoveObject (Goal, E6)
     EnableTurnScript (BishopOnTurn)
+    MoveObject (Lever, C3)
+    MoveObject (BishopFinish, E6)
   </function>
   <function name="takedownMap">
     foreach (room, AllObjects()) {
@@ -4783,6 +4818,21 @@
           msg ("There is a wall to the north")
         }
       }
+    }
+  </function>
+  <function name="moveLever">
+    if (Lever.parent = C3) {
+      MoveObject (Lever, E5)
+      msg ("You have pulled the lever. You another lever appears NorthEast of where you are now.")
+    }
+    else if (Lever.parent = E5) {
+      MoveObject (Lever, C6)
+      msg ("You pulled the lever. You hear the sounds of another lever appearing but you can't see it from here.")
+    }
+    else if (Lever.parent = C6) {
+      MoveObject (Lever, STORAGE)
+      MoveObject (BishopFinish, STORAGE)
+      msg ("You see the mirror to the east of you illuminate slightly.")
     }
   </function>
 </asl>
