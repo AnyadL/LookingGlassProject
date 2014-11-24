@@ -2602,6 +2602,7 @@
       King.first = 1
       msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
       msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
+      msg ("Now, your knowledge of chess isn’t that great, but it seems like that last Pawn is standing awfully close to the King… ")
     </firstenter>
     <exit name="H7south" alias="south" to="H6">
       <inherit name="southdirection" />
@@ -2766,11 +2767,13 @@
     </object>
     <object name="Chessboard">
       <inherit name="editor_object" />
-      <look type="script">
-      </look>
       <take />
       <dropmsg>You dropped the Chessboard</dropmsg>
       <position>STORAGE</position>
+      <first type="int">0</first>
+      <takemsg> </takemsg>
+      <look type="script">
+      </look>
       <ontake type="script">
         Chessboard.first = Chessboard.first + 1
         if (Chessboard.first = 1) {
@@ -2785,8 +2788,6 @@
         msg ("You’re not sure if that was a good idea.")
         msg ("Traversing the maze blind sounds like a horrifying prospect.")
       </ondrop>
-      <first type="int">0</first>
-      <takemsg> </takemsg>
     </object>
     <object name="King">
       <inherit name="editor_object" />
@@ -2800,6 +2801,15 @@
     <object name="Goal">
       <inherit name="editor_object" />
       <alias>Mirror</alias>
+      <look type="script">
+        if (game.level = "RabbitHole") {
+          msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
+          msg ("In fact… It seems to contain a world all its own… ")
+        }
+        else {
+          msg ("It seems to contain a world all its own… ")
+        }
+      </look>
       <enter type="script">
         mirrorEntered
       </enter>
@@ -2809,7 +2819,6 @@
       <lookin type="script">
         mirrorEntered
       </lookin>
-      <look type="string"></look>
     </object>
     <object name="BishopFinish">
       <inherit name="editor_object" />
@@ -2925,7 +2934,10 @@
         msg ("You see a key")
       }
       if ((Contains (player.parent,Goal)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
-        if (game.level = "Pawn") {
+        if (game.level = "RabbitHole") {
+          msg ("")
+        }
+        else if (game.level = "Pawn") {
           msg ("You see another mirror in the distance.")
         }
       }
@@ -2949,16 +2961,32 @@
         King.first = 1
         msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
         msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
+        msg ("Now, your knowledge of chess isn’t that great, but it seems like that last Pawn is standing awfully close to the King… ")
+      }
+      else if ((player.parent = A7) and (KiPa.y = PlPa.y) and (game.level = "Pawn")) {
+        msg ("There’s nowhere to go from here!")
       }
       if (game.level = "RabbitHole") {
         if (player.parent = E3) {
-          msg ("You see a shadow of the distance - another person?")
+          if (player.turn = 0) {
+            msg ("You see a shadow of the distance - another person?")
+            player.turn = 1
+          }
         }
         else if (player.parent = E2) {
-          msg ("Your heart skips a beat as you reach out - but before you get the chance - it disappears.")
+          if (player.turn = 1) {
+            msg ("Your heart skips a beat as you reach out - but before you get the chance - it disappears.")
+            player.turn = 2
+          }
         }
         else if (player.parent = E1) {
-          msg ("Upon approaching the area the only thing you see is a single mirror in the distance, an oval glass hovering two feet in the air.")
+          if (player.turn = 2) {
+            msg ("Upon approaching the area the only thing you see is a single mirror in the distance, an oval glass hovering two feet in the air.")
+            player.turn = 3
+          }
+        }
+        else if (player.parent = D1) {
+          msg ("You see the oval glass hovering two feet in the air")
         }
       }
     ]]></script>
@@ -3045,7 +3073,7 @@
   </turnscript>
   <command>
     <pattern>examine #text#</pattern>
-    <script>
+    <script><![CDATA[
       if ((text="wall") or (text="Wall") or (text="WALL") or (text="walls") or (text="Walls") or (text="WALLS")) {
         msg ("You look closely at the walls and see a complex interlocking, twisting and twining of brambles forming a solid block. You look up, and up and up and see them extending almost as far as you can see, a thin sliver of blue the only impression of a sky that’s left. ")
         msg ("There’s definitely no way through these things. ")
@@ -3054,7 +3082,10 @@
         msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
         msg ("In fact… It seems to contain a world all its own… ")
       }
-    </script>
+      else if ((player.parent = Goal.parent) and (game.level <> "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
+        msg ("It seems to contain a world all its own… ")
+      }
+    ]]></script>
   </command>
   <turnscript name="playerQueenLevel">
     <script>
@@ -3165,50 +3196,52 @@
     }
   ]]></function>
   <function name="moveBishop"><![CDATA[
-    if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
-      deathByBishop
-    }
-    if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
-      msg ("You see a lever in the wall")
-    }
-    if (Bishop.parent = D3) {
-      MoveObject (Bishop, C4)
-      D3.inRoom = " "
-    }
-    else if (Bishop.parent = C4) {
-      MoveObject (Bishop, D5)
-      C4.inRoom = " "
-    }
-    else if (Bishop.parent = D5) {
-      MoveObject (Bishop, C6)
-      D5.inRoom = " "
-    }
-    else if (Bishop.parent = C6) {
-      MoveObject (Bishop, D6)
-      C6.inRoom = " "
-    }
-    else if (Bishop.parent = D6) {
-      MoveObject (Bishop, E5)
-      D6.inRoom = " "
-    }
-    else if (Bishop.parent = E5) {
-      MoveObject (Bishop, D4)
-      E5.inRoom = " "
-    }
-    else if (Bishop.parent = D4) {
-      MoveObject (Bishop, C3)
-      D4.inRoom = " "
-    }
-    else if (Bishop.parent = C3) {
-      MoveObject (Bishop, D3)
-      C3.inRoom = " "
-    }
-    else {
-      Bishop.parent.inRoom = " "
-      MoveObject (Bishop, D3)
-    }
-    if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
-      deathByBishop
+    if (game.level = "Bishop") {
+      if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
+        deathByBishop
+      }
+      if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
+        msg ("You see a lever in the wall")
+      }
+      if (Bishop.parent = D3) {
+        MoveObject (Bishop, C4)
+        D3.inRoom = " "
+      }
+      else if (Bishop.parent = C4) {
+        MoveObject (Bishop, D5)
+        C4.inRoom = " "
+      }
+      else if (Bishop.parent = D5) {
+        MoveObject (Bishop, C6)
+        D5.inRoom = " "
+      }
+      else if (Bishop.parent = C6) {
+        MoveObject (Bishop, D6)
+        C6.inRoom = " "
+      }
+      else if (Bishop.parent = D6) {
+        MoveObject (Bishop, E5)
+        D6.inRoom = " "
+      }
+      else if (Bishop.parent = E5) {
+        MoveObject (Bishop, D4)
+        E5.inRoom = " "
+      }
+      else if (Bishop.parent = D4) {
+        MoveObject (Bishop, C3)
+        D4.inRoom = " "
+      }
+      else if (Bishop.parent = C3) {
+        MoveObject (Bishop, D3)
+        C3.inRoom = " "
+      }
+      else {
+        Bishop.parent.inRoom = " "
+        MoveObject (Bishop, D3)
+      }
+      if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
+        deathByBishop
+      }
     }
   ]]></function>
   <function name="showASCIImap"><![CDATA[
@@ -4177,6 +4210,7 @@
         room.inRoom = " "
       }
     }
+    player.turn = 0
     foreach (exit, AllExits()) {
       UnlockExit (exit)
       exit.lockmessage = "You encounter a brambly wall blocking your path."
