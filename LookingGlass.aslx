@@ -6,7 +6,7 @@
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
     <firstpublished>2014</firstpublished>
-    <author>Dayna Lacoursiere, Lexie Bartlett, Liam Salmon, Panayioti Koukoulas, Deborsi Hazarika, and David Supina</author>
+    <author>Sporadic Pixels</author>
     <enablehyperlinks type="boolean">false</enablehyperlinks>
     <gridmap type="boolean">false</gridmap>
     <showpanes type="boolean">false</showpanes>
@@ -2318,10 +2318,12 @@
       G7.inRoom = " "
     </onexit>
     <firstenter type="script">
-      EnableTurnScript (KingOnTurn)
-      msg ("You hear a blood-curdling scream cut abruptly to an unearthly silence.")
-      msg ("You quickly examine the chessboard only to see one of the white Pawn symbols has disappeared completely. It seems as if the Black King is standing where the White Pawn was…")
-      msg ("Another White Pawn piece, however, is still on the board…")
+      if (game.level = "Pawn") {
+        EnableTurnScript (KingOnTurn)
+        msg ("You hear a blood-curdling scream cut abruptly to an unearthly silence.")
+        msg ("You quickly examine the chessboard only to see one of the white Pawn symbols has disappeared completely. It seems as if the Black King is standing where the White Pawn was…")
+        msg ("Another White Pawn piece, however, is still on the board…")
+      }
     </firstenter>
     <exit name="G7southeast" alias="southeast" to="H6">
       <inherit name="southeastdirection" />
@@ -2599,10 +2601,12 @@
       H7.inRoom = " "
     </onexit>
     <firstenter type="script">
-      King.first = 1
-      msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
-      msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
-      msg ("Now, your knowledge of chess isn’t that great, but it seems like that last Pawn is standing awfully close to the King… ")
+      if (game.level = "Pawn" ) {
+        King.first = 1
+        msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
+        msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
+        msg ("Now, your knowledge of chess isn’t that great, but it seems like that last Pawn is standing awfully close to the King… ")
+      }
     </firstenter>
     <exit name="H7south" alias="south" to="H6">
       <inherit name="southdirection" />
@@ -2935,10 +2939,27 @@
       }
       if ((Contains (player.parent,Goal)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
         if (game.level = "RabbitHole") {
-          msg ("")
+          msg ("You see the oval glass hovering two feet in the air")
         }
         else if (game.level = "Pawn") {
           msg ("You see another mirror in the distance.")
+          msg ("Like the other one, the reflection contains something else. Could this one be the same as the last?")
+        }
+        else if (game.level = "PreRook") {
+          msg ("Yet another strange mirror hovers impossibly just in front of you. Once again, the reflection contains something that’s not there. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("Another mirror? Really? Just how many more of these are there? ")
+        }
+        else if (game.level = "PreKnight") {
+        }
+        else if (game.level = "Knight") {
+        }
+        else if (game.level = "PreBishop") {
+        }
+        else if (game.level = "Bishop") {
+        }
+        else if (game.level = "PreQueen") {
         }
       }
       if (player.parent = F7) {
@@ -2966,6 +2987,7 @@
       else if ((player.parent = A7) and (KiPa.y = PlPa.y) and (game.level = "Pawn")) {
         msg ("There’s nowhere to go from here!")
       }
+      // Special RabbitHole stuff
       if (game.level = "RabbitHole") {
         if (player.parent = E3) {
           if (player.turn = 0) {
@@ -2984,9 +3006,6 @@
             msg ("Upon approaching the area the only thing you see is a single mirror in the distance, an oval glass hovering two feet in the air.")
             player.turn = 3
           }
-        }
-        else if (player.parent = D1) {
-          msg ("You see the oval glass hovering two feet in the air")
         }
       }
     ]]></script>
@@ -4115,16 +4134,22 @@
     }
     else if (game.level = "PreRook") {
       game.level = "Rook"
+      msg ("You take a tentative step into its depths. ")
+      msg ("")
       takedownMap
       setupRook
     }
     else if (game.level = "Rook") {
       game.level = "PreKnight"
+      msg ("You take a confident step inside its unworldly contents. ")
+      msg ("")
       takedownMap
       setupPreKnight
     }
     else if (game.level = "PreKnight") {
       game.level = "Knight"
+      msg ("You take a lazy step inside - you’ve pretty much got the hang of this now. ")
+      msg ("")
       takedownMap
       setupKnight
     }
@@ -4154,6 +4179,7 @@
       setupQueen
     }
     else if (game.level = "Queen") {
+      // this should eventually be deleted. There is no mirror in Queen
       finish
     }
   ]]></function>
