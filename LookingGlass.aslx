@@ -48,7 +48,7 @@
       }
     ]]></start>
     <roomenter type="script">
-      descWalls
+      // descWalls
     </roomenter>
   </game>
   <object name="A1">
@@ -2804,7 +2804,7 @@
     </object>
     <object name="Goal">
       <inherit name="editor_object" />
-      <alias>Mirror</alias>
+      <alias>Mirror, Oval Glass, Looking Glass, OvalGlass, LookingGlass</alias>
       <look type="script">
         if (game.level = "RabbitHole") {
           msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
@@ -2940,7 +2940,7 @@
           msg ("You see the oval glass hovering two feet in the air")
         }
         else if (game.level = "Pawn") {
-          msg ("You see another mirror in the distance.")
+          msg ("You see another mirror.")
           msg ("Like the other one, the reflection contains something else. Could this one be the same as the last?")
         }
         else if (game.level = "PreRook") {
@@ -3175,6 +3175,12 @@
         msg ("Surely it must end somewhere…")
         finish
       }
+    </script>
+  </turnscript>
+  <turnscript name="describeWalls">
+    <enabled />
+    <script>
+      descWalls
     </script>
   </turnscript>
   <function name="moveKnight"><![CDATA[
@@ -5296,6 +5302,7 @@
     EnableTurnScript (playerTurn)
   </function>
   <function name="descWalls">
+    msg ("")
     foreach (exit, AllExits()) {
       if ((exit.locked) and (exit.parent = player.parent)) {
         if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
