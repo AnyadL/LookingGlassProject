@@ -2811,7 +2811,7 @@
           msg ("In fact… It seems to contain a world all its own… ")
         }
         else {
-          msg ("It seems to contain a world all its own… ")
+          msg ("The mirror seems to contain a world all its own.")
         }
       </look>
       <enter type="script">
@@ -2824,9 +2824,6 @@
         mirrorEntered
       </lookin>
     </object>
-    <object name="BishopFinish">
-      <inherit name="editor_object" />
-    </object>
     <object name="Key">
       <inherit name="editor_object" />
       <look>'Tis a key</look>
@@ -2838,6 +2835,7 @@
           UnlockExit (A2east)
           UnlockExit (B2west)
           Key.used = 1
+          Key.parent = STORAGE
         }
         else {
           msg ("There is nothing to unlock")
@@ -2952,27 +2950,32 @@
           msg ("Another mirror? Really? Just how many more of these are there? ")
         }
         else if (game.level = "PreKnight") {
+          msg ("You see a mirror")
         }
         else if (game.level = "Knight") {
+          msg ("You see a mirror")
         }
         else if (game.level = "PreBishop") {
+          msg ("You see a mirror")
         }
         else if (game.level = "Bishop") {
+          msg ("You see a mirror")
         }
         else if (game.level = "PreQueen") {
+          msg ("You see a mirror")
         }
       }
-      if (player.parent = F7) {
+      if ((player.parent = F7) and (game.level = "Pawn")) {
         EnableTurnScript (KingOnTurn)
       }
-      if (player.parent = B2) {
+      if ((player.parent = B2) and (game.level = "Rook")) {
         if (Got(Key) and (Key.used=0)) {
           msg ("It looks like this key could be used on the western wall")
         }
         else if (Got(Key) and (Key.used=1)) {
           // do nothing
         }
-        else {
+        else if (Key.used = 0) {
           msg ("It looks like you could open the western wall with a key")
         }
       }
@@ -3006,6 +3009,11 @@
             msg ("Upon approaching the area the only thing you see is a single mirror in the distance, an oval glass hovering two feet in the air.")
             player.turn = 3
           }
+        }
+      }
+      else if (game.level = "Bishop") {
+        if (player.parent = Lever.parent) {
+          msg ("You see a lever")
         }
       }
     ]]></script>
@@ -3102,7 +3110,7 @@
         msg ("In fact… It seems to contain a world all its own… ")
       }
       else if ((player.parent = Goal.parent) and (game.level <> "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
-        msg ("It seems to contain a world all its own… ")
+        msg ("The mirror seems to contain a world all its own.")
       }
     ]]></script>
   </command>
@@ -3289,6 +3297,9 @@
     }
     if (HasAttribute(Goal.parent, "inRoom")) {
       Goal.parent.inRoom = "۝"
+    }
+    if (HasAttribute(Lever.parent, "inRoom")) {
+      Lever.parent.inRoom = "Ի"
     }
     if (Chessboard.parent = player) {
       PrintCentered ("________________________")
@@ -4184,51 +4195,111 @@
     }
   ]]></function>
   <function name="setupBishop">
-    LockExit (C3west)
-    LockExit (C4west)
-    LockExit (C5west)
-    LockExit (C6west)
-    LockExit (C6north)
-    LockExit (D6north)
-    LockExit (E6north)
-    LockExit (E6east)
-    LockExit (E5east)
-    LockExit (E4east)
-    LockExit (E3east)
-    LockExit (E3south)
-    LockExit (D3south)
-    LockExit (C3south)
-    LockExit (C3southwest)
-    LockExit (C3southeast)
-    LockExit (C3northwest)
-    LockExit (C4southwest)
-    LockExit (C4northwest)
-    LockExit (C5southwest)
-    LockExit (C5northwest)
-    LockExit (C6southwest)
-    LockExit (C6northwest)
-    LockExit (C6northeast)
-    LockExit (D6northwest)
-    LockExit (D6northeast)
-    LockExit (E6northwest)
-    LockExit (E6northeast)
-    LockExit (E6southeast)
-    LockExit (E5northeast)
+    MoveObject (player, B1)
+    MoveObject (Goal, H6)
+    MoveObject (Lever, B3)
+    LockExit (F8east)
+    LockExit (F8southeast)
+    LockExit (F7northeast)
+    LockExit (F7east)
+    LockExit (F7southeast)
+    LockExit (F6northeast)
+    LockExit (F6east)
+    LockExit (F6southeast)
+    LockExit (F5northeast)
+    LockExit (F5east)
+    LockExit (F5southeast)
+    LockExit (F5south)
+    LockExit (F5southwest)
     LockExit (E5southeast)
     LockExit (E4northeast)
+    LockExit (E4east)
     LockExit (E4southeast)
-    LockExit (E3southwest)
-    LockExit (E3southeast)
     LockExit (E3northeast)
-    LockExit (D3southwest)
+    LockExit (F3northwest)
+    LockExit (F3north)
+    LockExit (F3northeast)
+    LockExit (G3northwest)
+    LockExit (G4southwest)
+    LockExit (G4west)
+    LockExit (G4northwest)
+    LockExit (G5southwest)
+    LockExit (G5west)
+    LockExit (G5northwest)
+    LockExit (G5north)
+    LockExit (G5northeast)
+    LockExit (H5northwest)
+    LockExit (H6southwest)
+    LockExit (H6west)
+    LockExit (H6northwest)
+    LockExit (H6north)
+    LockExit (E1west)
+    LockExit (E1northwest)
+    LockExit (E2southwest)
+    LockExit (E2west)
+    LockExit (E2northwest)
+    LockExit (E3southwest)
+    LockExit (E3west)
+    LockExit (E3northwest)
+    LockExit (E4southwest)
+    LockExit (E4west)
+    LockExit (E4northwest)
+    LockExit (E5southwest)
+    LockExit (D5southeast)
+    LockExit (D5south)
+    LockExit (D5southwest)
+    LockExit (C5southeast)
+    LockExit (C5south)
+    LockExit (C5southwest)
+    LockExit (B5southeast)
+    LockExit (B4northeast)
+    LockExit (B4east)
+    LockExit (B4southeast)
+    LockExit (B3northeast)
+    LockExit (C3northwest)
+    LockExit (C3north)
+    LockExit (C3northeast)
+    LockExit (D3northwest)
+    LockExit (D3north)
+    LockExit (D3northeast)
+    LockExit (D3east)
     LockExit (D3southeast)
-    MoveObject (player, E3)
-    MoveObject (Bishop, D3)
-    Bishop.position = "D3"
-    MoveObject (Goal, E6)
-    EnableTurnScript (BishopOnTurn)
-    MoveObject (Lever, C3)
-    MoveObject (BishopFinish, E6)
+    LockExit (D2northeast)
+    LockExit (D2east)
+    LockExit (D2southeast)
+    LockExit (D1northeast)
+    LockExit (D1east)
+    LockExit (A3north)
+    LockExit (A3northeast)
+    LockExit (B3northwest)
+    LockExit (B4southwest)
+    LockExit (B4west)
+    LockExit (B4northwest)
+    LockExit (B5southwest)
+    LockExit (A5southeast)
+    LockExit (A5south)
+    // special walls
+    LockExit (A3northeast)
+    LockExit (B3northwest)
+    LockExit (B3north)
+    LockExit (B3northeast)
+    LockExit (C3northwest)
+    LockExit (D5southeast)
+    LockExit (E5southwest)
+    LockExit (E5south)
+    LockExit (E5southeast)
+    LockExit (F5southwest)
+    LockExit (G5northeast)
+    LockExit (H5northwest)
+    LockExit (H5north)
+    // descWalls
+    foreach (exit, AllExits()) {
+      if ((exit.locked) and (exit.parent = player.parent)) {
+        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          msg ("There is a wall to the "+exit.alias)
+        }
+      }
+    }
   </function>
   <function name="takedownMap"><![CDATA[
     foreach (room, AllObjects()) {
@@ -5250,18 +5321,35 @@
     }
   </function>
   <function name="moveLever">
-    if (Lever.parent = C3) {
-      MoveObject (Lever, E5)
-      msg ("You have pulled the lever. You another lever appears NorthEast of where you are now.")
+    if (Lever.parent = B3) {
+      MoveObject (Lever, C8)
+      msg ("You have pulled the lever.")
+      msg ("The wall in front of you disappeared!")
+      msg ("Another lever appears NorthEast of where you are now.")
+      UnlockExit (A3northeast)
+      UnlockExit (B3northwest)
+      UnlockExit (B3north)
+      UnlockExit (B3northeast)
+      UnlockExit (C3northwest)
     }
-    else if (Lever.parent = E5) {
-      MoveObject (Lever, C6)
+    else if (Lever.parent = C8) {
+      MoveObject (Lever, H4)
       msg ("You pulled the lever. You hear the sounds of another lever appearing but you can't see it from here.")
+      msg ("and the wall to the SouthEast disappeared!")
+      UnlockExit (D5southeast)
+      UnlockExit (E5southwest)
+      UnlockExit (E5south)
+      UnlockExit (E5southeast)
+      UnlockExit (F5southwest)
     }
-    else if (Lever.parent = C6) {
+    else if (Lever.parent = H4) {
       MoveObject (Lever, STORAGE)
       MoveObject (BishopFinish, STORAGE)
-      msg ("You see the mirror to the east of you illuminate slightly.")
+      msg ("The wall to the North disappeared!")
+      msg ("You see a mirror to the North and it's illuminate slightly.")
+      UnlockExit (G5northeast)
+      UnlockExit (H5northwest)
+      UnlockExit (H5north)
     }
   </function>
 </asl>
