@@ -2676,6 +2676,7 @@
   <turnscript name="BishopOnTurn">
     <script>
       moveBishop
+      moveBishop2
     </script>
   </turnscript>
   <command>
@@ -2841,6 +2842,11 @@
           msg ("There is nothing to unlock")
         }
       </use>
+    </object>
+    <object name="Bishop2">
+      <inherit name="editor_object" />
+      <inherit name="male" />
+      <alias>Bishop</alias>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -3236,37 +3242,73 @@
       if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
         msg ("You see a lever in the wall")
       }
-      if (Bishop.parent = D3) {
-        MoveObject (Bishop, C4)
-        D3.inRoom = " "
+      if (Bishop.parent = A1) {
+        MoveObject (Bishop, B2)
+        A1.inRoom = " "
       }
-      else if (Bishop.parent = C4) {
-        MoveObject (Bishop, D5)
-        C4.inRoom = " "
+      else if (Bishop.parent = B2) {
+        MoveObject (Bishop, A3)
+        B2.inRoom = " "
       }
-      else if (Bishop.parent = D5) {
-        MoveObject (Bishop, C6)
-        D5.inRoom = " "
+      else if (Bishop.parent = A3) {
+        MoveObject (Bishop, C1)
+        A3.inRoom = " "
       }
-      else if (Bishop.parent = C6) {
-        MoveObject (Bishop, D6)
-        C6.inRoom = " "
+      else if (Bishop.parent = C1) {
+        MoveObject (Bishop, D2)
+        C1.inRoom = " "
       }
-      else if (Bishop.parent = D6) {
-        MoveObject (Bishop, E5)
-        D6.inRoom = " "
-      }
-      else if (Bishop.parent = E5) {
-        MoveObject (Bishop, D4)
-        E5.inRoom = " "
-      }
-      else if (Bishop.parent = D4) {
+      else if (Bishop.parent = D2) {
         MoveObject (Bishop, C3)
-        D4.inRoom = " "
+        D2.inRoom = " "
       }
       else if (Bishop.parent = C3) {
-        MoveObject (Bishop, D3)
+        MoveObject (Bishop, A1)
         C3.inRoom = " "
+      }
+      else if (Bishop.parent = A5) {
+        MoveObject (Bishop, C7)
+        A5.inRoom = " "
+      }
+      else if (Bishop.parent = C7) {
+        MoveObject (Bishop, B8)
+        C7.inRoom = " "
+      }
+      else if (Bishop.parent = B8) {
+        MoveObject (Bishop, A7)
+        B8.inRoom = " "
+      }
+      else if (Bishop.parent = A7) {
+        MoveObject (Bishop, B6)
+        A7.inRoom = " "
+      }
+      else if (Bishop.parent = B6) {
+        MoveObject (Bishop, A5)
+        B6.inRoom = " "
+      }
+      else if (Bishop.parent = E1) {
+        MoveObject (Bishop, G3)
+        E1.inRoom = " "
+      }
+      else if (Bishop.parent = G3) {
+        MoveObject (Bishop, H2)
+        G3.inRoom = " "
+      }
+      else if (Bishop.parent = H2) {
+        MoveObject (Bishop, G1)
+        H2.inRoom = " "
+      }
+      else if (Bishop.parent = G1) {
+        MoveObject (Bishop, E3)
+        G1.inRoom = " "
+      }
+      else if (Bishop.parent = E3) {
+        MoveObject (Bishop, F2)
+        E3.inRoom = " "
+      }
+      else if (Bishop.parent = F2) {
+        MoveObject (Bishop, E1)
+        F2.inRoom = " "
       }
       else {
         Bishop.parent.inRoom = " "
@@ -3306,6 +3348,9 @@
     }
     if (HasAttribute(Lever.parent, "inRoom")) {
       Lever.parent.inRoom = "Ի"
+    }
+    if (HasAttribute(Bishop2.parent, "inRoom")) {
+      Bishop2.parent.inRoom = "♝"
     }
     if (Chessboard.parent = player) {
       PrintCentered ("________________________")
@@ -4204,6 +4249,7 @@
     MoveObject (player, B1)
     MoveObject (Goal, H6)
     MoveObject (Lever, B3)
+    MoveObject (Bishop, A1)
     LockExit (F8east)
     LockExit (F8southeast)
     LockExit (F7northeast)
@@ -4306,6 +4352,7 @@
         }
       }
     }
+    EnableTurnScript (BishopOnTurn)
   </function>
   <function name="takedownMap"><![CDATA[
     foreach (room, AllObjects()) {
@@ -5329,7 +5376,11 @@
   </function>
   <function name="moveLever">
     if (Lever.parent = B3) {
+      Bishop.parent.inRoom = " "
+      Bishop2.parent.inRoom = " "
       MoveObject (Lever, C8)
+      MoveObject (Bishop, A5)
+      MoveObject (Bishop2, D5)
       msg ("You have pulled the lever.")
       msg ("The wall in front of you disappeared!")
       msg ("Another lever appears NorthEast of where you are now.")
@@ -5340,7 +5391,11 @@
       UnlockExit (C3northwest)
     }
     else if (Lever.parent = C8) {
+      Bishop.parent.inRoom = " "
+      Bishop2.parent.inRoom = " "
       MoveObject (Lever, H4)
+      MoveObject (Bishop2, H5)
+      MoveObject (Bishop, E1)
       msg ("You pulled the lever. You hear the sounds of another lever appearing but you can't see it from here.")
       msg ("and the wall to the SouthEast disappeared!")
       UnlockExit (D5southeast)
@@ -5350,13 +5405,70 @@
       UnlockExit (F5southwest)
     }
     else if (Lever.parent = H4) {
+      Bishop.parent.inRoom = " "
+      Bishop2.parent.inRoom = " "
       MoveObject (Lever, STORAGE)
-      MoveObject (BishopFinish, STORAGE)
+      MoveObject (Bishop, STORAGE)
+      MoveObject (Bishop2, STORAGE)
       msg ("The wall to the North disappeared!")
       msg ("You see a mirror to the North and it's illuminate slightly.")
-      UnlockExit (G5northeast)
-      UnlockExit (H5northwest)
       UnlockExit (H5north)
+      DisableTurnScript (BishopOnTurn)
     }
   </function>
+  <function name="moveBishop2"><![CDATA[
+    if (game.level = "Bishop") {
+      if ((player.parent = Bishop2.parent) and (player.parent <> STORAGE)) {
+        deathByBishop
+      }
+      if (Bishop2.parent = D5) {
+        MoveObject (Bishop2, C6)
+        D5.inRoom = " "
+      }
+      else if (Bishop2.parent = C6) {
+        MoveObject (Bishop2, D7)
+        C6.inRoom = " "
+      }
+      else if (Bishop2.parent = D7) {
+        MoveObject (Bishop2, E8)
+        D7.inRoom = " "
+      }
+      else if (Bishop2.parent = E8) {
+        MoveObject (Bishop2, F7)
+        E8.inRoom = " "
+      }
+      else if (Bishop2.parent = F7) {
+        MoveObject (Bishop2, E6)
+        F7.inRoom = " "
+      }
+      else if (Bishop2.parent = E6) {
+        MoveObject (Bishop2, D5)
+        E6.inRoom = " "
+      }
+      else if (Bishop2.parent = D5) {
+        MoveObject (Bishop2, E8)
+        D5.inRoom = " "
+      }
+      else if (Bishop2.parent = H5) {
+        MoveObject (Bishop2, G4)
+        H5.inRoom = " "
+      }
+      else if (Bishop2.parent = G4) {
+        MoveObject (Bishop2, H3)
+        G4.inRoom = " "
+      }
+      else if (Bishop2.parent = H3) {
+        MoveObject (Bishop2, G2)
+        H3.inRoom = " "
+      }
+      else if (Bishop2.parent = G2) {
+        MoveObject (Bishop2, F3)
+        G2.inRoom = " "
+      }
+      else if (Bishop2.parent = F3) {
+        MoveObject (Bishop2, H5)
+        F3.inRoom = " "
+      }
+    }
+  ]]></function>
 </asl>
