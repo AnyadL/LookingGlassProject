@@ -3169,62 +3169,22 @@
   </turnscript>
   <turnscript name="playerQueenLevel">
     <script>
-      if (player.turn = 0) {
-        msg ("You take a step away from the throne.")
-        msg ("The crown clatters to the floor.")
-        player.turn = 1
-      }
-      else if (player.turn = 1) {
-        msg ("You take another step away from the throne.")
-        msg ("You drop the scepter on the grass.")
-        player.turn = 2
-      }
-      else if (player.turn = 2) {
-        msg ("You take a final step away from the throne.")
-        msg ("The cape flutters to the floor.")
-        player.turn = 3
-      }
-      else if (player.turn = 3) {
+      if ((player.parent = A1) or (player.parent = A2) or (player.parent = A3) or (player.parent = A4) or (player.parent = A5) or (player.parent = A6) or (player.parent = A7) or (player.parent = A8) or (player.parent = H1) or (player.parent = H2) or (player.parent = H3) or (player.parent = H4) or (player.parent = H5) or (player.parent = H6) or (player.parent = H7) or (player.parent = H8) or (player.parent = B8) or (player.parent = C8) or (player.parent = D8) or (player.parent = E8) or (player.parent = F8) or (player.parent = G8) or (player.parent = B1) or (player.parent = C1) or (player.parent = D1) or (player.parent = E1) or (player.parent = F1) or (player.parent = G1)) {
+        msg ("You take a step away from the confines of what was previously called ‘a maze.’ ")
+        msg ("You take a quick glance at the chessboard and see the pawn jumping off the map into the either. You then proceed to discard the chessboard. ")
+        msg ("The black crown clatters to the floor while you take another uncertain step. ")
+        msg ("The onyx golden necklace slides uselessly to the ground as you take another step forward. ")
+        msg ("The midnight cloak flutters groundward as you take yet another step upon the grassy field. ")
         msg ("You continue walking, aimlessly, towards some uncertain destination.")
-        player.turn = 4
-      }
-      else if (player.turn = 4) {
         msg ("You’re confused.")
-        player.turn = 5
-      }
-      else if (player.turn = 5) {
         msg ("You’re lost.")
-        player.turn = 6
-      }
-      else if (player.turn = 6) {
         msg ("You’re unsure of how you got there, who you are, what happened before –")
-        player.turn = 7
-      }
-      else if (player.turn = 7) {
         msg ("All you know is – the throne is the last place you want to be.")
-        player.turn = 8
-      }
-      else if (player.turn = 8) {
         msg ("Maybe if you keep walking.")
-        player.turn = 9
-      }
-      else if (player.turn = 9) {
         msg ("Maybe if you keep on moving.")
-        player.turn = 10
-      }
-      else if (player.turn = 10) {
         msg ("Something. Something…")
-        player.turn = 11
-      }
-      else if (player.turn = 11) {
         msg ("Something should appear.")
-        player.turn = 12
-      }
-      else if (player.turn = 12) {
         msg ("There can’t just be grass, right?")
-        player.turn = 13
-      }
-      else if (player.turn = 13) {
         msg ("Surely it must end somewhere…")
         finish
       }
@@ -3403,7 +3363,7 @@
       Bishop.parent.inRoom = "♝"
     }
     if (HasAttribute(Queen.parent, "inRoom")) {
-      Queen.parent.inRoom = "♛"
+      Queen.parent.inRoom = "♕"
     }
     if (HasAttribute(Goal.parent, "inRoom")) {
       Goal.parent.inRoom = "۝"
@@ -5338,7 +5298,8 @@
   </function>
   <function name="setupQueen">
     msg ("setupQueen to be implemented")
-    MoveObject (player, A1)
+    MoveObject (player, E4)
+    MoveObject (Queen, E5)
     EnableTurnScript (playerQueenLevel)
   </function>
   <function name="changeUnicode"><![CDATA[
