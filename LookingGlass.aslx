@@ -5484,63 +5484,63 @@
       H5.inRoom = " "
     }
     else if (Rook.parent = F5) {
-      MoveObject (Knight, D5)
+      MoveObject (Rook, D5)
       F5.inRoom = " "
     }
     else if (Rook.parent = D5) {
-      MoveObject (Knight, B5)
+      MoveObject (Rook, B5)
       D5.inRoom = " "
     }
     else if (Rook.parent = B5) {
-      MoveObject (Knight, B3)
+      MoveObject (Rook, B3)
       B5.inRoom = " "
     }
     else if (Rook.parent = B3) {
-      MoveObject (Knight, D3)
+      MoveObject (Rook, D3)
       B3.inRoom = " "
     }
     else if (Rook.parent = D3) {
-      MoveObject (Knight, F3)
+      MoveObject (Rook, F3)
       D3.inRoom = " "
     }
     else if (Rook.parent = F3) {
-      MoveObject (Knight, G3)
+      MoveObject (Rook, G3)
       F3.inRoom = " "
     }
     else if (Rook.parent = G3) {
-      MoveObject (Knight, E3)
+      MoveObject (Rook, E3)
       G3.inRoom = " "
     }
     else if (Rook.parent = E3) {
-      MoveObject (Knight, E5)
+      MoveObject (Rook, E5)
       E3.inRoom = " "
     }
     else if (Rook.parent = E5) {
-      MoveObject (Knight, E7)
+      MoveObject (Rook, E7)
       E5.inRoom = " "
     }
     else if (Rook.parent = E7) {
-      MoveObject (Knight, C7)
+      MoveObject (Rook, C7)
       E7.inRoom = " "
     }
     else if (Rook.parent = C7) {
-      MoveObject (Knight, B7)
+      MoveObject (Rook, B7)
       C7.inRoom = " "
     }
     else if (Rook.parent = B7) {
-      MoveObject (Knight, B5)
+      MoveObject (Rook, B5)
       B7.inRoom = " "
     }
     else if (Rook.parent = B5) {
-      MoveObject (Knight, D5)
+      MoveObject (Rook, D5)
       B5.inRoom = " "
     }
     else if (Rook.parent = D5) {
-      MoveObject (Knight, F5)
+      MoveObject (Rook, F5)
       D5.inRoom = " "
     }
     else if (Rook.parent = F5) {
-      MoveObject (Knight, H5)
+      MoveObject (Rook, H5)
       F5.inRoom = " "
     }
     if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
