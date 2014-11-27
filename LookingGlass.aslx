@@ -3211,6 +3211,13 @@
     <pattern>break</pattern>
     <defaultexpression>"You can't break " + object.article + "."</defaultexpression>
   </verb>
+  <turnscript name="PreQueenOnTurn">
+    <script>
+      moveRookInPreQueen
+      moveKnightInPreQueen
+      moveBishopInPreQueen
+    </script>
+  </turnscript>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -5327,6 +5334,9 @@
     msg ("TODO enemies and their paths")
     MoveObject (player, A8)
     MoveObject (Goal, E4)
+    MoveObject (Rook, A1)
+    MoveObject (Knight, H1)
+    MoveObject (Bishop, H8)
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -5540,7 +5550,7 @@
         }
       }
     }
-    EnableTurnScript (playerTurn)
+    EnableTurnScript (PreQueenOnTurn)
   </function>
   <function name="descWalls">
     msg ("")
@@ -6296,4 +6306,199 @@
       }
     }
   </function>
+  <function name="moveRookInPreQueen"><![CDATA[
+    if (Rook.parent = A1) {
+      MoveObject (Rook, A5)
+      A1.inRoom = " "
+    }
+    else if (Rook.parent = A5) {
+      MoveObject (Rook, D5)
+      A5.inRoom = " "
+    }
+    else if (Rook.parent = D5) {
+      MoveObject (Rook, D6)
+      D5.inRoom = " "
+    }
+    else if (Rook.parent = D6) {
+      MoveObject (Rook, H6)
+      D6.inRoom = " "
+    }
+    else if (Rook.parent = H6) {
+      MoveObject (Rook, C6)
+      H6.inRoom = " "
+    }
+    else if (Rook.parent = C6) {
+      MoveObject (Rook, C2)
+      C6.inRoom = " "
+    }
+    else if (Rook.parent = C2) {
+      MoveObject (Rook, G2)
+      C2.inRoom = " "
+    }
+    else if (Rook.parent = G2) {
+      MoveObject (Rook, G5)
+      G2.inRoom = " "
+    }
+    else if (Rook.parent = G5) {
+      MoveObject (Rook, F5)
+      G5.inRoom = " "
+    }
+    else if (Rook.parent = F5) {
+      MoveObject (Rook, F8)
+      F5.inRoom = " "
+    }
+    else if (Rook.parent = F8) {
+      MoveObject (Rook, G8)
+      F8.inRoom = " "
+    }
+    else if (Rook.parent = G8) {
+      MoveObject (Rook, G6)
+      G8.inRoom = " "
+    }
+    else if (Rook.parent = G6) {
+      MoveObject (Rook, H6)
+      G6.inRoom = " "
+    }
+    else if (Rook.parent = H6) {
+      MoveObject (Rook, H1)
+      H6.inRoom = " "
+    }
+    else if (Rook.parent = H1) {
+      MoveObject (Rook, A1)
+      H1.inRoom = " "
+    }
+    else if (Rook.parent = A1) {
+      MoveObject (Rook, A5)
+      A1.inRoom = " "
+    }
+    else if (Rook.parent = A5) {
+      MoveObject (Rook, D5)
+      A5.inRoom = " "
+    }
+    else if (Rook.parent = D5) {
+      MoveObject (Rook, D6)
+      D5.inRoom = " "
+    }
+    else if (Rook.parent = D6) {
+      MoveObject (Rook, A6)
+      D6.inRoom = " "
+    }
+    else if (Rook.parent = A6) {
+      MoveObject (Rook, A7)
+      A6.inRoom = " "
+    }
+    else if (Rook.parent = A7) {
+      MoveObject (Rook, E7)
+      A7.inRoom = " "
+    }
+    else if (Rook.parent = E7) {
+      MoveObject (Rook, E8)
+      E7.inRoom = " "
+    }
+    else if (Rook.parent = E8) {
+      MoveObject (Rook, G8)
+      E8.inRoom = " "
+    }
+    if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
+      deathByRook
+    }
+  ]]></function>
+  <function name="moveKnightInPreQueen"><![CDATA[
+    if (Knight.parent = H1) {
+      MoveObject (Knight, E2)
+      H1.inRoom = " "
+    }
+    else if (Knight.parent = E2) {
+      MoveObject (Knight, B3)
+      E2.inRoom = " "
+    }
+    else if (Knight.parent = B3) {
+      MoveObject (Knight, A5)
+      B3.inRoom = " "
+    }
+    else if (Knight.parent = A5) {
+      MoveObject (Knight, A3)
+      A5.inRoom = " "
+    }
+    else if (Knight.parent = A3) {
+      MoveObject (Knight, B4)
+      A3.inRoom = " "
+    }
+    else if (Knight.parent = B4) {
+      MoveObject (Knight, D3)
+      B4.inRoom = " "
+    }
+    else if (Knight.parent = D3) {
+      MoveObject (Knight, F3)
+      D3.inRoom = " "
+    }
+    else if (Knight.parent = F3) {
+      MoveObject (Knight, H4)
+      F3.inRoom = " "
+    }
+    else if (Knight.parent = H4) {
+      MoveObject (Knight, H2)
+      H4.inRoom = " "
+    }
+    else if (Knight.parent = H2) {
+      MoveObject (Knight, F1)
+      H2.inRoom = " "
+    }
+    else if (Knight.parent = F1) {
+      MoveObject (Knight, C1)
+      F1.inRoom = " "
+    }
+    else if (Knight.parent = C1) {
+      MoveObject (Knight, A2)
+      C1.inRoom = " "
+    }
+    else if (Knight.parent = A2) {
+      MoveObject (Knight, D3)
+      A1.inRoom = " "
+    }
+    else if (Knight.parent = D3) {
+      MoveObject (Knight, D5)
+      D3.inRoom = " "
+    }
+    else if (Knight.parent = D5) {
+      MoveObject (Knight, F5)
+      D5.inRoom = " "
+    }
+    else if (Knight.parent = F5) {
+      MoveObject (Knight, F3)
+      F5.inRoom = " "
+    }
+    else if (Knight.parent = F3) {
+      MoveObject (Knight, D3)
+      F3.inRoom = " "
+    }
+    if ((player.parent = Knight.parent) and (player.parent <> STORAGE)) {
+      deathByKnight
+    }
+  ]]></function>
+  <function name="moveBishopInPreQueen"><![CDATA[
+    if (Bishop.parent = H8) {
+      MoveObject (Bishop, E5)
+      H8.inRoom = " "
+    }
+    else if (Bishop.parent = E5) {
+      MoveObject (Bishop, D4)
+      E5.inRoom = " "
+    }
+    else if (Bishop.parent = D4) {
+      MoveObject (Bishop, E3)
+      D4.inRoom = " "
+    }
+    else if (Bishop.parent = E3) {
+      MoveObject (Bishop, F4)
+      E3.inRoom = " "
+    }
+    else if (Bishop.parent = F4) {
+      MoveObject (Bishop, E5)
+      F4.inRoom = " "
+    }
+    if ((player.parent = Bishop.parent) and (player.parent <> STORAGE)) {
+      deathByBishop
+    }
+  ]]></function>
 </asl>
