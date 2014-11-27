@@ -99,12 +99,12 @@
     <inRoom> </inRoom>
     <x type="int">0</x>
     <y type="int">1</y>
+    <alias type="string"></alias>
     <enter type="script">
     </enter>
     <onexit type="script">
       A2.inRoom = " "
     </onexit>
-    <alias type="string"></alias>
     <exit name="A2south" alias="south" to="A1">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -3218,6 +3218,7 @@
     </script>
   </turnscript>
   <command>
+    <pattern>smash #text#</pattern>
     <script>
       object = text
       if ((object = "chessboard") or (object = "Chessboard") or (object = "CHESSBOARD")) {
@@ -3225,7 +3226,6 @@
         finish
       }
     </script>
-    <pattern>smash #text#</pattern>
   </command>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
@@ -5879,4 +5879,426 @@
       deathByKnight
     }
   ]]></function>
+  <function name="preKnightRookKillZone">
+    if (Rook.parent=B7) {
+      if (player.parent = B8) {
+        deathByRook
+      }
+      if (player.parent = B7) {
+        deathByRook
+      }
+      if (player.parent = B6) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = B4) {
+        deathByRook
+      }
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = B2) {
+        deathByRook
+      }
+      if (player.parent = B1) {
+        deathByRook
+      }
+      if (player.parent = C7) {
+        deathByRook
+      }
+      if (player.parent = D7) {
+        deathByRook
+      }
+      if (player.parent = G7) {
+        deathByRook
+      }
+      if (player.parent = H7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=C7) {
+      if (player.parent = B7) {
+        deathByRook
+      }
+      if (player.parent = C7) {
+        deathByRook
+      }
+      if (player.parent = E7) {
+        deathByRook
+      }
+      if (player.parent = F7) {
+        deathByRook
+      }
+      if (player.parent = G7) {
+        deathByRook
+      }
+      if (player.parent = H7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=E7) {
+      if (player.parent = E8) {
+        deathByRook
+      }
+      if (player.parent = E6) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = E7) {
+        deathByRook
+      }
+      if (player.parent = E4) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = E2) {
+        deathByRook
+      }
+      if (player.parent = E1) {
+        deathByRook
+      }
+      if (player.parent = B7) {
+        deathByRook
+      }
+      if (player.parent = C7) {
+        deathByRook
+      }
+      if (player.parent = D7) {
+        deathByRook
+      }
+      if (player.parent = F7) {
+        deathByRook
+      }
+      if (player.parent = G7) {
+        deathByRook
+      }
+      if (player.parent = H7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=B5) {
+      if (player.parent = A5) {
+        deathByRook
+      }
+      if (player.parent = C5) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = D5) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = F5) {
+        deathByRook
+      }
+      if (player.parent = G5) {
+        deathByRook
+      }
+      if (player.parent = H5) {
+        deathByRook
+      }
+      if (player.parent = B8) {
+        deathByRook
+      }
+      if (player.parent = B7) {
+        deathByRook
+      }
+      if (player.parent = B6) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = B4) {
+        deathByRook
+      }
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = B2) {
+        deathByRook
+      }
+      if (player.parent = B1) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=D5) {
+      if (player.parent = A5) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = C5) {
+        deathByRook
+      }
+      if (player.parent = D5) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = F5) {
+        deathByRook
+      }
+      if (player.parent = G5) {
+        deathByRook
+      }
+      if (player.parent = H5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=E5) {
+      if (player.parent = E8) {
+        deathByRook
+      }
+      if (player.parent = E7) {
+        deathByRook
+      }
+      if (player.parent = E6) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = E4) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = E2) {
+        deathByRook
+      }
+      if (player.parent = E1) {
+        deathByRook
+      }
+      if (player.parent = A5) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = C5) {
+        deathByRook
+      }
+      if (player.parent = D5) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = F5) {
+        deathByRook
+      }
+      if (player.parent = G5) {
+        deathByRook
+      }
+      if (player.parent = H5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=H5) {
+      if (player.parent = A5) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = C5) {
+        deathByRook
+      }
+      if (player.parent = D5) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = F5) {
+        deathByRook
+      }
+      if (player.parent = G5) {
+        deathByRook
+      }
+      if (player.parent = H5) {
+        deathByRook
+      }
+      if (player.parent = H8) {
+        deathByRook
+      }
+      if (player.parent = H7) {
+        deathByRook
+      }
+      if (player.parent = H6) {
+        deathByRook
+      }
+      if (player.parent = H5) {
+        deathByRook
+      }
+      if (player.parent = H4) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=B3) {
+      if (player.parent = B8) {
+        deathByRook
+      }
+      if (player.parent = B7) {
+        deathByRook
+      }
+      if (player.parent = B6) {
+        deathByRook
+      }
+      if (player.parent = B5) {
+        deathByRook
+      }
+      if (player.parent = B4) {
+        deathByRook
+      }
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = B2) {
+        deathByRook
+      }
+      if (player.parent = B1) {
+        deathByRook
+      }
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = C3) {
+        deathByRook
+      }
+      if (player.parent = D3) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = F3) {
+        deathByRook
+      }
+      if (player.parent = G3) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=D3) {
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = C3) {
+        deathByRook
+      }
+      if (player.parent = D3) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = F3) {
+        deathByRook
+      }
+      if (player.parent = G3) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=E3) {
+      if (player.parent = E8) {
+        deathByRook
+      }
+      if (player.parent = E7) {
+        deathByRook
+      }
+      if (player.parent = E6) {
+        deathByRook
+      }
+      if (player.parent = E5) {
+        deathByRook
+      }
+      if (player.parent = E4) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = E2) {
+        deathByRook
+      }
+      if (player.parent = E1) {
+        deathByRook
+      }
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = C3) {
+        deathByRook
+      }
+      if (player.parent = D3) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = F3) {
+        deathByRook
+      }
+      if (player.parent = G3) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=F3) {
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = C3) {
+        deathByRook
+      }
+      if (player.parent = D3) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = F3) {
+        deathByRook
+      }
+      if (player.parent = G3) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=G3) {
+      if (player.parent = B3) {
+        deathByRook
+      }
+      if (player.parent = C3) {
+        deathByRook
+      }
+      if (player.parent = D3) {
+        deathByRook
+      }
+      if (player.parent = E3) {
+        deathByRook
+      }
+      if (player.parent = F3) {
+        deathByRook
+      }
+      if (player.parent = G2) {
+        deathByRook
+      }
+      if (player.parent = G1) {
+        deathByRook
+      }
+    }
+  </function>
 </asl>
