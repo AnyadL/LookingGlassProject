@@ -46,6 +46,11 @@
       foreach (exit, AllExits()) {
         exit.lockmessage = "You encounter a brambly wall blocking your path."
       }
+      foreach (room, AllObjects()) {
+        if (HasAttribute(room, "x")) {
+          room.alias = "Looking Glass"
+        }
+      }
     ]]></start>
     <roomenter type="script">
       // descWalls
@@ -99,6 +104,7 @@
     <onexit type="script">
       A2.inRoom = " "
     </onexit>
+    <alias type="string"></alias>
     <exit name="A2south" alias="south" to="A1">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -2723,6 +2729,7 @@
     <inherit name="editor_room" />
     <x type="int">42</x>
     <y type="int">42</y>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
     <object name="Knight">
       <inherit name="editor_object" />
       <inherit name="male" />
@@ -2827,10 +2834,11 @@
     </object>
     <object name="Key">
       <inherit name="editor_object" />
-      <look>'Tis a key</look>
+      <look>'Tis a passport</look>
       <take />
       <feature_usegive />
       <used type="int">0</used>
+      <alias>Passport</alias>
       <use type="script">
         if (game.pov.parent = B2) {
           UnlockExit (A2east)
@@ -2847,6 +2855,10 @@
       <inherit name="editor_object" />
       <inherit name="male" />
       <alias>Bishop</alias>
+    </object>
+    <object name="Sword">
+      <inherit name="editor_object" />
+      <look>A SWORD!!!!!</look>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -2932,6 +2944,17 @@
       }
     </script>
   </command>
+  <turnscript name="PreBishopOnTurn">
+    <script>
+      moveRookInPreBishop
+      moveKnightInPreBishop
+    </script>
+  </turnscript>
+  <turnscript name="PreKnightOnTurn">
+    <script>
+      moveRookInPreKnight
+    </script>
+  </turnscript>
   <turnscript name="checkOnPosition">
     <enabled />
     <script><![CDATA[
@@ -2940,6 +2963,9 @@
       }
       if ((Contains (player.parent, Key)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
         msg ("You see a key")
+      }
+      if ((Contains (player.parent, Sword)) and (Sword.parent <> player) and (player.parent <> STORAGE)) {
+        msg ("You see a sword")
       }
       if ((Contains (player.parent,Goal)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
         if (game.level = "RabbitHole") {
@@ -3030,6 +3056,22 @@
       showASCIImap
     </script>
   </turnscript>
+  <command>
+    <pattern>examine #text#</pattern>
+    <script><![CDATA[
+      if ((text="wall") or (text="Wall") or (text="WALL") or (text="walls") or (text="Walls") or (text="WALLS")) {
+        msg ("You look closely at the walls and see a complex interlocking, twisting and twining of brambles forming a solid block. You look up, and up and up and see them extending almost as far as you can see, a thin sliver of blue the only impression of a sky that’s left. ")
+        msg ("There’s definitely no way through these things. ")
+      }
+      else if ((player.parent = D1) and (game.level = "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
+        msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
+        msg ("In fact… It seems to contain a world all its own… ")
+      }
+      else if ((player.parent = Goal.parent) and (game.level <> "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
+        msg ("The mirror seems to contain a world all its own.")
+      }
+    ]]></script>
+  </command>
   <turnscript name="ifDead">
     <enabled />
     <script>
@@ -3091,35 +3133,21 @@
   <turnscript name="playerTurn">
     <script>
       // for PreQueen (One wall comes down on player's 6th turn in the level.)
-      player.turn = player.turn + 1
-      if (player.turn = 7) {
-        UnlockExit (C5northeast)
-        UnlockExit (C6southeast)
-        UnlockExit (C6east)
-        UnlockExit (D6west)
-        UnlockExit (D6southwest)
-        UnlockExit (D5northwest)
-        DisableTurnScript (playerTurn)
-        player.turn = 0
+      if (game.level = "PreQueen") {
+        player.turn = player.turn + 1
+        if (player.turn = 6) {
+          UnlockExit (C5northeast)
+          UnlockExit (C6southeast)
+          UnlockExit (C6east)
+          UnlockExit (D6west)
+          UnlockExit (D6southwest)
+          UnlockExit (D5northwest)
+          DisableTurnScript (playerTurn)
+          player.turn = 0
+        }
       }
     </script>
   </turnscript>
-  <command>
-    <pattern>examine #text#</pattern>
-    <script><![CDATA[
-      if ((text="wall") or (text="Wall") or (text="WALL") or (text="walls") or (text="Walls") or (text="WALLS")) {
-        msg ("You look closely at the walls and see a complex interlocking, twisting and twining of brambles forming a solid block. You look up, and up and up and see them extending almost as far as you can see, a thin sliver of blue the only impression of a sky that’s left. ")
-        msg ("There’s definitely no way through these things. ")
-      }
-      else if ((player.parent = D1) and (game.level = "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
-        msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
-        msg ("In fact… It seems to contain a world all its own… ")
-      }
-      else if ((player.parent = Goal.parent) and (game.level <> "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
-        msg ("The mirror seems to contain a world all its own.")
-      }
-    ]]></script>
-  </command>
   <turnscript name="playerQueenLevel">
     <script>
       if (player.turn = 0) {
@@ -3189,17 +3217,16 @@
       descWalls
     </script>
   </turnscript>
-  <turnscript name="PreKnightOnTurn">
+  <command>
     <script>
-      moveRookInPreKnight
+      object = text
+      if ((object = "chessboard") or (object = "Chessboard") or (object = "CHESSBOARD")) {
+        ClearScreen
+        finish
+      }
     </script>
-  </turnscript>
-  <turnscript name="PreBishopOnTurn">
-    <script>
-      moveRookInPreBishop
-      moveKnightInPreBishop
-    </script>
-  </turnscript>
+    <pattern>smash #text#</pattern>
+  </command>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -3337,7 +3364,7 @@
       King.parent.inRoom = "♚"
     }
     if (HasAttribute(Key.parent, "inRoom")) {
-      Key.parent.inRoom = " Ⴔ "
+      Key.parent.inRoom = " ஈ "
     }
     if (HasAttribute(Pawn.parent, "inRoom")) {
       Pawn.parent.inRoom = "♙"
@@ -4426,6 +4453,8 @@
     if (Chessboard.parent <> player) {
       MoveObject (Chessboard, STORAGE)
     }
+    DisableTurnScript (PreBishopOnTurn)
+    DisableTurnScript (PreKnightOnTurn)
   ]]></function>
   <function name="setupRabbitHole">
     LockExit (E8west)
@@ -4924,9 +4953,165 @@
     }
   </function>
   <function name="setupKnight">
-    MoveObject (player, A1)
-    MoveObject (Goal, A2)
-    msg ("setupKnight to be implemented")
+    msg ("TODO enemies and their paths")
+    MoveObject (player, B1)
+    MoveObject (Goal, D4)
+    MoveObject (Knight, B3)
+    MoveObject (Sword, B2)
+    LockExit (C8east)
+    LockExit (C8southeast)
+    LockExit (C8south)
+    LockExit (C8southwest)
+    LockExit (B8southeast)
+    LockExit (B8south)
+    LockExit (B8southwest)
+    LockExit (A8southeast)
+    LockExit (A7northeast)
+    LockExit (A7east)
+    LockExit (A7southeast)
+    LockExit (A6northeast)
+    LockExit (B6northwest)
+    LockExit (B6north)
+    LockExit (B6northeast)
+    LockExit (C6northwest)
+    LockExit (C6north)
+    LockExit (C6northeast)
+    LockExit (C6east)
+    LockExit (C6southeast)
+    LockExit (C6south)
+    LockExit (C6southwest)
+    LockExit (B6southeast)
+    LockExit (B6south)
+    LockExit (B6southwest)
+    LockExit (A6southeast)
+    LockExit (A5northeast)
+    LockExit (A5east)
+    LockExit (A5southeast)
+    LockExit (A4northeast)
+    LockExit (A4east)
+    LockExit (A4southeast)
+    LockExit (A4south)
+    LockExit (A3north)
+    LockExit (A3northeast)
+    LockExit (B3northwest)
+    LockExit (B4southwest)
+    LockExit (B4west)
+    LockExit (B4northwest)
+    LockExit (B5southwest)
+    LockExit (B5west)
+    LockExit (B5northwest)
+    LockExit (B5north)
+    LockExit (B5northeast)
+    LockExit (C5northwest)
+    LockExit (C5north)
+    LockExit (C5northeast)
+    LockExit (D5northwest)
+    LockExit (D6southwest)
+    LockExit (D6west)
+    LockExit (D6northwest)
+    LockExit (D6north)
+    LockExit (D6northeast)
+    LockExit (E6northwest)
+    LockExit (E6north)
+    LockExit (E6northeast)
+    LockExit (F6northwest)
+    LockExit (F6north)
+    LockExit (F6northeast)
+    LockExit (G6northwest)
+    LockExit (G6north)
+    LockExit (G6northeast)
+    LockExit (G6east)
+    LockExit (G6southeast)
+    LockExit (G5northeast)
+    LockExit (G5east)
+    LockExit (G5southeast)
+    LockExit (G4northeast)
+    LockExit (G4east)
+    LockExit (G4southeast)
+    LockExit (G3northeast)
+    LockExit (G3east)
+    LockExit (G3southeast)
+    LockExit (G2northeast)
+    LockExit (G2east)
+    LockExit (G2southeast)
+    LockExit (G1northeast)
+    LockExit (G1east)
+    LockExit (C1west)
+    LockExit (C1northwest)
+    LockExit (C2southwest)
+    LockExit (B2southeast)
+    LockExit (B1northeast)
+    LockExit (B1east)
+    LockExit (B1west)
+    LockExit (B1northwest)
+    LockExit (B2southwest)
+    LockExit (B2west)
+    LockExit (B2northwest)
+    LockExit (B3southwest)
+    LockExit (A3southeast)
+    LockExit (A3south)
+    LockExit (B2northeast)
+    LockExit (B3southeast)
+    LockExit (B3east)
+    LockExit (B3northeast)
+    LockExit (B4southeast)
+    LockExit (B4east)
+    LockExit (B4northeast)
+    LockExit (B5southeast)
+    LockExit (C5southwest)
+    LockExit (C4northwest)
+    LockExit (C4west)
+    LockExit (C4southwest)
+    LockExit (C4south)
+    LockExit (C4southeast)
+    LockExit (D4southwest)
+    LockExit (D4south)
+    LockExit (D4southeast)
+    LockExit (D4east)
+    LockExit (D4northeast)
+    LockExit (D4north)
+    LockExit (D4northwest)
+    LockExit (C4northeast)
+    LockExit (C5southeast)
+    LockExit (D5southwest)
+    LockExit (D5south)
+    LockExit (D5southeast)
+    LockExit (E5southwest)
+    LockExit (E4northwest)
+    LockExit (E4west)
+    LockExit (E4southwest)
+    LockExit (E3northwest)
+    LockExit (E3west)
+    LockExit (E3southwest)
+    LockExit (E2northwest)
+    LockExit (D2northeast)
+    LockExit (D2north)
+    LockExit (D2northwest)
+    LockExit (C2northeast)
+    LockExit (C2north)
+    LockExit (C2northwest)
+    LockExit (C3west)
+    LockExit (C3northwest)
+    LockExit (C3north)
+    LockExit (C3northeast)
+    LockExit (C3southwest)
+    LockExit (C3south)
+    LockExit (C3southeast)
+    LockExit (D3northwest)
+    LockExit (D3north)
+    LockExit (D3northeast)
+    LockExit (D3east)
+    LockExit (D3southeast)
+    LockExit (D3south)
+    LockExit (D3southwest)
+    // descWalls
+    foreach (exit, AllExits()) {
+      if ((exit.locked) and (exit.parent = player.parent)) {
+        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          msg ("There is a wall to the "+exit.alias)
+        }
+      }
+    }
   </function>
   <function name="setupPreKnight">
     msg ("TODO enemies and their paths")
@@ -5139,11 +5324,11 @@
   ]]></function>
   <function name="deathByBishop">
     MoveObject (player, STORAGE)
-    player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?”"
+    player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?"
   </function>
   <function name="deathByRook">
     MoveObject (player, STORAGE)
-    player.playerDeath = “The brambles of the maze dart out from the corner of your eyes wrapping around you in a deathly grip. It’s only a matter of time. A large wall slides down the hall at a breakneck speed, you close your eyes as you are shattered in millions of pieces against another wall.”
+    player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
   </function>
   <function name="setupPreQueen">
     msg ("TODO enemies and their paths")
