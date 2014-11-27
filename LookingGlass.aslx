@@ -3197,6 +3197,7 @@
   <turnscript name="PreBishopOnTurn">
     <script>
       moveRookInPreBishop
+      moveKnightInPreBishop
     </script>
   </turnscript>
   <function name="moveKnight"><![CDATA[
@@ -5622,6 +5623,75 @@
     }
     if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
       deathByRook
+    }
+  ]]></function>
+  <function name="moveKnightInPreBishop"><![CDATA[
+    if (Knight.parent = H4) {
+      MoveObject (Knight, G2)
+      H4.inRoom = " "
+    }
+    else if (Knight.parent = G2) {
+      MoveObject (Knight, E1)
+      G2.inRoom = " "
+    }
+    else if (Knight.parent = E1) {
+      MoveObject (Knight, D3)
+      E1.inRoom = " "
+    }
+    else if (Knight.parent = D3) {
+      MoveObject (Knight, B4)
+      D3.inRoom = " "
+    }
+    else if (Knight.parent = B4) {
+      MoveObject (Knight, D4)
+      B4.inRoom = " "
+    }
+    else if (Knight.parent = D4) {
+      MoveObject (Knight, B5)
+      D4.inRoom = " "
+    }
+    else if (Knight.parent = B5) {
+      MoveObject (Knight, D6)
+      B5.inRoom = " "
+    }
+    else if (Knight.parent = D6) {
+      MoveObject (Knight, E8)
+      D6.inRoom = " "
+    }
+    else if (Knight.parent = E8) {
+      MoveObject (Knight, C7)
+      E8.inRoom = " "
+    }
+    else if (Knight.parent = C7) {
+      MoveObject (Knight, B5)
+      C7.inRoom = " "
+    }
+    else if (Knight.parent = B5) {
+      MoveObject (Knight, D6)
+      B5.inRoom = " "
+    }
+    else if (Knight.parent = D6) {
+      MoveObject (Knight, E8)
+      D6.inRoom = " "
+    }
+    else if (Knight.parent = E8) {
+      MoveObject (Knight, C7)
+      E8.inRoom = " "
+    }
+    else if (Knight.parent = C7) {
+      MoveObject (Knight, B5)
+      C7.inRoom = " "
+    }
+    else if (Knight.parent = B5) {
+      MoveObject (Knight, D6)
+      B5.inRoom = " "
+    }
+    else if (Knight.parent = D6) {
+      MoveObject (Knight, H4)
+      D6.inRoom = " "
+    }
+    if ((player.parent = Knight.parent) and (player.parent <> STORAGE)) {
+      deathByKnight
     }
   ]]></function>
 </asl>
