@@ -3189,6 +3189,11 @@
       descWalls
     </script>
   </turnscript>
+  <turnscript name="PreKnightOnTurn">
+    <script>
+      moveRookInPreKnight
+    </script>
+  </turnscript>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -4918,6 +4923,7 @@
     msg ("TODO enemies and their paths")
     MoveObject (player, E1)
     MoveObject (Goal, H1)
+    MoveObject (Rook, H5)
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -5106,6 +5112,7 @@
         }
       }
     }
+    EnableTurnScript (PreKnightOnTurn)
   </function>
   <function name="setupQueen">
     msg ("setupQueen to be implemented")
@@ -5469,6 +5476,75 @@
         MoveObject (Bishop2, H5)
         F3.inRoom = " "
       }
+    }
+  ]]></function>
+  <function name="moveRookInPreKnight"><![CDATA[
+    if (Rook.parent = H5) {
+      MoveObject (Rook, F5)
+      H5.inRoom = " "
+    }
+    else if (Rook.parent = F5) {
+      MoveObject (Knight, D5)
+      F5.inRoom = " "
+    }
+    else if (Rook.parent = D5) {
+      MoveObject (Knight, B5)
+      D5.inRoom = " "
+    }
+    else if (Rook.parent = B5) {
+      MoveObject (Knight, B3)
+      B5.inRoom = " "
+    }
+    else if (Rook.parent = B3) {
+      MoveObject (Knight, D3)
+      B3.inRoom = " "
+    }
+    else if (Rook.parent = D3) {
+      MoveObject (Knight, F3)
+      D3.inRoom = " "
+    }
+    else if (Rook.parent = F3) {
+      MoveObject (Knight, G3)
+      F3.inRoom = " "
+    }
+    else if (Rook.parent = G3) {
+      MoveObject (Knight, E3)
+      G3.inRoom = " "
+    }
+    else if (Rook.parent = E3) {
+      MoveObject (Knight, E5)
+      E3.inRoom = " "
+    }
+    else if (Rook.parent = E5) {
+      MoveObject (Knight, E7)
+      E5.inRoom = " "
+    }
+    else if (Rook.parent = E7) {
+      MoveObject (Knight, C7)
+      E7.inRoom = " "
+    }
+    else if (Rook.parent = C7) {
+      MoveObject (Knight, B7)
+      C7.inRoom = " "
+    }
+    else if (Rook.parent = B7) {
+      MoveObject (Knight, B5)
+      B7.inRoom = " "
+    }
+    else if (Rook.parent = B5) {
+      MoveObject (Knight, D5)
+      B5.inRoom = " "
+    }
+    else if (Rook.parent = D5) {
+      MoveObject (Knight, F5)
+      D5.inRoom = " "
+    }
+    else if (Rook.parent = F5) {
+      MoveObject (Knight, H5)
+      F5.inRoom = " "
+    }
+    if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
+      deathByRook
     }
   ]]></function>
 </asl>
