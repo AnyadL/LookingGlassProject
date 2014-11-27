@@ -3194,6 +3194,11 @@
       moveRookInPreKnight
     </script>
   </turnscript>
+  <turnscript name="PreBishopOnTurn">
+    <script>
+      moveRookInPreBishop
+    </script>
+  </turnscript>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -3924,6 +3929,8 @@
     msg ("TODO enemies and their paths")
     MoveObject (player, H1)
     MoveObject (Goal, A8)
+    MoveObject (Rook, H5)
+    MoveObject (Knight, H4)
     LockExit (A8southeast)
     LockExit (B8southwest)
     LockExit (B8south)
@@ -4178,6 +4185,7 @@
         }
       }
     }
+    EnableTurnScript (PreBishopOnTurn)
   </function>
   <function name="mirrorEntered"><![CDATA[
     // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
@@ -5542,6 +5550,75 @@
     else if (Rook.parent = F5) {
       MoveObject (Rook, H5)
       F5.inRoom = " "
+    }
+    if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
+      deathByRook
+    }
+  ]]></function>
+  <function name="moveRookInPreBishop"><![CDATA[
+    if (Rook.parent = H5) {
+      MoveObject (Rook, E5)
+      H5.inRoom = " "
+    }
+    else if (Rook.parent = E5) {
+      MoveObject (Rook, B5)
+      E5.inRoom = " "
+    }
+    else if (Rook.parent = B5) {
+      MoveObject (Rook, B7)
+      B5.inRoom = " "
+    }
+    else if (Rook.parent = B7) {
+      MoveObject (Rook, E7)
+      B7.inRoom = " "
+    }
+    else if (Rook.parent = E7) {
+      MoveObject (Rook, G7)
+      E7.inRoom = " "
+    }
+    else if (Rook.parent = G7) {
+      MoveObject (Rook, G6)
+      G7.inRoom = " "
+    }
+    else if (Rook.parent = G6) {
+      MoveObject (Rook, F6)
+      G6.inRoom = " "
+    }
+    else if (Rook.parent = F6) {
+      MoveObject (Rook, F4)
+      F6.inRoom = " "
+    }
+    else if (Rook.parent = F4) {
+      MoveObject (Rook, H4)
+      F4.inRoom = " "
+    }
+    else if (Rook.parent = H4) {
+      MoveObject (Rook, H7)
+      H4.inRoom = " "
+    }
+    else if (Rook.parent = H7) {
+      MoveObject (Rook, E7)
+      H7.inRoom = " "
+    }
+    else if (Rook.parent = E7) {
+      MoveObject (Rook, B7)
+      E7.inRoom = " "
+    }
+    else if (Rook.parent = B7) {
+      MoveObject (Rook, B5)
+      B7.inRoom = " "
+    }
+    else if (Rook.parent = B5) {
+      MoveObject (Rook, E5)
+      B5.inRoom = " "
+    }
+    else if (Rook.parent = E5) {
+      MoveObject (Rook, H5)
+      E5.inRoom = " "
+    }
+    else if (Rook.parent = H5) {
+      MoveObject (Rook, H2)
+      H5.inRoom = " "
     }
     if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
       deathByRook
