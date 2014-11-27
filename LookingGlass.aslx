@@ -2800,6 +2800,24 @@
         msg ("You’re not sure if that was a good idea.")
         msg ("Traversing the maze blind sounds like a horrifying prospect.")
       </ondrop>
+      <smash type="script">
+        if (Chessboard.parent = player) {
+          ClearScreen
+          finish
+        }
+      </smash>
+      <destroy type="script">
+        if (Chessboard.parent = player) {
+          ClearScreen
+          finish
+        }
+      </destroy>
+      <break type="script">
+        if (Chessboard.parent = player) {
+          ClearScreen
+          finish
+        }
+      </break>
     </object>
     <object name="King">
       <inherit name="editor_object" />
@@ -2952,8 +2970,8 @@
   </turnscript>
   <turnscript name="PreKnightOnTurn">
     <script>
-      moveRookInPreKnight
       preKnightRookKillZone
+      moveRookInPreKnight
     </script>
   </turnscript>
   <turnscript name="checkOnPosition">
@@ -3218,16 +3236,21 @@
       descWalls
     </script>
   </turnscript>
-  <command>
-    <pattern>smash #text#</pattern>
-    <script>
-      object = text
-      if ((object = "chessboard") or (object = "Chessboard") or (object = "CHESSBOARD")) {
-        ClearScreen
-        finish
-      }
-    </script>
-  </command>
+  <verb>
+    <property>smash</property>
+    <pattern>smash</pattern>
+    <defaultexpression>"You can't destroy" + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>destroy</property>
+    <pattern>destroy</pattern>
+    <defaultexpression>"You can't destroy " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>break</property>
+    <pattern>break</pattern>
+    <defaultexpression>"You can't break " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -3808,6 +3831,8 @@
     }
   ]]></function>
   <function name="deathByKnight">
+    Knight.parent.inRoom = " "
+    MoveObject (Knight, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "You feel a cold steel stab through your entrails. You look down at your stomach only to see a familiar blade sticking out as red oozes down your stomach. You fall to your knees as a thick darkness swarms around you…"
   </function>
@@ -3951,6 +3976,8 @@
     }
   ]]></function>
   <function name="deathByKing">
+    King.parent.inRoom = " "
+    MoveObject (King, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "You watch, paralyzed with fear, as the statue moves. The thing which had previously been motionless has instead been following you all along. You barely have time to ponder this before you feel the rough stony hands wrap around your eyes and mouth…"
   </function>
@@ -5324,10 +5351,14 @@
     }
   ]]></function>
   <function name="deathByBishop">
+    Bishop.parent.inRoom = " "
+    MoveObject (Bishop, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?"
   </function>
   <function name="deathByRook">
+    Rook.parent.inRoom = " "
+    MoveObject (Rook, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
   </function>
@@ -5674,69 +5705,71 @@
     }
   ]]></function>
   <function name="moveRookInPreKnight"><![CDATA[
-    if (Rook.parent = H5) {
-      MoveObject (Rook, F5)
-      H5.inRoom = " "
-    }
-    else if (Rook.parent = F5) {
-      MoveObject (Rook, D5)
-      F5.inRoom = " "
-    }
-    else if (Rook.parent = D5) {
-      MoveObject (Rook, B5)
-      D5.inRoom = " "
-    }
-    else if (Rook.parent = B5) {
-      MoveObject (Rook, B3)
-      B5.inRoom = " "
-    }
-    else if (Rook.parent = B3) {
-      MoveObject (Rook, D3)
-      B3.inRoom = " "
-    }
-    else if (Rook.parent = D3) {
-      MoveObject (Rook, F3)
-      D3.inRoom = " "
-    }
-    else if (Rook.parent = F3) {
-      MoveObject (Rook, G3)
-      F3.inRoom = " "
-    }
-    else if (Rook.parent = G3) {
-      MoveObject (Rook, E3)
-      G3.inRoom = " "
-    }
-    else if (Rook.parent = E3) {
-      MoveObject (Rook, E5)
-      E3.inRoom = " "
-    }
-    else if (Rook.parent = E5) {
-      MoveObject (Rook, E7)
-      E5.inRoom = " "
-    }
-    else if (Rook.parent = E7) {
-      MoveObject (Rook, C7)
-      E7.inRoom = " "
-    }
-    else if (Rook.parent = C7) {
-      MoveObject (Rook, B7)
-      C7.inRoom = " "
-    }
-    else if (Rook.parent = B7) {
-      MoveObject (Rook, B5)
-      B7.inRoom = " "
-    }
-    else if (Rook.parent = B5) {
-      MoveObject (Rook, D5)
-      B5.inRoom = " "
-    }
-    else if (Rook.parent = D5) {
-      MoveObject (Rook, F5)
-      D5.inRoom = " "
-    }
-    else if (Rook.parent = F5) {
-      MoveObject (Rook, H5)
-      F5.inRoom = " "
+    if (player.playerDeath = "null") {
+      if (Rook.parent = H5) {
+        MoveObject (Rook, F5)
+        H5.inRoom = " "
+      }
+      else if (Rook.parent = F5) {
+        MoveObject (Rook, D5)
+        F5.inRoom = " "
+      }
+      else if (Rook.parent = D5) {
+        MoveObject (Rook, B5)
+        D5.inRoom = " "
+      }
+      else if (Rook.parent = B5) {
+        MoveObject (Rook, B3)
+        B5.inRoom = " "
+      }
+      else if (Rook.parent = B3) {
+        MoveObject (Rook, D3)
+        B3.inRoom = " "
+      }
+      else if (Rook.parent = D3) {
+        MoveObject (Rook, F3)
+        D3.inRoom = " "
+      }
+      else if (Rook.parent = F3) {
+        MoveObject (Rook, G3)
+        F3.inRoom = " "
+      }
+      else if (Rook.parent = G3) {
+        MoveObject (Rook, E3)
+        G3.inRoom = " "
+      }
+      else if (Rook.parent = E3) {
+        MoveObject (Rook, E5)
+        E3.inRoom = " "
+      }
+      else if (Rook.parent = E5) {
+        MoveObject (Rook, E7)
+        E5.inRoom = " "
+      }
+      else if (Rook.parent = E7) {
+        MoveObject (Rook, C7)
+        E7.inRoom = " "
+      }
+      else if (Rook.parent = C7) {
+        MoveObject (Rook, B7)
+        C7.inRoom = " "
+      }
+      else if (Rook.parent = B7) {
+        MoveObject (Rook, B5)
+        B7.inRoom = " "
+      }
+      else if (Rook.parent = B5) {
+        MoveObject (Rook, D5)
+        B5.inRoom = " "
+      }
+      else if (Rook.parent = D5) {
+        MoveObject (Rook, F5)
+        D5.inRoom = " "
+      }
+      else if (Rook.parent = F5) {
+        MoveObject (Rook, H5)
+        F5.inRoom = " "
+      }
     }
     if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
       deathByRook
