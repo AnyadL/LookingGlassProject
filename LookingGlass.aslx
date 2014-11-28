@@ -2970,8 +2970,8 @@
   </turnscript>
   <turnscript name="PreKnightOnTurn">
     <script>
-      preKnightRookKillZone
       moveRookInPreKnight
+      preKnightRookKillZone
     </script>
   </turnscript>
   <turnscript name="checkOnPosition">
@@ -5885,423 +5885,58 @@
     }
   ]]></function>
   <function name="preKnightRookKillZone">
-    if (Rook.parent=B7) {
-      if (player.parent = B8) {
-        deathByRook
-      }
-      if (player.parent = B7) {
-        deathByRook
-      }
-      if (player.parent = B6) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
-      if (player.parent = B4) {
-        deathByRook
-      }
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = B2) {
-        deathByRook
-      }
-      if (player.parent = B1) {
-        deathByRook
-      }
-      if (player.parent = C7) {
-        deathByRook
-      }
-      if (player.parent = D7) {
-        deathByRook
-      }
-      if (player.parent = G7) {
-        deathByRook
-      }
-      if (player.parent = H7) {
-        deathByRook
-      }
-    }
-    if (Rook.parent=C7) {
-      if (player.parent = B7) {
-        deathByRook
-      }
-      if (player.parent = C7) {
-        deathByRook
-      }
-      if (player.parent = E7) {
-        deathByRook
-      }
-      if (player.parent = F7) {
-        deathByRook
-      }
-      if (player.parent = G7) {
-        deathByRook
-      }
-      if (player.parent = H7) {
-        deathByRook
-      }
-    }
-    if (Rook.parent=E7) {
-      if (player.parent = E8) {
-        deathByRook
-      }
-      if (player.parent = E6) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = E7) {
-        deathByRook
-      }
-      if (player.parent = E4) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = E2) {
-        deathByRook
-      }
-      if (player.parent = E1) {
-        deathByRook
-      }
-      if (player.parent = B7) {
-        deathByRook
-      }
-      if (player.parent = C7) {
-        deathByRook
-      }
-      if (player.parent = D7) {
-        deathByRook
-      }
-      if (player.parent = F7) {
-        deathByRook
-      }
-      if (player.parent = G7) {
-        deathByRook
-      }
-      if (player.parent = H7) {
-        deathByRook
-      }
-    }
-    if (Rook.parent=B5) {
-      if (player.parent = A5) {
-        deathByRook
-      }
-      if (player.parent = C5) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
-      if (player.parent = D5) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = F5) {
-        deathByRook
-      }
+    if (Rook.parent=F5) {
       if (player.parent = G5) {
-        deathByRook
-      }
-      if (player.parent = H5) {
-        deathByRook
-      }
-      if (player.parent = B8) {
-        deathByRook
-      }
-      if (player.parent = B7) {
-        deathByRook
-      }
-      if (player.parent = B6) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
-      if (player.parent = B4) {
-        deathByRook
-      }
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = B2) {
-        deathByRook
-      }
-      if (player.parent = B1) {
         deathByRook
       }
     }
     if (Rook.parent=D5) {
-      if (player.parent = A5) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
-      if (player.parent = C5) {
-        deathByRook
-      }
-      if (player.parent = D5) {
-        deathByRook
-      }
       if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = F5) {
-        deathByRook
-      }
-      if (player.parent = G5) {
-        deathByRook
-      }
-      if (player.parent = H5) {
         deathByRook
       }
     }
-    if (Rook.parent=E5) {
-      if (player.parent = E8) {
-        deathByRook
-      }
-      if (player.parent = E7) {
-        deathByRook
-      }
-      if (player.parent = E6) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = E4) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = E2) {
-        deathByRook
-      }
-      if (player.parent = E1) {
-        deathByRook
-      }
-      if (player.parent = A5) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
+    if (Rook.parent=B6) {
       if (player.parent = C5) {
-        deathByRook
-      }
-      if (player.parent = D5) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = F5) {
-        deathByRook
-      }
-      if (player.parent = G5) {
-        deathByRook
-      }
-      if (player.parent = H5) {
-        deathByRook
-      }
-    }
-    if (Rook.parent=H5) {
-      if (player.parent = A5) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
-      if (player.parent = C5) {
-        deathByRook
-      }
-      if (player.parent = D5) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = F5) {
-        deathByRook
-      }
-      if (player.parent = G5) {
-        deathByRook
-      }
-      if (player.parent = H5) {
-        deathByRook
-      }
-      if (player.parent = H8) {
-        deathByRook
-      }
-      if (player.parent = H7) {
-        deathByRook
-      }
-      if (player.parent = H6) {
-        deathByRook
-      }
-      if (player.parent = H5) {
-        deathByRook
-      }
-      if (player.parent = H4) {
         deathByRook
       }
     }
     if (Rook.parent=B3) {
-      if (player.parent = B8) {
-        deathByRook
-      }
-      if (player.parent = B7) {
-        deathByRook
-      }
-      if (player.parent = B6) {
-        deathByRook
-      }
-      if (player.parent = B5) {
-        deathByRook
-      }
       if (player.parent = B4) {
-        deathByRook
-      }
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = B2) {
-        deathByRook
-      }
-      if (player.parent = B1) {
-        deathByRook
-      }
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = C3) {
-        deathByRook
-      }
-      if (player.parent = D3) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = F3) {
-        deathByRook
-      }
-      if (player.parent = G3) {
         deathByRook
       }
     }
     if (Rook.parent=D3) {
-      if (player.parent = B3) {
-        deathByRook
-      }
       if (player.parent = C3) {
-        deathByRook
-      }
-      if (player.parent = D3) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = F3) {
-        deathByRook
-      }
-      if (player.parent = G3) {
-        deathByRook
-      }
-    }
-    if (Rook.parent=E3) {
-      if (player.parent = E8) {
-        deathByRook
-      }
-      if (player.parent = E7) {
-        deathByRook
-      }
-      if (player.parent = E6) {
-        deathByRook
-      }
-      if (player.parent = E5) {
-        deathByRook
-      }
-      if (player.parent = E4) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = E2) {
-        deathByRook
-      }
-      if (player.parent = E1) {
-        deathByRook
-      }
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = C3) {
-        deathByRook
-      }
-      if (player.parent = D3) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = F3) {
-        deathByRook
-      }
-      if (player.parent = G3) {
         deathByRook
       }
     }
     if (Rook.parent=F3) {
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = C3) {
-        deathByRook
-      }
-      if (player.parent = D3) {
-        deathByRook
-      }
       if (player.parent = E3) {
-        deathByRook
-      }
-      if (player.parent = F3) {
-        deathByRook
-      }
-      if (player.parent = G3) {
         deathByRook
       }
     }
-    if (Rook.parent=G3) {
-      if (player.parent = B3) {
-        deathByRook
-      }
-      if (player.parent = C3) {
-        deathByRook
-      }
-      if (player.parent = D3) {
-        deathByRook
-      }
-      if (player.parent = E3) {
-        deathByRook
-      }
+    if (Rook.parent=E3) {
       if (player.parent = F3) {
         deathByRook
       }
-      if (player.parent = G2) {
+    }
+    if (Rook.parent=E5) {
+      if (player.parent = E4) {
         deathByRook
       }
-      if (player.parent = G1) {
+    }
+    if (Rook.parent=E7) {
+      if (player.parent = E6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=C7) {
+      if (player.parent = D7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent=B5) {
+      if (player.parent = B6) {
         deathByRook
       }
     }
