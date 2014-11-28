@@ -3020,7 +3020,7 @@
       moveRookInPreBishop
       preBishopKnightKillZone
       preBishopRookKillZone
-      moveKnightInPreBishop
+      preBishopKnightKillZone
     </script>
   </turnscript>
   <turnscript name="PreKnightOnTurn">
@@ -6417,25 +6417,25 @@
       if (player.parent = E8) {
         deathByKnight
       }
-      if (player.parent = C8) {
+      else if (player.parent = C8) {
         deathByKnight
       }
-      if (player.parent = B5) {
+      else if (player.parent = B5) {
         deathByKnight
       }
-      if (player.parent = E4) {
+      else if (player.parent = E4) {
         deathByKnight
       }
-      if (player.parent = F7) {
+      else if (player.parent = F7) {
         deathByKnight
       }
-      if (player.parent = B7) {
+      else if (player.parent = B7) {
         deathByKnight
       }
-      if (player.parent = F8) {
+      else if (player.parent = F8) {
         deathByKnight
       }
-      if (player.parent = C4) {
+      else if (player.parent = C4) {
         deathByKnight
       }
     }
@@ -6443,13 +6443,13 @@
       if (player.parent = G7) {
         deathByKnight
       }
-      if (player.parent = C7) {
+      else if (player.parent = C7) {
         deathByKnight
       }
-      if (player.parent = D6) {
+      else if (player.parent = D6) {
         deathByKnight
       }
-      if (player.parent = F6) {
+      else if (player.parent = F6) {
         deathByKnight
       }
     }
@@ -6457,19 +6457,19 @@
       if (player.parent = E8) {
         deathByKnight
       }
-      if (player.parent = A8) {
+      else if (player.parent = A8) {
         deathByKnight
       }
-      if (player.parent = A6) {
+      else if (player.parent = A6) {
         deathByKnight
       }
-      if (player.parent = E6) {
+      else if (player.parent = E6) {
         deathByKnight
       }
-      if (player.parent = B5) {
+      else if (player.parent = B5) {
         deathByKnight
       }
-      if (player.parent = D5) {
+      else if (player.parent = D5) {
         deathByKnight
       }
     }
@@ -6477,19 +6477,19 @@
       if (player.parent = C7) {
         deathByKnight
       }
-      if (player.parent = A7) {
+      else if (player.parent = A7) {
         deathByKnight
       }
-      if (player.parent = A3) {
+      else if (player.parent = A3) {
         deathByKnight
       }
-      if (player.parent = C3) {
+      else if (player.parent = C3) {
         deathByKnight
       }
-      if (player.parent = D6) {
+      else if (player.parent = D6) {
         deathByKnight
       }
-      if (player.parent = D4) {
+      else if (player.parent = D4) {
         deathByKnight
       }
     }
@@ -6497,19 +6497,19 @@
       if (player.parent = C7) {
         deathByKnight
       }
-      if (player.parent = A7) {
+      else if (player.parent = A7) {
         deathByKnight
       }
-      if (player.parent = A3) {
+      else if (player.parent = A3) {
         deathByKnight
       }
-      if (player.parent = C3) {
+      else if (player.parent = C3) {
         deathByKnight
       }
-      if (player.parent = D6) {
+      else if (player.parent = D6) {
         deathByKnight
       }
-      if (player.parent = D4) {
+      else if (player.parent = D4) {
         deathByKnight
       }
     }
@@ -6517,20 +6517,149 @@
       if (player.parent = C7) {
         deathByKnight
       }
-      if (player.parent = A7) {
+      else if (player.parent = A7) {
         deathByKnight
       }
-      if (player.parent = A3) {
+      else if (player.parent = A3) {
         deathByKnight
       }
-      if (player.parent = C3) {
+      else if (player.parent = C3) {
         deathByKnight
       }
-      if (player.parent = D6) {
+      else if (player.parent = D6) {
         deathByKnight
       }
-      if (player.parent = D4) {
+      else if (player.parent = D4) {
         deathByKnight
+      }
+    }
+  </function>
+  <function name="preQueenRookKillZone">
+    if (Rook.parent=A5) {
+      if (player.parent = A2) {
+        deathByRook
+      }
+      else if (player.parent = A3) {
+        deathByRook
+      }
+      else if (player.parent = A4) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = D5) {
+      if (player.parent = B5) {
+        deathByRook
+      }
+      else if (player.parent = C5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = H6) {
+      if (player.parent = E6) {
+        deathByRook
+      }
+      else if (player.parent = F6) {
+        deathByRook
+      }
+      else if (player.parent = G6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = C6) {
+      if (player.parent = E6) {
+        deathByRook
+      }
+      else if (player.parent = F6) {
+        deathByRook
+      }
+      else if (player.parent = G6) {
+        deathByRook
+      }
+      else if (player.parent = D6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = C2) {
+      if (player.parent = C5) {
+        deathByRook
+      }
+      else if (player.parent = C4) {
+        deathByRook
+      }
+      else if (player.parent = C3) {
+        deathByRook
+      }
+      else if (player.parent = C2) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = G2) {
+      if (player.parent = D2) {
+        deathByRook
+      }
+      else if (player.parent = E6) {
+        deathByRook
+      }
+      else if (player.parent = F6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = G5) {
+      if (player.parent = G3) {
+        deathByRook
+      }
+      else if (player.parent = G4) {
+        deathByRook
+      }
+      else if (player.parent = G5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = F8) {
+      if (player.parent = F6) {
+        deathByRook
+      }
+      else if (player.parent = F7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = G6) {
+      if (player.parent = G7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = H1) {
+      if (player.parent = H5) {
+        deathByRook
+      }
+      else if (player.parent = H4) {
+        deathByRook
+      }
+      else if (player.parent = H3) {
+        deathByRook
+      }
+      else if (player.parent = H2) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = A1) {
+      if (player.parent = G1) {
+        deathByRook
+      }
+      else if (player.parent = F1) {
+        deathByRook
+      }
+      else if (player.parent = E1) {
+        deathByRook
+      }
+      else if (player.parent = D1) {
+        deathByRook
+      }
+      else if (player.parent = C1) {
+        deathByRook
+      }
+      else if (player.parent = B1) {
+        deathByRook
       }
     }
   </function>
