@@ -2732,7 +2732,6 @@
     <usedefaultprefix type="boolean">false</usedefaultprefix>
     <object name="Knight">
       <inherit name="editor_object" />
-      <inherit name="male" />
       <position>STORAGE</position>
     </object>
     <object name="Rook">
@@ -2877,6 +2876,60 @@
     <object name="Sword">
       <inherit name="editor_object" />
       <look>A SWORD!!!!!</look>
+      <take />
+      <takemsg>Try not to kill yourself with it</takemsg>
+      <dropmsg>Probably for the best.</dropmsg>
+      <feature_usegive />
+      <givesingle type="boolean">false</givesingle>
+      <selfuseon type="scriptdictionary">
+        <item key="door">
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        </item>
+        <item key="Knight">
+          msg ("The black glove effortlessly snatches the sword away from you as you swing, and then vanishes.")
+          MoveObject (monster, STORAGE)
+          UnlockExit (B2north)
+          UnlockExit (B3south)
+          UnlockExit (B5east)
+          UnlockExit (C5west)
+          UnlockExit (C5south)
+          UnlockExit (C4north)
+          MoveObject (Knight, C5)
+        </item>
+      </selfuseon>
+      <give type="scriptdictionary">
+        <item key="Knight">
+          msg ("The black glove takes the handle of the sword, and then vanishes. You hear the sound of rending metal in the distance.")
+          MoveObject (monster, STORAGE)
+          UnlockExit (B2north)
+          UnlockExit (B3south)
+          UnlockExit (B5east)
+          UnlockExit (C5west)
+          UnlockExit (C5south)
+          UnlockExit (C4north)
+          MoveObject (Knight, C5)
+        </item>
+      </give>
+    </object>
+    <object name="door">
+      <inherit name="editor_object" />
+      <look>A simple wooden door, firmly bolted shut.</look>
+    </object>
+    <object name="monster">
+      <inherit name="editor_object" />
+      <look>A floating suit of armor. A friend once told you that they were pretty dangerous, though you don't believe him.</look>
+    </object>
+    <object name="rug">
+      <inherit name="editor_object" />
+      <look>A simple rug.</look>
+      <move type="script">
+        msg ("With some effort, you move the rug aside reavealing a trap door. ")
+        create exit ("down", C3, C8)
+        create exit ("up", C8, C3)
+      </move>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -3219,6 +3272,17 @@
       moveBishopInPreQueen
     </script>
   </turnscript>
+  <verb>
+    <property>attack</property>
+    <pattern>attack</pattern>
+    <defaultexpression>"You can't attack " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <pattern>move</pattern>
+    <property>move</property>
+    <defaulttext>"You can't move " + object.article + "."</defaulttext>
+    <defaultexpression>"You can't move " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -5077,7 +5141,6 @@
     LockExit (E4west)
     LockExit (E4southwest)
     LockExit (E3northwest)
-    LockExit (E3west)
     LockExit (E3southwest)
     LockExit (E2northwest)
     LockExit (D2northeast)
@@ -5096,7 +5159,6 @@
     LockExit (D3northwest)
     LockExit (D3north)
     LockExit (D3northeast)
-    LockExit (D3east)
     LockExit (D3southeast)
     LockExit (D3south)
     LockExit (D3southwest)
@@ -5108,6 +5170,17 @@
         }
       }
     }
+    MoveObject (door, C3)
+    MoveObject (monster, C5)
+    MoveObject (rug, C3)
+    LockExit (C5south)
+    LockExit (C4north)
+    LockExit (B2north)
+    LockExit (B3south)
+    LockExit (C5west)
+    LockExit (B5west)
+    create exit ("down", A3, C6)
+    create exit ("up", C6, A3)
   </function>
   <function name="setupPreKnight">
     msg ("TODO enemies and their paths")
