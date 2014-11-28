@@ -2966,6 +2966,7 @@
     <script>
       moveRookInPreBishop
       moveKnightInPreBishop
+      preBishopRookKillZone
     </script>
   </turnscript>
   <turnscript name="PreKnightOnTurn">
@@ -6136,4 +6137,90 @@
       deathByBishop
     }
   ]]></function>
+  <function name="preBishopRookKillZone">
+    if (Rook.parent = E5) {
+      if (player.parent = G5) {
+        deathByRook
+      }
+      if (player.parent = F5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = B5) {
+      if (player.parent = D5) {
+        deathByRook
+      }
+      if (player.parent = C5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = B7) {
+      if (player.parent = B6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = E7) {
+      if (player.parent = C7) {
+        deathByRook
+      }
+      if (player.parent = D7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = G7) {
+      if (player.parent = F7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = F4) {
+      if (player.parent = F5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = H7) {
+      if (player.parent = H5) {
+        deathByRook
+      }
+      if (player.parent = H6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = E7) {
+      if (player.parent = G7) {
+        deathByRook
+      }
+      if (player.parent = F7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = B7) {
+      if (player.parent = D7) {
+        deathByRook
+      }
+      if (player.parent = C7) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = B5) {
+      if (player.parent = B6) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = E5) {
+      if (player.parent = C5) {
+        deathByRook
+      }
+      if (player.parent = D5) {
+        deathByRook
+      }
+    }
+    if (Rook.parent = H5) {
+      if (player.parent = F5) {
+        deathByRook
+      }
+      if (player.parent = G5) {
+        deathByRook
+      }
+    }
+  </function>
 </asl>
