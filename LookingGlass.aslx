@@ -3017,10 +3017,10 @@
   </command>
   <turnscript name="PreBishopOnTurn">
     <script>
-      moveRookInPreBishop
-      preBishopKnightKillZone
       preBishopRookKillZone
       preBishopKnightKillZone
+      moveRookInPreBishop
+      moveKnightInPreBishop
     </script>
   </turnscript>
   <turnscript name="PreKnightOnTurn">
@@ -3277,12 +3277,6 @@
     <property>attack</property>
     <pattern>attack</pattern>
     <defaultexpression>"You can't attack " + object.article + "."</defaultexpression>
-  </verb>
-  <verb>
-    <pattern>move</pattern>
-    <property>move</property>
-    <defaulttext>"You can't move " + object.article + "."</defaulttext>
-    <defaultexpression>"You can't move " + object.article + "."</defaultexpression>
   </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
@@ -5822,138 +5816,142 @@
     }
   ]]></function>
   <function name="moveRookInPreBishop"><![CDATA[
-    if (Rook.parent = H5) {
-      MoveObject (Rook, E5)
-      H5.inRoom = " "
-    }
-    else if (Rook.parent = E5) {
-      MoveObject (Rook, B5)
-      E5.inRoom = " "
-    }
-    else if (Rook.parent = B5) {
-      MoveObject (Rook, B7)
-      B5.inRoom = " "
-    }
-    else if (Rook.parent = B7) {
-      MoveObject (Rook, E7)
-      B7.inRoom = " "
-    }
-    else if (Rook.parent = E7) {
-      MoveObject (Rook, G7)
-      E7.inRoom = " "
-    }
-    else if (Rook.parent = G7) {
-      MoveObject (Rook, G6)
-      G7.inRoom = " "
-    }
-    else if (Rook.parent = G6) {
-      MoveObject (Rook, F6)
-      G6.inRoom = " "
-    }
-    else if (Rook.parent = F6) {
-      MoveObject (Rook, F4)
-      F6.inRoom = " "
-    }
-    else if (Rook.parent = F4) {
-      MoveObject (Rook, H4)
-      F4.inRoom = " "
-    }
-    else if (Rook.parent = H4) {
-      MoveObject (Rook, H7)
-      H4.inRoom = " "
-    }
-    else if (Rook.parent = H7) {
-      MoveObject (Rook, E7)
-      H7.inRoom = " "
-    }
-    else if (Rook.parent = E7) {
-      MoveObject (Rook, B7)
-      E7.inRoom = " "
-    }
-    else if (Rook.parent = B7) {
-      MoveObject (Rook, B5)
-      B7.inRoom = " "
-    }
-    else if (Rook.parent = B5) {
-      MoveObject (Rook, E5)
-      B5.inRoom = " "
-    }
-    else if (Rook.parent = E5) {
-      MoveObject (Rook, H5)
-      E5.inRoom = " "
-    }
-    else if (Rook.parent = H5) {
-      MoveObject (Rook, H2)
-      H5.inRoom = " "
+    if (player.playerDeath = "null") {
+      if (Rook.parent = H5) {
+        MoveObject (Rook, E5)
+        H5.inRoom = " "
+      }
+      else if (Rook.parent = E5) {
+        MoveObject (Rook, B5)
+        E5.inRoom = " "
+      }
+      else if (Rook.parent = B5) {
+        MoveObject (Rook, B7)
+        B5.inRoom = " "
+      }
+      else if (Rook.parent = B7) {
+        MoveObject (Rook, E7)
+        B7.inRoom = " "
+      }
+      else if (Rook.parent = E7) {
+        MoveObject (Rook, G7)
+        E7.inRoom = " "
+      }
+      else if (Rook.parent = G7) {
+        MoveObject (Rook, G6)
+        G7.inRoom = " "
+      }
+      else if (Rook.parent = G6) {
+        MoveObject (Rook, F6)
+        G6.inRoom = " "
+      }
+      else if (Rook.parent = F6) {
+        MoveObject (Rook, F4)
+        F6.inRoom = " "
+      }
+      else if (Rook.parent = F4) {
+        MoveObject (Rook, H4)
+        F4.inRoom = " "
+      }
+      else if (Rook.parent = H4) {
+        MoveObject (Rook, H7)
+        H4.inRoom = " "
+      }
+      else if (Rook.parent = H7) {
+        MoveObject (Rook, E7)
+        H7.inRoom = " "
+      }
+      else if (Rook.parent = E7) {
+        MoveObject (Rook, B7)
+        E7.inRoom = " "
+      }
+      else if (Rook.parent = B7) {
+        MoveObject (Rook, B5)
+        B7.inRoom = " "
+      }
+      else if (Rook.parent = B5) {
+        MoveObject (Rook, E5)
+        B5.inRoom = " "
+      }
+      else if (Rook.parent = E5) {
+        MoveObject (Rook, H5)
+        E5.inRoom = " "
+      }
+      else if (Rook.parent = H5) {
+        MoveObject (Rook, H2)
+        H5.inRoom = " "
+      }
     }
     if ((player.parent = Rook.parent) and (player.parent <> STORAGE)) {
       deathByRook
     }
   ]]></function>
   <function name="moveKnightInPreBishop"><![CDATA[
-    if (Knight.parent = H4) {
-      MoveObject (Knight, G2)
-      H4.inRoom = " "
-    }
-    else if (Knight.parent = G2) {
-      MoveObject (Knight, E1)
-      G2.inRoom = " "
-    }
-    else if (Knight.parent = E1) {
-      MoveObject (Knight, D3)
-      E1.inRoom = " "
-    }
-    else if (Knight.parent = D3) {
-      MoveObject (Knight, B4)
-      D3.inRoom = " "
-    }
-    else if (Knight.parent = B4) {
-      MoveObject (Knight, D4)
-      B4.inRoom = " "
-    }
-    else if (Knight.parent = D4) {
-      MoveObject (Knight, B5)
-      D4.inRoom = " "
-    }
-    else if (Knight.parent = B5) {
-      MoveObject (Knight, D6)
-      B5.inRoom = " "
-    }
-    else if (Knight.parent = D6) {
-      MoveObject (Knight, E8)
-      D6.inRoom = " "
-    }
-    else if (Knight.parent = E8) {
-      MoveObject (Knight, C7)
-      E8.inRoom = " "
-    }
-    else if (Knight.parent = C7) {
-      MoveObject (Knight, B5)
-      C7.inRoom = " "
-    }
-    else if (Knight.parent = B5) {
-      MoveObject (Knight, D6)
-      B5.inRoom = " "
-    }
-    else if (Knight.parent = D6) {
-      MoveObject (Knight, E8)
-      D6.inRoom = " "
-    }
-    else if (Knight.parent = E8) {
-      MoveObject (Knight, C7)
-      E8.inRoom = " "
-    }
-    else if (Knight.parent = C7) {
-      MoveObject (Knight, B5)
-      C7.inRoom = " "
-    }
-    else if (Knight.parent = B5) {
-      MoveObject (Knight, D6)
-      B5.inRoom = " "
-    }
-    else if (Knight.parent = D6) {
-      MoveObject (Knight, H4)
-      D6.inRoom = " "
+    if (player.playerDeath = "null") {
+      if (Knight.parent = H4) {
+        MoveObject (Knight, G2)
+        H4.inRoom = " "
+      }
+      else if (Knight.parent = G2) {
+        MoveObject (Knight, E1)
+        G2.inRoom = " "
+      }
+      else if (Knight.parent = E1) {
+        MoveObject (Knight, D3)
+        E1.inRoom = " "
+      }
+      else if (Knight.parent = D3) {
+        MoveObject (Knight, B4)
+        D3.inRoom = " "
+      }
+      else if (Knight.parent = B4) {
+        MoveObject (Knight, D4)
+        B4.inRoom = " "
+      }
+      else if (Knight.parent = D4) {
+        MoveObject (Knight, B5)
+        D4.inRoom = " "
+      }
+      else if (Knight.parent = B5) {
+        MoveObject (Knight, D6)
+        B5.inRoom = " "
+      }
+      else if (Knight.parent = D6) {
+        MoveObject (Knight, E8)
+        D6.inRoom = " "
+      }
+      else if (Knight.parent = E8) {
+        MoveObject (Knight, C7)
+        E8.inRoom = " "
+      }
+      else if (Knight.parent = C7) {
+        MoveObject (Knight, B5)
+        C7.inRoom = " "
+      }
+      else if (Knight.parent = B5) {
+        MoveObject (Knight, D6)
+        B5.inRoom = " "
+      }
+      else if (Knight.parent = D6) {
+        MoveObject (Knight, E8)
+        D6.inRoom = " "
+      }
+      else if (Knight.parent = E8) {
+        MoveObject (Knight, C7)
+        E8.inRoom = " "
+      }
+      else if (Knight.parent = C7) {
+        MoveObject (Knight, B5)
+        C7.inRoom = " "
+      }
+      else if (Knight.parent = B5) {
+        MoveObject (Knight, D6)
+        B5.inRoom = " "
+      }
+      else if (Knight.parent = D6) {
+        MoveObject (Knight, H4)
+        D6.inRoom = " "
+      }
     }
     if ((player.parent = Knight.parent) and (player.parent <> STORAGE)) {
       deathByKnight
@@ -6412,7 +6410,6 @@
         deathByKnight
       }
     }
-    // I GOT HERE
     if (Knight.parent = B5) {
       if (player.parent = E8) {
         deathByKnight
