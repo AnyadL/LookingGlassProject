@@ -6298,127 +6298,122 @@
     }
   </function>
   <function name="preBishopKnightKillZone">
-    if (Knight.parent = D3) {
-      if (player.parent = E3) {
+    if (Knight.parent = H4) {
+      if (player.parent = G6) {
         deathByKnight
       }
+      else if (player.parent = F5) {
+        deathByKnight
+      }
+      else if (player.parent = F3) {
+        deathByKnight
+      }
+      else if (player.parent = G2) {
+        deathByKnight
+      }
+    }
+    if (Knight.parent = G2) {
       if (player.parent = H4) {
         deathByKnight
       }
-      if (player.parent = E1) {
+      else if (player.parent = F4) {
         deathByKnight
       }
-      if (player.parent = F4) {
+      else if (player.parent = E3) {
+        deathByKnight
+      }
+      else if (player.parent = E1) {
+        deathByKnight
+      }
+    }
+    if (Knight.parent = E1) {
+      if (player.parent = G2) {
+        deathByKnight
+      }
+      else if (player.parent = F3) {
+        deathByKnight
+      }
+      else if (player.parent = D3) {
+        deathByKnight
+      }
+      else if (player.parent = C2) {
+        deathByKnight
+      }
+    }
+    if (Knight.parent = D3) {
+      if (player.parent = F2) {
+        deathByKnight
+      }
+      else if (player.parent = E1) {
+        deathByKnight
+      }
+      else if (player.parent = C1) {
+        deathByKnight
+      }
+      else if (player.parent = B2) {
+        deathByKnight
+      }
+      else if (player.parent = B4) {
+        deathByKnight
+      }
+      else if (player.parent = C5) {
+        deathByKnight
+      }
+      else if (player.parent = E5) {
+        deathByKnight
+      }
+      else if (player.parent = F4) {
         deathByKnight
       }
     }
     if (Knight.parent = B4) {
-      if (player.parent = F3) {
+      if (player.parent = A2) {
         deathByKnight
       }
-      if (player.parent = G2) {
+      else if (player.parent = C2) {
         deathByKnight
       }
-      if (player.parent = D3) {
+      else if (player.parent = D3) {
         deathByKnight
       }
-      if (player.parent = C2) {
+      else if (player.parent = D5) {
+        deathByKnight
+      }
+      else if (player.parent = C6) {
+        deathByKnight
+      }
+      else if (player.parent = A6) {
         deathByKnight
       }
     }
     if (Knight.parent = D4) {
-      if (player.parent = F4) {
+      if (player.parent = C2) {
         deathByKnight
       }
-      if (player.parent = B4) {
+      else if (player.parent = E2) {
         deathByKnight
       }
-      if (player.parent = E5) {
+      else if (player.parent = F3) {
         deathByKnight
       }
-      if (player.parent = C5) {
+      else if (player.parent = F5) {
         deathByKnight
       }
-      if (player.parent = C1) {
+      else if (player.parent = C6) {
         deathByKnight
       }
-      if (player.parent = E1) {
+      else if (player.parent = E6) {
         deathByKnight
       }
-      if (player.parent = F2) {
+      else if (player.parent = B5) {
         deathByKnight
       }
-      if (player.parent = B2) {
+      else if (player.parent = B3) {
         deathByKnight
       }
     }
+    // I GOT HERE
     if (Knight.parent = B5) {
-      if (player.parent = C6) {
-        deathByKnight
-      }
-      if (player.parent = D5) {
-        deathByKnight
-      }
-      if (player.parent = A6) {
-        deathByKnight
-      }
-      if (player.parent = A2) {
-        deathByKnight
-      }
-      if (player.parent = C2) {
-        deathByKnight
-      }
-      if (player.parent = D3) {
-        deathByKnight
-      }
-    }
-    if (Knight.parent = D6) {
-      if (player.parent = E6) {
-        deathByKnight
-      }
-      if (player.parent = E2) {
-        deathByKnight
-      }
-      if (player.parent = C2) {
-        deathByKnight
-      }
-      if (player.parent = F5) {
-        deathByKnight
-      }
-      if (player.parent = F3) {
-        deathByKnight
-      }
-      if (player.parent = B3) {
-        deathByKnight
-      }
-      if (player.parent = B5) {
-        deathByKnight
-      }
-      if (player.parent = C6) {
-        deathByKnight
-      }
-    }
-    if (Knight.parent = E8) {
-      if (player.parent = D6) {
-        deathByKnight
-      }
-      if (player.parent = A7) {
-        deathByKnight
-      }
-      if (player.parent = C7) {
-        deathByKnight
-      }
-      if (player.parent = D4) {
-        deathByKnight
-      }
-      if (player.parent = A3) {
-        deathByKnight
-      }
-      if (player.parent = C3) {
-        deathByKnight
-      }
-    }
-    if (Knight.parent = C7) {
       if (player.parent = E8) {
         deathByKnight
       }
@@ -6444,7 +6439,7 @@
         deathByKnight
       }
     }
-    if (Knight.parent = B5) {
+    if (Knight.parent = D6) {
       if (player.parent = G7) {
         deathByKnight
       }
@@ -6479,6 +6474,46 @@
       }
     }
     if (Knight.parent = C7) {
+      if (player.parent = C7) {
+        deathByKnight
+      }
+      if (player.parent = A7) {
+        deathByKnight
+      }
+      if (player.parent = A3) {
+        deathByKnight
+      }
+      if (player.parent = C3) {
+        deathByKnight
+      }
+      if (player.parent = D6) {
+        deathByKnight
+      }
+      if (player.parent = D4) {
+        deathByKnight
+      }
+    }
+    if (Knight.parent = B5) {
+      if (player.parent = C7) {
+        deathByKnight
+      }
+      if (player.parent = A7) {
+        deathByKnight
+      }
+      if (player.parent = A3) {
+        deathByKnight
+      }
+      if (player.parent = C3) {
+        deathByKnight
+      }
+      if (player.parent = D6) {
+        deathByKnight
+      }
+      if (player.parent = D4) {
+        deathByKnight
+      }
+    }
+    if (Knight.parent = D6) {
       if (player.parent = C7) {
         deathByKnight
       }
