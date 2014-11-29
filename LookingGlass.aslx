@@ -3329,7 +3329,7 @@
         deathByBishop
       }
       if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
-        msg ("You see a lever in the wall")
+        msg ("A few feet in front of you there is a lever tilted away from you about three feet in height. It seems to be rusted over somewhat, but you think that you could probably move it if you gave it a forceful pull.")
       }
       if (Bishop.parent = A1) {
         MoveObject (Bishop, B2)
@@ -4449,6 +4449,8 @@
       }
     }
     EnableTurnScript (BishopOnTurn)
+    msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the far distance. It is slowly crossing the ground, as though searching, as though it were a spotlight. From what little you can see, you can see the area is littered with chains piled haphazardly. Seemingly at random, there seem to be jail bars jutting out of the ground, serving as nothing more than an inconvenient obstacle. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. As you look up, you see above you what appear to be several burned out spotlights, and you notice that as you move, they follow you, as if watching.")
+    msg ("You see a golden crown and immediately pick it up and put it on. It feels heavy on your head.")
   </function>
   <function name="takedownMap"><![CDATA[
     foreach (room, AllObjects()) {
@@ -5391,7 +5393,12 @@
     Bishop.parent.inRoom = " "
     MoveObject (Bishop, player.parent)
     MoveObject (player, STORAGE)
-    player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?"
+    if (game.level = "Bishop") {
+      player.playerDeath = "Before you can move, the intense light moves upon you, and you feel searing pain over every inch of skin, as though you had been suddenly thrown into a furnace. You have just enough time to emit an anguished cry before you disintegrate into nothing."
+    }
+    else {
+      player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?"
+    }
   </function>
   <function name="deathByRook">
     Rook.parent.inRoom = " "
@@ -5654,9 +5661,7 @@
       MoveObject (Lever, C8)
       MoveObject (Bishop, A5)
       MoveObject (Bishop2, D5)
-      msg ("You have pulled the lever.")
-      msg ("The wall in front of you disappeared!")
-      msg ("Another lever appears NorthEast of where you are now.")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. The door in front of you slowly opens with a loud creak.Two intense beams of light appear now in the room ahead, Which you eye warily.")
       UnlockExit (A3northeast)
       UnlockExit (B3northwest)
       UnlockExit (B3north)
@@ -5669,8 +5674,7 @@
       MoveObject (Lever, H4)
       MoveObject (Bishop2, H5)
       MoveObject (Bishop, E1)
-      msg ("You pulled the lever. You hear the sounds of another lever appearing but you can't see it from here.")
-      msg ("and the wall to the SouthEast disappeared!")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. You hear a loud creak, like another door opening from somewhere in the room.")
       UnlockExit (D5southeast)
       UnlockExit (E5southwest)
       UnlockExit (E5south)
@@ -5683,8 +5687,9 @@
       MoveObject (Lever, STORAGE)
       MoveObject (Bishop, STORAGE)
       MoveObject (Bishop2, STORAGE)
-      msg ("The wall to the North disappeared!")
-      msg ("You see a mirror to the North and it's illuminate slightly.")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted")
+      msg ("The beam of light begins quiver slowly, and then begins to rapidly expand and dissipate, until the enter room is bathed in a moderate, constant, sourceless light. You hear a voice. “So it is done. You have my thanks, little one, but do not expect mercy if I find you. So it has been, so it must be.” You glimpse a tall shape at some distance slipping away further into the complex.")
+      msg ("In the modest light, you can see the mirror directly in front of you. You see your distant image begin to dissolve, and you know that you can escape through it now.")
       UnlockExit (H5north)
       DisableTurnScript (BishopOnTurn)
     }
