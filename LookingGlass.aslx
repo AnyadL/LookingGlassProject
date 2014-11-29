@@ -6162,7 +6162,7 @@
     }
     else if (Knight.parent = A2) {
       MoveObject (Knight, D3)
-      A1.inRoom = " "
+      A2.inRoom = " "
     }
     else if (Knight.parent = D3) {
       MoveObject (Knight, D5)
