@@ -55,6 +55,10 @@
     <roomenter type="script">
       // descWalls
     </roomenter>
+    <object name="Counter">
+      <inherit name="editor_object" />
+      <count type="int">0</count>
+    </object>
   </game>
   <object name="A1">
     <inherit name="editor_room" />
@@ -2974,7 +2978,16 @@
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
-  <turnscript name="RookOnTurn" />
+  <turnscript name="RookOnTurn">
+    <script>
+      Counter.count = Counter.count+1
+      if (Counter.count = 10) {
+        Counter.count = 0
+      }
+      msg (Counter.count)
+      RookRookKillZone
+    </script>
+  </turnscript>
   <verb>
     <property>enter</property>
     <pattern>enter</pattern>
@@ -4645,6 +4658,7 @@
     MoveObject (Goal, A2)
     MoveObject (Key, H1)
     MoveObject (stamp, B2)
+    MoveObject (Rook, A1)
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -4905,6 +4919,7 @@
           // }
         // }
       // }
+    EnableTurnScript (RookOnTurn)
   </function>
   <function name="setupPreRook">
     MoveObject (player, E1)
@@ -6821,5 +6836,137 @@
     MakeExitVisible (B6southeast)
     MakeExitVisible (B6southwest)
     MoveObject (rug, STORAGE)
+  </function>
+  <function name="RookRookKillZone">
+    if (Counter.count = 0) {
+      if (player.parent = C1) {
+        deathByRook
+      }
+      else if (player.parent = C2) {
+        deathByRook
+      }
+      else if (player.parent = C3) {
+        deathByRook
+      }
+      else if (player.parent = C4) {
+        deathByRook
+      }
+      else if (player.parent = C5) {
+        deathByRook
+      }
+      else if (player.parent = C6) {
+        deathByRook
+      }
+      else if (player.parent = C7) {
+        deathByRook
+      }
+      else if (player.parent = C8) {
+        deathByRook
+      }
+    }
+    if (Counter.count = 8) {
+      if (player.parent = G1) {
+        deathByRook
+      }
+      else if (player.parent = G2) {
+        deathByRook
+      }
+      else if (player.parent = G3) {
+        deathByRook
+      }
+      else if (player.parent = G4) {
+        deathByRook
+      }
+      else if (player.parent = G5) {
+        deathByRook
+      }
+      else if (player.parent = G6) {
+        deathByRook
+      }
+      else if (player.parent = G7) {
+        deathByRook
+      }
+      else if (player.parent = G8) {
+        deathByRook
+      }
+    }
+    if (Counter.count = 3) {
+      if (player.parent = A5) {
+        deathByRook
+      }
+      else if (player.parent = B5) {
+        deathByRook
+      }
+      else if (player.parent = C5) {
+        deathByRook
+      }
+      else if (player.parent = D5) {
+        deathByRook
+      }
+      else if (player.parent = E5) {
+        deathByRook
+      }
+      else if (player.parent = F5) {
+        deathByRook
+      }
+      else if (player.parent = G5) {
+        deathByRook
+      }
+      else if (player.parent = H5) {
+        deathByRook
+      }
+    }
+    if (Counter.count = 4) {
+      if (player.parent = A4) {
+        deathByRook
+      }
+      else if (player.parent = B4) {
+        deathByRook
+      }
+      else if (player.parent = C4) {
+        deathByRook
+      }
+      else if (player.parent = D4) {
+        deathByRook
+      }
+      else if (player.parent = E4) {
+        deathByRook
+      }
+      else if (player.parent = F4) {
+        deathByRook
+      }
+      else if (player.parent = G4) {
+        deathByRook
+      }
+      else if (player.parent = H4) {
+        deathByRook
+      }
+    }
+    if (Counter.count = 9) {
+      if (player.parent = A7) {
+        deathByRook
+      }
+      else if (player.parent = B7) {
+        deathByRook
+      }
+      else if (player.parent = C7) {
+        deathByRook
+      }
+      else if (player.parent = D7) {
+        deathByRook
+      }
+      else if (player.parent = E7) {
+        deathByRook
+      }
+      else if (player.parent = F7) {
+        deathByRook
+      }
+      else if (player.parent = G7) {
+        deathByRook
+      }
+      else if (player.parent = H7) {
+        deathByRook
+      }
+    }
   </function>
 </asl>
