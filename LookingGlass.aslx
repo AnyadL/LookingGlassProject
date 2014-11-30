@@ -2972,9 +2972,6 @@
         </item>
       </selfuseon>
     </object>
-    <object name="Throne">
-      <inherit name="editor_object" />
-    </object>
   </object>
   <turnscript name="QueenOnTurn" />
   <turnscript name="RookOnTurn" />
@@ -5259,17 +5256,6 @@
           // }
         // }
       // }
-<<<<<<< HEAD
-=======
-    msg ("You stumble through the mirror, this time, able to stay on your feet. ")
-    msg ("You look around and see a vast forest, leaves swaying gracefully in the wind.")
-    msg ("Large trees crowd around a series of well-worn paths and glades. Bushes and flowers cluster together at their base. A green and fragmented sunlight can be seen through the veiny trees. ")
-    msg ("")
-    msg ("Only something seems odd… There are no sounds in this forest. No animals, nothing. ")
-    msg ("Everything seems to stand in a resounding silence.")
-    msg ("")
-    msg ("You see an elegant necklace made of some sort of white gold at your feet. Immediately, you clasp it around your neck. ")
->>>>>>> 144bb99ab85cb7ed24eb97500c1e109cc0a8122b
     MoveObject (door, C3)
     MoveObject (monster, C5)
     MoveObject (rug, C3)
