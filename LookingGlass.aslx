@@ -6969,4 +6969,50 @@
       }
     }
   </function>
+  <function name="preQueenBishopKillZone">
+    if (Bishop.parent = H8) {
+      if (player.parent = G7) {
+        deathByBishop
+      }
+      else if (player.parent =F6 ) {
+        deathByBishop
+      }
+    }
+    else if (Bishop.parent = E5) {
+      if (player.parent = D4) {
+        deathByBishop
+      }
+      else if (player.parent =F4 ) {
+        deathByBishop
+      }
+    }
+    else if (Bishop.parent = D4) {
+      if (player.parent = E5) {
+        deathByBishop
+      }
+      else if (player.parent =E3 ) {
+        deathByBishop
+      }
+      else if (player.parent = F2) {
+        deathByBishop
+      }
+    }
+    else if (Bishop.parent = E3) {
+      if (player.parent = F4) {
+        deathByBishop
+      }
+      else if (player.parent =F2 ) {
+        deathByBishop
+      }
+      else if (player.parent = D2) {
+        deathByBishop
+      }
+      else if (player.parent =D4 ) {
+        deathByBishop
+      }
+      else if (player.parent = C1) {
+      }
+      deathByBishop
+    }
+  </function>
 </asl>
