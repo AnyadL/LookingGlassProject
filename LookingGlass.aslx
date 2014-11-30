@@ -2783,6 +2783,7 @@
       <position>STORAGE</position>
       <first type="int">0</first>
       <takemsg> </takemsg>
+      <alias>Chessboard</alias>
       <look type="script">
       </look>
       <ontake type="script">
@@ -2792,6 +2793,8 @@
           msg ("Slowly, small squares of black and white spread across its surface.")
           msg ("And several little designs appear upon it.")
           msg ("It looks to be: two white pawns, and one black king…")
+          msg ("There’s also a piece that seems different from a conventional set of chess pieces. ")
+          msg ("It seems to be a flat diamond coin of some sort. ")
           msg ("")
         }
       </ontake>
@@ -2830,15 +2833,41 @@
     <object name="Goal">
       <inherit name="editor_object" />
       <alias>Mirror, Oval Glass, Looking Glass, OvalGlass, LookingGlass</alias>
-      <look type="script">
+      <look type="script"><![CDATA[
         if (game.level = "RabbitHole") {
           msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
           msg ("In fact… It seems to contain a world all its own… ")
         }
-        else {
-          msg ("The mirror seems to contain a world all its own.")
+        else if (game.level = "Pawn") {
+          msg ("You see a large mirror in the corner, is it possible this one’s the same as the other? ")
         }
-      </look>
+        else if (game.level = "PreRook") {
+          msg ("You see another strange mirror. Like the other one, the reflection contains something else. Could this one be the same as the last?")
+        }
+        else if (game.level = "Rook") {
+          msg ("You see yet another mirror.")
+        }
+        else if (game.level = "PreKnight") {
+          msg ("Yet another strange mirror hovers impossibly just in front of you. Once again, the reflection contains something that’s not there. ")
+        }
+        else if (game.level = "Knight") {
+          msg ("And sure enough - another mirror. ")
+        }
+        else if (game.level = "PreBishop") {
+          msg ("Another mirror? Really? Just how many more of these are there? ")
+        }
+        else if (game.level = "Bishop") {
+          if (Lever.parent <> STORAGE) {
+            msg ("There’s the mirror. Yet again.")
+          }
+          else {
+            msg ("There’s the mirror. Yet again.")
+          }
+        }
+        else if (game.level = "PreQueen") {
+          msg ("This mirror’s larger than the other ones. ")
+        }
+      ]]></look>
       <enter type="script">
         mirrorEntered
       </enter>
@@ -2924,12 +2953,24 @@
     </object>
     <object name="rug">
       <inherit name="editor_object" />
-      <look>A simple rug.</look>
-      <move type="script">
-        msg ("With some effort, you move the rug aside reavealing a trap door. ")
-        create exit ("down", C3, C8)
-        create exit ("up", C8, C3)
-      </move>
+      <look>A simple rug. Part of the rug is turned over, revealing an open trap door </look>
+    </object>
+    <object name="Throne">
+      <inherit name="editor_object" />
+    </object>
+    <object name="stamp">
+      <inherit name="editor_object" />
+      <take type="boolean">false</take>
+      <takemsg>The stamp is held to the desk by a metal chain. You cannot take it.</takemsg>
+      <feature_usegive />
+      <selfuseon type="scriptdictionary">
+        <item key="Key">
+          UnlockExit (B2west)
+          UnlockExit (A2east)
+          msg ("You stamp the passport. You notice the (door?) open ahead of you. The passport however crumbles to dust. (PLACEHOLDER TEXT) ")
+          MoveObject (Key, STORAGE)
+        </item>
+      </selfuseon>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -3029,17 +3070,24 @@
       preKnightRookKillZone
     </script>
   </turnscript>
+  <turnscript name="displayASCII">
+    <enabled />
+    <script>
+      showASCIImap
+    </script>
+  </turnscript>
   <turnscript name="checkOnPosition">
     <enabled />
     <script><![CDATA[
       if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player) and (player.parent <> STORAGE)) {
-        msg ("You see a chessboard")
+        msg ("A flat square of glass lies on the ground…. it appears to be a chessboard")
       }
       if ((Contains (player.parent, Key)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
-        msg ("You see a key")
+        msg ("You see a passport")
       }
       if ((Contains (player.parent, Sword)) and (Sword.parent <> player) and (player.parent <> STORAGE)) {
-        msg ("You see a sword")
+        msg ("A large, dark, sword lies in the path in front of you. ")
+        msg ("A series of silver medals are tied around its hilt. ")
       }
       if ((Contains (player.parent,Goal)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
         if (game.level = "RabbitHole") {
@@ -3050,25 +3098,30 @@
           msg ("Like the other one, the reflection contains something else. Could this one be the same as the last?")
         }
         else if (game.level = "PreRook") {
-          msg ("Yet another strange mirror hovers impossibly just in front of you. Once again, the reflection contains something that’s not there. ")
+          msg ("You see another strange mirror. Like the other one, the reflection contains something else. Could this one be the same as the last?")
         }
         else if (game.level = "Rook") {
-          msg ("Another mirror? Really? Just how many more of these are there? ")
+          msg ("You see yet another mirror.  ")
         }
         else if (game.level = "PreKnight") {
-          msg ("You see a mirror")
+          msg ("Yet another strange mirror hovers impossibly just in front of you. Once again, the reflection contains something that’s not there. ")
         }
         else if (game.level = "Knight") {
-          msg ("You see a mirror")
+          msg ("And sure enough - another mirror. ")
         }
         else if (game.level = "PreBishop") {
-          msg ("You see a mirror")
+          msg ("Another mirror? Really? Just how many more of these are there? ")
         }
         else if (game.level = "Bishop") {
-          msg ("You see a mirror")
+          if (Lever.parent <> STORAGE) {
+            msg ("As you look to mirror, you find to your alarm that the telltale sign of its offered escape is gone--you see only your own reflection staring back at you in the dim light. ")
+          }
+          else {
+            msg ("There’s the mirror.")
+          }
         }
         else if (game.level = "PreQueen") {
-          msg ("You see a mirror")
+          msg ("This mirror’s larger than the other ones. ")
         }
       }
       if ((player.parent = F7) and (game.level = "Pawn")) {
@@ -3076,13 +3129,13 @@
       }
       if ((player.parent = B2) and (game.level = "Rook")) {
         if (Got(Key) and (Key.used=0)) {
-          msg ("It looks like this key could be used on the western wall")
+          msg ("It looks like this passport could be used on the western wall")
         }
         else if (Got(Key) and (Key.used=1)) {
           // do nothing
         }
         else if (Key.used = 0) {
-          msg ("It looks like you could open the western wall with a key")
+          msg ("It looks like you could open the western wall with a passport")
         }
       }
       PlPa = player.parent
@@ -3117,18 +3170,22 @@
           }
         }
       }
-      else if (game.level = "Bishop") {
-        if (player.parent = Lever.parent) {
-          msg ("You see a lever")
-        }
+      if ((game.level = "Queen") and (player.parent = Throne.parent) and (player.parent <> STORAGE)) {
+        msg ("You sit on the throne, and relax. ")
+        msg ("Something about this just feels right. ")
+        msg ("Something about this feels like what you were meant for all along. ")
+        msg ("You sit there - you sit there for an immeasurable amount of time. Soon, the onyx crown feels like it’s a part of you, the midnight cloak feels warm instead of heavy. And the black-gold necklace, feels warm against your chest. ")
+        msg ("One day, the brambly walls grow high into the sky once again.")
+        msg ("You slowly rise off the throne, creaking forward, stretching unused muscles. ")
+        msg ("And you take a step forward into the maze. ")
+        msg ("")
+        msg ("")
+        msg ("")
+        msg ("")
+        msg ("")
+        finish
       }
     ]]></script>
-  </turnscript>
-  <turnscript name="displayASCII">
-    <enabled />
-    <script>
-      showASCIImap
-    </script>
   </turnscript>
   <command>
     <pattern>examine #text#</pattern>
@@ -3157,7 +3214,7 @@
         msg (player.playerDeath)
         msg (" ")
         msg (" ")
-        msg ("Restart the level")
+        msg ("Would you like to restart?")
         wait {
           ClearScreen
           if (game.level = "Pawn") {
@@ -3226,7 +3283,6 @@
     <script>
       if ((player.parent = A1) or (player.parent = A2) or (player.parent = A3) or (player.parent = A4) or (player.parent = A5) or (player.parent = A6) or (player.parent = A7) or (player.parent = A8) or (player.parent = H1) or (player.parent = H2) or (player.parent = H3) or (player.parent = H4) or (player.parent = H5) or (player.parent = H6) or (player.parent = H7) or (player.parent = H8) or (player.parent = B8) or (player.parent = C8) or (player.parent = D8) or (player.parent = E8) or (player.parent = F8) or (player.parent = G8) or (player.parent = B1) or (player.parent = C1) or (player.parent = D1) or (player.parent = E1) or (player.parent = F1) or (player.parent = G1)) {
         msg ("You take a step away from the confines of what was previously called ‘a maze.’ ")
-        msg ("You take a quick glance at the chessboard and see the pawn jumping off the map into the either. You then proceed to discard the chessboard. ")
         msg ("The black crown clatters to the floor while you take another uncertain step. ")
         msg ("The onyx golden necklace slides uselessly to the ground as you take another step forward. ")
         msg ("The midnight cloak flutters groundward as you take yet another step upon the grassy field. ")
@@ -3241,15 +3297,21 @@
         msg ("Something should appear.")
         msg ("There can’t just be grass, right?")
         msg ("Surely it must end somewhere…")
+        msg ("")
+        msg ("")
+        msg ("")
+        msg ("")
         finish
       }
     </script>
   </turnscript>
   <turnscript name="describeWalls">
     <enabled />
-    <script>
-      descWalls
-    </script>
+    <script><![CDATA[
+      if (game.level <> "Queen") {
+        descWalls
+      }
+    ]]></script>
   </turnscript>
   <verb>
     <property>smash</property>
@@ -3414,6 +3476,9 @@
     if (HasAttribute(King.parent, "inRoom")) {
       King.parent.inRoom = "♚"
     }
+    if (HasAttribute(monster.parent, "inRoom")) {
+      monster.parent.inRoom = "☠"
+    }
     if (HasAttribute(Key.parent, "inRoom")) {
       Key.parent.inRoom = " ஈ "
     }
@@ -3440,6 +3505,9 @@
     }
     if (HasAttribute(Bishop2.parent, "inRoom")) {
       Bishop2.parent.inRoom = "♝"
+    }
+    if (HasAttribute(Throne.parent, "inRoom")) {
+      Throne.parent.inRoom = "Д"
     }
     if (Chessboard.parent = player) {
       PrintCentered ("________________________")
@@ -4009,7 +4077,6 @@
     player.playerDeath = "You watch, paralyzed with fear, as the statue moves. The thing which had previously been motionless has instead been following you all along. You barely have time to ponder this before you feel the rough stony hands wrap around your eyes and mouth…"
   </function>
   <function name="setupPreBishop">
-    msg ("TODO enemies and their paths")
     MoveObject (player, H1)
     MoveObject (Goal, A8)
     MoveObject (Rook, H5)
@@ -4261,13 +4328,15 @@
     LockExit (H2southwest)
     LockExit (H2south)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
+    msg ("And find yourself back in the familiar maze. ")
+    msg ("You look at your chessboard for a brief moment and realize that yet another new piece has appeared… ")
     EnableTurnScript (PreBishopOnTurn)
   </function>
   <function name="mirrorEntered"><![CDATA[
@@ -4283,8 +4352,7 @@
     }
     else if (game.level = "Pawn") {
       game.level = "PreRook"
-      msg ("You eagerly run towards the mirror with no hesitations this time running straight through the frame.")
-      msg ("The same feeling of disorientation and slight nausea rushes through you as you leave the strange, upside down, world behind you.")
+      msg ("You take  a careful step inside… ")
       msg ("")
       DisableTurnScript (KingOnTurn)
       takedownMap
@@ -4299,40 +4367,48 @@
     }
     else if (game.level = "Rook") {
       game.level = "PreKnight"
-      msg ("You take a confident step inside its unworldly contents. ")
+      msg ("Although you’re still unsure, you take a step into its depths. ")
       msg ("")
       takedownMap
       setupPreKnight
     }
     else if (game.level = "PreKnight") {
       game.level = "Knight"
-      msg ("You take a lazy step inside - you’ve pretty much got the hang of this now. ")
+      msg ("You take a confident step inside its unworldly contents. ")
       msg ("")
       takedownMap
       setupKnight
     }
     else if (game.level = "Knight") {
       game.level = "PreBishop"
+      msg ("You step through it like it’s nothing ")
+      msg ("")
       takedownMap
       setupPreBishop
     }
     else if (game.level = "PreBishop") {
       game.level = "Bishop"
+      msg ("You take a lazy step inside - you’ve pretty much got the hang of this now.")
+      msg ("")
       takedownMap
       setupBishop
     }
     else if (game.level = "Bishop") {
-      if ((Goal.parent = BishopFinish.parent) and (player.parent <> STORAGE)) {
-        msg ("Nothing happens, you can't seem to get in yet. ")
+      if ((Lever.parent <> STORAGE) and (player.parent <> STORAGE)) {
+        msg ("You press your hand against the glass, and find its cool touch to confirm that it is, for now, merely an ordinary mirror. You turn to face the room, knowing that something must be done before it can serve as a portal once again.")
       }
       else {
         game.level = "PreQueen"
+        msg ("You step lazily through it without a second thought")
+        msg ("")
         takedownMap
         setupPreQueen
       }
     }
     else if (game.level = "PreQueen") {
       game.level = "Queen"
+      msg ("You attempt to step through it, but instead it shatters")
+      msg ("")
       takedownMap
       setupQueen
     }
@@ -4429,25 +4505,25 @@
     // special walls
     LockExit (A3northeast)
     LockExit (B3northwest)
-    LockExit (B3north)
+    // LockExit (B3north)
     LockExit (B3northeast)
     LockExit (C3northwest)
     LockExit (D5southeast)
     LockExit (E5southwest)
-    LockExit (E5south)
+    // LockExit (E5south)
     LockExit (E5southeast)
     LockExit (F5southwest)
     LockExit (G5northeast)
     LockExit (H5northwest)
-    LockExit (H5north)
+    // LockExit (H5north)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
     EnableTurnScript (BishopOnTurn)
     msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the far distance. It is slowly crossing the ground, as though searching, as though it were a spotlight. From what little you can see, you can see the area is littered with chains piled haphazardly. Seemingly at random, there seem to be jail bars jutting out of the ground, serving as nothing more than an inconvenient obstacle. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. As you look up, you see above you what appear to be several burned out spotlights, and you notice that as you move, they follow you, as if watching.")
     msg ("You see a golden crown and immediately pick it up and put it on. It feels heavy on your head.")
@@ -4565,10 +4641,10 @@
     MoveObject (Goal, D1)
   </function>
   <function name="setupRook">
-    msg ("TODO enemies and their paths")
     MoveObject (player, A7)
     MoveObject (Goal, A2)
     MoveObject (Key, H1)
+    MoveObject (stamp, B2)
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -4619,7 +4695,7 @@
     LockExit (B7south)
     LockExit (B7southeast)
     LockExit (C7southwest)
-    LockExit (C7south)
+    // LockExit (C7south) no longer needed
     LockExit (C7southeast)
     LockExit (D7southwest)
     LockExit (D6northwest)
@@ -4633,7 +4709,7 @@
     LockExit (D5north)
     LockExit (D5northwest)
     LockExit (C5northeast)
-    LockExit (C5north)
+    // LockExit (C5north)
     LockExit (C5northwest)
     LockExit (B5northeast)
     LockExit (B5north)
@@ -4676,7 +4752,7 @@
     LockExit (B5south)
     LockExit (B5southeast)
     LockExit (C5southwest)
-    LockExit (C5south)
+    // LockExit (C5south)
     LockExit (C5southeast)
     LockExit (D5southwest)
     LockExit (D5south)
@@ -4687,7 +4763,7 @@
     LockExit (D4north)
     LockExit (D4northwest)
     LockExit (C4northeast)
-    LockExit (C4north)
+    // LockExit (C4north)
     LockExit (C4northwest)
     LockExit (B4northeast)
     LockExit (B4north)
@@ -4698,12 +4774,12 @@
     LockExit (F5south)
     LockExit (F5southwest)
     LockExit (G5southeast)
-    LockExit (G5south)
+    // LockExit (G5south)
     LockExit (G5southwest)
     LockExit (H5southwest)
     LockExit (H4northwest)
     LockExit (G4northeast)
-    LockExit (G4north)
+    // LockExit (G4north)
     LockExit (G4northwest)
     LockExit (F4northeast)
     LockExit (F4north)
@@ -4714,7 +4790,7 @@
     LockExit (B4south)
     LockExit (B4southeast)
     LockExit (C4southwest)
-    LockExit (C4south)
+    // LockExit (C4south)
     LockExit (C4southeast)
     LockExit (D4southwest)
     LockExit (D4south)
@@ -4726,12 +4802,12 @@
     LockExit (F4south)
     LockExit (F4southeast)
     LockExit (G4southwest)
-    LockExit (G4south)
+    // LockExit (G4south)
     LockExit (G4southeast)
     LockExit (H4southwest)
     LockExit (H3northwest)
     LockExit (G3northeast)
-    LockExit (G3north)
+    // LockExit (G3north)
     LockExit (G3northwest)
     LockExit (F3northeast)
     LockExit (F3north)
@@ -4782,7 +4858,7 @@
     LockExit (D2south)
     LockExit (D2southeast)
     LockExit (E2southwest)
-    LockExit (E1west)
+    // LockExit (E1west)
     LockExit (E1east)
     LockExit (E1northeast)
     LockExit (E2southeast)
@@ -4798,26 +4874,39 @@
     LockExit (G2southwest)
     LockExit (G1northwest)
     LockExit (G1west)
-    LockExit (G1east)
+    // LockExit (G1east)
     LockExit (G1northeast)
     LockExit (G2southeast)
     LockExit (H2southwest)
     LockExit (H1northwest)
-    LockExit (H1west)
+    // LockExit (H1west)
     // special wall
     LockExit (A2east)
     LockExit (B2west)
+    // Changes to map
+    LockExit (C6west)
+    LockExit (C6east)
+    // LockExit (E5south)
+    // LockExit (E4north)
+    LockExit (E2west)
+    LockExit (D2east)
+    LockExit (G3west)
+    LockExit (F3east)
+    LockExit (D1east)
+    LockExit (D1north)
+    LockExit (F6north)
+    LockExit (F6south)
+    LockExit (F6west)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
   </function>
   <function name="setupPreRook">
-    msg ("TODO enemies and their paths")
     MoveObject (player, E1)
     MoveObject (Goal, A5)
     LockExit (A8south)
@@ -5001,16 +5090,16 @@
     LockExit (H8southwest)
     LockExit (H8west)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
+    msg ("And find yourself back in the familiar maze. ")
   </function>
   <function name="setupKnight">
-    msg ("TODO enemies and their paths")
     MoveObject (player, B1)
     MoveObject (Goal, D4)
     MoveObject (Knight, B3)
@@ -5160,13 +5249,13 @@
     LockExit (D3south)
     LockExit (D3southwest)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
     MoveObject (door, C3)
     MoveObject (monster, C5)
     MoveObject (rug, C3)
@@ -5175,12 +5264,42 @@
     LockExit (B2north)
     LockExit (B3south)
     LockExit (C5west)
-    LockExit (B5west)
+    LockExit (B5east)
+    LockExit (B7west)
+    LockExit (B7south)
+    LockExit (C7north)
+    LockExit (C7south)
+    LockExit (D7south)
     create exit ("down", A3, C6)
     create exit ("up", C6, A3)
+    create exit ("down", C3, C8)
+    create exit ("up", C8, C3)
+    create exit ("north", B8, C8)
+    create exit ("north", D7, C8)
+    create exit ("east", D7, C8)
+    create exit ("west", A8, C8)
+    create exit ("south", C5, C8)
+    create exit ("south", B6, C8)
+    create exit ("south", A5, C8)
+    UnlockExit (B8south)
+    UnlockExit (B6south)
+    LockExit (D7north)
+    LockExit (D7east)
+    LockExit (A5south)
+    LockExit (B6south)
+    LockExit (D7northwest)
+    LockExit (D7northeast)
+    MakeExitInvisible (B6south)
+    MakeExitInvisible (D7north)
+    MakeExitInvisible (D7east)
+    MakeExitInvisible (A5south)
+    MakeExitInvisible (D7northwest)
+    MakeExitInvisible (D7northeast)
+    MakeExitInvisible (A5southeast)
+    MakeExitInvisible (B6southeast)
+    MakeExitInvisible (B6southwest)
   </function>
   <function name="setupPreKnight">
-    msg ("TODO enemies and their paths")
     MoveObject (player, E1)
     MoveObject (Goal, H1)
     MoveObject (Rook, H5)
@@ -5365,20 +5484,28 @@
     LockExit (H8southwest)
     LockExit (H8west)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
+    msg ("And find yourself back in the familiar maze. ")
+    msg ("To your surprise, you look at the chessboard and find a new piece has appeared. It resembles a small caricature of a castle tower.")
     EnableTurnScript (PreKnightOnTurn)
   </function>
   <function name="setupQueen">
-    msg ("setupQueen to be implemented")
     MoveObject (player, E4)
-    MoveObject (Queen, E5)
+    MoveObject (Throne, E5)
     EnableTurnScript (playerQueenLevel)
+    msg ("The walls of thorns start cracking and snapping.")
+    msg ("They twist and turn disappearing into the the grassy floor. ")
+    msg ("On the chessboard, the pieces have vanished. ")
+    msg ("There’s a curious figure with their back turned to you and an empty throne. ")
+    msg ("")
+    msg ("You reach out to touch her, but suddenly, the figure simply dissolves into dust.")
+    msg ("All that’s left is a throne. A throne in the middle of an endless plain. ")
   </function>
   <function name="changeUnicode"><![CDATA[
     foreach (room, AllObjects()) {
@@ -5389,9 +5516,11 @@
       }
     }
   ]]></function>
-  <function name="deathByBishop">
+  <function name="deathByBishop"><![CDATA[
     Bishop.parent.inRoom = " "
-    MoveObject (Bishop, player.parent)
+    if (game.level <> "Bishop") {
+      MoveObject (Bishop, player.parent)
+    }
     MoveObject (player, STORAGE)
     if (game.level = "Bishop") {
       player.playerDeath = "Before you can move, the intense light moves upon you, and you feel searing pain over every inch of skin, as though you had been suddenly thrown into a furnace. You have just enough time to emit an anguished cry before you disintegrate into nothing."
@@ -5399,7 +5528,7 @@
     else {
       player.playerDeath = "A blink of an eye. And suddenly you’re lying on the ground, an open wound at your throat. Just what happened?"
     }
-  </function>
+  ]]></function>
   <function name="deathByRook">
     Rook.parent.inRoom = " "
     MoveObject (Rook, player.parent)
@@ -5407,7 +5536,6 @@
     player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
   </function>
   <function name="setupPreQueen">
-    msg ("TODO enemies and their paths")
     MoveObject (player, A8)
     MoveObject (Goal, E4)
     MoveObject (Rook, A1)
@@ -5619,13 +5747,15 @@
     LockExit (E3west)
     LockExit (E2northwest)
     // descWalls
-    foreach (exit, AllExits()) {
-      if ((exit.locked) and (exit.parent = player.parent)) {
-        if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
-          msg ("There is a wall to the "+exit.alias)
-        }
-      }
-    }
+    // foreach (exit, AllExits()) {
+      // if ((exit.locked) and (exit.parent = player.parent)) {
+        // if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
+          // msg ("There is a wall to the "+exit.alias)
+          // }
+        // }
+      // }
+    msg ("And find yourself back in the familiar maze. ")
+    msg ("You look at your chessboard for a brief moment and realize that yet another new piece has appeared… ")
     EnableTurnScript (PreQueenOnTurn)
   </function>
   <function name="descWalls">
@@ -5746,6 +5876,9 @@
       else if (Bishop2.parent = F3) {
         MoveObject (Bishop2, H5)
         F3.inRoom = " "
+      }
+      if ((player.parent = Bishop2.parent) and (player.parent <> STORAGE)) {
+        deathByBishop
       }
     }
   ]]></function>
@@ -6664,5 +6797,29 @@
         deathByRook
       }
     }
+  </function>
+  <function name="destructorKnight">
+    // I DONT KNOW HOW TO DESTROY THESE!
+    // create exit ("down", A3, C6)
+    // create exit ("up", C6, A3)
+    // create exit ("down", C3, C8)
+    // create exit ("up", C8, C3)
+    // create exit ("north", B8, C8)
+    // create exit ("north", D7, C8)
+    // create exit ("east", D7, C8)
+    // create exit ("west", A8, C8)
+    // create exit ("south", C5, C8)
+    // create exit ("south", B6, C8)
+    // create exit ("south", A5, C8)
+    MakeExitVisible (B6south)
+    MakeExitVisible (D7north)
+    MakeExitVisible (D7east)
+    MakeExitVisible (A5south)
+    MakeExitVisible (D7northwest)
+    MakeExitVisible (D7northeast)
+    MakeExitVisible (A5southeast)
+    MakeExitVisible (B6southeast)
+    MakeExitVisible (B6southwest)
+    MoveObject (rug, STORAGE)
   </function>
 </asl>
