@@ -69,12 +69,12 @@
     <inRoom> </inRoom>
     <x type="int">0</x>
     <y type="int">0</y>
+    <description type="string"></description>
     <enter type="script">
     </enter>
     <onexit type="script">
       A1.inRoom = " "
     </onexit>
-    <description type="string"></description>
     <exit name="A1east" alias="east" to="B1">
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -223,7 +223,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
@@ -268,7 +268,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
@@ -312,7 +312,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
       </script>
     </turnscript>
@@ -354,7 +354,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
@@ -387,12 +387,12 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="B1">
@@ -722,12 +722,12 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="B7">
@@ -779,7 +779,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
@@ -824,7 +824,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
       </script>
     </turnscript>
@@ -924,6 +924,7 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
           msg ("You are south of a white house. You can't see an entrance from this side.")
@@ -933,7 +934,6 @@
           msg ("To your east you see a hole in the concrete just wide enough for you to stand away from the railroad tracks. ")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="C3">
@@ -1231,7 +1231,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surronding forest is so dense that hardly any light reaches you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
           msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
@@ -1972,6 +1972,7 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled type="boolean">false</enabled>
       <script>
         if (game.level = "Knight" ) {
           msg ("You are in a wooded glade, green sunlight streaming from above")
@@ -1980,7 +1981,6 @@
           msg ("You are standing on train tracks that travel east-west. To your north you the entrance to a cramped corridor. It was probably once used for maintenance, but have long since been in a state of disrepair.")
         }
       </script>
-      <enabled type="boolean">false</enabled>
     </turnscript>
   </object>
   <object name="E6">
@@ -2171,12 +2171,12 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="F2">
@@ -2336,6 +2336,7 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
@@ -2344,7 +2345,6 @@
           msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="F5">
@@ -2393,6 +2393,7 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in a wooded glade, green sunlight streaming from above.")
@@ -2401,7 +2402,6 @@
           msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="F6">
@@ -2511,12 +2511,12 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
+      <enabled />
       <script>
         if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
-      <enabled />
     </turnscript>
   </object>
   <object name="F8">
@@ -2839,12 +2839,6 @@
       G7.inRoom = " "
     </onexit>
     <firstenter type="script">
-      if (game.level = "Pawn") {
-        EnableTurnScript (KingOnTurn)
-        msg ("You hear a blood-curdling scream cut abruptly to an unearthly silence.")
-        msg ("You quickly examine the chessboard only to see one of the white Pawn symbols has disappeared completely. It seems as if the Black King is standing where the White Pawn was…")
-        msg ("Another White Pawn piece, however, is still on the board…")
-      }
     </firstenter>
     <exit name="G7southeast" alias="southeast" to="H6">
       <inherit name="southeastdirection" />
@@ -3122,12 +3116,6 @@
       H7.inRoom = " "
     </onexit>
     <firstenter type="script">
-      if (game.level = "Pawn" ) {
-        King.first = 1
-        msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
-        msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
-        msg ("Now, your knowledge of chess isn’t that great, but it seems like that last Pawn is standing awfully close to the King… ")
-      }
     </firstenter>
     <exit name="H7south" alias="south" to="H6">
       <inherit name="southdirection" />
@@ -3487,6 +3475,22 @@
         </item>
       </selfuseon>
     </object>
+    <object name="Rook2">
+      <inherit name="editor_object" />
+      <alias>Rook</alias>
+    </object>
+    <object name="Rook3">
+      <inherit name="editor_object" />
+      <alias>Rook</alias>
+    </object>
+    <object name="Rook4">
+      <inherit name="editor_object" />
+      <alias>Rook</alias>
+    </object>
+    <object name="Rook5">
+      <inherit name="editor_object" />
+      <alias>Rook</alias>
+    </object>
   </object>
   <turnscript name="QueenOnTurn" />
   <turnscript name="RookOnTurn">
@@ -3648,7 +3652,7 @@
           msg ("This mirror’s larger than the other ones. ")
         }
       }
-      if ((player.parent = F7) and (game.level = "Pawn")) {
+      if ((player.parent = G7) and (game.level = "Pawn")) {
         EnableTurnScript (KingOnTurn)
       }
       if ((player.parent = B2) and (game.level = "Rook")) {
@@ -3664,7 +3668,7 @@
       }
       PlPa = player.parent
       KiPa = King.parent
-      if ((PlPa.y = KiPa.y) and (game.level = "Pawn") and (King.first=0) and ((KiPa.x-PlPa.x)=1)) {
+      if (((PlPa.y = KiPa.y) and (game.level = "Pawn") and (King.first=0) and ((KiPa.x-PlPa.x)=1)) or ((game.level = "Pawn") and (King.first=0) and ((PlPa.y-KiPa.y)=1) and (PlPa=H7) and (PlPa.x=KiPa.x))) {
         King.first = 1
         msg ("A stone statue of a bearded man stands directly in front of you, all in black marble.")
         msg ("There’s something sad, but hauntingly peaceful about his features, hands clasped in a penitent gesture, flat marble eyes staring at the grassy sky.")
@@ -3708,6 +3712,11 @@
         msg ("")
         msg ("")
         finish
+      }
+      if ((game.level = "Pawn") and (King.parent = G6)) {
+        msg ("You hear a blood-curdling scream cut abruptly to an unearthly silence.")
+        msg ("You quickly examine the chessboard only to see one of the white Pawn symbols has disappeared completely. It seems as if the Black King is standing where the White Pawn was…")
+        msg ("Another White Pawn piece, however, is still on the board…")
       }
     ]]></script>
   </turnscript>
@@ -3864,6 +3873,12 @@
     <pattern>attack</pattern>
     <defaultexpression>"You can't attack " + object.article + "."</defaultexpression>
   </verb>
+  <command>
+    <pattern>I died?</pattern>
+    <script>
+      msg ("Yes - you did")
+    </script>
+  </command>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
