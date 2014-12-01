@@ -74,6 +74,7 @@
     <onexit type="script">
       A1.inRoom = " "
     </onexit>
+    <description type="string"></description>
     <exit name="A1east" alias="east" to="B1">
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -95,6 +96,9 @@
       <attr name="grid_length" type="int">0</attr>
       <look>looked B2</look>
     </exit>
+    <turnscript>
+      <enabled />
+    </turnscript>
   </object>
   <object name="A2">
     <inherit name="editor_room" />
@@ -129,6 +133,14 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are in a nondescript room.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A3">
     <inherit name="editor_room" />
@@ -163,6 +175,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight") {
+          msg ("You are in a small clearing surrounded by dense forest. There is a crevasse in the earth making a path down.")
+        }
+        else if (game.level = "Rook") {
+          msg ("The confines of the crawlspace press against you. You can see train tracks from the north exit.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A4">
     <inherit name="editor_room" />
@@ -196,6 +219,17 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A5">
     <inherit name="editor_room" />
@@ -230,6 +264,17 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A6">
     <inherit name="editor_room" />
@@ -263,6 +308,14 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A7">
     <inherit name="editor_room" />
@@ -297,6 +350,17 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A8">
     <inherit name="editor_room" />
@@ -322,6 +386,14 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="B1">
     <inherit name="editor_room" />
@@ -356,6 +428,9 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+    </turnscript>
   </object>
   <object name="B2">
     <inherit name="editor_room" />
@@ -402,6 +477,22 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          if (Knight.parent = "B3") {
+            msg ("A thick wall of shadows lies to your north, with no clear way around.")
+          }
+          else {
+            msg ("You’re in a clearing, clear afternoon sunlight streams down from above.")
+          }
+        }
+        else if (game.level = "Rook") {
+          msg ("West of you is a door, with instructions in a language you can't read. Beside it is a desk with a green stamp chained to it.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="B3">
     <inherit name="editor_room" />
@@ -448,6 +539,23 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          if (Knight.parent = "B3") {
+            msg ("You seem to have come to the other side of the shadows.")
+            msg ("Only this time, an armored arm sticks out from the depths as if asking for something… ")
+          }
+          else {
+            msg ("You are standing on a field of dead grass.")
+          }
+        }
+        else if (game.level = "Rook") {
+          msg ("The confines of the crawlspace press against you. You can see train tracks from the east exit.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="B4">
     <inherit name="editor_room" />
@@ -494,6 +602,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re west of a white house. There are no entrances from this side. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="B5">
     <inherit name="editor_room" />
@@ -540,6 +659,22 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          if (monster.parent = "B6") {
+            msg ("A menacing suit of armour blocks all attempt to go east.")
+          }
+          else {
+            msg ("With the armour gone, it is now possible to go east.")
+          }
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="B6">
     <inherit name="editor_room" />
@@ -586,6 +721,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="B7">
     <inherit name="editor_room" />
@@ -632,6 +775,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="B8">
     <inherit name="editor_room" />
@@ -666,6 +820,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C1">
     <inherit name="editor_room" />
@@ -700,6 +862,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C2">
     <inherit name="editor_room" />
@@ -714,6 +887,10 @@
     <onexit type="script">
       C2.inRoom = " "
     </onexit>
+    <description type="script">
+    </description>
+    <firstenter type="script">
+    </firstenter>
     <exit name="C2southwest" alias="southwest" to="B1">
       <inherit name="southwestdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -746,6 +923,18 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are south of a white house. You can't see an entrance from this side.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel north-south.")
+          msg ("To your east you see a hole in the concrete just wide enough for you to stand away from the railroad tracks. ")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="C3">
     <inherit name="editor_room" />
@@ -792,6 +981,25 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are in a living room.")
+          msg ("There is a locked trophy case and a mantlepiece, though neither displays anything of interest.")
+          if (door.parent = "C3") {
+            msg ("To your west there is a wooden door that appears to be nailed shut.")
+          }
+          else {
+            msg ("To your west lies an open doorframe, with large pieces of wood lying on the ground.")
+          }
+          msg ("An ornate rug has been folden in half, revealing an open trap door leading down.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C4">
     <inherit name="editor_room" />
@@ -838,6 +1046,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are in a messy bedroom, with childish drawings and discarded games scattered over the floor. There is an open door to your east.  ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C5">
     <inherit name="editor_room" />
@@ -886,6 +1105,23 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are north of the white house, with an open window to your south.")
+          if (monster.parent = "B6") {
+            msg ("However, A menacing suit of armour seems to be guarding this entrance.")
+          }
+          else {
+            msg ("You are surrounded by pieces of scrap metal.")
+          }
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C6">
     <inherit name="editor_room" />
@@ -934,6 +1170,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You see what looks like a large cliff face. You can make out a path that goes up.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C7">
     <inherit name="editor_room" />
@@ -980,6 +1227,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surronding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="C8">
     <inherit name="editor_room" />
@@ -1013,6 +1271,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You have stumbled into a dark forest. A solid wall is to your east, with stairs leading up.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D1">
     <inherit name="editor_room" />
@@ -1046,6 +1315,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D2">
     <inherit name="editor_room" />
@@ -1092,6 +1372,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are south of the white house. you can't see any entrances on this side.")
+        }
+        else if (game.level = "Rook") {
+          msg ("It's cramped and dark, but you are off the train tracks.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D3">
     <inherit name="editor_room" />
@@ -1138,6 +1429,19 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are in a simple black-and-white-tiled kitchen.")
+          msg ("There is a table likely used in preparing food, but it doesn't look like it's been used recently.")
+          msg ("A dark stairway leads up, but you see a solid wall at the top of it.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D4">
     <inherit name="editor_room" />
@@ -1184,6 +1488,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in an nondescript room. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D5">
     <inherit name="editor_room" />
@@ -1230,6 +1545,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re north of a white house. There are no entrances from this side. You see something glint to your west.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D6">
     <inherit name="editor_room" />
@@ -1276,6 +1602,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("A particularly large tree looms over you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are in a cramped corridor.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D7">
     <inherit name="editor_room" />
@@ -1322,6 +1659,14 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="D8">
     <inherit name="editor_room" />
@@ -1356,6 +1701,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on an abandoned train platform, that stretches to the east.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E1">
     <inherit name="editor_room" />
@@ -1390,6 +1743,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You're in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E2">
     <inherit name="editor_room" />
@@ -1436,6 +1800,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You're in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E3">
     <inherit name="editor_room" />
@@ -1482,6 +1857,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are east of the white house. In the corner you see an open window, letting you travel west.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E4">
     <inherit name="editor_room" />
@@ -1528,6 +1914,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are east of the white house. You don't see a way to enter it from here..")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E5">
     <inherit name="editor_room" />
@@ -1574,6 +1971,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are in a wooded glade, green sunlight streaming from above")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west. To your north you the entrance to a cramped corridor. It was probably once used for maintenance, but have long since been in a state of disrepair.")
+        }
+      </script>
+      <enabled type="boolean">false</enabled>
+    </turnscript>
   </object>
   <object name="E6">
     <inherit name="editor_room" />
@@ -1620,6 +2028,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You are in a wooded glade, green sunlight streaming from above.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are in a cramped corridor.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E7">
     <inherit name="editor_room" />
@@ -1669,6 +2088,14 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="E8">
     <inherit name="editor_room" />
@@ -1702,6 +2129,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on an abandoned train platform, that stretches to the east and west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="F1">
     <inherit name="editor_room" />
@@ -1735,6 +2170,14 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="F2">
     <inherit name="editor_room" />
@@ -1781,6 +2224,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a wooded glade, green sunlight streaming from above.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="F3">
     <inherit name="editor_room" />
@@ -1827,6 +2278,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You barely fit in this vent.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="F4">
     <inherit name="editor_room" />
@@ -1873,6 +2335,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="F5">
     <inherit name="editor_room" />
@@ -1919,6 +2392,17 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a wooded glade, green sunlight streaming from above.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="F6">
     <inherit name="editor_room" />
@@ -1965,6 +2449,17 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are squeezed just far enough in this hole in the wall to be off the train tracks.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="F7">
     <inherit name="editor_room" />
@@ -2015,6 +2510,14 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on train tracks that travel east-west.")
+        }
+      </script>
+      <enabled />
+    </turnscript>
   </object>
   <object name="F8">
     <inherit name="editor_room" />
@@ -2049,6 +2552,14 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Rook") {
+          msg ("You are standing on an abandoned train platform, that stretches to the west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G1">
     <inherit name="editor_room" />
