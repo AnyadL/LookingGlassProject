@@ -4537,6 +4537,9 @@
           // }
         // }
       // }
+    foreach (exit, AllExits()) {
+      exit.lockmessage = "There is wall blocking your path."
+    }
     EnableTurnScript (BishopOnTurn)
     msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the far distance. It is slowly crossing the ground, as though searching, as though it were a spotlight. From what little you can see, you can see the area is littered with chains piled haphazardly. Seemingly at random, there seem to be jail bars jutting out of the ground, serving as nothing more than an inconvenient obstacle. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. As you look up, you see above you what appear to be several burned out spotlights, and you notice that as you move, they follow you, as if watching.")
     msg ("You see a golden crown and immediately pick it up and put it on. It feels heavy on your head.")
@@ -4575,6 +4578,12 @@
       Bishop.position = "STORAGE"
       DisableTurnScript (BishopOnTurn)
     }
+    if (HasAttribute(Bishop2.parent, "inRoom")) {
+      Bishop2.parent.inRoom = " "
+      MoveObject (Bishop2, STORAGE)
+      Bishop2.position = "STORAGE"
+      DisableTurnScript (BishopOnTurn)
+    }
     if (HasAttribute(Queen.parent, "inRoom")) {
       Queen.parent.inRoom = " "
       MoveObject (Queen, STORAGE)
@@ -4598,6 +4607,9 @@
     }
     if (Chessboard.parent <> player) {
       MoveObject (Chessboard, STORAGE)
+    }
+    foreach (exit, AllExits()) {
+      exit.lockmessage = "You encounter a brambly wall blocking your path."
     }
     DisableTurnScript (PreBishopOnTurn)
     DisableTurnScript (PreKnightOnTurn)
@@ -4919,6 +4931,9 @@
           // }
         // }
       // }
+    foreach (exit, AllExits()) {
+      exit.lockmessage = "There is wall blocking your path."
+    }
     EnableTurnScript (RookOnTurn)
   </function>
   <function name="setupPreRook">
@@ -5313,6 +5328,9 @@
     MakeExitInvisible (A5southeast)
     MakeExitInvisible (B6southeast)
     MakeExitInvisible (B6southwest)
+    foreach (exit, AllExits()) {
+      exit.lockmessage = "There is wall blocking your path."
+    }
   </function>
   <function name="setupPreKnight">
     MoveObject (player, E1)
@@ -5775,10 +5793,12 @@
   </function>
   <function name="descWalls">
     msg ("")
+    numExits = 0
     foreach (exit, AllExits()) {
       if ((exit.locked) and (exit.parent = player.parent)) {
         if ((exit.alias = "north") or (exit.alias = "south") or(exit.alias = "east") or(exit.alias = "west")) {
           msg ("There is a wall to the "+exit.alias)
+          numExits = numExits + 1
         }
       }
     }
@@ -5786,16 +5806,25 @@
       if (HasAttribute(room, "x") and (room = player.parent)) {
         if (room.x = 0) {
           msg ("There is a wall to the west")
+          numExits = numExits + 1
         }
         if (room.x = 7) {
           msg ("There is a wall to the east")
+          numExits = numExits + 1
         }
         if (room.y = 0) {
           msg ("There is a wall to the south")
+          numExits = numExits + 1
         }
         if (room.y = 7) {
           msg ("There is a wall to the north")
+          numExits = numExits + 1
         }
+      }
+    }
+    if (numExits = 0) {
+      if ((game.level = "RabbitHole") or (game.level = "Pawn") or (game.level = "PreRook") or (game.level = "PreKnight") or (game.level = "PreBishop") or (game.level = "PreQueen")) {
+        msg ("You’re in a clearing, but in the distance, a series of brambly walls line the edges. ")
       }
     }
   </function>
