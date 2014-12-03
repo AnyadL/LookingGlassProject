@@ -3928,64 +3928,6 @@
       }
     ]]></script>
   </turnscript>
-  <turnscript name="ifDead">
-    <enabled />
-    <script>
-      if ((player.playerDeath = null) or (player.playerDeath = "null")) {
-      }
-      else {
-        msg (" ")
-        msg (" ")
-        msg (player.playerDeath)
-        msg (" ")
-        msg (" ")
-        msg ("Would you like to restart?")
-        wait {
-          ClearScreen
-          if (game.level = "Pawn") {
-            takedownMap
-            setupPawn
-            player.playerDeath = "null"
-          }
-          else if (game.level = "PreRook") {
-            takedownMap
-            setupPreRook
-            player.playerDeath = "null"
-          }
-          else if (game.level = "Rook") {
-            takedownMap
-            setupRook
-            player.playerDeath = "null"
-          }
-          else if (game.level = "PreBishop") {
-            takedownMap
-            setupPreBishop
-            player.playerDeath = "null"
-          }
-          else if (game.level = "Bishop") {
-            takedownMap
-            setupBishop
-            player.playerDeath = "null"
-          }
-          else if (game.level = "PreKnight") {
-            takedownMap
-            setupPreKnight
-            player.playerDeath = "null"
-          }
-          else if (game.level = "Knight") {
-            takedownMap
-            setupKnight
-            player.playerDeath = "null"
-          }
-          else if (game.level = "Queen") {
-            takedownMap
-            setupQueen
-            player.playerDeath = "null"
-          }
-        }
-      }
-    </script>
-  </turnscript>
   <turnscript name="playerTurn">
     <script>
       // for PreQueen (One wall comes down on player's 6th turn in the level.)
@@ -4030,6 +3972,14 @@
       }
     </script>
   </turnscript>
+  <turnscript name="describeWalls">
+    <enabled />
+    <script><![CDATA[
+      if (game.level <> "Queen") {
+        descWalls
+      }
+    ]]></script>
+  </turnscript>
   <verb>
     <property>smash</property>
     <pattern>smash</pattern>
@@ -4044,77 +3994,6 @@
     <property>break</property>
     <pattern>break</pattern>
     <defaultexpression>"You can't break " + object.article + "."</defaultexpression>
-  </verb>
-  <turnscript name="describeWalls">
-    <enabled />
-    <script><![CDATA[
-      if (game.level <> "Queen") {
-        descWalls
-      }
-    ]]></script>
-  </turnscript>
-  <verb>
-    <property>attack</property>
-    <pattern>attack</pattern>
-    <defaultexpression>"You can't attack " + object.article + "."</defaultexpression>
-  </verb>
-  <command>
-    <pattern>I died?</pattern>
-    <script>
-      msg ("Probably. Sorry 'bout that... Keep trying!!!")
-    </script>
-  </command>
-  <command>
-    <pattern>kill #text# with sword</pattern>
-    <script>
-      if (Sword.parent = player) {
-        if ((text="Knight")or(text="knight")or(text="KNIGHT")or(text="hand")or(text="shadow")or(text="Hand")or(text="Shadow")or(text="HAND")or(text="SHADOW")) {
-          if (player.parent=Knight.parent) {
-            msg ("You swing the sword out, but the hand catches it mid-swing and takes it from you. ")
-            msg ("And for a moment, you think you see a white cheshire grin smiling back at you from the depths. ")
-            MoveObject (Sword, STORAGE)
-            MoveObject (monster, STORAGE)
-            UnlockExit (B2north)
-            UnlockExit (B3south)
-            UnlockExit (B5east)
-            UnlockExit (C5west)
-            UnlockExit (C5south)
-            UnlockExit (C4north)
-            MoveObject (Knight, C5)
-          }
-          else {
-            msg ("You aren't close enough to the Knight to use the sword on him.")
-          }
-        }
-        else if ((text = "myself") or (text = "me") or (text = "self")) {
-          if ((Sword.parent = player)) {
-            msg ("Please don't try to hurt yourself.")
-          }
-          else {
-            msg ("You don't have a sword.")
-          }
-        }
-        else if ((text = "door") or (text = "Door") or (text = "DOOR")) {
-          if ((player.parent = door.parent)) {
-            msg ("It takes effort, but you eventually smash through the door.")
-            MoveObject (door, STORAGE)
-            UnlockExit (C3west)
-            UnlockExit (B3east)
-          }
-        }
-        else {
-          msg ("You try to kill the " + text + " with the sword, and fail")
-        }
-      }
-      else {
-        msg ("You don't have a sword.")
-      }
-    </script>
-  </command>
-  <verb>
-    <property>ripapart</property>
-    <pattern>rip apart</pattern>
-    <defaultexpression>"You can't rip apart " + object.article + "."</defaultexpression>
   </verb>
   <turnscript name="checkNearby">
     <enabled />
@@ -4223,6 +4102,127 @@
         else if ((player.parent.x = Bishop.parent.x - 1) and (player.parent.y = Bishop.parent.y)) {
           msg ("You look around and see nothing of interest but a cool chill runs down your spine.")
           msg ("It’s like something’s watching you.)
+        }
+      }
+    </script>
+  </turnscript>
+  <verb>
+    <property>attack</property>
+    <pattern>attack</pattern>
+    <defaultexpression>"You can't attack " + object.article + "."</defaultexpression>
+  </verb>
+  <command>
+    <pattern>I died?</pattern>
+    <script>
+      msg ("Probably. Sorry 'bout that... Keep trying!!!")
+    </script>
+  </command>
+  <command>
+    <pattern>kill #text# with sword</pattern>
+    <script>
+      if (Sword.parent = player) {
+        if ((text="Knight")or(text="knight")or(text="KNIGHT")or(text="hand")or(text="shadow")or(text="Hand")or(text="Shadow")or(text="HAND")or(text="SHADOW")) {
+          if (player.parent=Knight.parent) {
+            msg ("You swing the sword out, but the hand catches it mid-swing and takes it from you. ")
+            msg ("And for a moment, you think you see a white cheshire grin smiling back at you from the depths. ")
+            MoveObject (Sword, STORAGE)
+            MoveObject (monster, STORAGE)
+            UnlockExit (B2north)
+            UnlockExit (B3south)
+            UnlockExit (B5east)
+            UnlockExit (C5west)
+            UnlockExit (C5south)
+            UnlockExit (C4north)
+            MoveObject (Knight, C5)
+          }
+          else {
+            msg ("You aren't close enough to the Knight to use the sword on him.")
+          }
+        }
+        else if ((text = "myself") or (text = "me") or (text = "self")) {
+          if ((Sword.parent = player)) {
+            msg ("Please don't try to hurt yourself.")
+          }
+          else {
+            msg ("You don't have a sword.")
+          }
+        }
+        else if ((text = "door") or (text = "Door") or (text = "DOOR")) {
+          if ((player.parent = door.parent)) {
+            msg ("It takes effort, but you eventually smash through the door.")
+            MoveObject (door, STORAGE)
+            UnlockExit (C3west)
+            UnlockExit (B3east)
+          }
+        }
+        else {
+          msg ("You try to kill the " + text + " with the sword, and fail")
+        }
+      }
+      else {
+        msg ("You don't have a sword.")
+      }
+    </script>
+  </command>
+  <verb>
+    <property>ripapart</property>
+    <pattern>rip apart</pattern>
+    <defaultexpression>"You can't rip apart " + object.article + "."</defaultexpression>
+  </verb>
+  <turnscript name="ifDead">
+    <enabled />
+    <script>
+      if ((player.playerDeath = null) or (player.playerDeath = "null")) {
+      }
+      else {
+        msg (" ")
+        msg (" ")
+        msg (player.playerDeath)
+        msg (" ")
+        msg (" ")
+        msg ("Would you like to restart?")
+        wait {
+          ClearScreen
+          if (game.level = "Pawn") {
+            takedownMap
+            setupPawn
+            player.playerDeath = "null"
+          }
+          else if (game.level = "PreRook") {
+            takedownMap
+            setupPreRook
+            player.playerDeath = "null"
+          }
+          else if (game.level = "Rook") {
+            takedownMap
+            setupRook
+            player.playerDeath = "null"
+          }
+          else if (game.level = "PreBishop") {
+            takedownMap
+            setupPreBishop
+            player.playerDeath = "null"
+          }
+          else if (game.level = "Bishop") {
+            takedownMap
+            setupBishop
+            player.playerDeath = "null"
+          }
+          else if (game.level = "PreKnight") {
+            takedownMap
+            setupPreKnight
+            player.playerDeath = "null"
+          }
+          else if (game.level = "Knight") {
+            takedownMap
+            setupKnight
+            player.playerDeath = "null"
+          }
+          else if (game.level = "Queen") {
+            takedownMap
+            setupQueen
+            player.playerDeath = "null"
+          }
         }
       }
     </script>
