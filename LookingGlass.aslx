@@ -481,7 +481,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          if (Knight.parent = "B3") {
+          if (Knight.parent = B3) {
             msg ("A thick wall of shadows lies to your north, with no clear way around.")
           }
           else {
@@ -543,7 +543,7 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          if (Knight.parent = "B3") {
+          if (Knight.parent = B3) {
             msg ("You seem to have come to the other side of the shadows.")
             msg ("Only this time, an armored arm sticks out from the depths as if asking for something… ")
           }
@@ -663,8 +663,12 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          if (monster.parent = "B6") {
+          if (monster.parent = C5) {
             msg ("A menacing suit of armour blocks all attempt to go east.")
+          }
+          else if (Knight.descShown = 0) {
+            msg ("To your surprise, you see the shadow in the distance covering where the floating armor once was. ")
+            Knight.descShown = 1
           }
           else {
             msg ("With the armour gone, it is now possible to go east.")
@@ -987,7 +991,7 @@
         if (game.level = "Knight" ) {
           msg ("You are in a living room.")
           msg ("There is a locked trophy case and a mantlepiece, though neither displays anything of interest.")
-          if (door.parent = "C3") {
+          if (door.parent = C3) {
             msg ("To your west there is a wooden door that appears to be nailed shut.")
           }
           else {
@@ -1110,8 +1114,14 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("You are north of the white house, with an open window to your south.")
-          if (monster.parent = "B6") {
+          if (monster.parent = C5) {
             msg ("However, A menacing suit of armour seems to be guarding this entrance.")
+          }
+          else if (Knight.descShown = 1) {
+            msg ("As you approach, the shadows slowly slither away leaving the once-floating-armor lying suitably inert on the ground. The steel has been wrenched apart like an open wound. What once resembled a chest, arms, legs, and a helm, is no more. All that’s left is useless hunks of metal barely recognizable. ")
+            msg ("You are surrounded by pieces of scrap metal.")
+            MoveObject (Knight, STORAGE)
+            Knight.descShown = 2
           }
           else {
             msg ("You are surrounded by pieces of scrap metal.")
@@ -1549,7 +1559,13 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("You’re north of a white house. There are no entrances from this side. You see something glint to your west.")
+          if (monster.parent = C5) {
+            msg ("You’re north of a white house. There are no entrances from this side. You see something glint to your west.")
+          }
+          else if (Knight.descShown = 0) {
+            msg ("To your surprise, you see the shadow in the distance covering where there was once floating armor. ")
+            Knight.descShown = 1
+          }
         }
         else if (game.level = "Rook") {
           msg ("You are standing on train tracks that travel east-west.")
@@ -3236,10 +3252,66 @@
     <object name="Knight">
       <inherit name="editor_object" />
       <position>STORAGE</position>
+      <attack type="script">
+        if (game.level = "Knight") {
+          if (player.parent = Knight.parent) {
+            if (Sword.parent = player) {
+              msg ("You swing the sword out, but the hand catches it mid-swing and takes it from you. ")
+              msg ("And for a moment, you think you see a white cheshire grin smiling back at you from the depths. ")
+              MoveObject (Sword, STORAGE)
+              MoveObject (monster, STORAGE)
+              UnlockExit (B2north)
+              UnlockExit (B3south)
+              UnlockExit (B5east)
+              UnlockExit (C5west)
+              UnlockExit (C5south)
+              UnlockExit (C4north)
+              MoveObject (Knight, C5)
+            }
+            else {
+              msg ("You flail out horribly ineffectively and nothing happens. ")
+              msg ("You wonder how effective you would be trying to kill a foe you cannot see even if you were armed.")
+            }
+          }
+          else {
+            msg ("You aren't close enough to the Knight to kill it.")
+          }
+        }
+      </attack>
+      <descShown type="int">0</descShown>
+      <alias>Shadow, Hand, Knight</alias>
+      <kill type="script">
+        if (game.level = "Knight") {
+          if (player.parent = Knight.parent) {
+            if (Sword.parent = player) {
+              msg ("You swing the sword out, but the hand catches it mid-swing and takes it from you. ")
+              msg ("And for a moment, you think you see a white cheshire grin smiling back at you from the depths. ")
+              MoveObject (Sword, STORAGE)
+              MoveObject (monster, STORAGE)
+              UnlockExit (B2north)
+              UnlockExit (B3south)
+              UnlockExit (B5east)
+              UnlockExit (C5west)
+              UnlockExit (C5south)
+              UnlockExit (C4north)
+              MoveObject (Knight, C5)
+            }
+            else {
+              msg ("You flail out horribly ineffectively and nothing happens. ")
+              msg ("You wonder how effective you would be trying to kill a foe you cannot see even if you were armed.")
+            }
+          }
+          else {
+            msg ("You aren't close enough to the Knight to kill it.")
+          }
+        }
+      </kill>
+      <kiss>You've been spurned</kiss>
     </object>
     <object name="Rook">
       <inherit name="editor_object" />
       <position>STORAGE</position>
+      <alias>rook</alias>
     </object>
     <object name="Bishop">
       <inherit name="editor_object" />
@@ -3247,6 +3319,7 @@
       <kill>You can't kill a light</kill>
       <hit>You can't hit a light</hit>
       <look>You see beautiful light, a cool chill runs down your spine. </look>
+      <alias>light, bishop</alias>
     </object>
     <object name="Queen">
       <inherit name="editor_object" />
@@ -3255,9 +3328,11 @@
     <object name="Lever">
       <inherit name="editor_object" />
       <inherit name="switchable" />
-      <feature_switchable />
-      <switchonmsg>You have switched the button on. The light now illuminates the entrance you came in.</switchonmsg>
-      <switchoffmsg>The light is still there, you will probbly die</switchoffmsg>
+      <attr name="feature_switchable" type="boolean">false</attr>
+      <switchonmsg>You have switched the lever. The light now illuminates the entrance you came in.</switchonmsg>
+      <switchoffmsg>The light is still there, you will probably die</switchoffmsg>
+      <attr name="feature_edible" type="boolean">false</attr>
+      <eat>You can't eat a lever</eat>
       <press type="script">
         moveLever
       </press>
@@ -3270,6 +3345,7 @@
       <pull type="script">
         moveLever
       </pull>
+      <lick>Tastes metalic</lick>
     </object>
     <object name="player">
       <inherit name="editor_object" />
@@ -3286,7 +3362,7 @@
       <position>STORAGE</position>
       <first type="int">0</first>
       <takemsg> </takemsg>
-      <alias>Chessboard</alias>
+      <alias>Chessboard, glass, tablet</alias>
       <look type="script">
       </look>
       <ontake type="script">
@@ -3323,11 +3399,30 @@
           finish
         }
       </break>
+      <attack type="script">
+        if (Chessboard.parent = player) {
+          ClearScreen
+          finish
+        }
+      </attack>
+      <buy>It is yours.</buy>
+      <eat>This is far too important to waste as food.</eat>
+      <kiss>You can see the print of your lips on the pane.</kiss>
+      <lick>Tastes dusty</lick>
+      <listen>It is eerily silent</listen>
+      <lock type="script">
+        DisableTurnScript (displayASCII)
+      </lock>
+      <unlock type="script">
+        EnableTurnScript (displayASCII)
+      </unlock>
+      <smell>It's a scent that you can't quite place.</smell>
     </object>
     <object name="King">
       <inherit name="editor_object" />
       <position>STORAGE</position>
       <first type="int">0</first>
+      <alias>statue, king</alias>
     </object>
     <object name="Pawn">
       <inherit name="editor_object" />
@@ -3335,7 +3430,9 @@
     </object>
     <object name="Goal">
       <inherit name="editor_object" />
+      <inherit name="edible" />
       <alias>Mirror, Oval Glass, Looking Glass, OvalGlass, LookingGlass</alias>
+      <attr name="feature_edible" type="boolean">false</attr>
       <look type="script"><![CDATA[
         if (game.level = "RabbitHole") {
           msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
@@ -3380,6 +3477,13 @@
       <lookin type="script">
         mirrorEntered
       </lookin>
+      <eat>You can't eat a mirror</eat>
+      <smash>You try to smash the mirror, but your fist just bounces off</smash>
+      <destroy>You try to destroy the mirror, but nothing happens.</destroy>
+      <break>You try to break the mirror, but your fist just bounces off</break>
+      <attack>You attack the mirror, but nothing you do seems to affect it.</attack>
+      <listen>There's a whole world through this mirror.</listen>
+      <speak>Mirror mirror on the wall...</speak>
     </object>
     <object name="Key">
       <inherit name="editor_object" />
@@ -3399,6 +3503,17 @@
           msg ("There is nothing to unlock")
         }
       </use>
+      <buy>It's already yours.</buy>
+      <smell>Smells musty.</smell>
+      <throw type="script">
+        MoveObject (Key, player.parent)
+      </throw>
+      <read>As you examine the passport, you notice that it is very worn. You can see a person in the photo, but you cannot make out the details the face, only that the picture is not you. You try to read the name, but it is equally difficult to make out the particulars.</read>
+      <ripapart>You don't have the strength.</ripapart>
+      <destroy>You can't destroy the passport.</destroy>
+      <smash>You don't have the strength.</smash>
+      <break>You don't have the strength.</break>
+      <attack>You try to attack the passport. Why?</attack>
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -3432,8 +3547,10 @@
           MoveObject (Knight, C5)
         </item>
       </selfuseon>
-      <give type="scriptdictionary">
-        <item key="Knight">
+      <give type="scriptdictionary" />
+      <giveto type="scriptdictionary" />
+      <givetoanything type="script">
+        if (Knight.parent = player.parent) {
           msg ("The black glove takes the handle of the sword, and then vanishes. You hear the sound of rending metal in the distance.")
           MoveObject (monster, STORAGE)
           UnlockExit (B2north)
@@ -3443,16 +3560,79 @@
           UnlockExit (C5south)
           UnlockExit (C4north)
           MoveObject (Knight, C5)
-        </item>
-      </give>
+        }
+      </givetoanything>
+      <break type="script">
+        if (Sword.parent = player) {
+          msg ("You try, but you cannot break the sword.")
+        }
+      </break>
+      <destroy type="script">
+        if (Sword.parent = player) {
+          msg ("You try, but you cannot destroy the sword.")
+        }
+      </destroy>
+      <smash type="script">
+        if (Sword.parent = player) {
+          msg ("You try, but you cannot smash the sword.")
+        }
+      </smash>
+      <lick>Tastes like a Sword</lick>
+      <eat>You can't eat a Sword. That'd be dangerous.</eat>
     </object>
     <object name="door">
       <inherit name="editor_object" />
       <look>A simple wooden door, firmly bolted shut.</look>
+      <alias>door</alias>
+      <break type="script">
+        if (Sword.parent = player) {
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        }
+        else {
+          msg ("You do not have the strength to break the door.")
+        }
+      </break>
+      <smash type="script">
+        if (Sword.parent = player) {
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        }
+        else {
+          msg ("You do not have the strength to smash through the door.")
+        }
+      </smash>
+      <destroy type="script">
+        if (Sword.parent = player) {
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        }
+        else {
+          msg ("You do not have the strength to destroy the door.")
+        }
+      </destroy>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        }
+        else {
+          msg ("You attack the door. It has no effect.")
+        }
+      </attack>
     </object>
     <object name="monster">
       <inherit name="editor_object" />
       <look>A floating suit of armor. A friend once told you that they were pretty dangerous, though you don't believe him.</look>
+      <alias>pawn, monster</alias>
     </object>
     <object name="rug">
       <inherit name="editor_object" />
@@ -3724,8 +3904,13 @@
     <pattern>examine #text#</pattern>
     <script><![CDATA[
       if ((text="wall") or (text="Wall") or (text="WALL") or (text="walls") or (text="Walls") or (text="WALLS")) {
-        msg ("You look closely at the walls and see a complex interlocking, twisting and twining of brambles forming a solid block. You look up, and up and up and see them extending almost as far as you can see, a thin sliver of blue the only impression of a sky that’s left. ")
-        msg ("There’s definitely no way through these things. ")
+        if ((game.level = "Pawn") or (game.level = "RabbitHole") or (game.level = "PreRook") or (game.level = "PreKnight") or (game.level = "PreBishop")) {
+          msg ("You look closely at the walls and see a complex interlocking, twisting and twining of brambles forming a solid block. You look up, and up and up and see them extending almost as far as you can see, a thin sliver of blue the only impression of a sky that’s left. ")
+          msg ("There’s definitely no way through these things. ")
+        }
+        else {
+          msg ("The walls appear to be impenetrable")
+        }
       }
       else if ((player.parent = D1) and (game.level = "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
         msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
@@ -3876,9 +4061,61 @@
   <command>
     <pattern>I died?</pattern>
     <script>
-      msg ("Yes - you did")
+      msg ("Probably. Sorry 'bout that... Keep trying!!!")
     </script>
   </command>
+  <command>
+    <pattern>kill #text# with sword</pattern>
+    <script>
+      if (Sword.parent = player) {
+        if ((text="Knight")or(text="knight")or(text="KNIGHT")or(text="hand")or(text="shadow")or(text="Hand")or(text="Shadow")or(text="HAND")or(text="SHADOW")) {
+          if (player.parent=Knight.parent) {
+            msg ("You swing the sword out, but the hand catches it mid-swing and takes it from you. ")
+            msg ("And for a moment, you think you see a white cheshire grin smiling back at you from the depths. ")
+            MoveObject (Sword, STORAGE)
+            MoveObject (monster, STORAGE)
+            UnlockExit (B2north)
+            UnlockExit (B3south)
+            UnlockExit (B5east)
+            UnlockExit (C5west)
+            UnlockExit (C5south)
+            UnlockExit (C4north)
+            MoveObject (Knight, C5)
+          }
+          else {
+            msg ("You aren't close enough to the Knight to use the sword on him.")
+          }
+        }
+        else if ((text = "myself") or (text = "me") or (text = "self")) {
+          if ((Sword.parent = player)) {
+            msg ("Please don't try to hurt yourself.")
+          }
+          else {
+            msg ("You don't have a sword.")
+          }
+        }
+        else if ((text = "door") or (text = "Door") or (text = "DOOR")) {
+          if ((player.parent = door.parent)) {
+            msg ("It takes effort, but you eventually smash through the door.")
+            MoveObject (door, STORAGE)
+            UnlockExit (C3west)
+            UnlockExit (B3east)
+          }
+        }
+        else {
+          msg ("You try to kill the " + text + " with the sword, and fail")
+        }
+      }
+      else {
+        msg ("You don't have a sword.")
+      }
+    </script>
+  </command>
+  <verb>
+    <property>ripapart</property>
+    <pattern>rip apart</pattern>
+    <defaultexpression>"You can't rip apart " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -4024,7 +4261,7 @@
       King.parent.inRoom = "♚"
     }
     if (HasAttribute(monster.parent, "inRoom")) {
-      monster.parent.inRoom = "☠"
+      monster.parent.inRoom = "♟"
     }
     if (HasAttribute(Key.parent, "inRoom")) {
       Key.parent.inRoom = " ஈ "
@@ -4036,7 +4273,12 @@
       Rook.parent.inRoom = "♜"
     }
     if (HasAttribute(Knight.parent, "inRoom")) {
-      Knight.parent.inRoom = "♞"
+      if ((Knight.parent = B3) and (game.level = "Knight")) {
+        Knight.parent.inRoom = "♘"
+      }
+      else {
+        Knight.parent.inRoom = "♞"
+      }
     }
     if (HasAttribute(Bishop.parent, "inRoom")) {
       Bishop.parent.inRoom = "♝"
@@ -5867,6 +6109,9 @@
     foreach (exit, AllExits()) {
       exit.lockmessage = "There is wall blocking your path."
     }
+    C5east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    C3west.lockmessage = "There is a door blocking your path. It is firmly bolted shut."
+    B2north.lockmessage = "A vast wall of shadows block your path forward. It doesn’t seem natural, the light just stops relative to its murky border. You strain your eyes, trying to look inside of it, but nothing seems to stick out. Every now and then you think you catch a glimpse of a surface, but it’s like a poorly drawn sketch. Every time you seem to catch something concrete, it shifts and moves somehow. "
     msg ("You stumble through the mirror, and this time, manage to stay on your feet. ")
     msg ("You look around and see a vast forest, leaves swaying carelessly in the wind.")
     msg ("Large trees crowd around a series of well-worn paths and glades. Bushes and flowers cluster together at their base. A green and fragmented sunlight can be seen through the veiny trees. ")
