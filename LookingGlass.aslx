@@ -479,7 +479,7 @@
     </exit>
     <turnscript>
       <enabled />
-      <script>
+      <script><![CDATA[
         if (game.level = "Knight" ) {
           if (Knight.parent = B3) {
             msg ("A thick wall of shadows lies to your north, with no clear way around.")
@@ -489,9 +489,14 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("West of you is a door, with instructions in a language you can't read. Beside it is a desk with a green stamp chained to it.")
+          if (Key.parent <> player) {
+            msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You hear a faint, ghostly whisper, 'passport please'. You look around, but see nobody.")
+          }
+          else if (Key.parent = player) {
+            msg ("Passport please")
+          }
         }
-      </script>
+      ]]></script>
     </turnscript>
   </object>
   <object name="B3">
@@ -3253,7 +3258,7 @@
       <inherit name="editor_object" />
       <position>STORAGE</position>
       <descShown type="int">0</descShown>
-      <alias>Shadow, Hand, Knight</alias>
+      <alias>Shadow, Hand, Knight, arm</alias>
       <kiss>You've been spurned</kiss>
       <attack type="script">
         if (game.level = "Knight") {
@@ -3484,6 +3489,12 @@
       <lookin type="script">
         mirrorEntered
       </lookin>
+      <walkthrough type="script">
+        mirrorEntered
+      </walkthrough>
+      <walkin type="script">
+        mirrorEntered
+      </walkin>
     </object>
     <object name="Key">
       <inherit name="editor_object" />
@@ -3501,19 +3512,31 @@
       <break>You don't have the strength.</break>
       <attack>You try to attack the passport. Why?</attack>
       <use type="script">
-        if (game.pov.parent = B2) {
-          UnlockExit (A2east)
-          UnlockExit (B2west)
-          Key.used = 1
-          Key.parent = STORAGE
-        }
-        else {
-          msg ("There is nothing to unlock")
-        }
       </use>
       <throw type="script">
         MoveObject (Key, player.parent)
       </throw>
+      <selfuseon type="scriptdictionary">
+        <item key="Checkpoint">
+          if (Checkpoint.parent = player.parent) {
+            msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+          }
+          else {
+            msg ("You aren't close enough to the checkpoint")
+          }
+        </item>
+      </selfuseon>
+      <giveto type="scriptdictionary">
+        <item key="Checkpoint">
+          if (Checkpoint.parent = player.parent) {
+            msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+          }
+          else {
+            msg ("You aren't close enough to the checkpoint")
+          }
+        </item>
+      </giveto>
+      <givesingle />
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -3670,6 +3693,10 @@
     <object name="Rook5">
       <inherit name="editor_object" />
       <alias>Rook</alias>
+    </object>
+    <object name="Checkpoint">
+      <inherit name="editor_object" />
+      <alias>checkpoint, teller, guard, security</alias>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -4227,6 +4254,16 @@
       }
     </script>
   </turnscript>
+  <verb>
+    <property>walkthrough</property>
+    <pattern>walk through</pattern>
+    <defaultexpression>"You can't walk through " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>walkin</property>
+    <pattern>walk in</pattern>
+    <defaultexpression>"You can't walk in " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -5447,48 +5484,82 @@
     if (HasAttribute(King.parent, "inRoom")) {
       King.parent.inRoom = " "
       MoveObject (King, STORAGE)
-      King.position = "STORAGE"
-      DisableTurnScript (KingOnTurn)
     }
     if (HasAttribute(Pawn.parent, "inRoom")) {
       Pawn.parent.inRoom = " "
       MoveObject (Pawn, STORAGE)
-      Pawn.position = "STORAGE"
     }
     if (HasAttribute(Knight.parent, "inRoom")) {
       Knight.parent.inRoom = " "
       MoveObject (Knight, STORAGE)
-      Knight.position = "STORAGE"
-      DisableTurnScript (KnightOnTurn)
     }
     if (HasAttribute(Bishop.parent, "inRoom")) {
       Bishop.parent.inRoom = " "
       MoveObject (Bishop, STORAGE)
-      Bishop.position = "STORAGE"
-      DisableTurnScript (BishopOnTurn)
     }
     if (HasAttribute(Bishop2.parent, "inRoom")) {
       Bishop2.parent.inRoom = " "
       MoveObject (Bishop2, STORAGE)
-      Bishop2.position = "STORAGE"
-      DisableTurnScript (BishopOnTurn)
     }
     if (HasAttribute(Queen.parent, "inRoom")) {
       Queen.parent.inRoom = " "
       MoveObject (Queen, STORAGE)
-      Queen.position = "STORAGE"
-      DisableTurnScript (QueenOnTurn)
     }
     if (HasAttribute(Rook.parent, "inRoom")) {
       Rook.parent.inRoom = " "
       MoveObject (Rook, STORAGE)
-      Rook.position = "STORAGE"
-      DisableTurnScript (RookOnTurn)
     }
     if (HasAttribute(Goal.parent, "inRoom")) {
       Goal.parent.inRoom = " "
       MoveObject (Goal, STORAGE)
-      Goal.position = "STORAGE"
+    }
+    if (HasAttribute(Checkpoint.parent, "inRoom")) {
+      Checkpoint.parent.inRoom = " "
+      MoveObject (Checkpoint, STORAGE)
+    }
+    if (HasAttribute(Rook2.parent, "inRoom")) {
+      Rook2.parent.inRoom = " "
+      MoveObject (Rook2, STORAGE)
+    }
+    if (HasAttribute(Rook3.parent, "inRoom")) {
+      Rook3.parent.inRoom = " "
+      MoveObject (Rook3, STORAGE)
+    }
+    if (HasAttribute(Rook4.parent, "inRoom")) {
+      Rook4.parent.inRoom = " "
+      MoveObject (Rook4, STORAGE)
+    }
+    if (HasAttribute(Rook5.parent, "inRoom")) {
+      Rook5.parent.inRoom = " "
+      MoveObject (Rook5, STORAGE)
+    }
+    if (HasAttribute(Lever.parent, "inRoom")) {
+      Lever.parent.inRoom = " "
+      MoveObject (Lever, STORAGE)
+    }
+    if (HasAttribute(Sword.parent, "inRoom")) {
+      Sword.parent.inRoom = " "
+      MoveObject (Sword, STORAGE)
+    }
+    if (HasAttribute(door.parent, "inRoom")) {
+      door.parent.inRoom = " "
+      MoveObject (door, STORAGE)
+    }
+    if (HasAttribute(monster.parent, "inRoom")) {
+      monster.parent.inRoom = " "
+      MoveObject (monster, STORAGE)
+    }
+    if (HasAttribute(rug.parent, "inRoom")) {
+      rug.parent.inRoom = " "
+      MoveObject (rug, STORAGE)
+    }
+    if (HasAttribute(Throne.parent, "inRoom")) {
+      Throne.parent.inRoom = " "
+      MoveObject (Throne, STORAGE)
+    }
+    if (HasAttribute(stamp.parent, "inRoom")) {
+      stamp.parent.inRoom = " "
+      MoveObject (stamp, STORAGE)
     }
     if (HasAttribute(player.parent, "inRoom")) {
       player.parent.inRoom = " "
@@ -5497,11 +5568,14 @@
     if (Chessboard.parent <> player) {
       MoveObject (Chessboard, STORAGE)
     }
-    foreach (exit, AllExits()) {
-      exit.lockmessage = "You encounter a brambly wall blocking your path."
-    }
     DisableTurnScript (PreBishopOnTurn)
     DisableTurnScript (PreKnightOnTurn)
+    DisableTurnScript (PreQueenOnTurn)
+    DisableTurnScript (KingOnTurn)
+    DisableTurnScript (KnightOnTurn)
+    DisableTurnScript (BishopOnTurn)
+    DisableTurnScript (QueenOnTurn)
+    DisableTurnScript (RookOnTurn)
   ]]></function>
   <function name="setupRabbitHole">
     LockExit (E8west)
@@ -5559,6 +5633,7 @@
     MoveObject (Goal, A2)
     MoveObject (Key, H1)
     MoveObject (stamp, B2)
+    MoveObject (Checkpoint, B2)
     MoveObject (Rook, A1)
     LockExit (A8south)
     LockExit (A8southeast)
