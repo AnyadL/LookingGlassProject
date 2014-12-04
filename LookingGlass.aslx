@@ -3489,9 +3489,6 @@
       <lookin type="script">
         mirrorEntered
       </lookin>
-      <walkthrough type="script">
-        mirrorEntered
-      </walkthrough>
       <walkin type="script">
         mirrorEntered
       </walkin>
@@ -3511,6 +3508,7 @@
       <smash>You don't have the strength.</smash>
       <break>You don't have the strength.</break>
       <attack>You try to attack the passport. Why?</attack>
+      <givesingle />
       <use type="script">
       </use>
       <throw type="script">
@@ -3536,7 +3534,6 @@
           }
         </item>
       </giveto>
-      <givesingle />
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -3707,6 +3704,7 @@
         Counter.count = 0
       }
       msg (Counter.count)
+      moveRookinRook
       RookRookKillZone
     </script>
   </turnscript>
@@ -5628,7 +5626,7 @@
     MoveObject (player, E8)
     MoveObject (Goal, D1)
   </function>
-  <function name="setupRook">
+  <function name="setupRook"><![CDATA[
     MoveObject (player, A7)
     MoveObject (Goal, A2)
     MoveObject (Key, H1)
@@ -5899,7 +5897,8 @@
       exit.lockmessage = "There is wall blocking your path."
     }
     EnableTurnScript (RookOnTurn)
-  </function>
+    msg ("You are standing on a cold, smooth, rocky surface overlooking a pair of intersecting depressed paths in the ground. They are of uniform width, and seem to stretch as far as you can make out. There is dim light, which has no immediately obvious source, although you see vague shadows seem to form, swirl and disperse as smoke all across the ground. You can just make out what appears to be train tracks in each depression. There appears to be blocky stone benches scattered across the open area, overlooking the tracks.<br/><br/>At your feet, you see what appears to be a cloak, and without a thought, you wrap it around your shoulders. ")
+  ]]></function>
   <function name="setupPreRook">
     MoveObject (player, E1)
     MoveObject (Goal, A5)
@@ -6542,6 +6541,7 @@
     MoveObject (Rook, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
+    Counter.count = 0
   </function>
   <function name="setupPreQueen">
     MoveObject (player, A8)
@@ -8019,4 +8019,62 @@
       deathByBishop
     }
   </function>
+  <function name="moveRookinRook">
+    if (Counter.count = 0) {
+      pos = Rook.parent
+      MoveObject (Rook, STORAGE)
+      pos.inRoom = " "
+    }
+    else if (Counter.count = 1) {
+      pos = Rook.parent
+      MoveObject (Rook, STORAGE)
+      pos.inRoom = " "
+    }
+    else if (Counter.count = 2) {
+      pos = Rook.parent
+      MoveObject (Rook, A5)
+      pos.inRoom = " "
+      msg ("You hear a train whistle coming from the west, a rook piece appears on the chessboard")
+    }
+    else if (Counter.count = 3) {
+      pos = Rook.parent
+      MoveObject (Rook, A4)
+      pos.inRoom = " "
+      msg ("You hear another train whistle coming from the west")
+    }
+    else if (Counter.count = 4) {
+      pos = Rook.parent
+      MoveObject (Rook, STORAGE)
+      pos.inRoom = " "
+    }
+    else if (Counter.count = 5) {
+      pos = Rook.parent
+      MoveObject (Rook, STORAGE)
+      pos.inRoom = " "
+    }
+    else if (Counter.count = 6) {
+      pos = Rook.parent
+      MoveObject (Rook, STORAGE)
+      pos.inRoom = " "
+    }
+    else if (Counter.count = 7) {
+      pos = Rook.parent
+      MoveObject (Rook, G1)
+      pos.inRoom = " "
+      msg ("You hear a train whistle coming from the south")
+    }
+    else if (Counter.count = 8) {
+      pos = Rook.parent
+      MoveObject (Rook, A7)
+      pos.inRoom = " "
+      msg ("You hear a train whistle coming from the west")
+    }
+    else if (Counter.count = 9) {
+      pos = Rook.parent
+      MoveObject (Rook, C1)
+      pos.inRoom = " "
+      msg ("You hear a train whistle coming from the south")
+    }
+  </function>
+  <function name="deathByTrain" />
 </asl>
