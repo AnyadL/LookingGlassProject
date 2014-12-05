@@ -182,7 +182,6 @@
           msg ("You are in a small clearing surrounded by dense forest. There is a crevasse in the earth making a path down.")
         }
         else if (game.level = "Rook") {
-          msg ("The confines of the crawlspace press against you. You can see train tracks from the north exit.")
         }
       </script>
     </turnscript>
@@ -226,7 +225,6 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -271,7 +269,6 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -357,7 +354,6 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -489,11 +485,10 @@
           }
         }
         else if (game.level = "Rook") {
+          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint freen flow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
+          msg ("Passport please")
           if (Key.parent <> player) {
-            msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You hear a faint, ghostly whisper, 'passport please'. You look around, but see nobody.")
-          }
-          else if (Key.parent = player) {
-            msg ("Passport please")
+            msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
           }
         }
       ]]></script>
@@ -557,7 +552,6 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("The confines of the crawlspace press against you. You can see train tracks from the east exit.")
         }
       </script>
     </turnscript>
@@ -614,7 +608,6 @@
           msg ("You’re west of a white house. There are no entrances from this side. ")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -680,7 +673,6 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -791,7 +783,6 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -878,7 +869,6 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel north-south.")
         }
       </script>
     </turnscript>
@@ -939,8 +929,6 @@
           msg ("You are south of a white house. You can't see an entrance from this side.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel north-south.")
-          msg ("To your east you see a hole in the concrete just wide enough for you to stand away from the railroad tracks. ")
         }
       </script>
     </turnscript>
@@ -1005,7 +993,6 @@
           msg ("An ornate rug has been folden in half, revealing an open trap door leading down.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel north-south.")
         }
       </script>
     </turnscript>
@@ -1062,7 +1049,6 @@
           msg ("You are in a messy bedroom, with childish drawings and discarded games scattered over the floor. There is an open door to your east.  ")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
         }
       </script>
     </turnscript>
@@ -1133,7 +1119,6 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
         }
       </script>
     </turnscript>
@@ -1192,7 +1177,6 @@
           msg ("You see what looks like a large cliff face. You can make out a path that goes up.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel north-south.")
         }
       </script>
     </turnscript>
@@ -1249,7 +1233,6 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
         }
       </script>
     </turnscript>
@@ -1293,7 +1276,6 @@
           msg ("You have stumbled into a dark forest. A solid wall is to your east, with stairs leading up.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on a crossroads, with train tracks that travel east-west and north-south.")
         }
       </script>
     </turnscript>
@@ -1337,7 +1319,6 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -1394,7 +1375,6 @@
           msg ("You are south of the white house. you can't see any entrances on this side.")
         }
         else if (game.level = "Rook") {
-          msg ("It's cramped and dark, but you are off the train tracks.")
         }
       </script>
     </turnscript>
@@ -1453,7 +1433,6 @@
           msg ("A dark stairway leads up, but you see a solid wall at the top of it.")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -1510,7 +1489,6 @@
           msg ("You’re in an nondescript room. ")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -1573,7 +1551,6 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -1630,7 +1607,6 @@
           msg ("A particularly large tree looms over you.")
         }
         else if (game.level = "Rook") {
-          msg ("You are in a cramped corridor.")
         }
       </script>
     </turnscript>
@@ -1683,9 +1659,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
-        }
       </script>
     </turnscript>
   </object>
@@ -1725,9 +1698,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on an abandoned train platform, that stretches to the east.")
-        }
       </script>
     </turnscript>
   </object>
@@ -1771,7 +1741,6 @@
           msg ("You're in a darker part of the forest, long shadows cast themselves across your path.")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -1828,7 +1797,6 @@
           msg ("You're in a darker part of the forest, long shadows cast themselves across your path.")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -1885,7 +1853,6 @@
           msg ("You are east of the white house. In the corner you see an open window, letting you travel west.")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -1942,7 +1909,6 @@
           msg ("You are east of the white house. You don't see a way to enter it from here..")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -1999,7 +1965,6 @@
           msg ("You are in a wooded glade, green sunlight streaming from above")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west. To your north you the entrance to a cramped corridor. It was probably once used for maintenance, but have long since been in a state of disrepair.")
         }
       </script>
     </turnscript>
@@ -2056,7 +2021,6 @@
           msg ("You are in a wooded glade, green sunlight streaming from above.")
         }
         else if (game.level = "Rook") {
-          msg ("You are in a cramped corridor.")
         }
       </script>
     </turnscript>
@@ -2112,9 +2076,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
-        }
       </script>
     </turnscript>
   </object>
@@ -2153,9 +2114,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on an abandoned train platform, that stretches to the east and west.")
-        }
       </script>
     </turnscript>
   </object>
@@ -2306,7 +2264,6 @@
           msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
         }
         else if (game.level = "Rook") {
-          msg ("You barely fit in this vent.")
         }
       </script>
     </turnscript>
@@ -2363,7 +2320,6 @@
           msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -2420,7 +2376,6 @@
           msg ("You’re in a wooded glade, green sunlight streaming from above.")
         }
         else if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
         }
       </script>
     </turnscript>
@@ -2477,7 +2432,6 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
-          msg ("You are squeezed just far enough in this hole in the wall to be off the train tracks.")
         }
       </script>
     </turnscript>
@@ -2534,9 +2488,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on train tracks that travel east-west.")
-        }
       </script>
     </turnscript>
   </object>
@@ -2576,9 +2527,6 @@
     <turnscript>
       <enabled />
       <script>
-        if (game.level = "Rook") {
-          msg ("You are standing on an abandoned train platform, that stretches to the west.")
-        }
       </script>
     </turnscript>
   </object>
@@ -3508,8 +3456,23 @@
       <smash>You don't have the strength.</smash>
       <break>You don't have the strength.</break>
       <attack>You try to attack the passport. Why?</attack>
-      <givesingle />
+      <givesingle type="script">
+        if (Checkpoint.parent = player.parent) {
+          msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+          UnlockExit (B2west)
+        }
+        else {
+          msg ("You brandish your passport, but given that this does not seem to be an appropriate place, you feel silly waving about someone else’s passport for no reason.")
+        }
+      </givesingle>
       <use type="script">
+        if (Checkpoint.parent = player.parent) {
+          msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+          UnlockExit (B2west)
+        }
+        else {
+          msg ("You brandish your passport, but given that this does not seem to be an appropriate place, you feel silly waving about someone else’s passport for no reason.")
+        }
       </use>
       <throw type="script">
         MoveObject (Key, player.parent)
@@ -3518,6 +3481,7 @@
         <item key="Checkpoint">
           if (Checkpoint.parent = player.parent) {
             msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+            UnlockExit (B2west)
           }
           else {
             msg ("You aren't close enough to the checkpoint")
@@ -3528,6 +3492,7 @@
         <item key="Checkpoint">
           if (Checkpoint.parent = player.parent) {
             msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+            UnlockExit (B2west)
           }
           else {
             msg ("You aren't close enough to the checkpoint")
@@ -3703,9 +3668,9 @@
       if (Counter.count = 10) {
         Counter.count = 0
       }
-      msg (Counter.count)
       moveRookinRook
       RookRookKillZone
+      OnTrainTracks
     </script>
   </turnscript>
   <verb>
@@ -3889,15 +3854,6 @@
         EnableTurnScript (KingOnTurn)
       }
       if ((player.parent = B2) and (game.level = "Rook")) {
-        if (Got(Key) and (Key.used=0)) {
-          msg ("It looks like this passport could be used on the western wall")
-        }
-        else if (Got(Key) and (Key.used=1)) {
-          // do nothing
-        }
-        else if (Key.used = 0) {
-          msg ("It looks like you could open the western wall with a passport")
-        }
       }
       PlPa = player.parent
       KiPa = King.parent
@@ -7270,72 +7226,36 @@
   ]]></function>
   <function name="moveKnightInPreQueen"><![CDATA[
     if (Knight.parent = H1) {
-      MoveObject (Knight, E2)
+      MoveObject (Knight, F2)
       H1.inRoom = " "
     }
-    else if (Knight.parent = E2) {
-      MoveObject (Knight, B3)
-      E2.inRoom = " "
+    else if (Knight.parent = F2) {
+      MoveObject (Knight, D3)
+      F2.inRoom = " "
     }
-    else if (Knight.parent = B3) {
-      MoveObject (Knight, A5)
-      B3.inRoom = " "
-    }
-    else if (Knight.parent = A5) {
-      MoveObject (Knight, A3)
-      A5.inRoom = " "
-    }
-    else if (Knight.parent = A3) {
+    else if (Knight.parent = D3) {
       MoveObject (Knight, B4)
-      A3.inRoom = " "
+      D3.inRoom = " "
     }
     else if (Knight.parent = B4) {
-      MoveObject (Knight, D3)
+      MoveObject (Knight, A6)
       B4.inRoom = " "
     }
-    else if (Knight.parent = D3) {
-      MoveObject (Knight, F3)
-      D3.inRoom = " "
+    else if (Knight.parent = A6) {
+      MoveObject (Knight, C5)
+      A6.inRoom = " "
     }
-    else if (Knight.parent = F3) {
-      MoveObject (Knight, H4)
-      F3.inRoom = " "
+    else if (Knight.parent = C5) {
+      MoveObject (Knight, E4)
+      C5.inRoom = " "
     }
-    else if (Knight.parent = H4) {
-      MoveObject (Knight, H2)
-      H4.inRoom = " "
+    else if (Knight.parent = E4) {
+      MoveObject (Knight, G3)
+      E4.inRoom = " "
     }
-    else if (Knight.parent = H2) {
-      MoveObject (Knight, F1)
-      H2.inRoom = " "
-    }
-    else if (Knight.parent = F1) {
-      MoveObject (Knight, C1)
-      F1.inRoom = " "
-    }
-    else if (Knight.parent = C1) {
-      MoveObject (Knight, A2)
-      C1.inRoom = " "
-    }
-    else if (Knight.parent = A2) {
-      MoveObject (Knight, D3)
-      A2.inRoom = " "
-    }
-    else if (Knight.parent = D3) {
-      MoveObject (Knight, D5)
-      D3.inRoom = " "
-    }
-    else if (Knight.parent = D5) {
-      MoveObject (Knight, F5)
-      D5.inRoom = " "
-    }
-    else if (Knight.parent = F5) {
-      MoveObject (Knight, F3)
-      F5.inRoom = " "
-    }
-    else if (Knight.parent = F3) {
-      MoveObject (Knight, D3)
-      F3.inRoom = " "
+    else if (Knight.parent = G3) {
+      MoveObject (Knight, H1)
+      G3.inRoom = " "
     }
     if ((player.parent = Knight.parent) and (player.parent <> STORAGE)) {
       deathByKnight
@@ -8076,5 +7996,289 @@
       msg ("You hear a train whistle coming from the south")
     }
   </function>
-  <function name="deathByTrain" />
+  <function name="deathByTrain">
+    Rook.parent.inRoom = " "
+    MoveObject (Rook, player.parent)
+    MoveObject (player, STORAGE)
+    player.playerDeath = You turn to face the oncoming train only to catch, in your final glimpse, a strange mix of intense light, crimson reds and near-translucent lime greens hit your body with a force you have never felt. There is but a moment of pain before life leaves your body.
+    Counter.count = 0
+  </function>
+  <function name="preQueenKnightKillZone">
+    if (Knight.parent = H1) {
+      if (player.parent = F2) {
+        deathByKnight
+      }
+      else if (player.parent =G3) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = F2) {
+      if (player.parent = H1) {
+        deathByKnight
+      }
+      else if (player.parent =D1) {
+        deathByKnight
+      }
+      else if (player.parent = D3) {
+        deathByKnight
+      }
+      else if (player.parent = H3) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = D3) {
+      if (player.parent = F2) {
+        deathByKnight
+      }
+      else if (player.parent =B2) {
+        deathByKnight
+      }
+      else if (player.parent = E1) {
+        deathByKnight
+      }
+      else if (player.parent = C1) {
+        deathByKnight
+      }
+      else if (player.parent = F4) {
+        deathByKnight
+      }
+      else if (player.parent = B4) {
+        deathByKnight
+      }
+      else if (player.parent = E5) {
+        deathByKnight
+      }
+      else if (player.parent = C5) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = B4) {
+      if (player.parent = D5) {
+        deathByKnight
+      }
+      else if (player.parent =D3) {
+        deathByKnight
+      }
+      else if (player.parent = C6) {
+        deathByKnight
+      }
+      else if (player.parent = A6) {
+        deathByKnight
+      }
+      else if (player.parent = A2) {
+        deathByKnight
+      }
+      else if (player.parent = C2) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = A6) {
+      if (player.parent = B8) {
+        deathByKnight
+      }
+      else if (player.parent =B4) {
+        deathByKnight
+      }
+      else if (player.parent = C7) {
+        deathByKnight
+      }
+      else if (player.parent = C5) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = C5) {
+      if (player.parent = E6) {
+        deathByKnight
+      }
+      else if (player.parent =E4) {
+        deathByKnight
+      }
+      else if (player.parent = A4) {
+        deathByKnight
+      }
+      else if (player.parent = A6) {
+        deathByKnight
+      }
+      else if (player.parent = D7) {
+        deathByKnight
+      }
+      else if (player.parent = B7) {
+        deathByKnight
+      }
+      else if (player.parent = B3) {
+        deathByKnight
+      }
+      else if (player.parent = D3) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = E4) {
+      if (player.parent = G5) {
+        deathByKnight
+      }
+      else if (player.parent =C5) {
+        deathByKnight
+      }
+      else if (player.parent = C3) {
+        deathByKnight
+      }
+      else if (player.parent = G3) {
+        deathByKnight
+      }
+      else if (player.parent = F2) {
+        deathByKnight
+      }
+      else if (player.parent = D2) {
+        deathByKnight
+      }
+      else if (player.parent = F6) {
+        deathByKnight
+      }
+      else if (player.parent = D6) {
+        deathByKnight
+      }
+    }
+    else if (Knight.parent = G3) {
+      if (player.parent = H5) {
+        deathByKnight
+      }
+      else if (player.parent =F5) {
+        deathByKnight
+      }
+      else if (player.parent = F1) {
+        deathByKnight
+      }
+      else if (player.parent = H1) {
+        deathByKnight
+      }
+      else if (player.parent = E4) {
+        deathByKnight
+      }
+      else if (player.parent = E2) {
+        deathByKnight
+      }
+    }
+  </function>
+  <function name="OnTrainTracks">
+    if (player.parent=A7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=B7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=C7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=D7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=E7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=F7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=G7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=H7) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    if (player.parent=A5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=B5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=C5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=D5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=E5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=F5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=G5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=H5) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    if (player.parent=A4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=B4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=C4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=D4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=E4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=F4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=G4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    else if (player.parent=H4) {
+      msg ("You are on a set of train tracks that runs west to east")
+    }
+    if (player.parent=C1) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C2) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C3) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C4) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C5) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C6) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C7) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=C8) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    if (player.parent=G1) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G2) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G3) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G4) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G5) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G6) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G7) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+    else if (player.parent=G8) {
+      msg ("You are on a set of train tracks that runs north to south")
+    }
+  </function>
 </asl>
