@@ -134,14 +134,6 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
-    <turnscript>
-      <enabled />
-      <script>
-        if (game.level = "Rook") {
-          msg ("You are in a nondescript room.")
-        }
-      </script>
-    </turnscript>
   </object>
   <object name="A3">
     <inherit name="editor_room" />
@@ -486,12 +478,10 @@
           }
         }
         else if (game.level = "Rook") {
-          if (B2west.locked = true) {
-            msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint green glow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
-            msg ("Passport please")
-            if (Key.parent <> player) {
-              msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
-            }
+          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint freen flow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
+          msg ("'Passport please'")
+          if (Key.parent <> player) {
+            msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
           }
         }
       ]]></script>
@@ -1490,8 +1480,6 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in an nondescript room. ")
-        }
-        else if (game.level = "Rook") {
         }
       </script>
     </turnscript>
@@ -3649,7 +3637,7 @@
       <speak>Sadly, we are not in a game where the sword is an enchanted one that bursts into song. Maybe for the sequel.</speak>
       <givetoanything type="script">
         if (Knight.parent = player.parent) {
-          msg ("The black glove takes the handle of the sword, and then vanishes. You hear the sound of rending metal in the distance.")
+          msg ("The black glove takes the handle of the sword, and then vanishes. You hear the sound of bending metal in the distance.")
           MoveObject (monster, STORAGE)
           UnlockExit (B2north)
           UnlockExit (B3south)
@@ -3886,7 +3874,7 @@
     </object>
     <object name="Checkpoint">
       <inherit name="editor_object" />
-      <alias>checkpoint, teller, guard, security</alias>
+      <alias>checkpoint, teller, guard, security, toll booth, booth, limb, tentacle, tentacle like limb, tentacle-like limb</alias>
     </object>
     <object name="bench">
       <inherit name="editor_object" />
@@ -4086,7 +4074,7 @@
         msg ("A large, dark, sword lies in the path in front of you. ")
         msg ("A series of silver medals are tied around its hilt. ")
       }
-      if ((Contains (player.parent,Goal)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
+      if ((Contains (player.parent,Goal)) and (player.parent <> STORAGE)) {
         if (game.level = "RabbitHole") {
           msg ("You see the oval glass hovering two feet in the air")
         }
@@ -7653,32 +7641,6 @@
         deathByKnight
       }
     }
-    if (Knight.parent = F3) {
-      if (player.parent = G5) {
-        deathByKnight
-      }
-      else if (player.parent = E5) {
-        deathByKnight
-      }
-      else if (player.parent = G1) {
-        deathByKnight
-      }
-      else if (player.parent = E1) {
-        deathByKnight
-      }
-      else if (player.parent = H4) {
-        deathByKnight
-      }
-      else if (player.parent = H2) {
-        deathByKnight
-      }
-      else if (player.parent = D4) {
-        deathByKnight
-      }
-      else if (player.parent = D2) {
-        deathByKnight
-      }
-    }
     if (Knight.parent = D4) {
       if (player.parent = F5) {
         deathByKnight
@@ -7747,7 +7709,6 @@
         deathByKnight
       }
       else if (player.parent = B7) {
-        deathByKnight
       }
       else if (player.parent = B5) {
         deathByKnight
