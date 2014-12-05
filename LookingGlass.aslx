@@ -99,6 +99,18 @@
     </exit>
     <turnscript>
       <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("How'd you get here?")
+        }
+        else if (game.level = "Rook") {
+          msg ("How'd you get here?")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your west and south.")
+        }
+      </script>
     </turnscript>
   </object>
   <object name="A2">
@@ -134,6 +146,20 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+          msg ("You find yourself in a nondescript room.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing directly under the camera, though it's too high to reach.")
+          msg ("There are locked but empty cells to your west.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="A3">
     <inherit name="editor_room" />
@@ -170,13 +196,22 @@
     </exit>
     <turnscript>
       <enabled />
-      <script>
+      <script><![CDATA[
         if (game.level = "Knight") {
-          msg ("You are in a small clearing surrounded by dense forest. There is a crevasse in the earth making a path down.")
+          if (Chessboard.parent <> player) {
+            msg ("As soon as you see the sky again the chessboard flickers, and all the icons reappear.")
+            MoveObject (Chessboard, player)
+          }
+          msg ("You are in a small clearing surrounded by dense forest. There is a crevasse in the earth making a dark path that leads down.")
         }
         else if (game.level = "Rook") {
+          msg ("The walls of the cramped corridor press against you. Past the north exit you see a familiar set of train tracks.")
         }
-      </script>
+        else if (game.level = "Bishop") {
+          msg ("Bits of ash lay scattered on the floor. You are keenly aware of the ever present whirring of the security camera.")
+          msg ("There are locked but empty cells to your west and north.")
+        }
+      ]]></script>
     </turnscript>
   </object>
   <object name="A4">
@@ -215,9 +250,10 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          msg ("You’re in a wooded glade, green sunlight streaming from above.")
         }
         else if (game.level = "Rook") {
+          msg ("To your south you see cramped corridor, these were probably once for maintenance but have long since been in a state of disrepair.")
         }
       </script>
     </turnscript>
@@ -259,9 +295,15 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -302,7 +344,14 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          msg ("You faintly hear the sound of childish laughter, as if someone just pulled a prank on you.")
+          MoveObject (player, H8)
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -348,6 +397,12 @@
         }
         else if (game.level = "Rook") {
         }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -379,7 +434,13 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          MoveObject (player, H8)
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -419,6 +480,18 @@
     </exit>
     <turnscript>
       <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a wooded glade, green sunlight streaming from above. ")
+        }
+        else if (game.level = "Rook") {
+          msg ("How'd you get here?")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your south.")
+        }
+      </script>
     </turnscript>
   </object>
   <object name="B2">
@@ -478,11 +551,14 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint freen flow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
-          msg ("'Passport please'")
+          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper.")
+          msg ("Beside the booth there is a sign in a language you can't read. You also see a green stamp chained to the booth itself.")
           if (Key.parent <> player) {
-            msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
+            msg ("Not knowing what to do, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
           }
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
         }
       ]]></script>
     </turnscript>
@@ -543,8 +619,19 @@
           else {
             msg ("You are standing on a field of dead grass.")
           }
+          if (door.parent = C3) {
+            msg ("To your east you see a door that leads into the white house, though it seems to be nailed shut.")
+          }
+          else {
+            msg ("With the door no more, you can easily enter the house to your east.")
+          }
         }
         else if (game.level = "Rook") {
+          msg ("The walls of the cramped corridor press against you. Past the east exit you see a familiar set of train tracks.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There is an exit to your north.")
         }
       </script>
     </turnscript>
@@ -601,6 +688,9 @@
           msg ("You’re west of a white house. There are no entrances from this side. ")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a hallway. The north exit seems to lead outside.")
         }
       </script>
     </turnscript>
@@ -659,6 +749,8 @@
           }
           else if (Knight.descShown = 0) {
             msg ("To your surprise, you see the shadow in the distance covering where the floating armor once was. ")
+            msg ("As you watch, the shadows slowly slither away leaving the once-floating-armor lying suitably inert on the ground. The steel has been wrenched apart like an open wound. What once resembled a chest, arms, legs, and a helm, is no more. All that’s left is useless hunks of metal barely recognizable. ")
+            MoveObject (Knight, STORAGE)
             Knight.descShown = 1
           }
           else {
@@ -666,6 +758,12 @@
           }
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -720,6 +818,12 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -777,6 +881,12 @@
         }
         else if (game.level = "Rook") {
         }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -818,6 +928,12 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -862,6 +978,10 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your south.")
         }
       </script>
     </turnscript>
@@ -922,6 +1042,11 @@
           msg ("You are south of a white house. You can't see an entrance from this side.")
         }
         else if (game.level = "Rook") {
+          msg ("To your west, you see an open entrance to what appears to be a hallway.")
+          msg ("To your east, you see a hole in the concrete just wide enough for you to stand away from the railroad tracks.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
         }
       </script>
     </turnscript>
@@ -973,8 +1098,12 @@
     </exit>
     <turnscript>
       <enabled />
-      <script>
+      <script><![CDATA[
         if (game.level = "Knight" ) {
+          if (Chessboard.parent <> player) {
+            msg ("As soon as you get to the top of the stairs the chessboard flickers, and all the icons reappear.")
+            MoveObject (Chessboard, player)
+          }
           msg ("You are in a living room.")
           msg ("There is a locked trophy case and a mantlepiece, though neither displays anything of interest.")
           if (door.parent = C3) {
@@ -983,11 +1112,16 @@
           else {
             msg ("To your west lies an open doorframe, with large pieces of wood lying on the ground.")
           }
-          msg ("An ornate rug has been folden in half, revealing an open trap door leading down.")
+          msg ("An ornate rug has been folded in half, revealing an open trap door leading down.")
         }
         else if (game.level = "Rook") {
+          msg ("To your west you see cramped corridor, these were probably once for maintenance but have long since been in a state of disrepair. ")
         }
-      </script>
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your north")
+        }
+      ]]></script>
     </turnscript>
   </object>
   <object name="C4">
@@ -1102,16 +1236,19 @@
             msg ("However, A menacing suit of armour seems to be guarding this entrance.")
           }
           else if (Knight.descShown = 1) {
-            msg ("As you approach, the shadows slowly slither away leaving the once-floating-armor lying suitably inert on the ground. The steel has been wrenched apart like an open wound. What once resembled a chest, arms, legs, and a helm, is no more. All that’s left is useless hunks of metal barely recognizable. ")
             msg ("You are surrounded by pieces of scrap metal.")
-            MoveObject (Knight, STORAGE)
-            Knight.descShown = 2
           }
           else {
             msg ("You are surrounded by pieces of scrap metal.")
           }
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1167,9 +1304,15 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("You see what looks like a large cliff face. You can make out a path that goes up.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1223,9 +1366,15 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          MoveObject (player, H8)
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1266,9 +1415,15 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("You have stumbled into a dark forest. A solid wall is to your east, with stairs leading up.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1312,6 +1467,10 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your east and south.")
         }
       </script>
     </turnscript>
@@ -1368,6 +1527,11 @@
           msg ("You are south of the white house. you can't see any entrances on this side.")
         }
         else if (game.level = "Rook") {
+          msg ("It's cramped and dark, but at least you're off the tracks.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your east.")
         }
       </script>
     </turnscript>
@@ -1426,6 +1590,10 @@
           msg ("A dark stairway leads up, but you see a solid wall at the top of it.")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
+          msg ("There are locked but empty cells to your north and east.")
         }
       </script>
     </turnscript>
@@ -1533,15 +1701,24 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
+          msg ("You’re north of a white house. There are no entrances from this side.")
           if (monster.parent = C5) {
-            msg ("You’re north of a white house. There are no entrances from this side. You see something glint to your west.")
+            msg ("You see something glint to your west.")
           }
           else if (Knight.descShown = 0) {
             msg ("To your surprise, you see the shadow in the distance covering where there was once floating armor. ")
+            msg ("As you watch, the shadows slowly slither away leaving the once-floating-armor lying suitably inert on the ground. The steel has been wrenched apart like an open wound. What once resembled a chest, arms, legs, and a helm, is no more. All that’s left is useless hunks of metal barely recognizable. ")
+            MoveObject (Knight, STORAGE)
             Knight.descShown = 1
           }
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1595,9 +1772,21 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
-          msg ("A particularly large tree looms over you.")
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          msg ("You see what looks like a large stone wall with a path that leads upwards.")
+          if (Chessboard.parent = player) {
+            msg ("You look down as the chessboard in your hands flickers, and all the icons on it dissapear, including yours.")
+            MoveObject (Chessboard, STORAGE)
+          }
         }
         else if (game.level = "Rook") {
+          msg ("The walls of the cramped corridor press against you. Past the north exit you see a familiar set of train tracks.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -1650,6 +1839,18 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("To your south you see cramped corridor, these were probably once for maintenance but have long since been in a state of disrepair.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -1689,6 +1890,18 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are on a train platform that extends to the east.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -1732,6 +1945,12 @@
           msg ("You're in a darker part of the forest, long shadows cast themselves across your path.")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
         }
       </script>
     </turnscript>
@@ -1789,6 +2008,12 @@
         }
         else if (game.level = "Rook") {
         }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -1845,6 +2070,12 @@
         }
         else if (game.level = "Rook") {
         }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -1900,6 +2131,7 @@
           msg ("You are east of the white house. You don't see a way to enter it from here..")
         }
         else if (game.level = "Rook") {
+          msg ("There's a hole in the northern wall, though you can see train tracks on the other side.")
         }
       </script>
     </turnscript>
@@ -1950,12 +2182,20 @@
       <attr name="grid_length" type="int">0</attr>
     </exit>
     <turnscript>
-      <enabled type="boolean">false</enabled>
+      <enabled />
       <script>
         if (game.level = "Knight" ) {
           msg ("You are in a wooded glade, green sunlight streaming from above")
         }
         else if (game.level = "Rook") {
+          msg ("To your north you see cramped corridor, these were probably once for maintenance but have long since been in a state of disrepair. ")
+          msg ("There's a hole on the southern wall, though you can see train tracks on the other side.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard. There is an exit to you south.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -2007,13 +2247,20 @@
     </exit>
     <turnscript>
       <enabled />
-      <script>
+      <script><![CDATA[
         if (game.level = "Knight" ) {
-          msg ("You are in a wooded glade, green sunlight streaming from above.")
+          msg ("You are in a wooded glade, green sunlight streaming from above.<br/>A particularly large tree looms over you.")
         }
         else if (game.level = "Rook") {
+          msg ("The walls of the cramped corridor press against you. Past the south exit you see a familiar set of train tracks.")
         }
-      </script>
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
+      ]]></script>
     </turnscript>
   </object>
   <object name="E7">
@@ -2067,6 +2314,17 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -2105,6 +2363,18 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          MoveObject (player, H8)
+        }
+        else if (game.level = "Rook") {
+          msg ("You are on a train platfrom that extends to the west and east.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -2145,6 +2415,12 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
         }
       </script>
     </turnscript>
@@ -2199,6 +2475,12 @@
       <script>
         if (game.level = "Knight" ) {
           msg ("You’re in a wooded glade, green sunlight streaming from above.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
         }
       </script>
     </turnscript>
@@ -2255,6 +2537,12 @@
           msg ("You’re in a clearing, clear afternoon sunlight streams down from above. ")
         }
         else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
         }
       </script>
     </turnscript>
@@ -2368,6 +2656,12 @@
         }
         else if (game.level = "Rook") {
         }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -2423,6 +2717,13 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Rook") {
+          msg ("The hole is cramped and dark, but at least you're off the train tracks.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
         }
       </script>
     </turnscript>
@@ -2479,6 +2780,17 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -2518,6 +2830,18 @@
     <turnscript>
       <enabled />
       <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("You are on a train platform that extends to the west.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in a large and empty courtyard.")
+          if (Lever.parent = C8) {
+            msg ("Along the walls are several spotlights, two of which shine directly into the courtyard... As if they were looking for you.")
+          }
+        }
       </script>
     </turnscript>
   </object>
@@ -2554,6 +2878,22 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G2">
     <inherit name="editor_room" />
@@ -2600,6 +2940,22 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G3">
     <inherit name="editor_room" />
@@ -2646,6 +3002,22 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G4">
     <inherit name="editor_room" />
@@ -2692,6 +3064,22 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G5">
     <inherit name="editor_room" />
@@ -2738,6 +3126,22 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G6">
     <inherit name="editor_room" />
@@ -2784,6 +3188,19 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("You’re in a darker part of the forest, long shadows cast themselves across your path.")
+        }
+        else if (game.level = "Rook") {
+          msg ("To your west you see a hole in the concrete just wide enough for you to stand away from the railroad tracks. ")
+        }
+        else if (game.level = "Bishop") {
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G7">
     <inherit name="editor_room" />
@@ -2832,6 +3249,18 @@
       <inherit name="eastdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight") {
+          MoveObject (player, H8)
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="G8">
     <inherit name="editor_room" />
@@ -2865,6 +3294,19 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+        }
+        else if (game.level = "Rook") {
+          msg ("To your east you see what looks to be a train platform. To your west is an open doorway.")
+        }
+        else if (game.level = "Bishop") {
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H1">
     <inherit name="editor_room" />
@@ -2890,6 +3332,22 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a train platform that extends to the north.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H2">
     <inherit name="editor_room" />
@@ -2924,6 +3382,22 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a train platform that extends to the north and south.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H3">
     <inherit name="editor_room" />
@@ -2958,6 +3432,22 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+          msg ("You are standing on a train platform that extends to the south.")
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H4">
     <inherit name="editor_room" />
@@ -2993,6 +3483,21 @@
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H5">
     <inherit name="editor_room" />
@@ -3027,6 +3532,22 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          if (Lever.parent = H4) {
+            msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
+          }
+          msg ("To the north you see an open doorway with the word Security printed above it.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H6">
     <inherit name="editor_room" />
@@ -3061,6 +3582,18 @@
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+          msg ("You are in a nondescript room.")
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H7">
     <inherit name="editor_room" />
@@ -3097,6 +3630,17 @@
       <inherit name="northdirection" />
       <attr name="grid_length" type="int">0</attr>
     </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+        }
+        else if (game.level = "Rook") {
+        }
+        else if (game.level = "Bishop") {
+        }
+      </script>
+    </turnscript>
   </object>
   <object name="H8">
     <inherit name="editor_room" />
@@ -3112,10 +3656,6 @@
     <onexit type="script">
       H8.inRoom = " "
     </onexit>
-    <exit name="H8southwest" alias="southwest" to="G7">
-      <inherit name="southwestdirection" />
-      <attr name="grid_length" type="int">0</attr>
-    </exit>
     <exit name="H8south" alias="south" to="H7">
       <inherit name="southdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -3123,6 +3663,28 @@
     <exit name="H8west" alias="west" to="G8">
       <inherit name="westdirection" />
       <attr name="grid_length" type="int">0</attr>
+    </exit>
+    <turnscript>
+      <enabled />
+      <script>
+        if (game.level = "Knight" ) {
+          msg ("The surrounding forest is so dense that hardly any light reaches you.")
+          msg ("However, you can make out a solid stone wall, with stairs leading up towards a source of light.")
+          if (Chessboard.parent = player) {
+            msg ("You look down as the chessboard in your hands flickers, and all the icons on it dissapear, including yours.")
+            MoveObject (Chessboard, STORAGE)
+          }
+        }
+        else if (game.level = "Rook") {
+          msg ("The absence of light in this room makes it hard to see anything at all.")
+        }
+        else if (game.level = "Bishop") {
+        }
+      </script>
+    </turnscript>
+    <exit name="H8southwest" alias="southwest" to="G7">
+      <inherit name="southwestdirection" />
+      <locked type="boolean">false</locked>
     </exit>
   </object>
   <turnscript name="KnightOnTurn">
@@ -3580,27 +4142,14 @@
         }
       </attack>
       <use type="script">
-        if (Checkpoint.parent = player.parent) {
-          msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
-          UnlockExit (B2west)
-        }
-        else {
-          msg ("You brandish your passport, but given that this does not seem to be an appropriate place, you feel silly waving about someone else’s passport for no reason.")
-        }
+        // if (Checkpoint.parent = player.parent) {
+          // msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
+          // UnlockExit (B2west)
+          // }
       </use>
       <approach type="script">
       </approach>
-      <selfuseon type="scriptdictionary">
-        <item key="Checkpoint">
-          if (Checkpoint.parent = player.parent) {
-            msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
-            UnlockExit (B2west)
-          }
-          else {
-            msg ("You aren't close enough to the checkpoint")
-          }
-        </item>
-      </selfuseon>
+      <selfuseon type="scriptdictionary" />
       <giveto type="scriptdictionary">
         <item key="Checkpoint">
           if (Checkpoint.parent = player.parent) {
@@ -3872,10 +4421,6 @@
       <inherit name="editor_object" />
       <alias>Rook</alias>
     </object>
-    <object name="Checkpoint">
-      <inherit name="editor_object" />
-      <alias>checkpoint, teller, guard, security, toll booth, booth, limb, tentacle, tentacle like limb, tentacle-like limb</alias>
-    </object>
     <object name="bench">
       <inherit name="editor_object" />
       <eat>You lick the bench, and immediately wish you hadn't. What you taste is a like a combination of dead dog, mint, and gasoline.</eat>
@@ -3897,6 +4442,19 @@
           msg ("You kick the bench. Kicking rock is not fun. You wonder if you've broken something, or if it's just vanilla excruciating pain.")
         }
       </attack>
+    </object>
+    <object name="window1">
+      <inherit name="editor_object" />
+      <alias>window</alias>
+      <look>Through the window, you can see what looks to be a kitchen.</look>
+    </object>
+    <object name="window2">
+      <inherit name="editor_object" />
+      <alias>window</alias>
+      <look>Through this window, you think you can see what might be a bedroom.</look>
+    </object>
+    <object name="Checkpoint">
+      <inherit name="editor_object" />
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -5851,7 +6409,7 @@
     MoveObject (Goal, A2)
     MoveObject (Key, H1)
     MoveObject (stamp, B2)
-    MoveObject (Checkpoint, B2)
+    // MoveObject (Checkpoint, B2)
     MoveObject (Rook, A1)
     LockExit (A8south)
     LockExit (A8southeast)
@@ -5933,7 +6491,7 @@
     LockExit (F7southeast)
     LockExit (G7southwest)
     LockExit (G6northwest)
-    LockExit (G6west)
+    // LockExit (G6west)
     LockExit (G6southwest)
     LockExit (G5northwest)
     LockExit (F5northeast)
@@ -6033,7 +6591,7 @@
     LockExit (C3southeast)
     LockExit (C3east)
     LockExit (C3northeast)
-    LockExit (C3north)
+    // LockExit (C3north)
     LockExit (C3northwest)
     LockExit (B3northeast)
     LockExit (B3north)
@@ -6105,6 +6663,10 @@
     LockExit (F6north)
     LockExit (F6south)
     LockExit (F6west)
+    LockExit (F6northwest)
+    LockExit (F6southwest)
+    LockExit (F6northeast)
+    LockExit (F6southeast)
     // descWalls
     // foreach (exit, AllExits()) {
       // if ((exit.locked) and (exit.parent = player.parent)) {
@@ -6317,25 +6879,26 @@
     MoveObject (Goal, D4)
     MoveObject (Knight, B3)
     MoveObject (Sword, B2)
-    LockExit (C8east)
-    LockExit (C8southeast)
-    LockExit (C8south)
-    LockExit (C8southwest)
-    LockExit (B8southeast)
-    LockExit (B8south)
-    LockExit (B8southwest)
-    LockExit (A8southeast)
-    LockExit (A7northeast)
-    LockExit (A7east)
-    LockExit (A7southeast)
-    LockExit (A6northeast)
-    LockExit (B6northwest)
-    LockExit (B6north)
-    LockExit (B6northeast)
-    LockExit (C6northwest)
-    LockExit (C6north)
-    LockExit (C6northeast)
-    LockExit (C6east)
+    // Changed design of map to remove need of custom exits.
+    // LockExit (C8east)
+    // LockExit (C8southeast)
+    // LockExit (C8south)
+    // LockExit (C8southwest)
+    // LockExit (B8southeast)
+    // LockExit (B8south)
+    // LockExit (B8southwest)
+    // LockExit (A8southeast)
+    // LockExit (A7northeast)
+    // LockExit (A7east)
+    // LockExit (A7southeast)
+    // LockExit (A6northeast)
+    // LockExit (B6northwest)
+    // LockExit (B6north)
+    // LockExit (B6northeast)
+    // LockExit (C6northwest)
+    // LockExit (C6north)
+    // LockExit (C6northeast)
+    // LockExit (C6east)
     LockExit (C6southeast)
     LockExit (C6south)
     LockExit (C6southwest)
@@ -6366,7 +6929,7 @@
     LockExit (C5northeast)
     LockExit (D5northwest)
     LockExit (D6southwest)
-    LockExit (D6west)
+    // LockExit (D6west)
     LockExit (D6northwest)
     LockExit (D6north)
     LockExit (D6northeast)
@@ -6478,41 +7041,108 @@
     LockExit (B3south)
     LockExit (C5west)
     LockExit (B5east)
-    LockExit (B7west)
-    LockExit (B7south)
-    LockExit (C7north)
-    LockExit (C7south)
+    LockExit (E6west)
+    LockExit (D5north)
+    LockExit (E6southwest)
+    LockExit (D5northeast)
+    // LockExit (B7west)
+    // LockExit (B7south)
+    // LockExit (C7north)
+    // LockExit (C7south)
+    // LockExit (D7south)
+    create exit ("down", A3, D6)
+    create exit ("up", D6, A3)
+    create exit ("down", C3, H8)
+    create exit ("up", H8, C3)
+    // create exit ("north", B8, C8)
+    // create exit ("north", D7, C8)
+    // create exit ("east", D7, C8)
+    // create exit ("west", A8, C8)
+    // create exit ("south", C5, C8)
+    // create exit ("south", B6, C8)
+    // create exit ("south", A5, C8)
+    // UnlockExit (B8south)
+    // UnlockExit (B6south)
+    // LockExit (D7north)
+    // LockExit (D7east)
+    // LockExit (A5south)
+    // LockExit (B6south)
+    // LockExit (D7northwest)
+    // LockExit (D7northeast)
+    // Since I'm super lazy at this point
+    // I'm just going to unlock exits i've
+    // changed instead of removing them above.
+    UnlockExit (A3north)
+    UnlockExit (A3northeast)
+    UnlockExit (A4north)
+    UnlockExit (A4east)
+    UnlockExit (A4south)
+    UnlockExit (A4southeast)
+    UnlockExit (A4northeast)
+    UnlockExit (A5east)
+    UnlockExit (A5south)
+    UnlockExit (A5southeast)
+    LockExit (A5north)
+    LockExit (A5northeast)
+    UnlockExit (B3northwest)
+    UnlockExit (B4west)
+    UnlockExit (B4northwest)
+    UnlockExit (B4southwest)
+    UnlockExit (B5southwest)
+    UnlockExit (B5west)
+    LockExit (H8south)
+    LockExit (G8southeast)
+    LockExit (G8southwest)
+    LockExit (F7south)
+    LockExit (F7southeast)
+    LockExit (F7southwest)
+    LockExit (F7east)
+    LockExit (E7south)
+    LockExit (E7southeast)
+    LockExit (E7southwest)
     LockExit (D7south)
-    create exit ("down", A3, C6)
-    create exit ("up", C6, A3)
-    create exit ("down", C3, C8)
-    create exit ("up", C8, C3)
-    create exit ("north", B8, C8)
-    create exit ("north", D7, C8)
-    create exit ("east", D7, C8)
-    create exit ("west", A8, C8)
-    create exit ("south", C5, C8)
-    create exit ("south", B6, C8)
-    create exit ("south", A5, C8)
-    UnlockExit (B8south)
-    UnlockExit (B6south)
-    LockExit (D7north)
-    LockExit (D7east)
-    LockExit (A5south)
-    LockExit (B6south)
+    LockExit (D7southeast)
+    LockExit (D7southwest)
+    LockExit (D7west)
     LockExit (D7northwest)
     LockExit (D7northeast)
-    MakeExitInvisible (B6south)
-    MakeExitInvisible (D7north)
-    MakeExitInvisible (D7east)
-    MakeExitInvisible (A5south)
-    MakeExitInvisible (D7northwest)
-    MakeExitInvisible (D7northeast)
-    MakeExitInvisible (A5southeast)
-    MakeExitInvisible (B6southeast)
-    MakeExitInvisible (B6southwest)
+    LockExit (D8east)
+    LockExit (D8southwest)
+    LockExit (C8southwest)
+    LockExit (C8southeast)
+    LockExit (B8southwest)
+    LockExit (B8southeast)
+    LockExit (A8south)
+    LockExit (A8southeast)
+    LockExit (B7southwest)
+    LockExit (B7southeast)
+    LockExit (B7northwest)
+    LockExit (B7northeast)
+    LockExit (B7west)
+    LockExit (B7east)
+    LockExit (B6southwest)
+    LockExit (B6southeast)
+    LockExit (B6northwest)
+    LockExit (B6northeast)
+    LockExit (B6south)
+    LockExit (A6south)
+    LockExit (A6southeast)
+    LockExit (A6north)
+    LockExit (A6northeast)
+    LockExit (C6southwest)
+    LockExit (C6southeast)
+    LockExit (C6northwest)
+    LockExit (C6northeast)
+    LockExit (C6south)
+    LockExit (D6southwest)
+    LockExit (D6southeast)
+    LockExit (D6northwest)
+    LockExit (D6northeast)
+    LockExit (D6south)
+    LockExit (D6north)
+    LockExit (D6east)
     foreach (exit, AllExits()) {
-      exit.lockmessage = "There is wall blocking your path."
+      exit.lockmessage = "The trees are so dense they form a wall blocking your path."
     }
     C5east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
     C3west.lockmessage = "There is a door blocking your path. It is firmly bolted shut."
@@ -7030,7 +7660,7 @@
       MoveObject (Lever, C8)
       MoveObject (Bishop, A5)
       MoveObject (Bishop2, D5)
-      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. The door in front of you slowly opens with a loud creak.Two intense beams of light appear now in the room ahead, Which you eye warily.")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. The door in front of you slowly opens with a loud creak.")
       UnlockExit (A3northeast)
       UnlockExit (B3northwest)
       UnlockExit (B3north)
@@ -7043,7 +7673,7 @@
       MoveObject (Lever, H4)
       MoveObject (Bishop2, H5)
       MoveObject (Bishop, E1)
-      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. You hear a loud creak, like another door opening from somewhere in the room.")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. You hear a loud creak, like another door opening from somewhere in the courtyard")
       UnlockExit (D5southeast)
       UnlockExit (E5southwest)
       UnlockExit (E5south)
@@ -7057,8 +7687,8 @@
       MoveObject (Bishop, STORAGE)
       MoveObject (Bishop2, STORAGE)
       msg ("You pull hard on the lever, which jerkily gives way to the force exerted")
-      msg ("The beam of light begins quiver slowly, and then begins to rapidly expand and dissipate, until the enter room is bathed in a moderate, constant, sourceless light. You hear a voice. “So it is done. You have my thanks, little one, but do not expect mercy if I find you. So it has been, so it must be.” You glimpse a tall shape at some distance slipping away further into the complex.")
-      msg ("In the modest light, you can see the mirror directly in front of you. You see your distant image begin to dissolve, and you know that you can escape through it now.")
+      msg ("The room is plunged into darkness for a brief moment, and then bathed in a moderate, constant, sourceless red light.  You glimpse a tall shape at some distance slipping away further into the complex.")
+      msg ("In the modest light, you can see the mirror north of you. You see your distant image begin to dissolve, and you know that you can escape through it now.")
       UnlockExit (H5north)
       DisableTurnScript (BishopOnTurn)
     }
@@ -7895,15 +8525,6 @@
     // create exit ("south", C5, C8)
     // create exit ("south", B6, C8)
     // create exit ("south", A5, C8)
-    MakeExitVisible (B6south)
-    MakeExitVisible (D7north)
-    MakeExitVisible (D7east)
-    MakeExitVisible (A5south)
-    MakeExitVisible (D7northwest)
-    MakeExitVisible (D7northeast)
-    MakeExitVisible (A5southeast)
-    MakeExitVisible (B6southeast)
-    MakeExitVisible (B6southwest)
     MoveObject (rug, STORAGE)
   </function>
   <function name="RookRookKillZone">
@@ -8426,4 +9047,5 @@
       msg ("You are on a set of train tracks that runs north to south")
     }
   </function>
+  <walkthrough name="Solution" />
 </asl>
