@@ -485,10 +485,12 @@
           }
         }
         else if (game.level = "Rook") {
-          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint freen flow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
-          msg ("Passport please")
-          if (Key.parent <> player) {
-            msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
+          if (B2west.locked = true) {
+            msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper. You see a faint green glow that forms the outline of a tall, rounded creature behind the booth. It extends a slippery tenticle like limb.")
+            msg ("Passport please")
+            if (Key.parent <> player) {
+              msg ("You don't have a passport on you, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
+            }
           }
         }
       ]]></script>
@@ -7487,46 +7489,6 @@
         deathByKnight
       }
     }
-    if (Knight.parent = B5) {
-      if (player.parent = E8) {
-        deathByKnight
-      }
-      else if (player.parent = C8) {
-        deathByKnight
-      }
-      else if (player.parent = B5) {
-        deathByKnight
-      }
-      else if (player.parent = E4) {
-        deathByKnight
-      }
-      else if (player.parent = F7) {
-        deathByKnight
-      }
-      else if (player.parent = B7) {
-        deathByKnight
-      }
-      else if (player.parent = F8) {
-        deathByKnight
-      }
-      else if (player.parent = C4) {
-        deathByKnight
-      }
-    }
-    if (Knight.parent = D6) {
-      if (player.parent = G7) {
-        deathByKnight
-      }
-      else if (player.parent = C7) {
-        deathByKnight
-      }
-      else if (player.parent = D6) {
-        deathByKnight
-      }
-      else if (player.parent = F6) {
-        deathByKnight
-      }
-    }
     if (Knight.parent = E8) {
       if (player.parent = E8) {
         deathByKnight
@@ -7548,22 +7510,22 @@
       }
     }
     if (Knight.parent = C7) {
-      if (player.parent = C7) {
+      if (player.parent = E8) {
         deathByKnight
       }
-      else if (player.parent = A7) {
+      else if (player.parent = E6) {
         deathByKnight
       }
-      else if (player.parent = A3) {
+      else if (player.parent = A8) {
         deathByKnight
       }
-      else if (player.parent = C3) {
+      else if (player.parent = A6) {
         deathByKnight
       }
-      else if (player.parent = D6) {
+      else if (player.parent = D5) {
         deathByKnight
       }
-      else if (player.parent = D4) {
+      else if (player.parent = B5) {
         deathByKnight
       }
     }
@@ -7577,9 +7539,6 @@
       else if (player.parent = A3) {
         deathByKnight
       }
-      else if (player.parent = C3) {
-        deathByKnight
-      }
       else if (player.parent = D6) {
         deathByKnight
       }
@@ -7588,22 +7547,28 @@
       }
     }
     if (Knight.parent = D6) {
-      if (player.parent = C7) {
+      if (player.parent = E8) {
         deathByKnight
       }
-      else if (player.parent = A7) {
+      else if (player.parent = C8) {
         deathByKnight
       }
-      else if (player.parent = A3) {
+      else if (player.parent = F7) {
         deathByKnight
       }
-      else if (player.parent = C3) {
+      else if (player.parent = F5) {
         deathByKnight
       }
-      else if (player.parent = D6) {
+      else if (player.parent = B7) {
         deathByKnight
       }
-      else if (player.parent = D4) {
+      else if (player.parent = B5) {
+        deathByKnight
+      }
+      else if (player.parent = E4) {
+        deathByKnight
+      }
+      else if (player.parent = C4) {
         deathByKnight
       }
     }
