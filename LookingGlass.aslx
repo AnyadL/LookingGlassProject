@@ -2,6 +2,7 @@
 <asl version="550">
   <include ref="English.aslx" />
   <include ref="Core.aslx" />
+  <template name="DefaultSelfDescription">You want to know what you look like? Stand up from your computer, go to the nearest bathroom, and look in a mirror. Don't worry, we'll be here when you get back. This is a text adventure game. You don't even have to pause.</template>
   <game name="LookingGlass">
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
@@ -3285,7 +3286,7 @@
       <switchonmsg>You have switched the lever. The light now illuminates the entrance you came in.</switchonmsg>
       <switchoffmsg>The light is still there, you will probably die</switchoffmsg>
       <attr name="feature_edible" type="boolean">false</attr>
-      <eat>You can't eat a lever</eat>
+      <eat>Even through the dim light, the rusted lever does not look terribly appetizing.</eat>
       <lick>Tastes metalic</lick>
       <press type="script">
         moveLever
@@ -3299,6 +3300,20 @@
       <pull type="script">
         moveLever
       </pull>
+      <throw>It is pretty firmly bolted to the ground. It would kinda be a problem if it wasn't.</throw>
+      <takemsg>And how do you propose to take something that is bolted to the floor?</takemsg>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("The distinctive clang of metal on metal pierces the silence, but has no other noticeable effect.")
+        }
+        else {
+          msg ("You punch with the lever with great force. And now your hand really, really hurts.")
+        }
+      </attack>
+      <enter>You are not small enough.</enter>
+      <approach>You are now standing over the lever.</approach>
+      <lookin>The lever is exactly what it appears to be—a rusty old switch.</lookin>
+      <speak>What do you expect it to say? The Gettysburg address?</speak>
     </object>
     <object name="player">
       <inherit name="editor_object" />
@@ -3307,9 +3322,54 @@
       <usedefaultprefix type="boolean">false</usedefaultprefix>
       <playerDeath>null</playerDeath>
       <turn type="int">0</turn>
+      <alias>me, self, player, pc, myself</alias>
+      <eat>You... want to eat yourself? Are you that hungry, or just some sort of weirdly egotistical cannibal?</eat>
+      <turnon>If you want to turn yourself “on”, I would prefer you do it in the privacy of your own home. Leave me out of it.</turnon>
+      <throw>Throw yourself? Do you mean jump? Because actually throwing yourself would be, you know, physically impossible.</throw>
+      <jump>You jump about a foot in the air.</jump>
+      <takemsg>If you wish to “possess” yourself, you will likely need to reach a level of enlightenment that few have ever attained. I will be of positively no help in this, but good luck with that!</takemsg>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("Suicide is a little dark for this game, no? How about we just play a game of patty-cake instead?")
+        }
+        else {
+          msg ("You slap yourself. You feel slightly more awake.")
+        }
+      </attack>
+      <press>Where were you on the night of the eighteenth? Do you have an alibi? Do you? DO YOU???</press>
+      <enter>Enter yourself. Do you, you know, think about what it is you type before you do it?</enter>
+      <approach>Are you trying to approach yourself? What, are you trying to pick yourself up? What kind of narcissist are you?</approach>
+      <lookin>Who am I? What is my purpose in life? Where am I going? Why? Why? WHY???</lookin>
+      <smash>You run and throw yourself against the nearest wall. There. You've smashed yourself. It probably hurt more than you expected, didn't it?</smash>
+      <destroy>Do you mean to destroy yourself, or just your virtual alter ego? If it's the latter, quitting the game would be more efficient, if yourself, I would suggest extensive counselling.</destroy>
+      <break>Breaking the player is my duty, thank you very much. You try to win, and I try to break you. Stop messing with the balance of these things!</break>
+      <speak type="script">
+        msg ("“Hello self.”")
+        msg ("“Ah, it's my dear old friend, me. How am I doing these days.”")
+        msg ("“Smashingly! Well, aside from being lost in a maze in a text adventure game.”")
+        msg ("“Ah, that's terrible, but I'm sure you'll figure it out eventually.”")
+        msg ("“Not necessarily, dear chap, as this is one of those adventure games in which you CAN die!”")
+        msg ("“Oh how dreadful! How's the writing?”")
+        msg ("“All right. Sometimes when I type in random verbs, strange things pop up. Like, I was expecting when I told the game I wanted to talk to myself get that line about how talking to yourself is probably a sign you're going crazy. Like I haven't seen that before.”")
+        msg ("“Bit of a cliche, isn't it? What did you get instead?”")
+        msg ("“This wondrous conversation!”")
+        msg ("“Oh, wonderful! I do say that talking to myself is an engaging bit of gabbing, wouldn't you say, old boy?”")
+        msg ("“Right, yes, of course! Although I don't understand why I imagine myself as a 19th century British Gentleman.”")
+        msg ("“Because monocles are absolutely smashing, my boy! And top hats! We musn't forget those!”")
+        msg ("“And I have been on a bit of a Harry Potter kick lately, so I've been feeling a bit British!”")
+        msg ("“Ah, and Downton Abbey! We musn't forget that one, my good fellow!”")
+        msg ("“Ah yes! We must not forget that one at all!”")
+        msg ("(A hearty laugh is shared by all.)")
+        msg ("“Say old chap, I don't suppose anyone would read this entire block of text, would they?”")
+        msg ("“Bah! Of course not! This is going to be played by millenials! If it's over one hundred forty characters, their eyes glaze over!”")
+        msg ("“Smashing, smashing! It wouldn't do to have our rich, fantasy atmosphere broken up by Downton Abbey references!”")
+        msg ("“No, my good man, it wouldn't do at all!”")
+      </speak>
+      <look>You want to know what you look like? Stand up from your computer, go to the nearest bathroom, and look in a mirror. Don't worry, we'll be here when you get back. This is a text adventure game. You don't even have to pause.</look>
     </object>
     <object name="Chessboard">
       <inherit name="editor_object" />
+      <inherit name="switchable" />
       <take />
       <dropmsg>You dropped the Chessboard</dropmsg>
       <position>STORAGE</position>
@@ -3317,7 +3377,7 @@
       <takemsg> </takemsg>
       <alias>Chessboard, glass, tablet</alias>
       <buy>It is yours.</buy>
-      <eat>This is far too important to waste as food.</eat>
+      <eat>Your attempt to nibble on the corner, but you just can't seem to get a good bite.</eat>
       <kiss>You can see the print of your lips on the pane.</kiss>
       <lick>Tastes dusty</lick>
       <listen>It is eerily silent</listen>
@@ -3370,6 +3430,32 @@
       <unlock type="script">
         EnableTurnScript (displayASCII)
       </unlock>
+      <attr name="feature_switchable" type="boolean">false</attr>
+      <turnon type="script">
+        if (ListContains(ScopeReachable(), this)) {
+          if (this.switchedon) {
+            msg (DynamicTemplate("AlreadySwitchedOn", this))
+          }
+          else {
+            if (HasString(this, "switchonmsg")) {
+              msg (this.switchonmsg)
+            }
+            else {
+              msg (DynamicTemplate("SwitchedOn", this))
+            }
+            this.switchedon = true
+          }
+        }
+        else {
+          msg (DynamicTemplate("DefaultTurnOn", this))
+        }
+      </turnon>
+      <throw>With a cry of ”I don't have to take this, I have free will!”, you chuck the chessboard as hard as you can. You watch in satisfaction for a moment as it flies away from you, and then in confusion as it begins to somehow, defy gravity and start flying back towards you like a boomerang. Before you can react, it hits you in the head with some force, and you feel a rush of pain, and your head begins to throb. You hear a voice distant, and yet somehow surrounding you, “this is the designer of the game... you don't have free will in here. Now shut up, and keep the chessboard in your inventory.” You pick up the chessboard with a sigh.</throw>
+      <press>You try pressing the places where the symbols are to see if there is any reaction, but there is not.</press>
+      <enter>From what you can gather, you've already entered a chessboard. This one is little more than a map.</enter>
+      <approach type="script">
+      </approach>
+      <speak>You find it to be a very dry conversationalist.</speak>
     </object>
     <object name="King">
       <inherit name="editor_object" />
@@ -3386,13 +3472,41 @@
       <inherit name="edible" />
       <alias>Mirror, Oval Glass, Looking Glass, OvalGlass, LookingGlass</alias>
       <attr name="feature_edible" type="boolean">false</attr>
-      <eat>You can't eat a mirror</eat>
-      <smash>You try to smash the mirror, but your fist just bounces off</smash>
-      <destroy>You try to destroy the mirror, but nothing happens.</destroy>
-      <break>You try to break the mirror, but your fist just bounces off</break>
-      <attack>You attack the mirror, but nothing you do seems to affect it.</attack>
+      <eat>As much as you would like to know what would happen if someone attempted to eat a dimensional portal, you are reasonably sure that it would involve some sort of slow, painful death.</eat>
+      <smash type="script">
+        if (Sword.parent = player) {
+          msg ("You swing the sword at the mirror, which immediately crashes and shatters into a thousand pieces, and then dissolves. You look about seeing if there are any remnants of the mirror about, but you notice a small, black spot where the mirror was. It then suddenly enlarges, and sucks you in. You are exposed to a series of colours, shapes and sounds so rapidly that you cannot process them at all. Suddenly, you are floating about ten feet in the air about ten feet behind where you were standing a moment ago, and see yourself moving backwards through the moment you experienced a moment ago, as the mirror unshatters and the sword returns to its sheath. You are immediately returned to your body, wondering what just happened.")
+        }
+        else {
+          msg ("You punch the mirror, but your hand just passes through, which you withdraw quickly as you feel the portal pulling you in further. Physical attacks will do nothing.")
+        }
+      </smash>
+      <destroy type="script">
+        if (Sword.parent = player) {
+          msg ("You swing the sword at the mirror, which immediately crashes and shatters into a thousand pieces, and then dissolves. You look about seeing if there are any remnants of the mirror about, but you notice a small, black spot where the mirror was. It then suddenly enlarges, and sucks you in. You are exposed to a series of colours, shapes and sounds so rapidly that you cannot process them at all. Suddenly, you are floating about ten feet in the air about ten feet behind where you were standing a moment ago, and see yourself moving backwards through the moment you experienced a moment ago, as the mirror unshatters and the sword returns to its sheath. You are immediately returned to your body, wondering what just happened.")
+        }
+        else {
+          msg ("You punch the mirror, but your hand just passes through, which you withdraw quickly as you feel the portal pulling you in further. Physical attacks will do nothing.")
+        }
+      </destroy>
+      <break type="script">
+        if (Sword.parent = player) {
+          msg ("You swing the sword at the mirror, which immediately crashes and shatters into a thousand pieces, and then dissolves. You look about seeing if there are any remnants of the mirror about, but you notice a small, black spot where the mirror was. It then suddenly enlarges, and sucks you in. You are exposed to a series of colours, shapes and sounds so rapidly that you cannot process them at all. Suddenly, you are floating about ten feet in the air about ten feet behind where you were standing a moment ago, and see yourself moving backwards through the moment you experienced a moment ago, as the mirror unshatters and the sword returns to its sheath. You are immediately returned to your body, wondering what just happened.")
+        }
+        else {
+          msg ("You punch the mirror, but your hand just passes through, which you withdraw quickly as you feel the portal pulling you in further. Physical attacks will do nothing.")
+        }
+      </break>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("You swing the sword at the mirror, which immediately crashes and shatters into a thousand pieces, and then dissolves. You look about seeing if there are any remnants of the mirror about, but you notice a small, black spot where the mirror was. It then suddenly enlarges, and sucks you in. You are exposed to a series of colours, shapes and sounds so rapidly that you cannot process them at all. Suddenly, you are floating about ten feet in the air about ten feet behind where you were standing a moment ago, and see yourself moving backwards through the moment you experienced a moment ago, as the mirror unshatters and the sword returns to its sheath. You are immediately returned to your body, wondering what just happened.")
+        }
+        else {
+          msg ("You punch the mirror, but your hand just passes through, which you withdraw quickly as you feel the portal pulling you in further. Physical attacks will do nothing.")
+        }
+      </attack>
       <listen>There's a whole world through this mirror.</listen>
-      <speak>Mirror mirror on the wall...</speak>
+      <speak>”Mirror mirror, over there, who's the fairest of the fair?” It still refused to show your reflection. Jerk.</speak>
       <look type="script"><![CDATA[
         if (game.level = "RabbitHole") {
           msg ("A cool shiver tickles down your spine - this thing, this thing that you thought was a mirror - isn’t reflecting anything.")
@@ -3440,6 +3554,14 @@
       <walkin type="script">
         mirrorEntered
       </walkin>
+      <turnon>You run your hands all along the body of the mirror, but there is no sort of contraption to turn it “on” or “off”.</turnon>
+      <turnoff>You run your hands all along the body of the mirror, but there is no sort of contraption to turn it “on” or “off”.</turnoff>
+      <throw>You attempt to pick up the mirror to throw it, but it seems bound by supernatural force. So much for that idea.</throw>
+      <takemsg>What would you do carrying a portal around on your person?</takemsg>
+      <press>You put your hand on what appears to be the surface, but your hand just goes through. You withdraw it before it can transport you.</press>
+      <walkthrough type="script">
+        mirrorEntered
+      </walkthrough>
     </object>
     <object name="Key">
       <inherit name="editor_object" />
@@ -3455,16 +3577,15 @@
       <destroy>You can't destroy the passport.</destroy>
       <smash>You don't have the strength.</smash>
       <break>You don't have the strength.</break>
-      <attack>You try to attack the passport. Why?</attack>
-      <givesingle type="script">
-        if (Checkpoint.parent = player.parent) {
-          msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
-          UnlockExit (B2west)
+      <attack type="script">
+        if ((Sword.parent = player) and (Key.parent = player)) {
+          msg ("You know, if you want to cut something out of the passport, scissors might be a better option")
         }
-        else {
-          msg ("You brandish your passport, but given that this does not seem to be an appropriate place, you feel silly waving about someone else’s passport for no reason.")
+        else if (Key.parent = player) {
+          msg ("You punch the passport. It flies about a foot and a half away. You pick it back up. Don't you feel accomplished?")
         }
-      </givesingle>
+      </attack>
+      <givesingle />
       <use type="script">
         if (Checkpoint.parent = player.parent) {
           msg ("You place the passport on the counter of the checkpoint and it wordlessly opens.")
@@ -3474,9 +3595,7 @@
           msg ("You brandish your passport, but given that this does not seem to be an appropriate place, you feel silly waving about someone else’s passport for no reason.")
         }
       </use>
-      <throw type="script">
-        MoveObject (Key, player.parent)
-      </throw>
+      <throw>You throw the passport, and it flutters to the ground a few feet in front of you. You feel like a big person, having thrown something, and you go over to pick it up with a sense of satisfaction.</throw>
       <selfuseon type="scriptdictionary">
         <item key="Checkpoint">
           if (Checkpoint.parent = player.parent) {
@@ -3499,6 +3618,13 @@
           }
         </item>
       </giveto>
+      <eat>You ate enough paper for one lifetime when you were six.</eat>
+      <turnon>You flip through it, but it seems to be no more than a standard passport, with nothing particular to manipulate.</turnon>
+      <press>You squeeze the passport, but it returns to its original shape.</press>
+      <enter>I don't think you can enter a passport.</enter>
+      <approach type="script">
+      </approach>
+      <speak>Given the amount of magic that you've seen today, you were hoping the passport may talk back. No such luck.</speak>
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -3514,7 +3640,7 @@
       <feature_usegive />
       <givesingle type="boolean">false</givesingle>
       <lick>Tastes like a Sword</lick>
-      <eat>You can't eat a Sword. That'd be dangerous.</eat>
+      <eat>Unfortunately, you repertoire of circus tricks does not include sword swallowing.</eat>
       <givetoanything type="script">
         if (Knight.parent = player.parent) {
           msg ("The black glove takes the handle of the sword, and then vanishes. You hear the sound of rending metal in the distance.")
@@ -3564,9 +3690,19 @@
       </selfuseon>
       <give type="scriptdictionary" />
       <giveto type="scriptdictionary" />
+      <turnon>You see no button on the weapon. You were hoping it could light up or glow in the dark.</turnon>
+      <throw>You throw the sword which twirls awkwardly in the air and lands a few feet away. It's definitely no throwing dagger. Embarrassed, you walk over and pick it up again.</throw>
+      <attack type="script">
+      </attack>
+      <press>You put your hand against the flat side of the blade to test its material. It feels like cold steel.</press>
+      <enter>You don't enter it, it enters you. And it's bad news when that happens.</enter>
+      <approach>You kneel down beside the sword.</approach>
+      <lookin>It is a plain, steel blade.</lookin>
+      <speak>Sadly, we are not in a game where the sword is an enchanted one that bursts into song. Maybe for the sequel.</speak>
     </object>
     <object name="door">
       <inherit name="editor_object" />
+      <inherit name="openable" />
       <look>A simple wooden door, firmly bolted shut.</look>
       <alias>door</alias>
       <break type="script">
@@ -3610,18 +3746,111 @@
           UnlockExit (B3east)
         }
         else {
-          msg ("You attack the door. It has no effect.")
+          msg ("“You stupid door with your stupid face!” you cry as you kick it hard. Now your foot really hurts. Ow.")
         }
       </attack>
+      <eat>You do realize you're not a termite, right?</eat>
+      <turnon>Do you mean to “open” or “close” the door? Perhaps you could do one of those.</turnon>
+      <turnoff>Do you mean to “open” or “close” the door? Perhaps you could do one of those.</turnoff>
+      <feature_container />
+      <open type="boolean">false</open>
+      <close type="boolean">false</close>
+      <openscript type="script">
+        msg ("The door is bolted shut.")
+      </openscript>
+      <closescript type="script">
+        msg ("It is bolted shut.")
+      </closescript>
+      <throw>And how do you propose to throw something that is bolted to the wall?</throw>
+      <takemsg>Doors typically don't go into your inventory. It's a bizarre convention of adventure games, I know, but just go with it.</takemsg>
+      <press>You press on the door</press>
+      <approach>You move to stand next to the door.</approach>
+      <speak>It's like talking to a wall.</speak>
     </object>
     <object name="monster">
       <inherit name="editor_object" />
+      <inherit name="switchable" />
       <look>A floating suit of armor. A friend once told you that they were pretty dangerous, though you don't believe him.</look>
       <alias>pawn, monster</alias>
+      <eat>You go up and lick the armour, which floats away from you, and you hear some kind of strange whispering sounds. It tastes... metallic.</eat>
+      <lick>You go up and lick the armour, which floats away from you, and you hear some kind of strange whispering sounds. It tastes... metallic.</lick>
+      <attr name="feature_switchable" type="boolean">false</attr>
+      <turnon type="script">
+        if (ListContains(ScopeReachable(), this)) {
+          if (this.switchedon) {
+            msg (DynamicTemplate("AlreadySwitchedOn", this))
+          }
+          else {
+            if (HasString(this, "switchonmsg")) {
+              msg (this.switchonmsg)
+            }
+            else {
+              msg (DynamicTemplate("SwitchedOn", this))
+            }
+            this.switchedon = true
+          }
+        }
+        else {
+          msg (DynamicTemplate("DefaultTurnOn", this))
+        }
+      </turnon>
+      <throw>You attempt to grab the suit of armour to throw it, but somehow, no matter how hard you try, you cannot seem to get your hands to touch, let alone hold, the armour.</throw>
+      <takemsg>You attempt to grab the suit of armour, but somehow, no matter how hard you try, you cannot seem to get your hands to touch, let alone hold, the armour.</takemsg>
+      <attack type="script">
+        if (Sword.parent = player) {
+          player.playerDeath = "You swing the sword towards the armor, and manage to miss completely. The sword passes through one of the absent joints. Before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. The sword lies discarded on the ground. Black spots begin to form around your vision as everything slowly fades to black… "
+        }
+        else {
+          player.playerDeath = "You flail out horribly ineffectively and nothing happens. But then before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. Black spots begin to form around your vision as everything slowly fades to black…  "
+        }
+      </attack>
+      <destroy type="script">
+        if (Sword.parent = player) {
+          player.playerDeath = "You swing the sword towards the armor, and manage to miss completely. The sword passes through one of the absent joints. Before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. The sword lies discarded on the ground. Black spots begin to form around your vision as everything slowly fades to black… "
+        }
+        else {
+          player.playerDeath = "You flail out horribly ineffectively and nothing happens. But then before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. Black spots begin to form around your vision as everything slowly fades to black…  "
+        }
+      </destroy>
+      <smash type="script">
+        if (Sword.parent = player) {
+          player.playerDeath = "You swing the sword towards the armor, and manage to miss completely. The sword passes through one of the absent joints. Before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. The sword lies discarded on the ground. Black spots begin to form around your vision as everything slowly fades to black… "
+        }
+        else {
+          player.playerDeath = "You flail out horribly ineffectively and nothing happens. But then before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. Black spots begin to form around your vision as everything slowly fades to black…  "
+        }
+      </smash>
+      <break type="script">
+        if (Sword.parent = player) {
+          player.playerDeath = "You swing the sword towards the armor, and manage to miss completely. The sword passes through one of the absent joints. Before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. The sword lies discarded on the ground. Black spots begin to form around your vision as everything slowly fades to black… "
+        }
+        else {
+          player.playerDeath = "You flail out horribly ineffectively and nothing happens. But then before you can react, You feel a strong clasp of large hands lift you off the floor by the neck. Black spots begin to form around your vision as everything slowly fades to black…  "
+        }
+      </break>
+      <enter>It looks lovely, but you would have to grab it somehow, and no matter how hard you try, you cannot grasp it. The world seems to somehow bend to prevent it falling into your grasp.</enter>
+      <approach>You walk up to the strange suit of armour.</approach>
+      <speak>If it's alive, it doesn't seem to be very interested in conversation.</speak>
     </object>
     <object name="rug">
       <inherit name="editor_object" />
       <look>A simple rug. Part of the rug is turned over, revealing an open trap door </look>
+      <eat>At the mere thought of tasting the rug, you curl your face in disgust. Who KNOWS who's put their feet on that thing!</eat>
+      <throw>You pick up and throw the rug. That ought to teach it a lesson.</throw>
+      <turnon>You pick it up, and give it a good couple of flaps, raising a lot of dust.</turnon>
+      <takemsg>You would rather not carry a dusty rug around with you, and somehow, you don't think it will be useful in any way.</takemsg>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("You swing your sword at the rug, and leave a shallow cut on it's surface. That was pointless.")
+        }
+        else {
+          msg ("You kick the rug. It's still giving you the silent treatment anyway.")
+        }
+      </attack>
+      <press>You press the rug against the ground, running your fingers through it, searching. You find nothing.</press>
+      <enter>Not only can you not enter a rug, but if you could, the dust would be unbearable.</enter>
+      <approach>You walk up and stand next to the rug.</approach>
+      <speak>”Don't be such a nasty, dusty thing!” You're quite glad you got that off your chest.</speak>
     </object>
     <object name="Throne">
       <inherit name="editor_object" />
@@ -3659,6 +3888,28 @@
     <object name="Checkpoint">
       <inherit name="editor_object" />
       <alias>checkpoint, teller, guard, security</alias>
+    </object>
+    <object name="bench">
+      <inherit name="editor_object" />
+      <eat>You lick the bench, and immediately wish you hadn't. What you taste is a like a combination of dead dog, mint, and gasoline.</eat>
+      <lick>You lick the bench, and immediately wish you hadn't. What you taste is a like a combination of dead dog, mint, and gasoline.</lick>
+      <turnon>You search the bench for some kind of switch, but it appears to be nothing more than a bench.</turnon>
+      <turnoff>You search the bench for some kind of switch, but it appears to be nothing more than a bench.</turnoff>
+      <throw>Right. Because you routinely throw things that are twice your weight.</throw>
+      <takemsg>If you want something portable upon which to rest, may I suggest a sleeping bag?</takemsg>
+      <attack type="script">
+        if (Sword.parent = player) {
+          msg ("You swing your sword at the bench, and feel pain shoot up your arm as it hits. You observe no scratch on the bench. “You win this one,” you mutter threateningly at the bench.")
+        }
+        else {
+          msg ("You kick the bench. Kicking rock is not fun. You wonder if you've broken something, or if it's just vanilla excruciating pain.")
+        }
+      </attack>
+      <press>You press your full weight against the back of the bench, but it does not so much as move an inch.</press>
+      <enter>Do you mean that you want to sit on the bench?</enter>
+      <sit>You try to sit, and it only takes you a moment to realize how cold and unaccomodating it is. With a sigh, you stand up, resigning yourself to finding little rest here.</sit>
+      <approach>You are standing directly in front of the bench.</approach>
+      <speak>It seems cold and uncomfortable to begin with. Why would you want to talk anyways?</speak>
     </object>
   </object>
   <turnscript name="QueenOnTurn" />
@@ -3799,6 +4050,27 @@
       }
       else if ((player.parent = Goal.parent) and (game.level <> "RabbitHole") and ((text="Mirror") or (text="MIRROR") or (text="mirror") or (text="Looking Glass") or (text="LookingGlass") or (text="LOOKING GLASS") or (text="looking glass"))) {
         msg ("The mirror seems to contain a world all its own.")
+      }
+      else if ((player.parent = Lever.parent) and (game.level = "Bishop") and ((text="lever") or (text="Lever") or (text="LEVER"))) {
+        msg ("The lever is exactly what it appears to be—a rusty old switch.")
+      }
+      else if (((player.parent = Sword.parent) or (Sword.parent = player)) and ((text="sword") or (text="Sword") or (text = "SWORD"))) {
+        msg ("It is a plain, steel blade.")
+      }
+      else if ((player.parent = door.parent) and ((text="door") or (text="DOOR") or (text="Door"))) {
+        msg ("It is a door. It lacks any remotely interesting characteristic.")
+      }
+      else if ((player.parent = monster.parent) and (game.level="Knight") and ((text="monster") or (text="Monster") or (text="MONSTER") or (text="armour") or (text="armor") or (text="Armour") or (text="Armor") or (text="ARMOUR") or (text = "ARMOR") or (text = "suit of armour") or (text = "Suit of Armour") or (text="SUIT OF ARMOUR") or (text="suit of armor") or (text="Suit of Armor") or (text="SUIT OF ARMOR"))) {
+        msg ("It is ornately made, but as you get closer, and reach out your hand, it seems to shift, and you find yourself grasping at air, as if it refuses to be touched by your hands. You think you perceive some strange distortion of light in the parts where human limbs would be, but you cannot be sure.")
+      }
+      else if ((player.parent = rug.parent) and ((text="rug") or (text="Rug") or (text="RUG"))) {
+        msg ("It's a dirty, dusty, disgusting rug.")
+      }
+      else if ((player.parent = bench.parent) and ((text="bench") or (text="Bench") or (text="BENCH"))) {
+        msg ("It looks cold, rounded, large and solid. Not comfortable, but certainly durable.")
+      }
+      else if ((text="player") or (text="Player") or (text = "PLAYER") or (text="pc") or (text = "PC") or (text="me") or (text = "ME") or (text="Me") or (text = "myself") or (text = "Myself") or (text = "MYSELF") or (text = "self") or (text="Self") or (text="SELF")) {
+        msg ("You want to know what you look like? Stand up from your computer, go to the nearest bathroom, and look in a mirror. Don't worry, we'll be here when you get back. This is a text adventure game. You don't even have to pause.")
       }
     ]]></script>
   </command>
@@ -4217,6 +4489,11 @@
     <property>walkin</property>
     <pattern>walk in</pattern>
     <defaultexpression>"You can't walk in " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>jump</property>
+    <pattern>jump</pattern>
+    <defaultexpression>"You can't jump " + object.article + "."</defaultexpression>
   </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
