@@ -4569,6 +4569,9 @@
       moveRookInPreQueen
       moveKnightInPreQueen
       moveBishopInPreQueen
+      preQueenBishopKillZone
+      preQueenKnightKillZone
+      preQueenRookKillZone
     </script>
   </turnscript>
   <turnscript name="displayASCII">
@@ -4838,13 +4841,13 @@
         else if ((player.parent.x = Knight.parent.x) and (player.parent.y = Knight.parent.y + 1)) {
           msg ("It looks like some sort of impenetrable darkness.")
           msg ("A haunting feeling crawls along your spine as you stare at it, like something’s staring right back at you.")
-          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds."
+          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds.")
           msg ("Every time you think you catch a ridge, a line, something solid, it shifts and changes.")
         }
         else if ((player.parent.x = Knight.parent.x - 1) and (player.parent.y = Knight.parent.y)) {
           msg ("It looks like some sort of impenetrable darkness.")
           msg ("A haunting feeling crawls along your spine as you stare at it, like something’s staring right back at you.")
-          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds."
+          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds.")
           msg ("Every time you think you catch a ridge, a line, something solid, it shifts and changes.")
         }
       }
@@ -4876,30 +4879,30 @@
         else if ((player.parent.x = Knight.parent.x) and (player.parent.y = Knight.parent.y + 1)) {
           msg ("It looks like some sort of impenetrable darkness.")
           msg ("A haunting feeling crawls along your spine as you stare at it, like something’s staring right back at you.")
-          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds."
+          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds.")
           msg ("Every time you think you catch a ridge, a line, something solid, it shifts and changes.")
         }
         else if ((player.parent.x = Knight.parent.x - 1) and (player.parent.y = Knight.parent.y)) {
           msg ("It looks like some sort of impenetrable darkness.")
           msg ("A haunting feeling crawls along your spine as you stare at it, like something’s staring right back at you.")
-          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds."
+          msg ("Every now and then, you’ll catch the glimpse of something within the murky depths, but it’s like a vague sketch, something without bounds.")
           msg ("Every time you think you catch a ridge, a line, something solid, it shifts and changes.")
         }
         if ((player.parent.x = Bishop.parent.x) and (player.parent.y = Bishop.parent.y - 1)) {
           msg ("You look around and see nothing of interest but a cool chill runs down your spine.")
-          msg ("It’s like something’s watching you.)
+          msg ("It’s like something’s watching you.")
         }
         else if ((player.parent.x = Bishop.parent.x + 1) and (player.parent.y = Bishop.parent.y)) {
           msg ("You look around and see nothing of interest but a cool chill runs down your spine.")
-          msg ("It’s like something’s watching you.)
+          msg ("It’s like something’s watching you.")
         }
         else if ((player.parent.x = Bishop.parent.x) and (player.parent.y = Bishop.parent.y + 1)) {
           msg ("You look around and see nothing of interest but a cool chill runs down your spine.")
-          msg ("It’s like something’s watching you.)
+          msg ("It’s like something’s watching you.")
         }
         else if ((player.parent.x = Bishop.parent.x - 1) and (player.parent.y = Bishop.parent.y)) {
           msg ("You look around and see nothing of interest but a cool chill runs down your spine.")
-          msg ("It’s like something’s watching you.)
+          msg ("It’s like something’s watching you.")
         }
       }
     </script>
@@ -8530,132 +8533,132 @@
   <function name="RookRookKillZone">
     if (Counter.count = 0) {
       if (player.parent = C1) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C2) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C3) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C6) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C8) {
-        deathByRook
+        deathByTrain
       }
     }
     if (Counter.count = 8) {
       if (player.parent = G1) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G2) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G3) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G6) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G8) {
-        deathByRook
+        deathByTrain
       }
     }
     if (Counter.count = 3) {
       if (player.parent = A5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = B5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = D5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = E5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = F5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G5) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = H5) {
-        deathByRook
+        deathByTrain
       }
     }
     if (Counter.count = 4) {
       if (player.parent = A4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = B4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = D4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = E4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = F4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G4) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = H4) {
-        deathByRook
+        deathByTrain
       }
     }
     if (Counter.count = 9) {
       if (player.parent = A7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = B7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = C7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = D7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = E7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = F7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = G7) {
-        deathByRook
+        deathByTrain
       }
       else if (player.parent = H7) {
-        deathByRook
+        deathByTrain
       }
     }
   </function>
@@ -8701,8 +8704,8 @@
         deathByBishop
       }
       else if (player.parent = C1) {
+        deathByBishop
       }
-      deathByBishop
     }
   </function>
   <function name="moveRookinRook">
@@ -8766,7 +8769,7 @@
     Rook.parent.inRoom = " "
     MoveObject (Rook, player.parent)
     MoveObject (player, STORAGE)
-    player.playerDeath = You turn to face the oncoming train only to catch, in your final glimpse, a strange mix of intense light, crimson reds and near-translucent lime greens hit your body with a force you have never felt. There is but a moment of pain before life leaves your body.
+    player.playerDeath = "You turn to face the oncoming train only to catch, in your final glimpse, a strange mix of intense light, crimson reds and near-translucent lime greens hit your body with a force you have never felt. There is but a moment of pain before life leaves your body."
     Counter.count = 0
   </function>
   <function name="preQueenKnightKillZone">
