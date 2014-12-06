@@ -238,6 +238,10 @@
         }
       ]]></script>
     </turnscript>
+    <exit name="A3down" alias="down" to="D6">
+      <inherit name="downdirection" />
+      <locked />
+    </exit>
   </object>
   <object name="A4">
     <inherit name="editor_room" />
@@ -575,10 +579,10 @@
             msg ("You’re in a clearing, clear afternoon sunlight streams down from above.")
           }
         }
-        else if (game.level = "Rook") {
+        else if ((game.level = "Rook")) {
           msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper.")
           msg ("Beside the booth there is a sign in a language you can't read. You also see a green stamp chained to the booth itself.")
-          if (Key.parent <> player) {
+          if ((Key.parent <> player) and (Key.parent <> STORAGE)) {
             msg ("Not knowing what to do, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
           }
         }
@@ -1148,6 +1152,9 @@
         }
       ]]></script>
     </turnscript>
+    <exit name="C3down" alias="down" to="H8">
+      <inherit name="downdirection" />
+    </exit>
   </object>
   <object name="C4">
     <inherit name="editor_room" />
@@ -1800,7 +1807,7 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
           msg ("You see what looks like a large stone wall with a path that leads upwards.")
           if (Chessboard.parent = player) {
-            msg ("You look down as the chessboard in your hands flickers, and all the icons on it dissapear, including yours.")
+            msg ("You look down as the chessboard in your hands flickers, and all the icons on it disappear, including yours.")
             MoveObject (Chessboard, STORAGE)
           }
         }
@@ -1815,6 +1822,10 @@
         }
       </script>
     </turnscript>
+    <exit name="D6up" alias="up" to="A3">
+      <inherit name="updirection" />
+      <locked />
+    </exit>
   </object>
   <object name="D7">
     <inherit name="editor_room" />
@@ -3711,6 +3722,9 @@
       <inherit name="southwestdirection" />
       <locked type="boolean">false</locked>
     </exit>
+    <exit name="H8up" alias="up" to="C3">
+      <inherit name="updirection" />
+    </exit>
   </object>
   <turnscript name="KnightOnTurn">
     <enabled />
@@ -4588,8 +4602,8 @@
   </turnscript>
   <turnscript name="PreKnightOnTurn">
     <script>
-      moveRookInPreKnight
       preKnightRookKillZone
+      moveRookInPreKnight
     </script>
   </turnscript>
   <turnscript name="PreQueenOnTurn">
@@ -4654,7 +4668,7 @@
     <enabled />
     <script><![CDATA[
       if ((Contains (player.parent, Chessboard)) and (Chessboard.parent <> player) and (player.parent <> STORAGE)) {
-        msg ("A flat square of glass lies on the ground…. it appears to be a chessboard")
+        msg ("A flat square of glass lies on the ground… It appears to be a chessboard")
       }
       if ((Contains (player.parent, Key)) and (Key.parent <> player) and (player.parent <> STORAGE)) {
         msg ("You see a passport")
@@ -5086,7 +5100,7 @@
     </script>
   </command>
   <command>
-    <pattern>go in #mirror#</pattern>
+    <pattern>go in #text#</pattern>
     <script>
       if ((text = "mirror") or (text = "MIRROR") or (text="Mirror") or (text="Looking Glass") or (text="looking glass") or (text="LOOKING GLASS") or (text = "LookingGlass") or (text = "LOOKINGGLASS") or (text = "lookingglass") or (text = "glass") or (text = "GLASS") or (text = "Glass") or (text = "oval glass") or (text = "OvalGlass") or (text = "OVAL GLASS") or (text = "Oval Glass") or (text = "ovalglass") or (text = "OVALGLASS") or (text = "floating oval glass")) {
         mirrorEntered
@@ -6310,6 +6324,10 @@
       UnlockExit (exit)
       exit.lockmessage = "You encounter a brambly wall blocking your path."
     }
+    LockExit (A3down)
+    LockExit (D6up)
+    LockExit (C3down)
+    LockExit (H8up)
     if (HasAttribute(King.parent, "inRoom")) {
       King.parent.inRoom = " "
       MoveObject (King, STORAGE)
@@ -7104,10 +7122,6 @@
     // LockExit (C7north)
     // LockExit (C7south)
     // LockExit (D7south)
-    create exit ("down", A3, D6)
-    create exit ("up", D6, A3)
-    create exit ("down", C3, H8)
-    create exit ("up", H8, C3)
     // create exit ("north", B8, C8)
     // create exit ("north", D7, C8)
     // create exit ("east", D7, C8)
@@ -7198,6 +7212,10 @@
     foreach (exit, AllExits()) {
       exit.lockmessage = "The trees are so dense they form a wall blocking your path."
     }
+    UnlockExit (A3down)
+    UnlockExit (D6up)
+    UnlockExit (C3down)
+    UnlockExit (H8up)
     C5east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
     C3west.lockmessage = "There is a door blocking your path. It is firmly bolted shut."
     B2north.lockmessage = "A vast wall of shadows block your path forward. It doesn’t seem natural, the light just stops relative to its murky border. You strain your eyes, trying to look inside of it, but nothing seems to stick out. Every now and then you think you catch a glimpse of a surface, but it’s like a poorly drawn sketch. Every time you seem to catch something concrete, it shifts and moves somehow. "
@@ -7211,7 +7229,7 @@
     msg ("You see an elegant necklace made of some sort of white gold at your feet. Immediately, you clasp it around your neck. ")
   </function>
   <function name="setupPreKnight">
-    MoveObject (player, E1)
+    MoveObject (player, A5)
     MoveObject (Goal, H1)
     MoveObject (Rook, H5)
     LockExit (A8south)
