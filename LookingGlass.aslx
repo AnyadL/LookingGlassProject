@@ -37,12 +37,12 @@
       msg ("These walls – these walls of thorns – enclose around you forming an uncertain path. ")
       msg (" ")
       // RabbitHole -> Pawn -> Rook -> Knight -> Bishop -> Queen
-      msg ("FOR TESTING: Pick a level: (RabbitHole, Pawn, PreRook, Rook, PreKnight, Knight, PreBishop, Bishop, PreQueen, Queen)")
-      msg ("Type: level [level]")
-      msg ("Example: level RabbitHole")
-      msg ("The actual order of the puzzles is as shown above")
-      msg ("To go between levels, solve the puzzles and 'enter' the mirrors")
-      // setupRabbitHole
+      // msg ("FOR TESTING: Pick a level: (RabbitHole, Pawn, PreRook, Rook, PreKnight, Knight, PreBishop, Bishop, PreQueen, Queen)")
+      // msg ("Type: level [level]")
+      // msg ("Example: level RabbitHole")
+      // msg ("The actual order of the puzzles is as shown above")
+      // msg ("To go between levels, solve the puzzles and 'enter' the mirrors")
+      setupRabbitHole
       // Move(player, E8)
       foreach (exit, AllExits()) {
         exit.lockmessage = "You encounter a brambly wall blocking your path."
@@ -52,6 +52,9 @@
           room.alias = "Looking Glass"
         }
       }
+      msg ("There is a wall to the east")
+      msg ("There is a wall to the west")
+      msg ("There is a wall to the north")
     ]]></start>
     <roomenter type="script">
       // descWalls
@@ -585,10 +588,10 @@
           }
           else {
             msg ("You see what appears to be something like a toll booth just before an open doorway.")
+            msg ("Beside the booth there is a sign in a language you can't read, showing what looks like a passport with a green stamp on it. That might explain the green stamp chained to the booth itself.")
           }
-          msg ("Beside the booth there is a sign in a language you can't read, showing what looks like a passport with a green stamp on it. That might explain the green stamp chained to the booth itself.")
           if ((Key.parent <> player) and (Key.parent <> STORAGE)) {
-            msg ("Not knowing what to do, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
+            msg ("Not knowing what to do, you look frantically around and then at the chessboard, you see a strange symbol in the corner. It’s not like any chess piece you've seen but maybe it can help.")
           }
         }
         else if (game.level = "Bishop") {
@@ -1159,7 +1162,7 @@
             MoveObject (Chessboard, player)
           }
           msg ("You are in a living room.")
-          msg ("There is a locked trophy case and a mantlepiece, though neither displays anything of interest.")
+          msg ("There is a locked trophy case and a mantelpiece, though neither displays anything of interest.")
           if (door.parent = C3) {
             msg ("To your west there is a wooden door that appears to be nailed shut.")
           }
@@ -2015,7 +2018,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2077,7 +2080,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2139,7 +2142,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2403,6 +2406,7 @@
     <inRoom> </inRoom>
     <x type="int">4</x>
     <y type="int">7</y>
+    <alias>Looking Glass</alias>
     <enter type="script">
     </enter>
     <onexit type="script">
@@ -2435,7 +2439,7 @@
           MoveObject (player, H8)
         }
         else if (game.level = "Rook") {
-          msg ("You are on a train platfrom that extends to the west and east.")
+          msg ("You are on a train platform that extends to the west and east.")
         }
         else if (game.level = "Bishop") {
           msg ("You are standing in a large and empty courtyard.")
@@ -2485,7 +2489,7 @@
           msg ("You’re in a darker part of the forest, long shadows cast themselves across your path. ")
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2545,7 +2549,7 @@
           msg ("You’re in a wooded glade, green sunlight streaming from above.")
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2607,7 +2611,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -2955,7 +2959,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -3017,7 +3021,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -3079,7 +3083,7 @@
         else if (game.level = "Rook") {
         }
         else if (game.level = "Bishop") {
-          msg ("You are standing in what appears to be a large armory. Unfortunatly, it's empty")
+          msg ("You are standing in what appears to be a large armory. Unfortunately, it's empty")
           if (Lever.parent = H4) {
             msg ("High up on the eastern wall you see two security cameras, diligently searching the area.")
           }
@@ -3743,7 +3747,7 @@
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
           msg ("However, you can make out a solid stone wall, with stairs leading up towards a source of light.")
           if (Chessboard.parent = player) {
-            msg ("You look down as the chessboard in your hands flickers, and all the icons on it dissapear, including yours.")
+            msg ("You look down as the chessboard in your hands flickers, and all the icons on it disappear, including yours.")
             MoveObject (Chessboard, STORAGE)
           }
         }
@@ -3914,8 +3918,8 @@
       <switchoffmsg>The light is still there, you will probably die</switchoffmsg>
       <attr name="feature_edible" type="boolean">false</attr>
       <eat>Even through the dim light, the rusted lever does not look terribly appetizing.</eat>
-      <lick>Tastes metalic</lick>
-      <throw>It is pretty firmly bolted to the ground. It would kinda be a problem if it wasn't.</throw>
+      <lick>Tastes metallic</lick>
+      <throw>It is pretty firmly bolted to the ground. It would kind of be a problem if it wasn't.</throw>
       <takemsg>And how do you propose to take something that is bolted to the floor?</takemsg>
       <enter>You are not small enough.</enter>
       <approach>You are now standing over the lever.</approach>
@@ -3963,6 +3967,7 @@
       <destroy>Do you mean to destroy yourself, or just your virtual alter ego? If it's the latter, quitting the game would be more efficient, if yourself, I would suggest extensive counselling.</destroy>
       <break>Breaking the player is my duty, thank you very much. You try to win, and I try to break you. Stop messing with the balance of these things!</break>
       <look>You want to know what you look like? Stand up from your computer, go to the nearest bathroom, and look in a mirror. Don't worry, we'll be here when you get back. This is a text adventure game. You don't even have to pause.</look>
+      <seenUnderground type="int">0</seenUnderground>
       <attack type="script">
         if (Sword.parent = player) {
           msg ("Suicide is a little dark for this game, no? How about we just play a game of patty-cake instead?")
@@ -3979,21 +3984,20 @@
         msg ("“Not necessarily, dear chap, as this is one of those adventure games in which you CAN die!”")
         msg ("“Oh how dreadful! How's the writing?”")
         msg ("“All right. Sometimes when I type in random verbs, strange things pop up. Like, I was expecting when I told the game I wanted to talk to myself get that line about how talking to yourself is probably a sign you're going crazy. Like I haven't seen that before.”")
-        msg ("“Bit of a cliche, isn't it? What did you get instead?”")
+        msg ("“Bit of a cliché, isn't it? What did you get instead?”")
         msg ("“This wondrous conversation!”")
         msg ("“Oh, wonderful! I do say that talking to myself is an engaging bit of gabbing, wouldn't you say, old boy?”")
         msg ("“Right, yes, of course! Although I don't understand why I imagine myself as a 19th century British Gentleman.”")
-        msg ("“Because monocles are absolutely smashing, my boy! And top hats! We musn't forget those!”")
+        msg ("“Because monocles are absolutely smashing, my boy! And top hats! We mustn’t forget those!”")
         msg ("“And I have been on a bit of a Harry Potter kick lately, so I've been feeling a bit British!”")
-        msg ("“Ah, and Downton Abbey! We musn't forget that one, my good fellow!”")
+        msg ("“Ah, and Downton Abbey! We mustn’t forget that one, my good fellow!”")
         msg ("“Ah yes! We must not forget that one at all!”")
         msg ("(A hearty laugh is shared by all.)")
         msg ("“Say old chap, I don't suppose anyone would read this entire block of text, would they?”")
-        msg ("“Bah! Of course not! This is going to be played by millenials! If it's over one hundred forty characters, their eyes glaze over!”")
+        msg ("“Bah! Of course not! This is going to be played by millennials! If it's over one hundred forty characters, their eyes glaze over!”")
         msg ("“Smashing, smashing! It wouldn't do to have our rich, fantasy atmosphere broken up by Downton Abbey references!”")
         msg ("“No, my good man, it wouldn't do at all!”")
       </speak>
-      <seenUnderground type="int">0</seenUnderground>
     </object>
     <object name="Chessboard">
       <inherit name="editor_object" />
@@ -4020,7 +4024,7 @@
       <ontake type="script">
         Chessboard.first = Chessboard.first + 1
         if (Chessboard.first = 1) {
-          msg ("You pick it up and feel its cool texture in your hands as a light suddenly switches on from within its pane.")
+          msg ("You pick it up and feel it’s cool texture in your hands as a light suddenly switches on from within its pane.")
           msg ("Slowly, small squares of black and white spread across its surface.")
           msg ("And several little designs appear upon it.")
           msg ("It looks to be: two white pawns, and one black king…")
@@ -4228,6 +4232,16 @@
       </use>
       <approach type="script">
       </approach>
+      <stamp type="script">
+        if (game.level = "Rook") {
+          if (player.parent = stamp.parent) {
+            UnlockExit (B2west)
+            UnlockExit (A2east)
+            msg ("You stamp the passport. You notice the passage west of you soundlessly open. The passport however crumbles to dust.")
+            MoveObject (Key, STORAGE)
+          }
+        }
+      </stamp>
       <selfuseon type="scriptdictionary" />
       <giveto type="scriptdictionary">
         <item key="Checkpoint">
@@ -4240,16 +4254,6 @@
           }
         </item>
       </giveto>
-      <stamp type="script">
-        if (game.level = "Rook") {
-          if (player.parent = stamp.parent) {
-            UnlockExit (B2west)
-            UnlockExit (A2east)
-            msg ("You stamp the passport. You notice the passage west of you soundlessly open. The passport however crumbles to dust.")
-            MoveObject (Key, STORAGE)
-          }
-        }
-      </stamp>
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -4531,7 +4535,7 @@
       <takemsg>If you want something portable upon which to rest, may I suggest a sleeping bag?</takemsg>
       <press>You press your full weight against the back of the bench, but it does not so much as move an inch.</press>
       <enter>Do you mean that you want to sit on the bench?</enter>
-      <sit>You try to sit, and it only takes you a moment to realize how cold and unaccomodating it is. With a sigh, you stand up, resigning yourself to finding little rest here.</sit>
+      <sit>You try to sit, and it only takes you a moment to realize how cold and unaccommodating it is. With a sigh, you stand up, resigning yourself to finding little rest here.</sit>
       <approach>You are standing directly in front of the bench.</approach>
       <speak>It seems cold and uncomfortable to begin with. Why would you want to talk anyways?</speak>
       <attack type="script">
@@ -4584,72 +4588,6 @@
     <pattern>look in</pattern>
     <defaultexpression>"You can't look in " + object.article + "."</defaultexpression>
   </verb>
-  <command>
-    <pattern>level #text#</pattern>
-    <script>
-      level = text
-      if (level = "RabbitHole") {
-        game.level = "RabbitHole"
-        setupRabbitHole
-      }
-      else if (level = "Pawn") {
-        game.level = "Pawn"
-        takedownMap
-        setupPawn
-      }
-      else if (level = "PreBishop") {
-        AddToInventory (Chessboard)
-        game.level = "PreBishop"
-        takedownMap
-        setupPreBishop
-      }
-      else if (level = "Bishop") {
-        AddToInventory (Chessboard)
-        game.level = "Bishop"
-        takedownMap
-        setupBishop
-      }
-      else if (level = "PreRook") {
-        AddToInventory (Chessboard)
-        game.level = "PreRook"
-        takedownMap
-        setupPreRook
-      }
-      else if (level = "Rook") {
-        AddToInventory (Chessboard)
-        game.level = "Rook"
-        takedownMap
-        setupRook
-      }
-      else if (level = "PreKnight") {
-        AddToInventory (Chessboard)
-        game.level = "PreKnight"
-        takedownMap
-        setupPreKnight
-      }
-      else if (level = "Knight") {
-        AddToInventory (Chessboard)
-        game.level = "Knight"
-        takedownMap
-        setupKnight
-      }
-      else if (level = "Queen") {
-        AddToInventory (Chessboard)
-        game.level = "Queen"
-        takedownMap
-        setupQueen
-      }
-      else if (level = "PreQueen") {
-        AddToInventory (Chessboard)
-        game.level = "PreQueen"
-        takedownMap
-        setupPreQueen
-      }
-      else {
-        msg ("... did you even read that?")
-      }
-    </script>
-  </command>
   <turnscript name="PreBishopOnTurn">
     <script>
       preBishopRookKillZone
@@ -4821,7 +4759,65 @@
         msg ("")
         msg ("")
         msg ("")
-        finish
+        wait {
+          ClearScreen
+          PrintCentered ("")
+          PrintCentered ("Brought to you by: The Sporadic Pixels")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Programmers:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Dayna Lacoursiere - Team Cartographer")
+          PrintCentered ("")
+          PrintCentered ("      "+"Panayioti (Poty) Koukoulas - Puppet Master")
+          PrintCentered ("")
+          PrintCentered ("      "+"Lexie Bartlett - Hired Gun")
+          PrintCentered ("")
+          PrintCentered ("      "+"Deborsi Hazarika - Tour Guide")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Writers:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Liam Salmon - Word Wizard")
+          PrintCentered ("")
+          PrintCentered ("      "+"David Supina - Description Disciple")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Special Thanks to our Pawns:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Courtney Lacoursiere")
+          PrintCentered ("")
+          PrintCentered ("      "+"Courtney Bartlett")
+          PrintCentered ("")
+          PrintCentered ("      "+"Marcus Karpoff")
+          PrintCentered ("")
+          PrintCentered ("      "+"Dylan Cassidy")
+          PrintCentered ("")
+          PrintCentered ("      "+"Ryan Romano")
+          PrintCentered ("")
+          PrintCentered ("      "+"Braedy Kuzma")
+          PrintCentered ("")
+          PrintCentered ("      "+"Elliot Colp")
+          PrintCentered ("")
+          PrintCentered ("      "+"Glenn Meyer")
+          PrintCentered ("")
+          PrintCentered ("      "+"Thomas Curnow")
+          PrintCentered ("")
+          PrintCentered ("      "+"Benjamin Holmwood")
+          PrintCentered ("")
+          PrintCentered ("      "+"Kieran Boyle")
+          PrintCentered ("")
+          PrintCentered ("      "+"Joyce Tsang")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          finish
+        }
       }
       if ((game.level = "Pawn") and (King.parent = G6)) {
         msg ("You hear a blood-curdling scream cut abruptly to an unearthly silence.")
@@ -4870,7 +4866,65 @@
         msg ("")
         msg ("")
         msg ("")
-        finish
+        wait {
+          ClearScreen
+          PrintCentered ("")
+          PrintCentered ("Brought to you by: The Sporadic Pixels")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Programmers:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Dayna Lacoursiere - Team Cartographer")
+          PrintCentered ("")
+          PrintCentered ("      "+"Panayioti (Poty) Koukoulas - Puppet Master")
+          PrintCentered ("")
+          PrintCentered ("      "+"Lexie Bartlett - Hired Gun")
+          PrintCentered ("")
+          PrintCentered ("      "+"Deborsi Hazarika - Tour Guide")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Writers:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Liam Salmon - Word Wizard")
+          PrintCentered ("")
+          PrintCentered ("      "+"David Supina - Description Disciple")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("Special Thanks to our Pawns:")
+          PrintCentered ("")
+          PrintCentered ("      "+"Courtney Lacoursiere")
+          PrintCentered ("")
+          PrintCentered ("      "+"Courtney Bartlett")
+          PrintCentered ("")
+          PrintCentered ("      "+"Marcus Karpoff")
+          PrintCentered ("")
+          PrintCentered ("      "+"Dylan Cassidy")
+          PrintCentered ("")
+          PrintCentered ("      "+"Ryan Romano")
+          PrintCentered ("")
+          PrintCentered ("      "+"Braedy Kuzma")
+          PrintCentered ("")
+          PrintCentered ("      "+"Elliot Colp")
+          PrintCentered ("")
+          PrintCentered ("      "+"Glenn Meyer")
+          PrintCentered ("")
+          PrintCentered ("      "+"Thomas Curnow")
+          PrintCentered ("")
+          PrintCentered ("      "+"Benjamin Holmwood")
+          PrintCentered ("")
+          PrintCentered ("      "+"Kieran Boyle")
+          PrintCentered ("")
+          PrintCentered ("      "+"Joyce Tsang")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          PrintCentered ("")
+          finish
+        }
       }
     </script>
   </turnscript>
@@ -5171,6 +5225,7 @@
     <defaultexpression>"You can't break down " + object.article + "."</defaultexpression>
   </verb>
   <command name="trapdoor">
+    <pattern>go down #text# </pattern>
     <script>
       if (game.level = Knight) {
         if (text = "trap door") {
@@ -5199,9 +5254,9 @@
         }
       }
     </script>
-    <pattern>go down #text# </pattern>
   </command>
   <command>
+    <pattern>go up #text#</pattern>
     <script>
       if (game.level = Knight) {
         if (text = "trap door") {
@@ -5230,7 +5285,6 @@
         }
       }
     </script>
-    <pattern>go up #text#</pattern>
   </command>
   <verb>
     <property>stamp</property>
@@ -5289,7 +5343,7 @@
       }
       else if ((Pawn.parent = Bishop.parent) and (Pawn.parent <> STORAGE)) {
         MoveObject (Pawn, STORAGE)
-        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emiting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
+        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emitting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
       }
       if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
         msg ("A few feet in front of you there is a lever tilted away from you about three feet in height. It seems to be rusted over somewhat, but you think that you could probably move it if you gave it a forceful pull.")
@@ -5371,7 +5425,7 @@
       }
       else if ((Pawn.parent = Bishop.parent) and (Pawn.parent <> STORAGE)) {
         MoveObject (Pawn, STORAGE)
-        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emiting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
+        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emitting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
       }
     }
   ]]></function>
@@ -6440,7 +6494,7 @@
       exit.lockmessage = "There is wall blocking your path."
     }
     EnableTurnScript (BishopOnTurn)
-    msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the the darkness, and when your eyes adjust you see that it emanates from a single security camera on the wall. It is slowly crossing the ground, as though searching, as though it were a spotlight. Looking around, you appear to be in some sort of jailblock. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. ")
+    msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the darkness, and when your eyes adjust you see that it emanates from a single security camera on the wall. It is slowly crossing the ground, as though searching, as though it were a spotlight. Looking around, you appear to be in some sort of jail. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. ")
     msg ("You see a golden crown and immediately pick it up and put it on. It feels heavy on your head.")
   </function>
   <function name="takedownMap"><![CDATA[
@@ -7352,8 +7406,8 @@
     UnlockExit (C3down)
     UnlockExit (H8up)
     player.seenUnderground = 0
-    C4east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
-    C5west.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    C4east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite its holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    C5west.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite its holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
     C5south.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
     D5south.lockmessage = "There is a white wall there."
     F4west.lockmessage = "There is a white wall there."
@@ -7576,7 +7630,7 @@
     MoveObject (Throne, E5)
     EnableTurnScript (playerQueenLevel)
     msg ("The walls of thorns start cracking and snapping.")
-    msg ("They twist and turn disappearing into the the grassy floor. ")
+    msg ("They twist and turn disappearing into the grassy floor. ")
     msg ("On the chessboard, the pieces have vanished. ")
     msg ("There’s a curious figure with their back turned to you and an empty throne. ")
     msg ("")
