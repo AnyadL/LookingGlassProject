@@ -6682,7 +6682,9 @@
       exit.lockmessage = "There is wall blocking your path."
     }
     EnableTurnScript (RookOnTurn)
-    msg ("You are standing on a cold, smooth, rocky surface overlooking a pair of intersecting depressed paths in the ground. They are of uniform width, and seem to stretch as far as you can make out. There is dim light, which has no immediately obvious source, although you see vague shadows seem to form, swirl and disperse as smoke all across the ground. You can just make out what appears to be train tracks in each depression. There appears to be blocky stone benches scattered across the open area, overlooking the tracks.<br/><br/>At your feet, you see what appears to be a cloak, and without a thought, you wrap it around your shoulders. ")
+    msg ("You are standing on a cold, smooth, rocky surface overlooking a pair of intersecting depressed paths in the ground. They are of uniform width, and seem to stretch as far as you can make out. There is dim light, which has no immediately obvious source, although you see vague shadows seem to form, swirl and disperse as smoke all across the ground. You can just make out what appears to be train tracks in each depression. There appears to be blocky stone benches scattered across the open area, overlooking the tracks.<br/><br/>At your feet, you see what appears to be a cloak, and without a thought, you wrap it around your shoulders. <br/><br/>You see a pawn on the chessboard.")
+    MoveObject (Pawn, C4)
+    MoveObject (Rook, A5)
   ]]></function>
   <function name="setupPreRook">
     MoveObject (player, E1)
@@ -8531,7 +8533,7 @@
     MoveObject (rug, STORAGE)
   </function>
   <function name="RookRookKillZone">
-    if (Counter.count = 0) {
+    if (Counter.count = 1) {
       if (player.parent = C1) {
         deathByTrain
       }
@@ -8610,6 +8612,11 @@
       }
     }
     if (Counter.count = 4) {
+      if (Pawn.parent = C4) {
+        MoveObject (Pawn, STORAGE)
+        C4.inRoom = " "
+        msg ("You hear a bloodcurdling scream over the distant rush of a train. The pawn piece that was on your chessboard promptly disappears")
+      }
       if (player.parent = A4) {
         deathByTrain
       }
