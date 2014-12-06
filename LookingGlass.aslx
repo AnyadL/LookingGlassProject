@@ -6755,9 +6755,12 @@
     MoveObject (Pawn, C4)
     MoveObject (Rook, A5)
   ]]></function>
-  <function name="setupPreRook">
+  <function name="setupPreRook"><![CDATA[
     MoveObject (player, E1)
     MoveObject (Goal, A5)
+    if (Chessboard.parent <> player) {
+      MoveObject (Chessboard, E2)
+    }
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -6947,7 +6950,7 @@
         // }
       // }
     msg ("And find yourself back in the familiar maze. ")
-  </function>
+  ]]></function>
   <function name="setupKnight">
     MoveObject (player, B1)
     MoveObject (Goal, D4)
@@ -7230,10 +7233,13 @@
     msg ("")
     msg ("You see an elegant necklace made of some sort of white gold at your feet. Immediately, you clasp it around your neck. ")
   </function>
-  <function name="setupPreKnight">
+  <function name="setupPreKnight"><![CDATA[
     MoveObject (player, A5)
     MoveObject (Goal, H1)
     MoveObject (Rook, H5)
+    if (Chessboard.parent <> player) {
+      MoveObject (Chessboard, B5)
+    }
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -7425,7 +7431,7 @@
     msg ("And find yourself back in the familiar maze. ")
     msg ("To your surprise, you look at the chessboard and find a new piece has appeared. It resembles a small caricature of a castle tower.")
     EnableTurnScript (PreKnightOnTurn)
-  </function>
+  ]]></function>
   <function name="setupQueen">
     MoveObject (player, E4)
     MoveObject (Throne, E5)
@@ -7466,12 +7472,15 @@
     MoveObject (player, STORAGE)
     player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
   </function>
-  <function name="setupPreQueen">
+  <function name="setupPreQueen"><![CDATA[
     MoveObject (player, A8)
     MoveObject (Goal, E4)
     MoveObject (Rook, A1)
     MoveObject (Knight, H1)
     MoveObject (Bishop, H8)
+    if (Chessboard.parent <> player) {
+      MoveObject (Chessboard, B8)
+    }
     LockExit (A8south)
     LockExit (A8southeast)
     LockExit (B8southwest)
@@ -7688,7 +7697,7 @@
     msg ("And find yourself back in the familiar maze. ")
     msg ("You look at your chessboard for a brief moment and realize that yet another new piece has appeared… ")
     EnableTurnScript (PreQueenOnTurn)
-  </function>
+  ]]></function>
   <function name="descWalls">
     msg ("")
     numExits = 0
