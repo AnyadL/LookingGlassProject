@@ -3,7 +3,7 @@
   <include ref="English.aslx" />
   <include ref="Core.aslx" />
   <template name="DefaultSelfDescription">You want to know what you look like? Stand up from your computer, go to the nearest bathroom, and look in a mirror. Don't worry, we'll be here when you get back. This is a text adventure game. You don't even have to pause.</template>
-  <game name="LookingGlass">
+  <game name="Looking Glass">
     <gameid>77da0769-8bb2-44aa-9cba-5afd9d9eb11f</gameid>
     <version>1.0</version>
     <firstpublished>2014</firstpublished>
@@ -61,6 +61,31 @@
       <count type="int">0</count>
     </object>
   </game>
+  <command name="go">
+    <pattern type="string"><![CDATA[^go to (?<exit>.*)$|^go (?<exit>.*)$|^(?<exit>north|east|south|west|northeast|northwest|southeast|southwest|in|out|up|down|n|e|s|w|ne|nw|se|sw|o|u|d)$]]></pattern>
+    <unresolved>You can't go there.</unresolved>
+    <script>
+      if (exit.visible) {
+        if (exit.locked) {
+          msg (exit.lockmessage)
+        }
+        else if (exit.runscript) {
+          if (HasScript(exit, "script")) {
+            do (exit, "script")
+          }
+        }
+        else if (exit.lookonly) {
+          msg ("There's a wall blocking your path.")
+        }
+        else {
+          game.pov.parent = exit.to
+        }
+      }
+      else {
+        msg ("There's a wall blocking your path.")
+      }
+    </script>
+  </command>
   <object name="A1">
     <inherit name="editor_room" />
     <attr name="grid_label" type="string"></attr>
@@ -4111,6 +4136,9 @@
       <walkin type="script">
         mirrorEntered
       </walkin>
+      <touch type="script">
+        mirrorEntered
+      </touch>
     </object>
     <object name="Key">
       <inherit name="editor_object" />
@@ -4566,12 +4594,12 @@
   </turnscript>
   <turnscript name="PreQueenOnTurn">
     <script>
-      moveRookInPreQueen
-      moveKnightInPreQueen
-      moveBishopInPreQueen
       preQueenBishopKillZone
       preQueenKnightKillZone
       preQueenRookKillZone
+      moveRookInPreQueen
+      moveKnightInPreQueen
+      moveBishopInPreQueen
     </script>
   </turnscript>
   <turnscript name="displayASCII">
@@ -4638,6 +4666,7 @@
       if ((Contains (player.parent,Goal)) and (player.parent <> STORAGE)) {
         if (game.level = "RabbitHole") {
           msg ("You see the oval glass hovering two feet in the air")
+          msg ("Could it be that the person went through it?")
         }
         else if (game.level = "Pawn") {
           msg ("You see another mirror.")
@@ -4696,13 +4725,13 @@
         }
         else if (player.parent = E2) {
           if (player.turn = 1) {
-            msg ("Your heart skips a beat as you reach out - but before you get the chance - it disappears.")
+            msg ("Your heart skips a beat as you reach out - but before you get the chance - it turns to the west and disappears.")
             player.turn = 2
           }
         }
         else if (player.parent = E1) {
           if (player.turn = 2) {
-            msg ("Upon approaching the area the only thing you see is a single mirror in the distance, an oval glass hovering two feet in the air.")
+            msg ("Upon approaching the area, the only thing you see is a single mirror to the west, an oval glass hovering two feet in the air.")
             player.turn = 3
           }
         }
@@ -5043,6 +5072,22 @@
     <pattern>jump</pattern>
     <defaultexpression>"You can't jump " + object.article + "."</defaultexpression>
   </verb>
+  <command>
+    <pattern>go through #text#</pattern>
+    <script>
+      if ((text = "mirror") or (text = "MIRROR") or (text="Mirror") or (text="Looking Glass") or (text="looking glass") or (text="LOOKING GLASS") or (text = "LookingGlass") or (text = "LOOKINGGLASS") or (text = "lookingglass") or (text = "glass") or (text = "GLASS") or (text = "Glass") or (text = "oval glass") or (text = "OvalGlass") or (text = "OVAL GLASS") or (text = "Oval Glass") or (text = "ovalglass") or (text = "OVALGLASS") or (text = "floating oval glass")) {
+        mirrorEntered
+      }
+    </script>
+  </command>
+  <command>
+    <pattern>go in #mirror#</pattern>
+    <script>
+      if ((text = "mirror") or (text = "MIRROR") or (text="Mirror") or (text="Looking Glass") or (text="looking glass") or (text="LOOKING GLASS") or (text = "LookingGlass") or (text = "LOOKINGGLASS") or (text = "lookingglass") or (text = "glass") or (text = "GLASS") or (text = "Glass") or (text = "oval glass") or (text = "OvalGlass") or (text = "OVAL GLASS") or (text = "Oval Glass") or (text = "ovalglass") or (text = "OVALGLASS") or (text = "floating oval glass")) {
+        mirrorEntered
+      }
+    </script>
+  </command>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -9050,5 +9095,4 @@
       msg ("You are on a set of train tracks that runs north to south")
     }
   </function>
-  <walkthrough name="Solution" />
 </asl>
