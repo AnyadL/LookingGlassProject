@@ -5053,6 +5053,11 @@
             setupQueen
             player.playerDeath = "null"
           }
+          else if (game.level = "PreQueen") {
+            takedownMap
+            setupPreQueen
+            player.playerDeath = "null"
+          }
         }
       }
     </script>
@@ -6400,6 +6405,7 @@
     DisableTurnScript (BishopOnTurn)
     DisableTurnScript (QueenOnTurn)
     DisableTurnScript (RookOnTurn)
+    Counter.count = 0
   ]]></function>
   <function name="setupRabbitHole">
     LockExit (E8west)
@@ -7439,7 +7445,6 @@
     MoveObject (Rook, player.parent)
     MoveObject (player, STORAGE)
     player.playerDeath = "The brambles of the maze dart out from all around you wrapping you in a deathly vice-grip. It’s only a matter of time."
-    Counter.count = 0
   </function>
   <function name="setupPreQueen">
     MoveObject (player, A8)
