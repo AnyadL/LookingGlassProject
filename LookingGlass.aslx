@@ -605,6 +605,13 @@
     <onexit type="script">
       B3.inRoom = " "
     </onexit>
+    <firstenter type="script"><![CDATA[
+      if (game.level = "Knight") {
+        if (door.parent <> STORAGE) {
+          MoveObject (door, B3)
+        }
+      }
+    ]]></firstenter>
     <exit name="B3southeast" alias="southeast" to="C2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -639,7 +646,7 @@
     </exit>
     <turnscript>
       <enabled />
-      <script>
+      <script><![CDATA[
         if (game.level = "Knight" ) {
           if (Knight.parent = B3) {
             msg ("You seem to have come to the other side of the shadows.")
@@ -648,7 +655,7 @@
           else {
             msg ("You are standing on a field of dead grass.")
           }
-          if (door.parent = C3) {
+          if (door.parent <> STORAGE) {
             msg ("To your east you see a door that leads into the white house, though it seems to be nailed shut.")
           }
           else {
@@ -662,7 +669,7 @@
           msg ("You are in an empty cell block area. The room is deathly quiet except for the soft whirring of the security camera.")
           msg ("There is an exit to your north.")
         }
-      </script>
+      ]]></script>
     </turnscript>
   </object>
   <object name="B4">
@@ -737,6 +744,12 @@
     <onexit type="script">
       B5.inRoom = " "
     </onexit>
+    <firstenter type="script">
+      if ((game.level = "Knight") and (monster.parent = STORAGE)) {
+        C5.inRoom = " "
+        MoveObject (Knight, STORAGE)
+      }
+    </firstenter>
     <exit name="B5southeast" alias="southeast" to="C4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1093,6 +1106,13 @@
     <onexit type="script">
       C3.inRoom = " "
     </onexit>
+    <firstenter type="script"><![CDATA[
+      if (game.level = "Knight") {
+        if (door.parent <> STORAGE) {
+          MoveObject (door, C3)
+        }
+      }
+    ]]></firstenter>
     <exit name="C3southeast" alias="southeast" to="D2">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -1266,9 +1286,6 @@
           msg ("You are north of the white house, with an open window to your south.")
           if (monster.parent = C5) {
             msg ("However, A menacing suit of armour seems to be guarding this entrance.")
-          }
-          else if (Knight.descShown = 1) {
-            msg ("You are surrounded by pieces of scrap metal.")
           }
           else {
             msg ("You are surrounded by pieces of scrap metal.")
@@ -1697,6 +1714,12 @@
     <onexit type="script">
       D5.inRoom = " "
     </onexit>
+    <firstenter type="script">
+      if ((game.level = "Knight") and (monster.parent = STORAGE)) {
+        C5.inRoom = " "
+        MoveObject (Knight, STORAGE)
+      }
+    </firstenter>
     <exit name="D5southeast" alias="southeast" to="E4">
       <inherit name="southeastdirection" />
       <attr name="grid_length" type="int">0</attr>
@@ -4344,6 +4367,17 @@
       <closescript type="script">
         msg ("It is bolted shut.")
       </closescript>
+      <breakdown type="script">
+        if (Sword.parent = player) {
+          msg ("It takes effort, but you eventually smash through the door.")
+          MoveObject (door, STORAGE)
+          UnlockExit (C3west)
+          UnlockExit (B3east)
+        }
+        else {
+          msg ("“You stupid door with your stupid face!” you cry as you kick it hard. Now your foot really hurts. Ow.")
+        }
+      </breakdown>
     </object>
     <object name="monster">
       <inherit name="editor_object" />
@@ -5107,6 +5141,11 @@
       }
     </script>
   </command>
+  <verb>
+    <property>breakdown</property>
+    <pattern>break down</pattern>
+    <defaultexpression>"You can't break down " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
