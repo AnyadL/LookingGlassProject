@@ -580,8 +580,13 @@
           }
         }
         else if ((game.level = "Rook")) {
-          msg ("You see what appears to be something like a toll booth just before a dead end, where it has caved in. As you come closer to inspect, you notice that the caved in section of the area has a strangely squished look, as if someone took everything that formed a normal continuation of the tunnel, and crumpled it like a piece of paper.")
-          msg ("Beside the booth there is a sign in a language you can't read. You also see a green stamp chained to the booth itself.")
+          if (Key.parent <> STORAGE) {
+            msg ("You see what appears to be something like a toll booth just before a solid door with no handle.")
+          }
+          else {
+            msg ("You see what appears to be something like a toll booth just before an open doorway.")
+          }
+          msg ("Beside the booth there is a sign in a language you can't read, showing what looks like a passport with a green stamp on it. That might explain the green stamp chained to the booth itself.")
           if ((Key.parent <> player) and (Key.parent <> STORAGE)) {
             msg ("Not knowing what to do, you look franctically around and then at the chessboard, you see a strange symbol in the corner. Its not like any chess piece you've seen but maybe it can help.")
           }
@@ -1827,6 +1832,10 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
+          if (player.seenUnderground = 0) {
+            msg ("Surprisingly, despite following a path down, you find yourself in another dense forest. You see a discarded knight chess piece on the grass at your feet, but it disappears shortly afterwards.")
+            player.seenUnderground = 1
+          }
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
           msg ("You see what looks like a large stone wall with a path that leads upwards.")
           if (Chessboard.parent = player) {
@@ -3727,6 +3736,10 @@
       <enabled />
       <script>
         if (game.level = "Knight" ) {
+          if (player.seenUnderground = 0) {
+            msg ("Surprisingly, despite following a path down, you find yourself in another dense forest. You see a discarded knight chess piece on the grass at your feet, but it disappears shortly afterwards.")
+            player.seenUnderground = 1
+          }
           msg ("The surrounding forest is so dense that hardly any light reaches you.")
           msg ("However, you can make out a solid stone wall, with stairs leading up towards a source of light.")
           if (Chessboard.parent = player) {
@@ -3980,6 +3993,7 @@
         msg ("“Smashing, smashing! It wouldn't do to have our rich, fantasy atmosphere broken up by Downton Abbey references!”")
         msg ("“No, my good man, it wouldn't do at all!”")
       </speak>
+      <seenUnderground type="int">0</seenUnderground>
     </object>
     <object name="Chessboard">
       <inherit name="editor_object" />
@@ -4226,6 +4240,16 @@
           }
         </item>
       </giveto>
+      <stamp type="script">
+        if (game.level = "Rook") {
+          if (player.parent = stamp.parent) {
+            UnlockExit (B2west)
+            UnlockExit (A2east)
+            msg ("You stamp the passport. You notice the passage west of you soundlessly open. The passport however crumbles to dust.")
+            MoveObject (Key, STORAGE)
+          }
+        }
+      </stamp>
     </object>
     <object name="Bishop2">
       <inherit name="editor_object" />
@@ -4476,7 +4500,7 @@
         <item key="Key">
           UnlockExit (B2west)
           UnlockExit (A2east)
-          msg ("You stamp the passport. You notice the (door?) open ahead of you. The passport however crumbles to dust. (PLACEHOLDER TEXT) ")
+          msg ("You stamp the passport. You notice the passage west of you soundlessly open. The passport however crumbles to dust.")
           MoveObject (Key, STORAGE)
         </item>
       </selfuseon>
@@ -5146,6 +5170,73 @@
     <pattern>break down</pattern>
     <defaultexpression>"You can't break down " + object.article + "."</defaultexpression>
   </verb>
+  <command name="trapdoor">
+    <script>
+      if (game.level = Knight) {
+        if (text = "trap door") {
+          if (player.parent = C3) {
+            MoveObject (player, H8)
+          }
+          else if (player.parent = A3) {
+            MoveObject (player, D6)
+          }
+        }
+        if (text = "stairs") {
+          if (player.parent = C3) {
+            MoveObject (player, H8)
+          }
+          else if (player.parent = A3) {
+            MoveObject (player, D6)
+          }
+        }
+        if (text = "path") {
+          if (player.parent = C3) {
+            MoveObject (player, H8)
+          }
+          else if (player.parent = A3) {
+            MoveObject (player, D6)
+          }
+        }
+      }
+    </script>
+    <pattern>go down #text# </pattern>
+  </command>
+  <command>
+    <script>
+      if (game.level = Knight) {
+        if (text = "trap door") {
+          if (player.parent = H8) {
+            MoveObject (player, C3)
+          }
+          else if (player.parent = D6) {
+            MoveObject (player, A3)
+          }
+        }
+        if (text = "stairs") {
+          if (player.parent = H8) {
+            MoveObject (player, C3)
+          }
+          else if (player.parent = D6) {
+            MoveObject (player, A3)
+          }
+        }
+        if (text = "path") {
+          if (player.parent = H8) {
+            MoveObject (player, C3)
+          }
+          else if (player.parent = D6) {
+            MoveObject (player, A3)
+          }
+        }
+      }
+    </script>
+    <pattern>go up #text#</pattern>
+  </command>
+  <verb>
+    <property>stamp</property>
+    <pattern>stamp</pattern>
+    <defaultexpression>"You can't stamp " + object.article + "."</defaultexpression>
+  </verb>
   <function name="moveKnight"><![CDATA[
     if (Knight.parent = C3) {
       MoveObject (Knight, B1)
@@ -5198,7 +5289,7 @@
       }
       else if ((Pawn.parent = Bishop.parent) and (Pawn.parent <> STORAGE)) {
         MoveObject (Pawn, STORAGE)
-        msg ("As you attempt to move, you see a shape in the distance. You watch in horror as a light is cast on the shape and it emits a near deafening cry of terror. In the same moment, the light has returned to its original resting spot. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
+        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emiting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
       }
       if ((player.parent = Lever.parent) and (player.parent <> STORAGE)) {
         msg ("A few feet in front of you there is a lever tilted away from you about three feet in height. It seems to be rusted over somewhat, but you think that you could probably move it if you gave it a forceful pull.")
@@ -5280,7 +5371,7 @@
       }
       else if ((Pawn.parent = Bishop.parent) and (Pawn.parent <> STORAGE)) {
         MoveObject (Pawn, STORAGE)
-        msg ("As you attempt to move, you see a shape in the distance. You watch in horror as a light is cast on the shape and it emits a near deafening cry of terror. In the same moment, the light has returned to its original resting spot. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
+        msg ("As you attempt to move, you see a dark shape in the distance. You watch in horror as the light from the security camera is cast on the shape and it bursts into flames, emiting a near deafening cry of terror. A long, slight shiver runs the full length of your spine, as you lick your dry lips. ")
       }
     }
   ]]></function>
@@ -6349,7 +6440,7 @@
       exit.lockmessage = "There is wall blocking your path."
     }
     EnableTurnScript (BishopOnTurn)
-    msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the far distance. It is slowly crossing the ground, as though searching, as though it were a spotlight. From what little you can see, you can see the area is littered with chains piled haphazardly. Seemingly at random, there seem to be jail bars jutting out of the ground, serving as nothing more than an inconvenient obstacle. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. As you look up, you see above you what appear to be several burned out spotlights, and you notice that as you move, they follow you, as if watching.")
+    msg ("You enter what feels like a large room, but it is difficult to tell the exact size in the dim light. A single, intense piercing light is perceivable in the the darkness, and when your eyes adjust you see that it emanates from a single security camera on the wall. It is slowly crossing the ground, as though searching, as though it were a spotlight. Looking around, you appear to be in some sort of jailblock. There is a high ringing sound in your ears which seems to shift and tremble, as though they were near human cries that seems to shift and pulse. ")
     msg ("You see a golden crown and immediately pick it up and put it on. It feels heavy on your head.")
   </function>
   <function name="takedownMap"><![CDATA[
@@ -6790,7 +6881,7 @@
       exit.lockmessage = "There is wall blocking your path."
     }
     EnableTurnScript (RookOnTurn)
-    msg ("You are standing on a cold, smooth, rocky surface overlooking a pair of intersecting depressed paths in the ground. They are of uniform width, and seem to stretch as far as you can make out. There is dim light, which has no immediately obvious source, although you see vague shadows seem to form, swirl and disperse as smoke all across the ground. You can just make out what appears to be train tracks in each depression. There appears to be blocky stone benches scattered across the open area, overlooking the tracks.<br/><br/>At your feet, you see what appears to be a cloak, and without a thought, you wrap it around your shoulders. <br/><br/>You see a pawn on the chessboard.")
+    msg ("You are standing in a cold, smooth, stone tunnel with several depressed paths in the ground. They are of uniform width, and seem to stretch as far as you can make out. There is dim light, which has no immediately obvious source, although you see vague shadows seem to form, swirl and disperse as smoke all across the ground. You can just make out what appears to be train tracks in each depression.<br/><br/>At your feet, you see what appears to be a cloak, and without a thought, you wrap it around your shoulders. <br/><br/>You see a pawn on the chessboard.")
     MoveObject (Pawn, C4)
     MoveObject (Rook, A5)
   ]]></function>
@@ -7260,7 +7351,16 @@
     UnlockExit (D6up)
     UnlockExit (C3down)
     UnlockExit (H8up)
-    C5east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    player.seenUnderground = 0
+    C4east.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    C5west.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    C5south.lockmessage = "You startle at the sight of an otherworldly something floating as if of its own accord. It appears to be a twisted and gnarled full suit of armour, hovering malevolently ahead. It’s some sort of matching onyx and red plate-mail, runic designs like burns etched deep inside the ungodly steel. Strangely, despite it holding together in the form of a man, as you look closely at the joints, there is nothing visible holding it together. But despite the lack of a body and the lack of a head in its horned helm, you have a feeling that it is watching you… A golden medal hangs around the levitating armor’s arm, it seems similar in design, though more ornate, than the silver on the sword. It is blocking your path."
+    D5south.lockmessage = "There is a white wall there."
+    F4west.lockmessage = "There is a white wall there."
+    F3west.lockmessage = "There is a white wall there."
+    D2north.lockmessage = "There is a white wall there."
+    C2north.lockmessage = "There is a white wall there."
+    B4east.lockmessage = "There is a white wall there."
     C3west.lockmessage = "There is a door blocking your path. It is firmly bolted shut."
     B2north.lockmessage = "A vast wall of shadows block your path forward. It doesn’t seem natural, the light just stops relative to its murky border. You strain your eyes, trying to look inside of it, but nothing seems to stick out. Every now and then you think you catch a glimpse of a surface, but it’s like a poorly drawn sketch. Every time you seem to catch something concrete, it shifts and moves somehow. "
     msg ("You stumble through the mirror, and this time, manage to stay on your feet. ")
@@ -7781,7 +7881,7 @@
       MoveObject (Lever, C8)
       MoveObject (Bishop, A5)
       MoveObject (Bishop2, D5)
-      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. The door in front of you slowly opens with a loud creak.")
+      msg ("You pull hard on the lever, all lights in the room go out, however you see source of light turn on through an open doorway.")
       UnlockExit (A3northeast)
       UnlockExit (B3northwest)
       UnlockExit (B3north)
@@ -7794,7 +7894,7 @@
       MoveObject (Lever, H4)
       MoveObject (Bishop2, H5)
       MoveObject (Bishop, E1)
-      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. You hear a loud creak, like another door opening from somewhere in the courtyard")
+      msg ("You pull hard on the lever, which jerkily gives way to the force exerted. You hear a loud crack, and the two spotlights suddenly go dark. You see a faint light turn on from somewhere on the southeast wall.")
       UnlockExit (D5southeast)
       UnlockExit (E5southwest)
       UnlockExit (E5south)
